@@ -125,14 +125,23 @@
       max-width:760px;
       margin: 0 auto;
     }
+
+    /* Hero: ahora NO recortar, se ve completa (contain) */
     .heroPhoto{
       margin-top:16px;
       border-radius:18px;
       overflow:hidden;
       border:1px solid rgba(255,255,255,.10);
       background: rgba(0,0,0,.18);
+      padding: 10px;
     }
-    .heroPhoto img{width:100%;height:auto;display:block;}
+    .heroPhoto img{
+      width:100%;
+      height:auto;
+      display:block;
+      border-radius:14px;
+      object-fit:contain;
+    }
 
     .grid2{display:grid;grid-template-columns:1fr;gap:12px;margin-top:14px;}
     @media(min-width:760px){.grid2{grid-template-columns:1fr 1fr}}
@@ -186,14 +195,21 @@
     .stepTitle{font-weight:900}
     .stepTime{color: var(--muted); margin-top:3px}
 
-    /* Galería */
+    /* Galería: ver completas (contain), sin recortar */
     .gallery{margin-top:14px;display:grid;grid-template-columns:1fr;gap:10px;}
     @media(min-width:760px){.gallery{grid-template-columns:1fr 1fr}}
     .ph{
       border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.10);
       background: rgba(0,0,0,.18);
+      padding:10px;
     }
-    .ph img{width:100%;height:auto;display:block}
+    .ph img{
+      width:100%;
+      height:auto;
+      display:block;
+      border-radius:14px;
+      object-fit:contain;
+    }
 
     /* RSVP */
     .form{margin-top:12px;display:grid;gap:10px;max-width:680px;margin-left:auto;margin-right:auto;}
@@ -276,9 +292,9 @@
         Si te llegó esta invitación, es porque te apreciamos y queremos que nos acompañes en nuestro día más especial.
       </p>
 
-      <!-- FOTO PRINCIPAL -->
+      <!-- FOTO GRANDE ARRIBA: ahora es portada.jpeg -->
       <div class="heroPhoto" style="margin-top:14px">
-        <img src="Carlos y Jimena.jpeg" alt="Carlos y Jimena">
+        <img src="portada.jpeg" alt="Carlos y Jimena - Portada">
       </div>
     </section>
 
@@ -403,7 +419,9 @@
     <section class="panel section">
       <div class="titleScript">Momentos</div>
 
+      <!-- Momentos: agregamos Carlos y Jimena.jpeg aquí (la que antes era grande) -->
       <div class="gallery">
+        <div class="ph"><img src="Carlos y Jimena.jpeg" alt="Carlos y Jimena"></div>
         <div class="ph"><img src="momento1.jpeg" alt="Momento 1"></div>
         <div class="ph"><img src="momento2.jpeg" alt="Momento 2"></div>
         <div class="ph"><img src="momento3.jpeg" alt="Momento 3"></div>
@@ -413,7 +431,7 @@
 
     <section class="panel section" id="rsvp">
       <div class="titleScript">Confirma tu Asistencia</div>
-      <p class="subtitle">Llena el siguiente formulario. Al enviar, se registrará y se abrirá WhatsApp con tu confirmación lista.</p>
+      <p class="subtitle">Llena el siguiente formulario para confirmar tu asistencia.</p>
 
       <form class="form" id="rsvpForm">
         <div class="two">
@@ -458,6 +476,7 @@
     // ======================
     const YT_VIDEO_ID = "yP_dhALIuFc";
     let player;
+    let musicOn = false;
 
     function onYouTubeIframeAPIReady(){
       player = new YT.Player("player", {
@@ -468,19 +487,30 @@
           loop: 1,
           playlist: YT_VIDEO_ID,
           modestbranding: 1
+        },
+        events: {
+          onReady: () => {
+            try { player.setVolume(45); } catch(e){}
+          }
         }
       });
     }
     window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
 
     function startMusic(){
-      if(!player) return;
+      if(!player) return false;
       try{
+        // Truco: a veces está “muteado” por autoplay policies
+        if (player.isMuted && player.isMuted()) player.unMute();
         player.setVolume(45);
         player.playVideo();
+        musicOn = true;
         const b = document.getElementById("btnMusic");
         if (b) b.textContent = "Música ✓";
-      }catch(e){}
+        return true;
+      }catch(e){
+        return false;
+      }
     }
 
     document.getElementById("openInvite").addEventListener("click", () => {
@@ -489,17 +519,43 @@
       topBar.classList.remove("hidden");
       window.scrollTo({top:0, behavior:"smooth"});
 
-      // intentar reproducir (algunos navegadores requieren 1-2 intentos)
+      // Intentar varias veces (algunos móviles tardan en crear el player)
       setTimeout(startMusic, 200);
       setTimeout(startMusic, 900);
+      setTimeout(startMusic, 1600);
     });
 
-    document.getElementById("btnMusic").addEventListener("click", startMusic);
+    document.getElementById("btnMusic").addEventListener("click", () => {
+      // toggle simple
+      if(!player) return;
+      try{
+        if(musicOn){
+          player.pauseVideo();
+          musicOn = false;
+          document.getElementById("btnMusic").textContent = "Música";
+        }else{
+          startMusic();
+        }
+      }catch(e){}
+    });
 
     // ======================
-    // RSVP: GOOGLE FORMS + WHATSAPP
+    // RSVP: SOLO GOOGLE FORMS
     // ======================
     const rsvpMsg = document.getElementById("rsvpMsg");
+
+    function postToGoogleForm(payloadParams){
+      const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSf1gQvRgM63JLVnElM8zpV4Qm2TBFll-OOeuWBIBJauKLa-Rw/formResponse";
+
+      // 1) fetch (no-cors)
+      fetch(FORM_URL, { method: "POST", mode: "no-cors", body: payloadParams }).catch(()=>{});
+
+      // 2) fallback: sendBeacon (mejora entregabilidad en móvil)
+      try{
+        const blob = new Blob([payloadParams.toString()], { type: "application/x-www-form-urlencoded" });
+        navigator.sendBeacon(FORM_URL, blob);
+      }catch(e){}
+    }
 
     document.getElementById("rsvpForm").addEventListener("submit", (e) => {
       e.preventDefault();
@@ -514,33 +570,20 @@
         return;
       }
 
-      // 1) Guardar en Google Forms (se refleja en tu Google Sheet)
-      const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSf1gQvRgM63JLVnElM8zpV4Qm2TBFll-OOeuWBIBJauKLa-Rw/formResponse";
-
       const data = new URLSearchParams();
       data.append("entry.837092975", name);           // Nombre
       data.append("entry.764767312", attend);         // Asistencia
       data.append("entry.706411984", pax);            // Personas
       data.append("entry.1995459750", notes || "");   // Mensaje
 
-      fetch(FORM_URL, { method: "POST", mode: "no-cors", body: data });
+      postToGoogleForm(data);
 
-      // 2) Abrir WhatsApp con confirmación lista (México +52)
-      const WHATSAPP = "5214772729121";
+      rsvpMsg.innerHTML = '<div class="ok">Gracias por confirmar tu asistencia ✅</div>';
 
-      const msgLines = [
-        "Confirmación de asistencia - Boda Carlos & Jimena",
-        `Nombre: ${name}`,
-        `Asistencia: ${attend}`,
-        `Personas: ${pax}`,
-        notes ? `Mensaje: ${notes}` : ""
-      ].filter(Boolean);
-
-      const text = encodeURIComponent(msgLines.join("\n"));
-      const wa = `https://wa.me/${WHATSAPP}?text=${text}`;
-
-      rsvpMsg.innerHTML = '<div class="ok">Listo ✅ Tu confirmación quedó registrada. Se abrirá WhatsApp para enviarla.</div>';
-      window.open(wa, "_blank", "noopener");
+      // limpiar formulario
+      setTimeout(() => {
+        document.getElementById("rsvpForm").reset();
+      }, 300);
     });
   </script>
 </body>
