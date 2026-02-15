@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Invitación | Boda</title>
+  <meta name="description" content="Invitación digital de boda" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0b0b0f;
+      --card:#12121a;
+      --text:#f5f5f7;
+      --muted:#b7b7c2;
+      --gold:#caa24a;
+      --line:rgba(202,162,74,.35);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;
+      color:var(--text);
+      background: radial-gradient(1200px 600px at 30% -10%, rgba(202,162,74,.18), transparent 55%),
+                  radial-gradient(900px 600px at 90% 10%, rgba(255,255,255,.06), transparent 60%),
+                  var(--bg);
+    }
+    .wrap{max-width:980px;margin:0 auto;padding:28px 16px 72px}
+    .hero{
+      padding:34px 18px 22px;
+      border:1px solid var(--line);
+      border-radius:20px;
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01));
+      backdrop-filter: blur(6px);
+      text-align:center;
+    }
+    .badge{
+      display:inline-block;
+      padding:8px 12px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      color:var(--muted);
+      font-size:12px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+    h1{
+      font-family:"Cormorant Garamond", serif;
+      font-weight:600;
+      margin:14px 0 6px;
+      font-size:46px;
+      letter-spacing:.02em;
+    }
+    .sub{
+      margin:0 auto;
+      max-width:720px;
+      color:var(--muted);
+      line-height:1.55;
+      font-size:15px;
+    }
+    .names{
+      font-family:"Cormorant Garamond", serif;
+      font-size:34px;
+      margin:18px 0 6px;
+    }
+    .divider{
+      width:120px;height:1px;background:var(--line);margin:14px auto;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:14px;
+      margin-top:14px;
+    }
+    @media(min-width:760px){
+      .grid{grid-template-columns:1.2fr .8fr}
+    }
+
+    .card{
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:18px;
+      background:rgba(18,18,26,.70);
+      padding:18px;
+    }
+    .card h2{
+      font-size:14px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color:var(--gold);
+      margin:0 0 10px;
+    }
+    .row{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:10px;
+    }
+    @media(min-width:760px){
+      .row{grid-template-columns:1fr 1fr}
+    }
+    .item{
+      padding:12px;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:14px;
+      background:rgba(0,0,0,.18);
+    }
+    .label{color:var(--muted);font-size:12px;margin-bottom:6px}
+    .value{font-size:15px;line-height:1.35}
+    .btns{
+      display:flex;flex-wrap:wrap;gap:10px;margin-top:12px
+    }
+    a.btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid rgba(202,162,74,.55);
+      color:var(--text);
+      text-decoration:none;
+      background:rgba(202,162,74,.10);
+      font-weight:600;
+      font-size:14px;
+    }
+    a.btn.secondary{
+      border-color:rgba(255,255,255,.14);
+      background:rgba(255,255,255,.05);
+      font-weight:600;
+    }
+    .qrwrap{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:12px;
+      margin-top:10px;
+    }
+    .qrbox{
+      display:flex;gap:12px;align-items:center;
+      padding:12px;
+      border-radius:14px;
+      border:1px dashed rgba(255,255,255,.16);
+      background:rgba(0,0,0,.12);
+    }
+    .qr{
+      width:92px;height:92px;background:#fff;border-radius:10px;padding:8px;
+      display:flex;align-items:center;justify-content:center;
+      flex:0 0 auto;
+    }
+    .qr svg, .qr canvas{width:100% !important;height:100% !important}
+    .qtxt .t{font-weight:700}
+    .qtxt .d{color:var(--muted);font-size:12px;margin-top:2px;line-height:1.35}
+    .footer{
+      margin-top:16px;
+      text-align:center;
+      color:var(--muted);
+      font-size:12px;
+    }
+
+    /* Contador */
+    .countdown{
+      display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:14px
+    }
+    .cd{
+      min-width:92px;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(0,0,0,.18);
+      text-align:center;
+    }
+    .cd .n{font-size:22px;font-weight:800}
+    .cd .u{font-size:11px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase}
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <div class="badge">Invitación digital</div>
+      <h1>Boda</h1>
+      <div class="names">EDITA AQUÍ: Ana & Carlos</div>
+      <div class="divider"></div>
+      <p class="sub">
+        Con mucha alegría, te invitamos a celebrar con nosotros este día tan especial.
+        Tu presencia será parte de nuestra historia.
+      </p>
+
+      <div class="countdown" aria-label="Cuenta regresiva">
+        <div class="cd"><div class="n" id="d">—</div><div class="u">Días</div></div>
+        <div class="cd"><div class="n" id="h">—</div><div class="u">Horas</div></div>
+        <div class="cd"><div class="n" id="m">—</div><div class="u">Min</div></div>
+        <div class="cd"><div class="n" id="s">—</div><div class="u">Seg</div></div>
+      </div>
+    </section>
+
+    <div class="grid">
+      <section class="card">
+        <h2>Detalles del evento</h2>
+        <div class="row">
+          <div class="item">
+            <div class="label">Fecha</div>
+            <div class="value">EDITA AQUÍ: Sábado 20 de Junio de 2026</div>
+          </div>
+          <div class="item">
+            <div class="label">Hora</div>
+            <div class="value">EDITA AQUÍ: 5:00 PM</div>
+          </div>
+          <div class="item">
+            <div class="label">Lugar</div>
+            <div class="value">EDITA AQUÍ: Salón “Los Encinos”</div>
+          </div>
+          <div class="item">
+            <div class="label">Dirección</div>
+            <div class="value">EDITA AQUÍ: Dirección completa aquí</div>
+          </div>
+        </div>
+
+        <div class="btns">
+          <!-- EDITA AQUÍ: pega tu link de Google Maps -->
+          <a class="btn" id="btnMaps" href="https://maps.google.com/?q=Le%C3%B3n+Guanajuato" target="_blank" rel="noopener">Ver ubicación</a>
+
+          <!-- EDITA AQUÍ: WhatsApp RSVP -->
+          <a class="btn secondary" id="btnRsvp" href="https://wa.me/5214770000000?text=Hola%2C%20confirmo%20mi%20asistencia%20a%20la%20boda.%20Mi%20nombre%20es%3A%20" target="_blank" rel="noopener">Confirmar por WhatsApp</a>
+        </div>
+
+        <div class="footer">
+          Sugerencia: si quieres RSVP más formal, usa Google Forms y cambia el botón/QR al enlace del formulario.
+        </div>
+      </section>
+
+      <aside class="card">
+        <h2>Códigos QR</h2>
+
+        <div class="qrwrap">
+          <div class="qrbox">
+            <div class="qr" id="qrInvite"></div>
+            <div class="qtxt">
+              <div class="t">Abrir invitación</div>
+              <div class="d">Escanéalo para abrir este sitio.</div>
+            </div>
+          </div>
+
+          <div class="qrbox">
+            <div class="qr" id="qrMaps"></div>
+            <div class="qtxt">
+              <div class="t">Ubicación</div>
+              <div class="d">QR directo a Google Maps.</div>
+            </div>
+          </div>
+
+          <div class="qrbox">
+            <div class="qr" id="qrRsvp"></div>
+            <div class="qtxt">
+              <div class="t">Confirmación</div>
+              <div class="d">QR a WhatsApp (o Google Form).</div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- Librería QR (sin instalar nada) -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.4/build/qrcode.min.js"></script>
+
+  <script>
+    // =========================
+    // EDITA AQUÍ: Fecha/hora del evento (formato ISO)
+    // Ejemplo: "2026-06-20T17:00:00-06:00"
+    // =========================
+    const EVENT_ISO = "2026-06-20T17:00:00-06:00";
+
+    function tick(){
+      const now = new Date();
+      const eventDate = new Date(EVENT_ISO);
+      let diff = eventDate - now;
+
+      if (diff < 0) diff = 0;
+
+      const sec = Math.floor(diff / 1000);
+      const d = Math.floor(sec / 86400);
+      const h = Math.floor((sec % 86400) / 3600);
+      const m = Math.floor((sec % 3600) / 60);
+      const s = sec % 60;
+
+      document.getElementById("d").textContent = d;
+      document.getElementById("h").textContent = String(h).padStart(2,"0");
+      document.getElementById("m").textContent = String(m).padStart(2,"0");
+      document.getElementById("s").textContent = String(s).padStart(2,"0");
+    }
+    tick();
+    setInterval(tick, 1000);
+
+    // =========================
+    // QR Codes
+    // =========================
+    const inviteUrl = window.location.href; // URL actual publicada
+    const mapsUrl = document.getElementById("btnMaps").href;
+    const rsvpUrl = document.getElementById("btnRsvp").href;
+
+    const qrOpts = { margin: 1, width: 170 };
+
+    QRCode.toCanvas(document.getElementById("qrInvite"), inviteUrl, qrOpts);
+    QRCode.toCanvas(document.getElementById("qrMaps"), mapsUrl, qrOpts);
+    QRCode.toCanvas(document.getElementById("qrRsvp"), rsvpUrl, qrOpts);
+  </script>
+</body>
+</html>
