@@ -14,12 +14,11 @@
     :root{
       --bg1:#060913;
       --bg2:#0a1023;
-      --card:#0c1226;
       --text:#f5f5f7;
       --muted:rgba(245,245,247,.75);
       --gold:#caa24a;
       --gold2:#e1c37a;
-      --line:rgba(202,162,74,.35);
+      --line:rgba(202,162,74,.30);
       --shadow: 0 22px 80px rgba(0,0,0,.55);
     }
     *{box-sizing:border-box}
@@ -28,45 +27,47 @@
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;
       color:var(--text);
       background:
-        radial-gradient(900px 600px at 20% -10%, rgba(202,162,74,.18), transparent 55%),
-        radial-gradient(1000px 700px at 90% 20%, rgba(255,255,255,.06), transparent 60%),
+        radial-gradient(900px 600px at 20% -10%, rgba(202,162,74,.16), transparent 55%),
+        radial-gradient(1000px 700px at 90% 20%, rgba(255,255,255,.05), transparent 60%),
         linear-gradient(180deg, var(--bg2), var(--bg1));
     }
     a{color:inherit}
     .hidden{display:none !important;}
     .wrap{max-width:900px;margin:0 auto;padding:18px 14px 80px}
 
-    /* ====== DECORACIÓN ESQUINAS (tipo hojas doradas) ====== */
+    /* ====== PANEL BASE ====== */
     .panel{
       position:relative;
       border-radius:22px;
       border:1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01));
+      background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.01));
       overflow:hidden;
       box-shadow: var(--shadow);
     }
+
+    /* ====== DECORACIÓN FLORES/PLANTAS (más pegadas a esquinas para NO amontonar texto) ====== */
     .panel::before, .panel::after{
       content:"";
       position:absolute;
-      width:260px;height:260px;
-      opacity:.85;
+      width:240px;height:240px;
+      opacity:.80;
       pointer-events:none;
       background-repeat:no-repeat;
       background-size:contain;
       filter: drop-shadow(0 10px 18px rgba(0,0,0,.35));
     }
     .panel::before{
-      left:-40px; top:-40px;
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320' viewBox='0 0 320 320'%3E%3Cg fill='none' stroke='%23caa24a' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M55 290 C70 210, 95 150, 140 90'/%3E%3Cpath d='M82 260 C92 225, 112 180, 152 122'/%3E%3Cpath d='M110 240 C125 210, 145 170, 178 130'/%3E%3Cpath d='M92 170 C70 168, 55 154, 45 135'/%3E%3Cpath d='M130 140 C112 140, 96 130, 82 112'/%3E%3Cpath d='M170 115 C150 112, 136 102, 118 85'/%3E%3Ccircle cx='150' cy='110' r='7' fill='%23caa24a'/%3E%3Ccircle cx='118' cy='86' r='6' fill='%23caa24a'/%3E%3Ccircle cx='84' cy='112' r='6' fill='%23caa24a'/%3E%3C/g%3E%3C/svg%3E");
-      transform: rotate(-6deg);
+      left:-70px; top:-70px;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320' viewBox='0 0 320 320'%3E%3Cg fill='none' stroke='%23caa24a' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M55 290 C70 210, 95 150, 140 90'/%3E%3Cpath d='M78 270 C92 225, 115 175, 156 120'/%3E%3Cpath d='M110 240 C125 210, 145 170, 178 130'/%3E%3Cpath d='M92 170 C70 168, 55 154, 45 135'/%3E%3Cpath d='M130 140 C112 140, 96 130, 82 112'/%3E%3Cpath d='M170 115 C150 112, 136 102, 118 85'/%3E%3Ccircle cx='152' cy='112' r='7' fill='%23caa24a'/%3E%3Ccircle cx='118' cy='86' r='6' fill='%23caa24a'/%3E%3Ccircle cx='84' cy='112' r='6' fill='%23caa24a'/%3E%3C/g%3E%3C/svg%3E");
+      transform: rotate(-8deg);
     }
     .panel::after{
-      right:-40px; bottom:-40px;
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320' viewBox='0 0 320 320'%3E%3Cg fill='none' stroke='%23caa24a' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M265 30 C250 110, 225 170, 180 230'/%3E%3Cpath d='M238 60 C228 95, 208 140, 168 198'/%3E%3Cpath d='M210 80 C195 110, 175 150, 142 190'/%3E%3Cpath d='M228 150 C250 152, 265 166, 275 185'/%3E%3Cpath d='M190 180 C208 180, 224 190, 238 208'/%3E%3Cpath d='M150 205 C170 208, 184 218, 202 235'/%3E%3Ccircle cx='170' cy='210' r='7' fill='%23caa24a'/%3E%3Ccircle cx='202' cy='234' r='6' fill='%23caa24a'/%3E%3Ccircle cx='236' cy='208' r='6' fill='%23caa24a'/%3E%3C/g%3E%3C/svg%3E");
-      transform: rotate(-6deg);
+      right:-70px; bottom:-70px;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320' viewBox='0 0 320 320'%3E%3Cg fill='none' stroke='%23caa24a' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M265 30 C250 110, 225 170, 180 230'/%3E%3Cpath d='M242 52 C228 95, 208 140, 168 198'/%3E%3Cpath d='M210 80 C195 110, 175 150, 142 190'/%3E%3Cpath d='M228 150 C250 152, 265 166, 275 185'/%3E%3Cpath d='M190 180 C208 180, 224 190, 238 208'/%3E%3Cpath d='M150 205 C170 208, 184 218, 202 235'/%3E%3Ccircle cx='170' cy='210' r='7' fill='%23caa24a'/%3E%3Ccircle cx='202' cy='234' r='6' fill='%23caa24a'/%3E%3Ccircle cx='236' cy='208' r='6' fill='%23caa24a'/%3E%3C/g%3E%3C/svg%3E");
+      transform: rotate(-8deg);
     }
 
-    /* ====== PORTADA (Abrir invitación) ====== */
+    /* ====== PORTADA ====== */
     .cover{
       min-height: calc(100vh - 20px);
       display:grid;
@@ -83,7 +84,6 @@
     }
     .kicker{
       font-size:22px;
-      letter-spacing:.02em;
       margin:0 0 10px;
       color: rgba(255,255,255,.92);
     }
@@ -115,18 +115,10 @@
       text-decoration:none;
     }
     .btnPrimary:hover{background: rgba(202,162,74,.30)}
-    .arrow{
-      margin-top:14px;
-      opacity:.7;
-      font-size:18px;
-      letter-spacing:.12em;
-    }
+    .arrow{margin-top:14px;opacity:.7;font-size:18px;letter-spacing:.12em;}
 
     /* ====== SECCIONES ====== */
-    .section{
-      margin-top:16px;
-      padding: 22px 16px;
-    }
+    .section{margin-top:16px;padding: 22px 16px;}
     .titleScript{
       font-family:"Cormorant Garamond", serif;
       font-size:44px;
@@ -139,7 +131,7 @@
       text-align:center;
       color: var(--muted);
       line-height:1.6;
-      max-width:720px;
+      max-width:760px;
       margin: 0 auto;
     }
 
@@ -150,11 +142,7 @@
       border:1px solid rgba(255,255,255,.10);
       background: rgba(0,0,0,.18);
     }
-    .heroPhoto img{
-      width:100%;
-      height:auto;
-      display:block;
-    }
+    .heroPhoto img{width:100%;height:auto;display:block;}
 
     .grid2{
       display:grid;
@@ -162,9 +150,7 @@
       gap:12px;
       margin-top:14px;
     }
-    @media(min-width:760px){
-      .grid2{grid-template-columns:1fr 1fr}
-    }
+    @media(min-width:760px){.grid2{grid-template-columns:1fr 1fr}}
     .card{
       border-radius:18px;
       border:1px solid rgba(255,255,255,.10);
@@ -177,50 +163,28 @@
       letter-spacing:.12em;
       text-transform:uppercase;
       font-size:13px;
-    }
-    .list{
-      margin:0;
-      padding:0;
-      list-style:none;
       text-align:center;
-      line-height:1.8;
     }
-    .list .label{color:rgba(255,255,255,.88);font-weight:800;margin-top:8px}
-    .list .name{color:rgba(255,255,255,.88)}
+    .list{margin:0;padding:0;list-style:none;text-align:center;line-height:1.85;}
     .pill{
       display:inline-block;
       padding:6px 12px;
       border-radius:999px;
       border:1px solid rgba(202,162,74,.55);
       background: rgba(202,162,74,.10);
-      font-weight:800;
+      font-weight:900;
       letter-spacing:.08em;
       text-transform:uppercase;
       font-size:12px;
       margin: 0 auto 8px;
     }
 
-    .placeBox{
-      text-align:center;
-      padding:18px 16px;
-    }
-    .time{
-      font-size:26px;
-      font-weight:900;
-      margin: 6px 0 6px;
-    }
-    .place{
-      font-size:18px;
-      font-weight:800;
-      margin: 0;
-    }
-    .addr{
-      margin: 6px 0 12px;
-      color: var(--muted);
-      line-height:1.55;
-    }
+    .placeBox{text-align:center;padding:18px 16px;}
+    .time{font-size:26px;font-weight:900;margin: 6px 0 6px;}
+    .place{font-size:18px;font-weight:900;margin: 0;}
+    .addr{margin: 6px 0 12px;color: var(--muted);line-height:1.55;}
 
-    /* Itinerario tipo línea */
+    /* Itinerario */
     .timeline{
       margin-top:12px;
       display:grid;
@@ -257,9 +221,7 @@
       grid-template-columns:1fr;
       gap:10px;
     }
-    @media(min-width:760px){
-      .gallery{grid-template-columns:1fr 1fr}
-    }
+    @media(min-width:760px){.gallery{grid-template-columns:1fr 1fr}}
     .ph{
       border-radius:18px;
       overflow:hidden;
@@ -277,11 +239,7 @@
       margin-left:auto;
       margin-right:auto;
     }
-    .two{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:10px;
-    }
+    .two{display:grid;grid-template-columns:1fr;gap:10px;}
     @media(min-width:760px){.two{grid-template-columns:1fr 1fr}}
     .inp{
       width:100%;
@@ -293,12 +251,10 @@
       outline:none;
       font-size:14px;
     }
-    .hint{color:var(--muted);font-size:12px;line-height:1.45;text-align:center}
     .ok{color:#b7f7c2;font-size:13px;text-align:center}
     .err{color:#ffb6b6;font-size:13px;text-align:center}
 
-    /* YouTube invisible */
-    #ytWrap{position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;}
+    /* topbar */
     .topBar{
       position:sticky;
       top:0;
@@ -324,11 +280,15 @@
       background: rgba(202,162,74,.12);
       font-weight:900;
       cursor:pointer;
+      color: var(--text);
     }
     .btnSmall.secondary{
       border-color: rgba(255,255,255,.14);
       background: rgba(255,255,255,.06);
     }
+
+    /* YouTube invisible */
+    #ytWrap{position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;}
   </style>
 </head>
 
@@ -338,8 +298,8 @@
     <div class="topBarInner">
       <div class="brand">Carlos & Jimena</div>
       <div style="display:flex;gap:10px;flex-wrap:wrap">
-        <button class="btnSmall" id="btnMusic">Activar música</button>
-        <a class="btnSmall secondary" href="#rsvp" style="text-decoration:none">Confirmar asistencia</a>
+        <button class="btnSmall" id="btnMusic">Música</button>
+        <a class="btnSmall secondary" href="#rsvp" style="text-decoration:none">Confirmar</a>
       </div>
     </div>
   </div>
@@ -362,72 +322,94 @@
   <!-- CONTENIDO -->
   <div class="wrap hidden" id="content">
 
-    <!-- Foto principal + Mensaje -->
     <section class="panel section">
       <div class="titleScript">Nuestra Boda</div>
       <p class="subtitle">
         Si te llegó esta invitación, es porque te apreciamos y queremos que nos acompañes en nuestro día más especial.
       </p>
 
+      <!-- OJO: tu archivo se llama héroe.jpeg -->
       <div class="heroPhoto" style="margin-top:14px">
-        <img src="hero.jpg" alt="Carlos y Jimena">
+        <img src="héroe.jpeg" alt="Carlos y Jimena">
       </div>
     </section>
 
-    <!-- Padres / Padrinos -->
     <section class="panel section">
       <div class="titleScript">Nuestros Padres</div>
+
       <div class="grid2">
         <div class="card">
           <div class="pill">Novio</div>
           <ul class="list">
-            <li class="name">EDITA AQUÍ: Nombre del Papá</li>
-            <li class="name">EDITA AQUÍ: Nombre de la Mamá</li>
+            <li>Carlos Alberto Urbina Tavarez</li>
+            <li>Ma. Guadalupe Muñoz Campuzano</li>
           </ul>
         </div>
+
         <div class="card">
           <div class="pill">Novia</div>
           <ul class="list">
-            <li class="name">EDITA AQUÍ: Nombre del Papá</li>
-            <li class="name">EDITA AQUÍ: Nombre de la Mamá</li>
+            <li>Jose Gerardo Mena Huerta</li>
+            <li>Maria de Jesus Prado Lara</li>
           </ul>
         </div>
       </div>
 
       <div style="height:18px"></div>
+
       <div class="titleScript">Nuestros Padrinos</div>
-      <div class="card" style="max-width:680px;margin:12px auto 0;text-align:center">
+
+      <div class="card" style="max-width:720px;margin:12px auto 0">
+        <h3>Padrinos de Velación</h3>
         <ul class="list">
-          <li class="name">EDITA AQUÍ: Padrino 1</li>
-          <li class="name">EDITA AQUÍ: Padrino 2</li>
+          <li>Karla Aranzazu Urbina Muñoz</li>
+          <li>Claudio Enrique Ramos Reyes</li>
+        </ul>
+
+        <div style="height:10px"></div>
+        <h3>Padrinos de Arras</h3>
+        <ul class="list">
+          <li>Gerardo Mena Prado</li>
+          <li>Miriam Elizabet Muñoz Sanchez</li>
+        </ul>
+
+        <div style="height:10px"></div>
+        <h3>Padrinos de Anillos</h3>
+        <ul class="list">
+          <li>Mario Muñoz Campuzano</li>
+          <li>Tere</li>
+        </ul>
+
+        <div style="height:10px"></div>
+        <h3>Biblia y Rosario</h3>
+        <ul class="list">
+          <li>Gabriela Muñoz Campuzno</li>
         </ul>
       </div>
     </section>
 
-    <!-- Ceremonia / Recepción -->
     <section class="panel section">
       <div class="grid2">
         <div class="card placeBox">
           <h3>Ceremonia</h3>
           <div class="time">Llegar 4:40 PM</div>
           <p class="place">Parroquia de San Rafael Arcángel</p>
-          <p class="addr">Te pedimos llegar con tiempo, por favor.</p>
+          <p class="addr"><b>Inicio:</b> 5:00 PM</p>
           <a class="btnPrimary" style="min-width:200px;text-decoration:none"
              href="https://maps.app.goo.gl/pN5AznDmCfymgZ2f8?g_st=aw" target="_blank" rel="noopener">Ver ubicación</a>
         </div>
 
         <div class="card placeBox">
           <h3>Recepción</h3>
-          <div class="time">EDITA: 7:00 PM</div>
+          <div class="time">7:00 PM</div>
           <p class="place">Quinta Munay</p>
-          <p class="addr">EDITA AQUÍ: Dirección corta o referencia.</p>
+          <p class="addr">Te esperamos para celebrar juntos.</p>
           <a class="btnPrimary" style="min-width:200px;text-decoration:none"
              href="https://www.google.com/maps?q=20.98356056213379,-101.5621566772461&z=17&hl=es" target="_blank" rel="noopener">Ver ubicación</a>
         </div>
       </div>
     </section>
 
-    <!-- Itinerario -->
     <section class="panel section">
       <div class="titleScript">Itinerario</div>
 
@@ -436,7 +418,7 @@
           <div class="dot">⛪</div>
           <div>
             <div class="stepTitle">Ceremonia Religiosa</div>
-            <div class="stepTime">4:40 PM (llegar) · EDITA: 5:00 PM (inicio)</div>
+            <div class="stepTime">Llegar 4:40 PM · Inicio 5:00 PM</div>
           </div>
         </div>
 
@@ -444,7 +426,7 @@
           <div class="dot">✨</div>
           <div>
             <div class="stepTitle">Recepción</div>
-            <div class="stepTime">EDITA: 7:00 PM</div>
+            <div class="stepTime">7:00 PM</div>
           </div>
         </div>
 
@@ -452,60 +434,39 @@
           <div class="dot">🍽️</div>
           <div>
             <div class="stepTitle">Cena</div>
-            <div class="stepTime">EDITA: 9:00 PM</div>
+            <div class="stepTime">7:30 PM</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Vestimenta / Lluvia -->
     <section class="panel section">
       <div class="titleScript">Código de Vestimenta</div>
       <p class="subtitle"><b>Formal</b></p>
 
       <div style="height:16px"></div>
+
       <div class="titleScript">Lluvia de Sobres</div>
       <p class="subtitle">
         La lluvia de sobres es la tradición de obsequiar un presente en efectivo a los novios dentro de un sobre el día de la boda.
       </p>
     </section>
 
-    <!-- Compartir Fotos -->
-    <section class="panel section">
-      <div class="titleScript">Comparte tus Fotos</div>
-      <p class="subtitle">Comparte con nosotros todas tus fotografías del evento.</p>
-
-      <!-- EDITA AQUÍ: pega link de álbum compartido (Google Photos / Drive / etc.) -->
-      <div style="text-align:center;margin-top:14px">
-        <a class="btnPrimary" style="text-decoration:none;min-width:220px"
-           href="https://photos.app.goo.gl/" target="_blank" rel="noopener">Compartir Fotos</a>
-      </div>
-      <div class="hint" style="margin-top:10px">
-        Tip: crea un álbum de Google Photos y pega aquí el link para que todos suban fotos.
-      </div>
-    </section>
-
-    <!-- Momentos (galería) -->
     <section class="panel section">
       <div class="titleScript">Momentos</div>
 
+      <!-- OJO: tus archivos se llaman momento1.jpeg ... -->
       <div class="gallery">
-        <div class="ph"><img src="momento1.jpg" alt="Momento 1"></div>
-        <div class="ph"><img src="momento2.jpg" alt="Momento 2"></div>
-        <div class="ph"><img src="momento3.jpg" alt="Momento 3"></div>
-        <div class="ph"><img src="momento4.jpg" alt="Momento 4"></div>
+        <div class="ph"><img src="momento1.jpeg" alt="Momento 1"></div>
+        <div class="ph"><img src="momento2.jpeg" alt="Momento 2"></div>
+        <div class="ph"><img src="momento3.jpeg" alt="Momento 3"></div>
+        <div class="ph"><img src="momento4.jpeg" alt="Momento 4"></div>
       </div>
     </section>
 
-    <!-- RSVP -->
     <section class="panel section" id="rsvp">
       <div class="titleScript">Confirma tu Asistencia</div>
       <p class="subtitle">Llena el siguiente formulario. Al enviar, se abrirá WhatsApp con tu confirmación lista.</p>
-
-      <div class="hint" style="margin-top:10px">
-        Link personalizado para invitado (nivel pro):<br>
-        <b>?g=Juan%20Perez&k=ABC123</b> (rellena el nombre y guarda un código de invitado)
-      </div>
 
       <form class="form" id="rsvpForm">
         <div class="two">
@@ -527,10 +488,6 @@
 
         <button class="btnPrimary" type="submit" style="border-radius:999px">Enviar Confirmación</button>
         <div id="rsvpMsg"></div>
-
-        <div class="hint">
-          Si quieres que además se guarde automáticamente en Google Sheets (sin WhatsApp), te lo conecto con Google Form o Apps Script.
-        </div>
       </form>
     </section>
 
@@ -547,57 +504,10 @@
     const cover = document.getElementById("cover");
     const content = document.getElementById("content");
     const topBar = document.getElementById("topBar");
-    document.getElementById("openInvite").addEventListener("click", () => {
-      cover.classList.add("hidden");
-      content.classList.remove("hidden");
-      topBar.classList.remove("hidden");
-      window.scrollTo({top:0, behavior:"smooth"});
-    });
 
-    // ====== RSVP "nivel pro" por URL ======
-    function getParam(name){
-      return new URLSearchParams(window.location.search).get(name) || "";
-    }
-    const guestFromUrl = decodeURIComponent(getParam("g") || "");
-    const keyFromUrl = (getParam("k") || "").trim();
-
-    const guestName = document.getElementById("guestName");
-    if (guestFromUrl) guestName.value = guestFromUrl;
-
-    const rsvpMsg = document.getElementById("rsvpMsg");
-    document.getElementById("rsvpForm").addEventListener("submit", (e) => {
-      e.preventDefault();
-      const name = guestName.value.trim();
-      const attend = document.getElementById("attendance").value;
-      const pax = document.getElementById("pax").value;
-      const notes = document.getElementById("notes").value.trim();
-
-      if(!name || !attend || !pax){
-        rsvpMsg.innerHTML = '<div class="err">Completa Nombre, Asistencia y Personas.</div>';
-        return;
-      }
-
-      // EDITA AQUÍ: WhatsApp de confirmaciones (con código país)
-      const WHATSAPP = "5214770000000";
-
-      const msgLines = [
-        "Confirmación de asistencia - Boda Carlos & Jimena",
-        `Nombre: ${name}`,
-        `Asistencia: ${attend}`,
-        `Personas: ${pax}`,
-        notes ? `Mensaje: ${notes}` : "",
-        keyFromUrl ? `Código invitado: ${keyFromUrl}` : ""
-      ].filter(Boolean);
-
-      const text = encodeURIComponent(msgLines.join("\n"));
-      const wa = `https://wa.me/${WHATSAPP}?text=${text}`;
-
-      rsvpMsg.innerHTML = '<div class="ok">Listo ✅ Se abrirá WhatsApp para enviar tu confirmación.</div>';
-      window.open(wa, "_blank", "noopener");
-    });
-
-    // ====== Música YouTube (tu video) ======
-    const YT_VIDEO_ID = "yP_dhALIuFc"; // Mi corazón encantado (violín/piano)
+    // ====== Música YouTube ======
+    // Mi corazón encantado (violín/piano)
+    const YT_VIDEO_ID = "yP_dhALIuFc";
     let player;
 
     function onYouTubeIframeAPIReady(){
@@ -614,11 +524,61 @@
     }
     window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
 
-    document.getElementById("btnMusic").addEventListener("click", () => {
+    function startMusic(){
       if(!player) return;
-      player.setVolume(45);
-      player.playVideo();
-      document.getElementById("btnMusic").textContent = "Música activada ✓";
+      try{
+        player.setVolume(45);
+        player.playVideo();
+        const b = document.getElementById("btnMusic");
+        if (b) b.textContent = "Música ✓";
+      }catch(e){}
+    }
+
+    // Intentar activar música al abrir (click del usuario)
+    document.getElementById("openInvite").addEventListener("click", () => {
+      cover.classList.add("hidden");
+      content.classList.remove("hidden");
+      topBar.classList.remove("hidden");
+      window.scrollTo({top:0, behavior:"smooth"});
+
+      // pequeño delay para que el player esté listo
+      setTimeout(startMusic, 200);
+      setTimeout(startMusic, 900);
+    });
+
+    // botón por si el navegador bloquea autoplay
+    document.getElementById("btnMusic").addEventListener("click", startMusic);
+
+    // ====== RSVP a WhatsApp ======
+    const rsvpMsg = document.getElementById("rsvpMsg");
+    document.getElementById("rsvpForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const name = document.getElementById("guestName").value.trim();
+      const attend = document.getElementById("attendance").value;
+      const pax = document.getElementById("pax").value;
+      const notes = document.getElementById("notes").value.trim();
+
+      if(!name || !attend || !pax){
+        rsvpMsg.innerHTML = '<div class="err">Completa Nombre, Asistencia y Personas.</div>';
+        return;
+      }
+
+      // México +52
+      const WHATSAPP = "5214772729121";
+
+      const msgLines = [
+        "Confirmación de asistencia - Boda Carlos & Jimena",
+        `Nombre: ${name}`,
+        `Asistencia: ${attend}`,
+        `Personas: ${pax}`,
+        notes ? `Mensaje: ${notes}` : ""
+      ].filter(Boolean);
+
+      const text = encodeURIComponent(msgLines.join("\n"));
+      const wa = `https://wa.me/${WHATSAPP}?text=${text}`;
+
+      rsvpMsg.innerHTML = '<div class="ok">Listo ✅ Se abrirá WhatsApp para enviar tu confirmación.</div>';
+      window.open(wa, "_blank", "noopener");
     });
   </script>
 </body>
