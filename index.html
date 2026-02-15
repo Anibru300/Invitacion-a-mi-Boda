@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Invitación | Boda</title>
-  <meta name="description" content="Invitación digital de boda" />
+  <title>Invitación | Boda de Carlos & Jimena</title>
+  <meta name="description" content="Te invitamos a celebrar nuestra boda. Acompáñanos en este día inolvidable." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,7 +12,7 @@
 
   <style>
     :root{
-      --bg:#0b0b0f;
+      --bg:#070a12;
       --card:#12121a;
       --text:#f5f5f7;
       --muted:#b7b7c2;
@@ -28,30 +28,99 @@
                   radial-gradient(900px 600px at 90% 10%, rgba(255,255,255,.06), transparent 60%),
                   var(--bg);
     }
-    .wrap{max-width:980px;margin:0 auto;padding:28px 16px 72px}
+    .wrap{max-width:980px;margin:0 auto;padding:22px 16px 80px}
+    .hidden{display:none !important;}
+
+    /* =========================
+       PORTADA (pantalla principal)
+       ========================= */
+    .cover{
+      min-height: calc(100vh - 44px);
+      display:grid;
+      place-items:center;
+      padding: 28px 16px;
+    }
+    .coverCard{
+      width:min(760px, 100%);
+      aspect-ratio: 16/10;
+      border-radius:22px;
+      border:1px solid var(--line);
+      position:relative;
+      overflow:hidden;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.55)),
+        url("cover.png") center/cover no-repeat;
+      box-shadow: 0 22px 80px rgba(0,0,0,.55);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+    }
+    /* Si cover.png no existe aún, se verá el gradiente */
+    .coverCard.fallback{
+      background: radial-gradient(800px 480px at 50% 30%, rgba(202,162,74,.14), transparent 55%),
+                  linear-gradient(180deg, rgba(10,14,30,.9), rgba(5,7,16,.95));
+    }
+    .coverInner{
+      padding:28px 16px;
+      width:min(520px, 95%);
+    }
+    .kicker{
+      font-size:22px;
+      letter-spacing:.02em;
+      margin:0 0 10px;
+    }
+    .names{
+      font-family:"Cormorant Garamond", serif;
+      font-weight:600;
+      margin: 0 0 14px;
+      font-size:52px;
+      line-height:1.05;
+      color: #f6e7c0;
+      text-shadow: 0 10px 30px rgba(0,0,0,.45);
+    }
+    .dateLine{
+      font-size:22px;
+      margin:0 0 22px;
+      color:rgba(255,255,255,.92);
+    }
+    .openBtn{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:14px 20px;
+      border-radius:999px;
+      border:1px solid rgba(202,162,74,.65);
+      background:rgba(202,162,74,.22);
+      color:var(--text);
+      text-decoration:none;
+      font-weight:700;
+      cursor:pointer;
+      min-width: 220px;
+      backdrop-filter: blur(6px);
+    }
+    .openBtn:hover{background:rgba(202,162,74,.28)}
+    .smallNote{
+      margin-top:14px;
+      color:rgba(255,255,255,.75);
+      font-size:12px;
+    }
+
+    /* =========================
+       CONTENIDO
+       ========================= */
     .hero{
-      padding:34px 18px 22px;
+      margin-top:16px;
+      padding:26px 18px 18px;
       border:1px solid var(--line);
       border-radius:20px;
       background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01));
       backdrop-filter: blur(6px);
       text-align:center;
     }
-    .badge{
-      display:inline-block;
-      padding:8px 12px;
-      border:1px solid var(--line);
-      border-radius:999px;
-      color:var(--muted);
-      font-size:12px;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-    }
     h1{
       font-family:"Cormorant Garamond", serif;
       font-weight:600;
-      margin:14px 0 6px;
-      font-size:46px;
+      margin:0 0 6px;
+      font-size:42px;
       letter-spacing:.02em;
     }
     .sub{
@@ -61,25 +130,9 @@
       line-height:1.55;
       font-size:15px;
     }
-    .names{
-      font-family:"Cormorant Garamond", serif;
-      font-size:34px;
-      margin:18px 0 6px;
-    }
-    .divider{
-      width:120px;height:1px;background:var(--line);margin:14px auto;
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:14px;
-      margin-top:14px;
-    }
-    @media(min-width:760px){
-      .grid{grid-template-columns:1.2fr .8fr}
-    }
-
+    .divider{width:120px;height:1px;background:var(--line);margin:14px auto;}
+    .grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:14px;}
+    @media(min-width:760px){.grid{grid-template-columns:1.2fr .8fr}}
     .card{
       border:1px solid rgba(255,255,255,.10);
       border-radius:18px;
@@ -93,14 +146,8 @@
       color:var(--gold);
       margin:0 0 10px;
     }
-    .row{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:10px;
-    }
-    @media(min-width:760px){
-      .row{grid-template-columns:1fr 1fr}
-    }
+    .row{display:grid;grid-template-columns:1fr;gap:10px;}
+    @media(min-width:760px){.row{grid-template-columns:1fr 1fr}}
     .item{
       padding:12px;
       border:1px solid rgba(255,255,255,.08);
@@ -109,80 +156,79 @@
     }
     .label{color:var(--muted);font-size:12px;margin-bottom:6px}
     .value{font-size:15px;line-height:1.35}
-    .btns{
-      display:flex;flex-wrap:wrap;gap:10px;margin-top:12px
-    }
-    a.btn{
+    .btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+    a.btn, button.btn{
       display:inline-flex;align-items:center;justify-content:center;
-      padding:12px 14px;
-      border-radius:14px;
+      padding:12px 14px;border-radius:14px;
       border:1px solid rgba(202,162,74,.55);
-      color:var(--text);
-      text-decoration:none;
+      color:var(--text);text-decoration:none;
       background:rgba(202,162,74,.10);
-      font-weight:600;
-      font-size:14px;
+      font-weight:700;font-size:14px;
+      cursor:pointer;
     }
-    a.btn.secondary{
+    .btn.secondary{
       border-color:rgba(255,255,255,.14);
       background:rgba(255,255,255,.05);
-      font-weight:600;
-    }
-    .qrwrap{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:12px;
-      margin-top:10px;
-    }
-    .qrbox{
-      display:flex;gap:12px;align-items:center;
-      padding:12px;
-      border-radius:14px;
-      border:1px dashed rgba(255,255,255,.16);
-      background:rgba(0,0,0,.12);
-    }
-    .qr{
-      width:92px;height:92px;background:#fff;border-radius:10px;padding:8px;
-      display:flex;align-items:center;justify-content:center;
-      flex:0 0 auto;
-    }
-    .qr svg, .qr canvas{width:100% !important;height:100% !important}
-    .qtxt .t{font-weight:700}
-    .qtxt .d{color:var(--muted);font-size:12px;margin-top:2px;line-height:1.35}
-    .footer{
-      margin-top:16px;
-      text-align:center;
-      color:var(--muted);
-      font-size:12px;
     }
 
     /* Contador */
-    .countdown{
-      display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:14px
-    }
-    .cd{
-      min-width:92px;
-      padding:10px 12px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(0,0,0,.18);
-      text-align:center;
-    }
+    .countdown{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:14px}
+    .cd{min-width:92px;padding:10px 12px;border-radius:14px;border:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.18);text-align:center;}
     .cd .n{font-size:22px;font-weight:800}
     .cd .u{font-size:11px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase}
+
+    /* QR */
+    .qrwrap{display:grid;grid-template-columns:1fr;gap:12px;margin-top:10px;}
+    .qrbox{display:flex;gap:12px;align-items:center;padding:12px;border-radius:14px;border:1px dashed rgba(255,255,255,.16);background:rgba(0,0,0,.12);}
+    .qr{width:92px;height:92px;background:#fff;border-radius:10px;padding:8px;display:flex;align-items:center;justify-content:center;flex:0 0 auto;}
+    .qr svg, .qr canvas{width:100% !important;height:100% !important}
+    .qtxt .t{font-weight:800}
+    .qtxt .d{color:var(--muted);font-size:12px;margin-top:2px;line-height:1.35}
+
+    /* RSVP */
+    .rsvpForm{display:grid;gap:10px;margin-top:10px}
+    .inp{
+      width:100%;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(0,0,0,.18);
+      color:var(--text);
+      outline:none;
+      font-size:14px;
+    }
+    .two{display:grid;gap:10px}
+    @media(min-width:760px){.two{grid-template-columns:1fr 1fr}}
+    .hint{color:var(--muted);font-size:12px;line-height:1.45}
+    .ok{color:#b7f7c2;font-size:13px;margin-top:8px}
+    .err{color:#ffb6b6;font-size:13px;margin-top:8px}
+
+    /* YouTube player oculto */
+    #ytWrap{position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;}
   </style>
 </head>
 
 <body>
-  <div class="wrap">
+  <!-- PORTADA -->
+  <section class="cover" id="cover">
+    <div class="coverCard" id="coverCard">
+      <div class="coverInner">
+        <p class="kicker">Nuestra Boda</p>
+        <h2 class="names">Carlos y Jimena</h2>
+        <p class="dateLine">29 · Agosto · 2026</p>
+        <button class="openBtn" id="openInvite">Abrir invitación</button>
+        <div class="smallNote">Tip: al abrir, podrás activar la música 🎻</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTENIDO (oculto hasta abrir) -->
+  <div class="wrap hidden" id="content">
     <section class="hero">
-      <div class="badge">Invitación digital</div>
-      <h1>Boda</h1>
-      <div class="names">EDITA AQUÍ: Ana & Carlos</div>
+      <h1>¡Nos casamos!</h1>
       <div class="divider"></div>
       <p class="sub">
-        Con mucha alegría, te invitamos a celebrar con nosotros este día tan especial.
-        Tu presencia será parte de nuestra historia.
+        Nos llena de alegría invitarte a celebrar con nosotros este día tan especial.
       </p>
 
       <div class="countdown" aria-label="Cuenta regresiva">
@@ -191,41 +237,73 @@
         <div class="cd"><div class="n" id="m">—</div><div class="u">Min</div></div>
         <div class="cd"><div class="n" id="s">—</div><div class="u">Seg</div></div>
       </div>
+
+      <div class="btns" style="justify-content:center;margin-top:14px">
+        <button class="btn" id="btnMusic">Activar música</button>
+      </div>
+      <div class="hint">La mayoría de celulares bloquean audio automático; por eso se activa con este botón.</div>
     </section>
 
     <div class="grid">
       <section class="card">
         <h2>Detalles del evento</h2>
+
         <div class="row">
           <div class="item">
             <div class="label">Fecha</div>
-            <div class="value">EDITA AQUÍ: Sábado 20 de Junio de 2026</div>
+            <div class="value">Sábado 29 de Agosto de 2026</div>
           </div>
           <div class="item">
             <div class="label">Hora</div>
-            <div class="value">EDITA AQUÍ: 5:00 PM</div>
+            <div class="value">5:00 PM <span class="hint">(edita si es otra)</span></div>
           </div>
           <div class="item">
             <div class="label">Lugar</div>
-            <div class="value">EDITA AQUÍ: Salón “Los Encinos”</div>
+            <div class="value">EDITA AQUÍ: Salón / Iglesia</div>
           </div>
           <div class="item">
             <div class="label">Dirección</div>
-            <div class="value">EDITA AQUÍ: Dirección completa aquí</div>
+            <div class="value">EDITA AQUÍ: Dirección corta</div>
           </div>
         </div>
 
         <div class="btns">
-          <!-- EDITA AQUÍ: pega tu link de Google Maps -->
+          <!-- EDITA AQUÍ: pega tu link real de Google Maps -->
           <a class="btn" id="btnMaps" href="https://maps.google.com/?q=Le%C3%B3n+Guanajuato" target="_blank" rel="noopener">Ver ubicación</a>
-
-          <!-- EDITA AQUÍ: WhatsApp RSVP -->
-          <a class="btn secondary" id="btnRsvp" href="https://wa.me/5214770000000?text=Hola%2C%20confirmo%20mi%20asistencia%20a%20la%20boda.%20Mi%20nombre%20es%3A%20" target="_blank" rel="noopener">Confirmar por WhatsApp</a>
         </div>
 
-        <div class="footer">
-          Sugerencia: si quieres RSVP más formal, usa Google Forms y cambia el botón/QR al enlace del formulario.
+        <h2 style="margin-top:18px">Confirmación (RSVP) — nivel pro</h2>
+
+        <div class="hint">
+          Puedes compartir links personalizados así:<br>
+          <b>.../Invitacion-a-mi-Boda/?g=Juan%20Perez&k=ABC123</b><br>
+          Eso rellena el nombre y deja un código de invitado.
         </div>
+
+        <form class="rsvpForm" id="rsvpForm">
+          <div class="two">
+            <input class="inp" id="guestName" placeholder="Tu nombre" required />
+            <select class="inp" id="attendance" required>
+              <option value="" disabled selected>¿Asistirás?</option>
+              <option value="Sí">Sí, asistiré</option>
+              <option value="No">No podré asistir</option>
+            </select>
+          </div>
+
+          <div class="two">
+            <input class="inp" id="pax" type="number" min="1" max="10" value="1" required />
+            <input class="inp" id="notes" placeholder="Mensaje / alergias / observaciones (opcional)" />
+          </div>
+
+          <button class="btn secondary" type="submit">Enviar confirmación</button>
+
+          <div class="hint">
+            Por defecto se envía por WhatsApp (rápido). Si quieres que además se guarde en una hoja de cálculo,
+            te digo cómo conectar un Google Form en 2 minutos.
+          </div>
+
+          <div id="rsvpMsg"></div>
+        </form>
       </section>
 
       <aside class="card">
@@ -236,7 +314,7 @@
             <div class="qr" id="qrInvite"></div>
             <div class="qtxt">
               <div class="t">Abrir invitación</div>
-              <div class="d">Escanéalo para abrir este sitio.</div>
+              <div class="d">QR directo a este sitio.</div>
             </div>
           </div>
 
@@ -252,7 +330,7 @@
             <div class="qr" id="qrRsvp"></div>
             <div class="qtxt">
               <div class="t">Confirmación</div>
-              <div class="d">QR a WhatsApp (o Google Form).</div>
+              <div class="d">QR directo a RSVP.</div>
             </div>
           </div>
         </div>
@@ -260,21 +338,48 @@
     </div>
   </div>
 
-  <!-- Librería QR (sin instalar nada) -->
+  <!-- YouTube (oculto) -->
+  <div id="ytWrap">
+    <div id="player"></div>
+  </div>
+
+  <!-- QR lib -->
   <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.4/build/qrcode.min.js"></script>
+  <!-- YouTube IFrame API -->
+  <script src="https://www.youtube.com/iframe_api"></script>
 
   <script>
     // =========================
-    // EDITA AQUÍ: Fecha/hora del evento (formato ISO)
-    // Ejemplo: "2026-06-20T17:00:00-06:00"
+    // 1) PORTADA -> ABRIR
     // =========================
-    const EVENT_ISO = "2026-06-20T17:00:00-06:00";
+    const cover = document.getElementById("cover");
+    const content = document.getElementById("content");
+    const openBtn = document.getElementById("openInvite");
+
+    // Si cover.png no existe, usamos fallback
+    (function coverFallback(){
+      const img = new Image();
+      img.onload = () => {};
+      img.onerror = () => document.getElementById("coverCard").classList.add("fallback");
+      img.src = "cover.png";
+    })();
+
+    openBtn.addEventListener("click", () => {
+      cover.classList.add("hidden");
+      content.classList.remove("hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    // =========================
+    // 2) FECHA / CONTADOR
+    // (Cambia la hora si no es 5:00 PM)
+    // =========================
+    const EVENT_ISO = "2026-08-29T17:00:00-06:00";
 
     function tick(){
       const now = new Date();
       const eventDate = new Date(EVENT_ISO);
       let diff = eventDate - now;
-
       if (diff < 0) diff = 0;
 
       const sec = Math.floor(diff / 1000);
@@ -292,17 +397,109 @@
     setInterval(tick, 1000);
 
     // =========================
-    // QR Codes
+    // 3) QR
     // =========================
-    const inviteUrl = window.location.href; // URL actual publicada
+    const inviteUrl = window.location.href.split("#")[0];
     const mapsUrl = document.getElementById("btnMaps").href;
-    const rsvpUrl = document.getElementById("btnRsvp").href;
+    const rsvpUrl = inviteUrl + "#rsvp";
 
     const qrOpts = { margin: 1, width: 170 };
-
     QRCode.toCanvas(document.getElementById("qrInvite"), inviteUrl, qrOpts);
     QRCode.toCanvas(document.getElementById("qrMaps"), mapsUrl, qrOpts);
     QRCode.toCanvas(document.getElementById("qrRsvp"), rsvpUrl, qrOpts);
+
+    // =========================
+    // 4) RSVP "nivel pro"
+    // - Lee params ?g=Nombre&k=CODIGO
+    // - Envía por WhatsApp con datos + código
+    // =========================
+    function getParam(name){
+      return new URLSearchParams(window.location.search).get(name) || "";
+    }
+    const guestFromUrl = decodeURIComponent(getParam("g") || "");
+    const keyFromUrl = (getParam("k") || "").trim();
+
+    const guestName = document.getElementById("guestName");
+    if (guestFromUrl) guestName.value = guestFromUrl;
+
+    const rsvpForm = document.getElementById("rsvpForm");
+    const rsvpMsg = document.getElementById("rsvpMsg");
+
+    rsvpForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const name = guestName.value.trim();
+      const attend = document.getElementById("attendance").value;
+      const pax = document.getElementById("pax").value;
+      const notes = document.getElementById("notes").value.trim();
+
+      if(!name || !attend || !pax){
+        rsvpMsg.innerHTML = '<div class="err">Completa nombre, asistencia y número de personas.</div>';
+        return;
+      }
+
+      // EDITA AQUÍ: tu WhatsApp de confirmaciones (con código país)
+      const WHATSAPP = "5214770000000";
+
+      const msgLines = [
+        "Confirmación de asistencia - Boda Carlos & Jimena",
+        `Nombre: ${name}`,
+        `Asistencia: ${attend}`,
+        `Personas: ${pax}`,
+        notes ? `Notas: ${notes}` : "",
+        keyFromUrl ? `Código invitado: ${keyFromUrl}` : ""
+      ].filter(Boolean);
+
+      const text = encodeURIComponent(msgLines.join("\n"));
+      const wa = `https://wa.me/${WHATSAPP}?text=${text}`;
+
+      rsvpMsg.innerHTML = '<div class="ok">Listo ✅ Se abrirá WhatsApp para enviar tu confirmación.</div>';
+      window.open(wa, "_blank", "noopener");
+    });
+
+    // =========================
+    // 5) Música YouTube (IFrame API)
+    // Nota: el navegador requiere interacción del usuario
+    // =========================
+    // Tu video: https://www.youtube.com/watch?v=yP_dhALIuFc
+    const YT_VIDEO_ID = "yP_dhALIuFc";
+    let player;
+
+    function onYouTubeIframeAPIReady(){
+      player = new YT.Player("player", {
+        videoId: YT_VIDEO_ID,
+        playerVars: {
+          autoplay: 0,
+          controls: 0,
+          loop: 1,
+          playlist: YT_VIDEO_ID,
+          modestbranding: 1
+        }
+      });
+    }
+    window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
+
+    document.getElementById("btnMusic").addEventListener("click", async () => {
+      try{
+        if(!player) return;
+        player.setVolume(45);
+        player.playVideo();
+        document.getElementById("btnMusic").textContent = "Música activada ✓";
+      }catch(e){
+        alert("No se pudo activar la música. Intenta de nuevo.");
+      }
+    });
+
+    // Para el QR RSVP con #rsvp
+    // (cuando abras el sitio con ese hash, baja al formulario)
+    window.addEventListener("load", () => {
+      if (window.location.hash === "#rsvp") {
+        // si aún está la portada, la ocultamos
+        cover.classList.add("hidden");
+        content.classList.remove("hidden");
+        setTimeout(() => rsvpForm.scrollIntoView({behavior:"smooth"}), 200);
+      }
+    });
   </script>
 </body>
 </html>
