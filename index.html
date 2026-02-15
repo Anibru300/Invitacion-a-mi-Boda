@@ -35,7 +35,6 @@
     .hidden{display:none !important;}
     .wrap{max-width:900px;margin:0 auto;padding:18px 14px 80px}
 
-    /* ====== PANEL BASE ====== */
     .panel{
       position:relative;
       border-radius:22px;
@@ -45,7 +44,7 @@
       box-shadow: var(--shadow);
     }
 
-    /* ====== DECORACIÓN FLORES/PLANTAS (más pegadas a esquinas para NO amontonar texto) ====== */
+    /* Decoración dorada (flores/plantas) pegada a esquinas para NO amontonar texto */
     .panel::before, .panel::after{
       content:"";
       position:absolute;
@@ -67,7 +66,7 @@
       transform: rotate(-8deg);
     }
 
-    /* ====== PORTADA ====== */
+    /* Portada */
     .cover{
       min-height: calc(100vh - 20px);
       display:grid;
@@ -82,11 +81,7 @@
       text-align:center;
       padding: 22px 16px;
     }
-    .kicker{
-      font-size:22px;
-      margin:0 0 10px;
-      color: rgba(255,255,255,.92);
-    }
+    .kicker{font-size:22px;margin:0 0 10px;color: rgba(255,255,255,.92);}
     .names{
       font-family:"Cormorant Garamond", serif;
       font-weight:600;
@@ -96,11 +91,7 @@
       color: #f6e7c0;
       text-shadow: 0 10px 30px rgba(0,0,0,.45);
     }
-    .dateLine{
-      font-size:22px;
-      margin:0 0 18px;
-      color: rgba(255,255,255,.92);
-    }
+    .dateLine{font-size:22px;margin:0 0 18px;color: rgba(255,255,255,.92);}
     .btnPrimary{
       display:inline-flex;align-items:center;justify-content:center;
       padding:14px 22px;
@@ -117,7 +108,7 @@
     .btnPrimary:hover{background: rgba(202,162,74,.30)}
     .arrow{margin-top:14px;opacity:.7;font-size:18px;letter-spacing:.12em;}
 
-    /* ====== SECCIONES ====== */
+    /* Secciones */
     .section{margin-top:16px;padding: 22px 16px;}
     .titleScript{
       font-family:"Cormorant Garamond", serif;
@@ -134,7 +125,6 @@
       max-width:760px;
       margin: 0 auto;
     }
-
     .heroPhoto{
       margin-top:16px;
       border-radius:18px;
@@ -144,12 +134,7 @@
     }
     .heroPhoto img{width:100%;height:auto;display:block;}
 
-    .grid2{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:12px;
-      margin-top:14px;
-    }
+    .grid2{display:grid;grid-template-columns:1fr;gap:12px;margin-top:14px;}
     @media(min-width:760px){.grid2{grid-template-columns:1fr 1fr}}
     .card{
       border-radius:18px;
@@ -185,22 +170,10 @@
     .addr{margin: 6px 0 12px;color: var(--muted);line-height:1.55;}
 
     /* Itinerario */
-    .timeline{
-      margin-top:12px;
-      display:grid;
-      gap:12px;
-      max-width:620px;
-      margin-left:auto;
-      margin-right:auto;
-    }
+    .timeline{margin-top:12px;display:grid;gap:12px;max-width:620px;margin-left:auto;margin-right:auto;}
     .step{
-      display:grid;
-      grid-template-columns:64px 1fr;
-      gap:12px;
-      align-items:center;
-      padding:12px;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.10);
+      display:grid;grid-template-columns:64px 1fr;gap:12px;align-items:center;
+      padding:12px;border-radius:16px;border:1px solid rgba(255,255,255,.10);
       background: rgba(0,0,0,.14);
     }
     .dot{
@@ -208,37 +181,22 @@
       display:grid;place-items:center;
       border:2px solid rgba(202,162,74,.75);
       background: rgba(202,162,74,.15);
-      font-weight:900;
-      color: rgba(255,255,255,.95);
+      font-weight:900;color: rgba(255,255,255,.95);
     }
     .stepTitle{font-weight:900}
     .stepTime{color: var(--muted); margin-top:3px}
 
     /* Galería */
-    .gallery{
-      margin-top:14px;
-      display:grid;
-      grid-template-columns:1fr;
-      gap:10px;
-    }
+    .gallery{margin-top:14px;display:grid;grid-template-columns:1fr;gap:10px;}
     @media(min-width:760px){.gallery{grid-template-columns:1fr 1fr}}
     .ph{
-      border-radius:18px;
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,.10);
+      border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.10);
       background: rgba(0,0,0,.18);
     }
     .ph img{width:100%;height:auto;display:block}
 
     /* RSVP */
-    .form{
-      margin-top:12px;
-      display:grid;
-      gap:10px;
-      max-width:680px;
-      margin-left:auto;
-      margin-right:auto;
-    }
+    .form{margin-top:12px;display:grid;gap:10px;max-width:680px;margin-left:auto;margin-right:auto;}
     .two{display:grid;grid-template-columns:1fr;gap:10px;}
     @media(min-width:760px){.two{grid-template-columns:1fr 1fr}}
     .inp{
@@ -254,33 +212,23 @@
     .ok{color:#b7f7c2;font-size:13px;text-align:center}
     .err{color:#ffb6b6;font-size:13px;text-align:center}
 
-    /* topbar */
+    /* Top bar */
     .topBar{
-      position:sticky;
-      top:0;
-      z-index:10;
+      position:sticky;top:0;z-index:10;
       backdrop-filter: blur(10px);
       background: rgba(6,9,19,.70);
       border-bottom: 1px solid rgba(255,255,255,.08);
     }
     .topBarInner{
-      max-width:900px;
-      margin:0 auto;
-      padding:10px 14px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
+      max-width:900px;margin:0 auto;padding:10px 14px;
+      display:flex;align-items:center;justify-content:space-between;gap:10px;
     }
     .brand{font-weight:900; letter-spacing:.02em;}
     .btnSmall{
-      padding:10px 12px;
-      border-radius:999px;
+      padding:10px 12px;border-radius:999px;
       border:1px solid rgba(202,162,74,.55);
       background: rgba(202,162,74,.12);
-      font-weight:900;
-      cursor:pointer;
-      color: var(--text);
+      font-weight:900;cursor:pointer;color: var(--text);
     }
     .btnSmall.secondary{
       border-color: rgba(255,255,255,.14);
@@ -328,9 +276,9 @@
         Si te llegó esta invitación, es porque te apreciamos y queremos que nos acompañes en nuestro día más especial.
       </p>
 
-      <!-- OJO: tu archivo se llama héroe.jpeg -->
+      <!-- FOTO PRINCIPAL -->
       <div class="heroPhoto" style="margin-top:14px">
-        <img src="héroe.jpeg" alt="Carlos y Jimena">
+        <img src="Carlos y Jimena.jpeg" alt="Carlos y Jimena">
       </div>
     </section>
 
@@ -455,7 +403,6 @@
     <section class="panel section">
       <div class="titleScript">Momentos</div>
 
-      <!-- OJO: tus archivos se llaman momento1.jpeg ... -->
       <div class="gallery">
         <div class="ph"><img src="momento1.jpeg" alt="Momento 1"></div>
         <div class="ph"><img src="momento2.jpeg" alt="Momento 2"></div>
@@ -466,7 +413,7 @@
 
     <section class="panel section" id="rsvp">
       <div class="titleScript">Confirma tu Asistencia</div>
-      <p class="subtitle">Llena el siguiente formulario. Al enviar, se abrirá WhatsApp con tu confirmación lista.</p>
+      <p class="subtitle">Llena el siguiente formulario. Al enviar, se registrará y se abrirá WhatsApp con tu confirmación lista.</p>
 
       <form class="form" id="rsvpForm">
         <div class="two">
@@ -496,17 +443,19 @@
   <!-- YouTube (oculto) -->
   <div id="ytWrap"><div id="player"></div></div>
 
-  <!-- YouTube IFrame API -->
   <script src="https://www.youtube.com/iframe_api"></script>
 
   <script>
-    // ====== Mostrar contenido al abrir ======
+    // ======================
+    // MOSTRAR CONTENIDO
+    // ======================
     const cover = document.getElementById("cover");
     const content = document.getElementById("content");
     const topBar = document.getElementById("topBar");
 
-    // ====== Música YouTube ======
-    // Mi corazón encantado (violín/piano)
+    // ======================
+    // MÚSICA YOUTUBE
+    // ======================
     const YT_VIDEO_ID = "yP_dhALIuFc";
     let player;
 
@@ -534,25 +483,27 @@
       }catch(e){}
     }
 
-    // Intentar activar música al abrir (click del usuario)
     document.getElementById("openInvite").addEventListener("click", () => {
       cover.classList.add("hidden");
       content.classList.remove("hidden");
       topBar.classList.remove("hidden");
       window.scrollTo({top:0, behavior:"smooth"});
 
-      // pequeño delay para que el player esté listo
+      // intentar reproducir (algunos navegadores requieren 1-2 intentos)
       setTimeout(startMusic, 200);
       setTimeout(startMusic, 900);
     });
 
-    // botón por si el navegador bloquea autoplay
     document.getElementById("btnMusic").addEventListener("click", startMusic);
 
-    // ====== RSVP a WhatsApp ======
+    // ======================
+    // RSVP: GOOGLE FORMS + WHATSAPP
+    // ======================
     const rsvpMsg = document.getElementById("rsvpMsg");
+
     document.getElementById("rsvpForm").addEventListener("submit", (e) => {
       e.preventDefault();
+
       const name = document.getElementById("guestName").value.trim();
       const attend = document.getElementById("attendance").value;
       const pax = document.getElementById("pax").value;
@@ -563,7 +514,18 @@
         return;
       }
 
-      // México +52
+      // 1) Guardar en Google Forms (se refleja en tu Google Sheet)
+      const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSf1gQvRgM63JLVnElM8zpV4Qm2TBFll-OOeuWBIBJauKLa-Rw/formResponse";
+
+      const data = new URLSearchParams();
+      data.append("entry.837092975", name);           // Nombre
+      data.append("entry.764767312", attend);         // Asistencia
+      data.append("entry.706411984", pax);            // Personas
+      data.append("entry.1995459750", notes || "");   // Mensaje
+
+      fetch(FORM_URL, { method: "POST", mode: "no-cors", body: data });
+
+      // 2) Abrir WhatsApp con confirmación lista (México +52)
       const WHATSAPP = "5214772729121";
 
       const msgLines = [
@@ -577,7 +539,7 @@
       const text = encodeURIComponent(msgLines.join("\n"));
       const wa = `https://wa.me/${WHATSAPP}?text=${text}`;
 
-      rsvpMsg.innerHTML = '<div class="ok">Listo ✅ Se abrirá WhatsApp para enviar tu confirmación.</div>';
+      rsvpMsg.innerHTML = '<div class="ok">Listo ✅ Tu confirmación quedó registrada. Se abrirá WhatsApp para enviarla.</div>';
       window.open(wa, "_blank", "noopener");
     });
   </script>
