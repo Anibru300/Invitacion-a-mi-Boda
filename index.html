@@ -44,7 +44,6 @@
       box-shadow: var(--shadow);
     }
 
-    /* Decoración dorada (flores/plantas) en esquinas */
     .panel::before, .panel::after{
       content:"";
       position:absolute;
@@ -66,13 +65,7 @@
       transform: rotate(-8deg);
     }
 
-    /* Portada */
-    .cover{
-      min-height: calc(100vh - 20px);
-      display:grid;
-      place-items:center;
-      padding: 18px 0;
-    }
+    .cover{min-height: calc(100vh - 20px);display:grid;place-items:center;padding: 18px 0;}
     .coverBox{
       width:min(860px, 100%);
       aspect-ratio: 16/10;
@@ -94,8 +87,7 @@
     .dateLine{font-size:22px;margin:0 0 18px;color: rgba(255,255,255,.92);}
     .btnPrimary{
       display:inline-flex;align-items:center;justify-content:center;
-      padding:14px 22px;
-      border-radius:999px;
+      padding:14px 22px;border-radius:999px;
       border:1px solid rgba(202,162,74,.70);
       background: rgba(202,162,74,.22);
       color: var(--text);
@@ -108,7 +100,6 @@
     .btnPrimary:hover{background: rgba(202,162,74,.30)}
     .arrow{margin-top:14px;opacity:.7;font-size:18px;letter-spacing:.12em;}
 
-    /* Secciones */
     .section{margin-top:16px;padding: 22px 16px;}
     .titleScript{
       font-family:"Cormorant Garamond", serif;
@@ -118,66 +109,32 @@
       text-align:center;
       font-weight:600;
     }
-    .subtitle{
-      text-align:center;
-      color: var(--muted);
-      line-height:1.6;
-      max-width:760px;
-      margin: 0 auto;
-    }
+    .subtitle{text-align:center;color: var(--muted);line-height:1.6;max-width:760px;margin: 0 auto;}
 
-    /* HERO FOTO: sin recortar */
     .heroPhoto{
-      margin-top:16px;
-      border-radius:18px;
-      overflow:hidden;
+      margin-top:16px;border-radius:18px;overflow:hidden;
       border:1px solid rgba(255,255,255,.10);
       background: rgba(0,0,0,.18);
       padding: 10px;
     }
-    .heroPhoto img{
-      width:100%;
-      height:auto;
-      display:block;
-      border-radius:14px;
-    }
+    .heroPhoto img{width:100%;height:auto;display:block;border-radius:14px;}
 
     .grid2{display:grid;grid-template-columns:1fr;gap:12px;margin-top:14px;}
     @media(min-width:760px){.grid2{grid-template-columns:1fr 1fr}}
     .card{
-      border-radius:18px;
-      border:1px solid rgba(255,255,255,.10);
+      border-radius:18px;border:1px solid rgba(255,255,255,.10);
       background: rgba(0,0,0,.16);
       padding:16px;
     }
-    .card h3{
-      margin:0 0 10px;
-      color: var(--gold2);
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      font-size:13px;
-      text-align:center;
-    }
+    .card h3{margin:0 0 10px;color: var(--gold2);letter-spacing:.12em;text-transform:uppercase;font-size:13px;text-align:center;}
     .list{margin:0;padding:0;list-style:none;text-align:center;line-height:1.85;}
-    .pill{
-      display:inline-block;
-      padding:6px 12px;
-      border-radius:999px;
-      border:1px solid rgba(202,162,74,.55);
-      background: rgba(202,162,74,.10);
-      font-weight:900;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      font-size:12px;
-      margin: 0 auto 8px;
-    }
+    .pill{display:inline-block;padding:6px 12px;border-radius:999px;border:1px solid rgba(202,162,74,.55);background: rgba(202,162,74,.10);font-weight:900;letter-spacing:.08em;text-transform:uppercase;font-size:12px;margin: 0 auto 8px;}
 
     .placeBox{text-align:center;padding:18px 16px;}
     .time{font-size:26px;font-weight:900;margin: 6px 0 6px;}
     .place{font-size:18px;font-weight:900;margin: 0;}
     .addr{margin: 6px 0 12px;color: var(--muted);line-height:1.55;}
 
-    /* Itinerario */
     .timeline{margin-top:12px;display:grid;gap:12px;max-width:620px;margin-left:auto;margin-right:auto;}
     .step{
       display:grid;grid-template-columns:64px 1fr;gap:12px;align-items:center;
@@ -194,22 +151,11 @@
     .stepTitle{font-weight:900}
     .stepTime{color: var(--muted); margin-top:3px}
 
-    /* Galería: sin recortar */
     .gallery{margin-top:14px;display:grid;grid-template-columns:1fr;gap:10px;}
     @media(min-width:760px){.gallery{grid-template-columns:1fr 1fr}}
-    .ph{
-      border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.18);
-      padding:10px;
-    }
-    .ph img{
-      width:100%;
-      height:auto;
-      display:block;
-      border-radius:14px;
-    }
+    .ph{border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.10);background: rgba(0,0,0,.18);padding:10px;}
+    .ph img{width:100%;height:auto;display:block;border-radius:14px;}
 
-    /* RSVP */
     .form{margin-top:12px;display:grid;gap:10px;max-width:680px;margin-left:auto;margin-right:auto;}
     .two{display:grid;grid-template-columns:1fr;gap:10px;}
     @media(min-width:760px){.two{grid-template-columns:1fr 1fr}}
@@ -224,7 +170,6 @@
       font-size:14px;
     }
 
-    /* Top bar */
     .topBar{
       position:sticky;top:0;z-index:10;
       backdrop-filter: blur(10px);
@@ -247,13 +192,65 @@
       background: rgba(255,255,255,.06);
     }
 
-    /* YouTube invisible */
+    /* Contador */
+    .countRow{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap:10px;
+      max-width:640px;
+      margin: 14px auto 0;
+    }
+    @media(max-width:520px){
+      .countRow{grid-template-columns: repeat(2, 1fr);}
+    }
+    .countBox{
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.16);
+      padding:14px 10px;
+      text-align:center;
+    }
+    .countN{
+      font-size:28px;
+      font-weight:900;
+      color:#fff;
+      margin:0;
+    }
+    .countL{
+      margin-top:6px;
+      font-size:12px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color: rgba(245,245,247,.75);
+    }
+
+    /* QR */
+    .qrWrap{
+      display:grid;
+      gap:12px;
+      justify-items:center;
+      margin-top:14px;
+    }
+    .qrImg{
+      width:min(320px, 92%);
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.18);
+      padding:10px;
+    }
+    .qrImg img{
+      width:100%;
+      height:auto;
+      display:block;
+      border-radius:14px;
+      background:#fff;
+    }
+
     #ytWrap{position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;}
   </style>
 </head>
 
 <body>
-  <!-- Barra superior -->
   <div class="topBar hidden" id="topBar">
     <div class="topBarInner">
       <div class="brand">Carlos & Jimena</div>
@@ -264,7 +261,6 @@
     </div>
   </div>
 
-  <!-- PORTADA -->
   <section class="cover" id="cover">
     <div class="wrap">
       <div class="panel coverBox">
@@ -279,7 +275,6 @@
     </div>
   </section>
 
-  <!-- CONTENIDO -->
   <div class="wrap hidden" id="content">
 
     <section class="panel section">
@@ -288,7 +283,15 @@
         Si te llegó esta invitación, es porque te apreciamos y queremos que nos acompañes en nuestro día más especial.
       </p>
 
-      <!-- FOTO GRANDE ARRIBA: ahora es MOMENTO 2 -->
+      <!-- Contador -->
+      <div class="countRow" aria-label="Contador">
+        <div class="countBox"><div class="countN" id="cdDays">0</div><div class="countL">Días</div></div>
+        <div class="countBox"><div class="countN" id="cdHours">0</div><div class="countL">Horas</div></div>
+        <div class="countBox"><div class="countN" id="cdMins">0</div><div class="countL">Minutos</div></div>
+        <div class="countBox"><div class="countN" id="cdSecs">0</div><div class="countL">Segundos</div></div>
+      </div>
+
+      <!-- Foto grande arriba -->
       <div class="heroPhoto" style="margin-top:14px">
         <img src="momento2.jpeg" alt="Carlos y Jimena - Portada">
       </div>
@@ -415,7 +418,6 @@
     <section class="panel section">
       <div class="titleScript">Momentos</div>
 
-      <!-- Momentos: el resto abajo (sin recortar) -->
       <div class="gallery">
         <div class="ph"><img src="portada.jpeg" alt="Portada"></div>
         <div class="ph"><img src="Carlos y Jimena.jpeg" alt="Carlos y Jimena"></div>
@@ -452,11 +454,23 @@
       </form>
     </section>
 
+    <section class="panel section">
+      <div class="titleScript">QR de la Invitación</div>
+      <p class="subtitle">Escanéalo para abrir la invitación desde cualquier celular.</p>
+
+      <div class="qrWrap">
+        <div class="qrImg">
+          <img id="qrImg" alt="QR Invitación">
+        </div>
+
+        <button class="btnPrimary" id="copyLink" style="min-width:220px">Copiar link</button>
+        <p class="subtitle" id="copyMsg" style="margin-top:0"></p>
+      </div>
+    </section>
+
   </div>
 
-  <!-- YouTube (oculto) -->
   <div id="ytWrap"><div id="player"></div></div>
-
   <script src="https://www.youtube.com/iframe_api"></script>
 
   <script>
@@ -468,6 +482,56 @@
     const topBar = document.getElementById("topBar");
 
     // ======================
+    // CONTADOR
+    // ======================
+    // Fecha evento: 29 Agosto 2026 - 5:00 PM (hora local)
+    const EVENT_DATE = new Date("2026-08-29T17:00:00-06:00");
+    const elD = document.getElementById("cdDays");
+    const elH = document.getElementById("cdHours");
+    const elM = document.getElementById("cdMins");
+    const elS = document.getElementById("cdSecs");
+
+    function pad2(n){ return String(n).padStart(2,"0"); }
+
+    function tick(){
+      const now = new Date();
+      let diff = Math.max(0, EVENT_DATE.getTime() - now.getTime());
+      const sec = Math.floor(diff/1000);
+
+      const days = Math.floor(sec / 86400);
+      const hrs  = Math.floor((sec % 86400) / 3600);
+      const mins = Math.floor((sec % 3600) / 60);
+      const secs = Math.floor(sec % 60);
+
+      elD.textContent = days;
+      elH.textContent = pad2(hrs);
+      elM.textContent = pad2(mins);
+      elS.textContent = pad2(secs);
+    }
+
+    // ======================
+    // QR
+    // ======================
+    function setQR(){
+      const url = window.location.href;
+      // Servicio gratis de QR (imagen). Se genera al vuelo.
+      const qr = "https://api.qrserver.com/v1/create-qr-code/?size=700x700&data=" + encodeURIComponent(url);
+      document.getElementById("qrImg").src = qr;
+    }
+
+    document.getElementById("copyLink").addEventListener("click", async () => {
+      const url = window.location.href;
+      const msg = document.getElementById("copyMsg");
+      try{
+        await navigator.clipboard.writeText(url);
+        msg.textContent = "Link copiado ✅ (pégalo en WhatsApp).";
+      }catch(e){
+        msg.textContent = "No se pudo copiar. Copia manual: " + url;
+      }
+      setTimeout(()=> msg.textContent="", 4000);
+    });
+
+    // ======================
     // MÚSICA YOUTUBE
     // ======================
     const YT_VIDEO_ID = "yP_dhALIuFc";
@@ -477,18 +541,8 @@
     function onYouTubeIframeAPIReady(){
       player = new YT.Player("player", {
         videoId: YT_VIDEO_ID,
-        playerVars: {
-          autoplay: 0,
-          controls: 0,
-          loop: 1,
-          playlist: YT_VIDEO_ID,
-          modestbranding: 1
-        },
-        events: {
-          onReady: () => {
-            try { player.setVolume(45); } catch(e){}
-          }
-        }
+        playerVars: { autoplay:0, controls:0, loop:1, playlist:YT_VIDEO_ID, modestbranding:1 },
+        events: { onReady: () => { try { player.setVolume(45); } catch(e){} } }
       });
     }
     window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
@@ -503,9 +557,7 @@
         const b = document.getElementById("btnMusic");
         if (b) b.textContent = "Música ✓";
         return true;
-      }catch(e){
-        return false;
-      }
+      }catch(e){ return false; }
     }
 
     document.getElementById("openInvite").addEventListener("click", () => {
@@ -513,6 +565,10 @@
       content.classList.remove("hidden");
       topBar.classList.remove("hidden");
       window.scrollTo({top:0, behavior:"smooth"});
+
+      tick();
+      setInterval(tick, 1000);
+      setQR();
 
       setTimeout(startMusic, 200);
       setTimeout(startMusic, 900);
@@ -539,11 +595,7 @@
 
     function postToGoogleForm(payloadParams){
       const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSf1gQvRgM63JLVnElM8zpV4Qm2TBFll-OOeuWBIBJauKLa-Rw/formResponse";
-
-      // fetch no-cors
       fetch(FORM_URL, { method: "POST", mode: "no-cors", body: payloadParams }).catch(()=>{});
-
-      // fallback: sendBeacon
       try{
         const blob = new Blob([payloadParams.toString()], { type: "application/x-www-form-urlencoded" });
         navigator.sendBeacon(FORM_URL, blob);
@@ -574,12 +626,12 @@
       rsvpMsg.innerHTML = `
         <div style="
           margin-top:20px;
-          padding:20px;
+          padding:22px;
           border-radius:20px;
           border:1px solid rgba(202,162,74,.6);
           background:rgba(202,162,74,.15);
           font-size:22px;
-          font-weight:800;
+          font-weight:900;
           text-align:center;
         ">
           TU CONFIRMACIÓN FUE REGISTRADA EXITOSAMENTE<br>
