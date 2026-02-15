@@ -44,7 +44,7 @@
       box-shadow: var(--shadow);
     }
 
-    /* Decoración dorada (flores/plantas) pegada a esquinas para NO amontonar texto */
+    /* Decoración dorada (flores/plantas) en esquinas */
     .panel::before, .panel::after{
       content:"";
       position:absolute;
@@ -126,7 +126,7 @@
       margin: 0 auto;
     }
 
-    /* Hero: ahora NO recortar, se ve completa (contain) */
+    /* HERO FOTO: sin recortar */
     .heroPhoto{
       margin-top:16px;
       border-radius:18px;
@@ -140,7 +140,6 @@
       height:auto;
       display:block;
       border-radius:14px;
-      object-fit:contain;
     }
 
     .grid2{display:grid;grid-template-columns:1fr;gap:12px;margin-top:14px;}
@@ -195,7 +194,7 @@
     .stepTitle{font-weight:900}
     .stepTime{color: var(--muted); margin-top:3px}
 
-    /* Galería: ver completas (contain), sin recortar */
+    /* Galería: sin recortar */
     .gallery{margin-top:14px;display:grid;grid-template-columns:1fr;gap:10px;}
     @media(min-width:760px){.gallery{grid-template-columns:1fr 1fr}}
     .ph{
@@ -208,7 +207,6 @@
       height:auto;
       display:block;
       border-radius:14px;
-      object-fit:contain;
     }
 
     /* RSVP */
@@ -225,8 +223,6 @@
       outline:none;
       font-size:14px;
     }
-    .ok{color:#b7f7c2;font-size:13px;text-align:center}
-    .err{color:#ffb6b6;font-size:13px;text-align:center}
 
     /* Top bar */
     .topBar{
@@ -292,9 +288,9 @@
         Si te llegó esta invitación, es porque te apreciamos y queremos que nos acompañes en nuestro día más especial.
       </p>
 
-      <!-- FOTO GRANDE ARRIBA: ahora es portada.jpeg -->
+      <!-- FOTO GRANDE ARRIBA: ahora es MOMENTO 2 -->
       <div class="heroPhoto" style="margin-top:14px">
-        <img src="portada.jpeg" alt="Carlos y Jimena - Portada">
+        <img src="momento2.jpeg" alt="Carlos y Jimena - Portada">
       </div>
     </section>
 
@@ -419,11 +415,11 @@
     <section class="panel section">
       <div class="titleScript">Momentos</div>
 
-      <!-- Momentos: agregamos Carlos y Jimena.jpeg aquí (la que antes era grande) -->
+      <!-- Momentos: el resto abajo (sin recortar) -->
       <div class="gallery">
+        <div class="ph"><img src="portada.jpeg" alt="Portada"></div>
         <div class="ph"><img src="Carlos y Jimena.jpeg" alt="Carlos y Jimena"></div>
         <div class="ph"><img src="momento1.jpeg" alt="Momento 1"></div>
-        <div class="ph"><img src="momento2.jpeg" alt="Momento 2"></div>
         <div class="ph"><img src="momento3.jpeg" alt="Momento 3"></div>
         <div class="ph"><img src="momento4.jpeg" alt="Momento 4"></div>
       </div>
@@ -500,7 +496,6 @@
     function startMusic(){
       if(!player) return false;
       try{
-        // Truco: a veces está “muteado” por autoplay policies
         if (player.isMuted && player.isMuted()) player.unMute();
         player.setVolume(45);
         player.playVideo();
@@ -519,14 +514,12 @@
       topBar.classList.remove("hidden");
       window.scrollTo({top:0, behavior:"smooth"});
 
-      // Intentar varias veces (algunos móviles tardan en crear el player)
       setTimeout(startMusic, 200);
       setTimeout(startMusic, 900);
       setTimeout(startMusic, 1600);
     });
 
     document.getElementById("btnMusic").addEventListener("click", () => {
-      // toggle simple
       if(!player) return;
       try{
         if(musicOn){
@@ -540,17 +533,17 @@
     });
 
     // ======================
-    // RSVP: SOLO GOOGLE FORMS
+    // RSVP: GOOGLE FORMS
     // ======================
     const rsvpMsg = document.getElementById("rsvpMsg");
 
     function postToGoogleForm(payloadParams){
       const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSf1gQvRgM63JLVnElM8zpV4Qm2TBFll-OOeuWBIBJauKLa-Rw/formResponse";
 
-      // 1) fetch (no-cors)
+      // fetch no-cors
       fetch(FORM_URL, { method: "POST", mode: "no-cors", body: payloadParams }).catch(()=>{});
 
-      // 2) fallback: sendBeacon (mejora entregabilidad en móvil)
+      // fallback: sendBeacon
       try{
         const blob = new Blob([payloadParams.toString()], { type: "application/x-www-form-urlencoded" });
         navigator.sendBeacon(FORM_URL, blob);
@@ -566,24 +559,35 @@
       const notes = document.getElementById("notes").value.trim();
 
       if(!name || !attend || !pax){
-        rsvpMsg.innerHTML = '<div class="err">Completa Nombre, Asistencia y Personas.</div>';
+        rsvpMsg.innerHTML = '<div style="color:#ffb6b6;text-align:center;margin-top:10px">Completa Nombre, Asistencia y Personas.</div>';
         return;
       }
 
       const data = new URLSearchParams();
-      data.append("entry.837092975", name);           // Nombre
-      data.append("entry.764767312", attend);         // Asistencia
-      data.append("entry.706411984", pax);            // Personas
-      data.append("entry.1995459750", notes || "");   // Mensaje
+      data.append("entry.837092975", name);
+      data.append("entry.764767312", attend);
+      data.append("entry.706411984", pax);
+      data.append("entry.1995459750", notes || "");
 
       postToGoogleForm(data);
 
-      rsvpMsg.innerHTML = '<div class="ok">Gracias por confirmar tu asistencia ✅</div>';
+      rsvpMsg.innerHTML = `
+        <div style="
+          margin-top:20px;
+          padding:20px;
+          border-radius:20px;
+          border:1px solid rgba(202,162,74,.6);
+          background:rgba(202,162,74,.15);
+          font-size:22px;
+          font-weight:800;
+          text-align:center;
+        ">
+          TU CONFIRMACIÓN FUE REGISTRADA EXITOSAMENTE<br>
+          GRACIAS.
+        </div>
+      `;
 
-      // limpiar formulario
-      setTimeout(() => {
-        document.getElementById("rsvpForm").reset();
-      }, 300);
+      setTimeout(() => document.getElementById("rsvpForm").reset(), 300);
     });
   </script>
 </body>
