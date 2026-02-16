@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>Invitación | Carlos & Jimena</title>
   <meta name="description" content="Con alegría en el corazón, te invitamos a celebrar nuestra boda. Acompáñanos en este día inolvidable." />
 
@@ -20,6 +20,7 @@
       --gold2:#e1c37a;
       --line:rgba(202,162,74,.30);
       --shadow: 0 22px 80px rgba(0,0,0,.55);
+      --safeB: env(safe-area-inset-bottom, 0px);
     }
     *{box-sizing:border-box}
     html,body{margin:0;padding:0}
@@ -33,7 +34,7 @@
     }
     a{color:inherit}
     .hidden{display:none !important;}
-    .wrap{max-width:900px;margin:0 auto;padding:18px 14px 80px}
+    .wrap{max-width:900px;margin:0 auto;padding:18px 14px 92px}
 
     .panel{
       position:relative;
@@ -65,14 +66,15 @@
       transform: rotate(-8deg);
     }
 
+    /* COVER */
     .cover{min-height: calc(100vh - 20px);display:grid;place-items:center;padding: 18px 0;}
     .coverBox{
       width:min(860px, 100%);
-      aspect-ratio: 16/10;
+      min-height: min(560px, calc(100vh - 120px));
       display:grid;
       place-items:center;
       text-align:center;
-      padding: 22px 16px;
+      padding: 26px 16px 90px; /* extra abajo para celular */
     }
     .kicker{font-size:22px;margin:0 0 10px;color: rgba(255,255,255,.92);}
     .names{
@@ -85,6 +87,7 @@
       text-shadow: 0 10px 30px rgba(0,0,0,.45);
     }
     .dateLine{font-size:22px;margin:0 0 18px;color: rgba(255,255,255,.92);}
+
     .btnPrimary{
       display:inline-flex;align-items:center;justify-content:center;
       padding:14px 22px;border-radius:999px;
@@ -96,9 +99,35 @@
       min-width: 230px;
       backdrop-filter: blur(6px);
       text-decoration:none;
+      -webkit-tap-highlight-color: transparent;
     }
     .btnPrimary:hover{background: rgba(202,162,74,.30)}
     .arrow{margin-top:14px;opacity:.7;font-size:18px;letter-spacing:.12em;}
+
+    /* Botón flotante SOLO en móvil */
+    .openFloating{
+      position: fixed;
+      left: 14px;
+      right: 14px;
+      bottom: calc(14px + var(--safeB));
+      z-index: 9999;
+      display:none;
+    }
+    .openFloating .btnPrimary{
+      width:100%;
+      min-width: 0;
+      padding:16px 18px;
+      font-size:16px;
+      box-shadow: 0 18px 60px rgba(0,0,0,.55);
+    }
+    @media(max-width: 560px){
+      .openFloating{display:block;}
+      .names{font-size:44px;}
+      .kicker{font-size:18px;}
+      .dateLine{font-size:18px;}
+      /* Ocultamos el botón del centro en móvil para evitar que “no se vea” */
+      #openInviteInline{display:none;}
+    }
 
     .section{margin-top:16px;padding: 22px 16px;}
     .titleScript{
@@ -151,10 +180,24 @@
     .stepTitle{font-weight:900}
     .stepTime{color: var(--muted); margin-top:3px}
 
+    /* Galería: NO recortar (mostrar completa) */
     .gallery{margin-top:14px;display:grid;grid-template-columns:1fr;gap:10px;}
     @media(min-width:760px){.gallery{grid-template-columns:1fr 1fr}}
-    .ph{border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.10);background: rgba(0,0,0,.18);padding:10px;}
-    .ph img{width:100%;height:auto;display:block;border-radius:14px;}
+    .ph{
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.18);
+      padding:10px;
+    }
+    .ph img{
+      width:100%;
+      height:auto;
+      display:block;
+      border-radius:14px;
+      object-fit:contain; /* clave */
+      background: rgba(0,0,0,.12);
+    }
 
     .form{margin-top:12px;display:grid;gap:10px;max-width:680px;margin-left:auto;margin-right:auto;}
     .two{display:grid;grid-template-columns:1fr;gap:10px;}
@@ -261,6 +304,7 @@
     </div>
   </div>
 
+  <!-- COVER -->
   <section class="cover" id="cover">
     <div class="wrap">
       <div class="panel coverBox">
@@ -268,13 +312,21 @@
           <p class="kicker">Nuestra Boda</p>
           <h1 class="names">Carlos y Jimena</h1>
           <p class="dateLine">29 · Agosto · 2026</p>
-          <button class="btnPrimary" id="openInvite">Abrir invitación</button>
+
+          <!-- Botón normal (PC/tablet) -->
+          <button class="btnPrimary" id="openInviteInline">Abrir invitación</button>
           <div class="arrow">⌄⌄</div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Botón flotante (celular) -->
+  <div class="openFloating" id="openFloating">
+    <button class="btnPrimary" id="openInviteMobile">Abrir invitación</button>
+  </div>
+
+  <!-- CONTENIDO -->
   <div class="wrap hidden" id="content">
 
     <section class="panel section">
@@ -475,16 +527,17 @@
 
   <script>
     // ======================
-    // MOSTRAR CONTENIDO
+    // ELEMENTOS
     // ======================
     const cover = document.getElementById("cover");
     const content = document.getElementById("content");
     const topBar = document.getElementById("topBar");
+    const openFloating = document.getElementById("openFloating");
 
     // ======================
     // CONTADOR
     // ======================
-    // Fecha evento: 29 Agosto 2026 - 5:00 PM (hora local)
+    // Evento: 29 Ago 2026 - 5:00 PM (GMT-6)
     const EVENT_DATE = new Date("2026-08-29T17:00:00-06:00");
     const elD = document.getElementById("cdDays");
     const elH = document.getElementById("cdHours");
@@ -492,7 +545,6 @@
     const elS = document.getElementById("cdSecs");
 
     function pad2(n){ return String(n).padStart(2,"0"); }
-
     function tick(){
       const now = new Date();
       let diff = Math.max(0, EVENT_DATE.getTime() - now.getTime());
@@ -514,7 +566,6 @@
     // ======================
     function setQR(){
       const url = window.location.href;
-      // Servicio gratis de QR (imagen). Se genera al vuelo.
       const qr = "https://api.qrserver.com/v1/create-qr-code/?size=700x700&data=" + encodeURIComponent(url);
       document.getElementById("qrImg").src = qr;
     }
@@ -532,7 +583,7 @@
     });
 
     // ======================
-    // MÚSICA YOUTUBE
+    // MÚSICA (YOUTUBE)
     // ======================
     const YT_VIDEO_ID = "yP_dhALIuFc";
     let player;
@@ -560,21 +611,6 @@
       }catch(e){ return false; }
     }
 
-    document.getElementById("openInvite").addEventListener("click", () => {
-      cover.classList.add("hidden");
-      content.classList.remove("hidden");
-      topBar.classList.remove("hidden");
-      window.scrollTo({top:0, behavior:"smooth"});
-
-      tick();
-      setInterval(tick, 1000);
-      setQR();
-
-      setTimeout(startMusic, 200);
-      setTimeout(startMusic, 900);
-      setTimeout(startMusic, 1600);
-    });
-
     document.getElementById("btnMusic").addEventListener("click", () => {
       if(!player) return;
       try{
@@ -589,17 +625,48 @@
     });
 
     // ======================
-    // RSVP: GOOGLE FORMS
+    // ABRIR INVITACIÓN (PC + MÓVIL)
+    // ======================
+    function openInvitation(){
+      cover.classList.add("hidden");
+      content.classList.remove("hidden");
+      topBar.classList.remove("hidden");
+      openFloating.classList.add("hidden");
+
+      window.scrollTo({top:0, behavior:"smooth"});
+
+      tick();
+      setInterval(tick, 1000);
+      setQR();
+
+      // iOS/Android: a veces requiere varios intentos después del click
+      setTimeout(startMusic, 150);
+      setTimeout(startMusic, 800);
+      setTimeout(startMusic, 1500);
+    }
+
+    const btnInline = document.getElementById("openInviteInline");
+    if(btnInline) btnInline.addEventListener("click", openInvitation);
+    document.getElementById("openInviteMobile").addEventListener("click", openInvitation);
+
+    // ======================
+    // RSVP -> GOOGLE FORMS (ESTABLE EN GITHUB PAGES)
     // ======================
     const rsvpMsg = document.getElementById("rsvpMsg");
 
-    function postToGoogleForm(payloadParams){
-      const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSf1gQvRgM63JLVnElM8zpV4Qm2TBFll-OOeuWBIBJauKLa-Rw/formResponse";
-      fetch(FORM_URL, { method: "POST", mode: "no-cors", body: payloadParams }).catch(()=>{});
-      try{
-        const blob = new Blob([payloadParams.toString()], { type: "application/x-www-form-urlencoded" });
-        navigator.sendBeacon(FORM_URL, blob);
-      }catch(e){}
+    function sendToGoogleFormGET(name, attend, pax, notes){
+      const BASE = "https://docs.google.com/forms/d/e/1FAIpQLSf1gQvRgM63JLVnElM8zpV4Qm2TBFll-OOeuWBIBJauKLa-Rw/formResponse";
+
+      const url =
+        BASE +
+        "?entry.837092975=" + encodeURIComponent(name) +
+        "&entry.764767312=" + encodeURIComponent(attend) +
+        "&entry.706411984=" + encodeURIComponent(pax) +
+        "&entry.1995459750=" + encodeURIComponent(notes || "") +
+        "&submit=Submit";
+
+      // dispara el registro sin salirte de la página (no depende de CORS)
+      (new Image()).src = url;
     }
 
     document.getElementById("rsvpForm").addEventListener("submit", (e) => {
@@ -615,13 +682,7 @@
         return;
       }
 
-      const data = new URLSearchParams();
-      data.append("entry.837092975", name);
-      data.append("entry.764767312", attend);
-      data.append("entry.706411984", pax);
-      data.append("entry.1995459750", notes || "");
-
-      postToGoogleForm(data);
+      sendToGoogleFormGET(name, attend, pax, notes);
 
       rsvpMsg.innerHTML = `
         <div style="
@@ -633,13 +694,14 @@
           font-size:22px;
           font-weight:900;
           text-align:center;
+          line-height:1.35;
         ">
           TU CONFIRMACIÓN FUE REGISTRADA EXITOSAMENTE<br>
           GRACIAS.
         </div>
       `;
 
-      setTimeout(() => document.getElementById("rsvpForm").reset(), 300);
+      setTimeout(() => document.getElementById("rsvpForm").reset(), 350);
     });
   </script>
 </body>
