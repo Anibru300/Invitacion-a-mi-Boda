@@ -471,7 +471,8 @@
           <input class="inp" id="guestName" placeholder="Nombre" required />
           <select class="inp" id="attendance" required>
             <option value="" disabled selected>¿Asistiré?</option>
-            <option value="Sí">Asistiré</option>
+            <!-- ✅ Ajuste: sin acento para que coincida con el Google Form -->
+            <option value="Si">Asistiré</option>
             <option value="No">No asistiré</option>
           </select>
         </div>
@@ -614,31 +615,35 @@
     if(btnInline) btnInline.addEventListener("click", openInvitation);
     document.getElementById("openInviteMobile").addEventListener("click", openInvitation);
 
-    // ===== RSVP -> Google Forms (anti-cache + doble envío) =====
+    // ===== RSVP -> Google Forms (más confiable) =====
     const rsvpMsg = document.getElementById("rsvpMsg");
 
     async function sendToGoogleForm(name, attend, pax, notes){
       const BASE = "https://docs.google.com/forms/d/e/1FAIpQLSf1gQvRgM63JLVnElM8zpV4Qm2TBFll-OOeuWBIBJauKLa-Rw/formResponse";
 
-      const body =
-        "entry.837092975=" + encodeURIComponent(name) +
-        "&entry.764767312=" + encodeURIComponent(attend) +
-        "&entry.706411984=" + encodeURIComponent(pax) +
-        "&entry.1995459750=" + encodeURIComponent(notes || "") +
-        "&submit=Submit";
+      const params = new URLSearchParams();
+      params.append("entry.837092975", name);
+      params.append("entry.764767312", attend);      // <- aquí manda "Si" o "No"
+      params.append("entry.706411984", pax);
+      params.append("entry.1995459750", notes || "");
 
-      // 1) GET anti-cache (evita que Chrome “cachee”)
-      const img = new Image();
-      img.referrerPolicy = "no-referrer";
-      img.src = BASE + "?" + body + "&_ts=" + Date.now();
+      const body = params.toString();
 
-      // 2) POST no-cors (doble seguridad)
+      // 1) sendBeacon (excelente en móviles)
+      if (navigator.sendBeacon) {
+        const blob = new Blob([body], { type: "application/x-www-form-urlencoded;charset=UTF-8" });
+        const ok = navigator.sendBeacon(BASE, blob);
+        if (ok) return;
+      }
+
+      // 2) fetch fallback
       try{
         await fetch(BASE, {
           method: "POST",
           mode: "no-cors",
           headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
-          body
+          body,
+          keepalive: true
         });
       }catch(e){}
     }
@@ -647,7 +652,7 @@
       e.preventDefault();
 
       const name = document.getElementById("guestName").value.trim();
-      const attend = document.getElementById("attendance").value;
+      const attend = document.getElementById("attendance").value; // "Si" / "No"
       const pax = document.getElementById("pax").value;
       const notes = document.getElementById("notes").value.trim();
 
@@ -675,7 +680,8 @@
         </div>
       `;
 
-      setTimeout(() => document.getElementById("rsvpForm").reset(), 350);
+      // ✅ No resetees tan rápido (evita cortar envío en móviles)
+      setTimeout(() => document.getElementById("rsvpForm").reset(), 1500);
     });
   </script>
 </body>
