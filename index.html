@@ -66,7 +66,6 @@
       transform: rotate(-8deg);
     }
 
-    /* COVER */
     .cover{min-height: calc(100vh - 20px);display:grid;place-items:center;padding: 18px 0;}
     .coverBox{
       width:min(860px, 100%);
@@ -74,7 +73,7 @@
       display:grid;
       place-items:center;
       text-align:center;
-      padding: 26px 16px 90px; /* extra abajo para celular */
+      padding: 26px 16px 90px;
     }
     .kicker{font-size:22px;margin:0 0 10px;color: rgba(255,255,255,.92);}
     .names{
@@ -104,7 +103,6 @@
     .btnPrimary:hover{background: rgba(202,162,74,.30)}
     .arrow{margin-top:14px;opacity:.7;font-size:18px;letter-spacing:.12em;}
 
-    /* Botón flotante SOLO en móvil */
     .openFloating{
       position: fixed;
       left: 14px;
@@ -125,7 +123,6 @@
       .names{font-size:44px;}
       .kicker{font-size:18px;}
       .dateLine{font-size:18px;}
-      /* Ocultamos el botón del centro en móvil para evitar que “no se vea” */
       #openInviteInline{display:none;}
     }
 
@@ -180,7 +177,6 @@
     .stepTitle{font-weight:900}
     .stepTime{color: var(--muted); margin-top:3px}
 
-    /* Galería: NO recortar (mostrar completa) */
     .gallery{margin-top:14px;display:grid;grid-template-columns:1fr;gap:10px;}
     @media(min-width:760px){.gallery{grid-template-columns:1fr 1fr}}
     .ph{
@@ -195,7 +191,7 @@
       height:auto;
       display:block;
       border-radius:14px;
-      object-fit:contain; /* clave */
+      object-fit:contain;
       background: rgba(0,0,0,.12);
     }
 
@@ -235,7 +231,6 @@
       background: rgba(255,255,255,.06);
     }
 
-    /* Contador */
     .countRow{
       display:grid;
       grid-template-columns: repeat(4, 1fr);
@@ -267,7 +262,6 @@
       color: rgba(245,245,247,.75);
     }
 
-    /* QR */
     .qrWrap{
       display:grid;
       gap:12px;
@@ -304,7 +298,6 @@
     </div>
   </div>
 
-  <!-- COVER -->
   <section class="cover" id="cover">
     <div class="wrap">
       <div class="panel coverBox">
@@ -312,8 +305,6 @@
           <p class="kicker">Nuestra Boda</p>
           <h1 class="names">Carlos y Jimena</h1>
           <p class="dateLine">29 · Agosto · 2026</p>
-
-          <!-- Botón normal (PC/tablet) -->
           <button class="btnPrimary" id="openInviteInline">Abrir invitación</button>
           <div class="arrow">⌄⌄</div>
         </div>
@@ -321,12 +312,10 @@
     </div>
   </section>
 
-  <!-- Botón flotante (celular) -->
   <div class="openFloating" id="openFloating">
     <button class="btnPrimary" id="openInviteMobile">Abrir invitación</button>
   </div>
 
-  <!-- CONTENIDO -->
   <div class="wrap hidden" id="content">
 
     <section class="panel section">
@@ -335,7 +324,6 @@
         Si te llegó esta invitación, es porque te apreciamos y queremos que nos acompañes en nuestro día más especial.
       </p>
 
-      <!-- Contador -->
       <div class="countRow" aria-label="Contador">
         <div class="countBox"><div class="countN" id="cdDays">0</div><div class="countL">Días</div></div>
         <div class="countBox"><div class="countN" id="cdHours">0</div><div class="countL">Horas</div></div>
@@ -343,7 +331,6 @@
         <div class="countBox"><div class="countN" id="cdSecs">0</div><div class="countL">Segundos</div></div>
       </div>
 
-      <!-- Foto grande arriba -->
       <div class="heroPhoto" style="margin-top:14px">
         <img src="momento2.jpeg" alt="Carlos y Jimena - Portada">
       </div>
@@ -351,7 +338,6 @@
 
     <section class="panel section">
       <div class="titleScript">Nuestros Padres</div>
-
       <div class="grid2">
         <div class="card">
           <div class="pill">Novio</div>
@@ -360,7 +346,6 @@
             <li>Ma. Guadalupe Muñoz Campuzano</li>
           </ul>
         </div>
-
         <div class="card">
           <div class="pill">Novia</div>
           <ul class="list">
@@ -373,7 +358,6 @@
       <div style="height:18px"></div>
 
       <div class="titleScript">Nuestros Padrinos</div>
-
       <div class="card" style="max-width:720px;margin:12px auto 0">
         <h3>Padrinos de Velación</h3>
         <ul class="list">
@@ -469,7 +453,6 @@
 
     <section class="panel section">
       <div class="titleScript">Momentos</div>
-
       <div class="gallery">
         <div class="ph"><img src="portada.jpeg" alt="Portada"></div>
         <div class="ph"><img src="Carlos y Jimena.jpeg" alt="Carlos y Jimena"></div>
@@ -526,50 +509,38 @@
   <script src="https://www.youtube.com/iframe_api"></script>
 
   <script>
-    // ======================
-    // ELEMENTOS
-    // ======================
     const cover = document.getElementById("cover");
     const content = document.getElementById("content");
     const topBar = document.getElementById("topBar");
     const openFloating = document.getElementById("openFloating");
 
-    // ======================
-    // CONTADOR
-    // ======================
-    // Evento: 29 Ago 2026 - 5:00 PM (GMT-6)
+    // ===== Contador =====
     const EVENT_DATE = new Date("2026-08-29T17:00:00-06:00");
     const elD = document.getElementById("cdDays");
     const elH = document.getElementById("cdHours");
     const elM = document.getElementById("cdMins");
     const elS = document.getElementById("cdSecs");
-
     function pad2(n){ return String(n).padStart(2,"0"); }
     function tick(){
       const now = new Date();
       let diff = Math.max(0, EVENT_DATE.getTime() - now.getTime());
       const sec = Math.floor(diff/1000);
-
       const days = Math.floor(sec / 86400);
       const hrs  = Math.floor((sec % 86400) / 3600);
       const mins = Math.floor((sec % 3600) / 60);
       const secs = Math.floor(sec % 60);
-
       elD.textContent = days;
       elH.textContent = pad2(hrs);
       elM.textContent = pad2(mins);
       elS.textContent = pad2(secs);
     }
 
-    // ======================
-    // QR
-    // ======================
+    // ===== QR =====
     function setQR(){
       const url = window.location.href;
       const qr = "https://api.qrserver.com/v1/create-qr-code/?size=700x700&data=" + encodeURIComponent(url);
       document.getElementById("qrImg").src = qr;
     }
-
     document.getElementById("copyLink").addEventListener("click", async () => {
       const url = window.location.href;
       const msg = document.getElementById("copyMsg");
@@ -582,9 +553,7 @@
       setTimeout(()=> msg.textContent="", 4000);
     });
 
-    // ======================
-    // MÚSICA (YOUTUBE)
-    // ======================
+    // ===== Música YouTube =====
     const YT_VIDEO_ID = "yP_dhALIuFc";
     let player;
     let musicOn = false;
@@ -624,9 +593,7 @@
       }catch(e){}
     });
 
-    // ======================
-    // ABRIR INVITACIÓN (PC + MÓVIL)
-    // ======================
+    // ===== Abrir invitación =====
     function openInvitation(){
       cover.classList.add("hidden");
       content.classList.remove("hidden");
@@ -639,37 +606,44 @@
       setInterval(tick, 1000);
       setQR();
 
-      // iOS/Android: a veces requiere varios intentos después del click
       setTimeout(startMusic, 150);
       setTimeout(startMusic, 800);
       setTimeout(startMusic, 1500);
     }
-
     const btnInline = document.getElementById("openInviteInline");
     if(btnInline) btnInline.addEventListener("click", openInvitation);
     document.getElementById("openInviteMobile").addEventListener("click", openInvitation);
 
-    // ======================
-    // RSVP -> GOOGLE FORMS (ESTABLE EN GITHUB PAGES)
-    // ======================
+    // ===== RSVP -> Google Forms (anti-cache + doble envío) =====
     const rsvpMsg = document.getElementById("rsvpMsg");
 
-    function sendToGoogleFormGET(name, attend, pax, notes){
+    async function sendToGoogleForm(name, attend, pax, notes){
       const BASE = "https://docs.google.com/forms/d/e/1FAIpQLSf1gQvRgM63JLVnElM8zpV4Qm2TBFll-OOeuWBIBJauKLa-Rw/formResponse";
 
-      const url =
-        BASE +
-        "?entry.837092975=" + encodeURIComponent(name) +
+      const body =
+        "entry.837092975=" + encodeURIComponent(name) +
         "&entry.764767312=" + encodeURIComponent(attend) +
         "&entry.706411984=" + encodeURIComponent(pax) +
         "&entry.1995459750=" + encodeURIComponent(notes || "") +
         "&submit=Submit";
 
-      // dispara el registro sin salirte de la página (no depende de CORS)
-      (new Image()).src = url;
+      // 1) GET anti-cache (evita que Chrome “cachee”)
+      const img = new Image();
+      img.referrerPolicy = "no-referrer";
+      img.src = BASE + "?" + body + "&_ts=" + Date.now();
+
+      // 2) POST no-cors (doble seguridad)
+      try{
+        await fetch(BASE, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+          body
+        });
+      }catch(e){}
     }
 
-    document.getElementById("rsvpForm").addEventListener("submit", (e) => {
+    document.getElementById("rsvpForm").addEventListener("submit", async (e) => {
       e.preventDefault();
 
       const name = document.getElementById("guestName").value.trim();
@@ -682,7 +656,7 @@
         return;
       }
 
-      sendToGoogleFormGET(name, attend, pax, notes);
+      await sendToGoogleForm(name, attend, pax, notes);
 
       rsvpMsg.innerHTML = `
         <div style="
