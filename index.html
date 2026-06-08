@@ -164,6 +164,18 @@
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.1); }
     }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+    @keyframes border-shine {
+      0% { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+    @keyframes card-glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(202,162,74,0.05), inset 0 1px 0 rgba(255,255,255,0.03); }
+      50% { box-shadow: 0 0 40px rgba(202,162,74,0.12), inset 0 1px 0 rgba(255,255,255,0.05); }
+    }
     
     .animate-pulse-glow {
       animation: pulse-glow 3s ease-in-out infinite;
@@ -179,6 +191,12 @@
     }
     .animate-scale-heart {
       animation: scale-heart 3s ease-in-out infinite;
+    }
+    .animate-float {
+      animation: float 4s ease-in-out infinite;
+    }
+    .card-glow {
+      animation: card-glow 3s ease-in-out infinite;
     }
     
     .equalizer-bar {
@@ -308,49 +326,62 @@
   </div>
   
   <!-- Hero / Cover -->
-  <section id="hero" class="fixed inset-0 z-50 flex items-center justify-center p-4 transition-opacity duration-500">
-    <div class="relative w-full max-w-md">
+  <section id="hero" class="fixed inset-0 z-50 flex items-center justify-center transition-all duration-700" style="transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);">
+    <!-- Background image -->
+    <div class="absolute inset-0">
+      <img src="./images/principal.jpeg" alt="Carlos y Jimena" class="w-full h-full object-cover" style="filter: brightness(0.35) blur(1px);">
+      <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(6,9,19,0.4) 0%, rgba(6,9,19,0.7) 50%, rgba(6,9,19,0.95) 100%);"></div>
+    </div>
+    
+    <!-- Floating particles overlay -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none" id="hero-particles"></div>
+    
+    <div class="relative z-10 w-full max-w-lg px-4">
       <!-- Glow -->
-      <div class="absolute inset-0 rounded-3xl bg-gradient-to-r from-gold/30 to-gold2/30 blur-2xl animate-pulse-glow"></div>
+      <div class="absolute inset-0 rounded-3xl bg-gradient-to-r from-gold/20 to-gold2/20 blur-3xl animate-pulse-glow"></div>
       
       <!-- Envelope body -->
-      <div class="relative rounded-3xl overflow-hidden" style="background: linear-gradient(180deg, #0d1429, #060913); box-shadow: 0 25px 80px rgba(0, 0, 0, 0.6);">
-        <!-- Corner decorations -->
-        <div class="absolute top-3 left-3 w-10 h-10 border-l border-t border-gold/40 rounded-tl-lg"></div>
-        <div class="absolute top-3 right-3 w-10 h-10 border-r border-t border-gold/40 rounded-tr-lg"></div>
-        <div class="absolute bottom-3 left-3 w-10 h-10 border-l border-b border-gold/40 rounded-bl-lg"></div>
-        <div class="absolute bottom-3 right-3 w-10 h-10 border-r border-b border-gold/40 rounded-br-lg"></div>
+      <div class="relative rounded-3xl overflow-hidden backdrop-blur-sm border border-gold/20" style="background: linear-gradient(180deg, rgba(13,20,41,0.85), rgba(6,9,19,0.95)); box-shadow: 0 25px 80px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255,255,255,0.05);">
+        <!-- Animated border glow -->
+        <div class="absolute inset-0 rounded-3xl opacity-0 hover:opacity-100 transition-opacity duration-500" style="background: linear-gradient(90deg, transparent, rgba(202,162,74,0.15), transparent); animation: border-shine 4s ease-in-out infinite;"></div>
         
-        <div class="relative z-10 p-8 md:p-12 text-center">
+        <!-- Corner decorations -->
+        <div class="absolute top-4 left-4 w-12 h-12 border-l-2 border-t-2 border-gold/50 rounded-tl-xl"></div>
+        <div class="absolute top-4 right-4 w-12 h-12 border-r-2 border-t-2 border-gold/50 rounded-tr-xl"></div>
+        <div class="absolute bottom-4 left-4 w-12 h-12 border-l-2 border-b-2 border-gold/50 rounded-bl-xl"></div>
+        <div class="absolute bottom-4 right-4 w-12 h-12 border-r-2 border-b-2 border-gold/50 rounded-br-xl"></div>
+        
+        <div class="relative z-10 p-8 md:p-14 text-center">
           <!-- Seal -->
           <div class="mb-6">
-            <div class="inline-flex items-center justify-center w-14 h-14 rounded-full" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.3), rgba(202, 162, 74, 0.1)); border: 2px solid rgba(202, 162, 74, 0.6);">
-              <i data-lucide="heart" class="text-gold w-6 h-6" style="fill: currentColor;"></i>
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-full animate-float" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.25), rgba(202, 162, 74, 0.05)); border: 2px solid rgba(202, 162, 74, 0.5); box-shadow: 0 0 30px rgba(202,162,74,0.2);">
+              <i data-lucide="heart" class="text-gold w-7 h-7" style="fill: currentColor;"></i>
             </div>
           </div>
           
           <!-- Kicker -->
-          <p class="text-xs md:text-sm text-gold tracking-[0.3em] uppercase mb-4">Invitación Especial</p>
+          <p class="text-xs md:text-sm text-gold tracking-[0.35em] uppercase mb-5 font-medium">Nuestra Boda</p>
           
           <!-- Names -->
-          <div class="mb-4">
-            <h1 class="font-script text-4xl md:text-6xl mb-1 text-gradient">Carlos</h1>
-            <span class="font-script text-2xl md:text-3xl text-gold">&</span>
-            <h1 class="font-script text-4xl md:text-6xl mt-1 text-gradient">Jimena</h1>
+          <div class="mb-5">
+            <h1 class="font-script text-5xl md:text-7xl mb-2 text-gradient" style="text-shadow: 0 4px 20px rgba(0,0,0,0.5);">Carlos</h1>
+            <span class="font-script text-3xl md:text-4xl text-gold/90 block my-1">&</span>
+            <h1 class="font-script text-5xl md:text-7xl mt-2 text-gradient" style="text-shadow: 0 4px 20px rgba(0,0,0,0.5);">Jimena</h1>
           </div>
           
           <!-- Date -->
-          <p class="text-base md:text-lg text-white/80 mb-8">
+          <p class="text-lg md:text-xl text-white/90 mb-10 font-light">
             <span class="text-gold font-semibold">29</span>
-            <span class="mx-2 text-white/50">·</span>
+            <span class="mx-2 text-white/40">·</span>
             <span class="text-gold font-semibold">Agosto</span>
-            <span class="mx-2 text-white/50">·</span>
+            <span class="mx-2 text-white/40">·</span>
             <span class="text-gold font-semibold">2026</span>
           </p>
           
           <!-- Button -->
-          <button id="open-invitation" class="hero-btn relative px-8 py-3.5 rounded-full text-white font-semibold tracking-wide overflow-hidden" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.3), rgba(202, 162, 74, 0.15)); border: 1px solid rgba(202, 162, 74, 0.6);">
-            <span class="relative z-10 flex items-center justify-center gap-2">
+          <button id="open-invitation" class="hero-btn relative px-10 py-4 rounded-full text-white font-semibold tracking-wide overflow-hidden group" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.35), rgba(202, 162, 74, 0.15)); border: 1px solid rgba(202, 162, 74, 0.7); transition: all 0.3s ease;">
+            <span class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.5), rgba(202, 162, 74, 0.25));"></span>
+            <span class="relative z-10 flex items-center justify-center gap-3">
               <i data-lucide="heart" class="text-gold w-4 h-4" style="fill: currentColor;"></i>
               Abrir Invitación
               <i data-lucide="heart" class="text-gold w-4 h-4" style="fill: currentColor;"></i>
@@ -358,10 +389,10 @@
           </button>
           
           <!-- Scroll hint -->
-          <div class="mt-8 opacity-60">
-            <div class="flex flex-col items-center gap-1 animate-bounce-chevron">
-              <span class="text-xs text-white/40">Toca para abrir</span>
-              <i data-lucide="chevron-down" class="text-gold w-[18px] h-[18px]"></i>
+          <div class="mt-10 opacity-50">
+            <div class="flex flex-col items-center gap-2 animate-bounce-chevron">
+              <span class="text-xs text-white/40 tracking-wider">Toca para abrir</span>
+              <i data-lucide="chevron-down" class="text-gold w-5 h-5"></i>
             </div>
           </div>
         </div>
@@ -370,7 +401,7 @@
   </section>
   
   <!-- Main Content -->
-  <main id="main-content" class="relative z-10 opacity-0 transition-opacity duration-800" style="transition-duration: 800ms;">
+  <main id="main-content" class="relative z-10 opacity-0" style="transform: translateY(30px); transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);">
     <div class="max-w-4xl mx-auto px-4 py-6 md:py-8 space-y-6 md:space-y-8">
       
       <!-- Welcome Section -->
@@ -771,17 +802,17 @@
           </div>
           
           <!-- Grid -->
-          <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 auto-rows-auto">
             <div class="reveal reveal-delay-1 relative cursor-pointer group gallery-item" data-index="0">
               <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
+              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect card-glow" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
                 <div class="aspect-[4/3] relative overflow-hidden">
                   <img src="./images/Carlos y Jimena.jpeg" alt="Carlos y Jimena" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
                   <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
                   <div class="absolute bottom-0 left-0 right-0 p-4 md:p-5 transition-all duration-300 group-hover:translate-y-0 translate-y-1">
                     <div class="flex items-center gap-2 mb-1 transition-transform duration-300 group-hover:translate-x-1">
                       <i data-lucide="heart" class="text-gold w-3 h-3" style="fill: currentColor;"></i>
-                      <span class="text-gold text-xs uppercase tracking-wider">Carlos y Jimena</span>
+                      <span class="text-gold text-xs uppercase tracking-wider">Nuestro amor</span>
                     </div>
                     <p class="text-white font-medium text-sm md:text-base">Carlos y Jimena</p>
                   </div>
@@ -792,224 +823,8 @@
             </div>
             <div class="reveal reveal-delay-2 relative cursor-pointer group gallery-item" data-index="1">
               <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
-                <div class="aspect-[4/3] relative overflow-hidden">
-                  <img src="./images/WhatsApp Image 2026-06-07 at 9.44.47 PM.jpeg" alt="Momento especial 2" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
-                  <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
-                  <div class="absolute bottom-0 left-0 right-0 p-4 md:p-5 transition-all duration-300 group-hover:translate-y-0 translate-y-1">
-                    <div class="flex items-center gap-2 mb-1 transition-transform duration-300 group-hover:translate-x-1">
-                      <i data-lucide="heart" class="text-gold w-3 h-3" style="fill: currentColor;"></i>
-                      <span class="text-gold text-xs uppercase tracking-wider">Momento 2</span>
-                    </div>
-                    <p class="text-white font-medium text-sm md:text-base">Momento especial 2</p>
-                  </div>
-                  <div class="absolute top-3 left-3 w-6 h-6 border-l-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
-                  <div class="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
-                </div>
-              </div>
-            </div>
-            <div class="reveal reveal-delay-3 relative cursor-pointer group gallery-item" data-index="2">
-              <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
-                <div class="aspect-[4/3] relative overflow-hidden">
-                  <img src="./images/WhatsApp Image 2026-06-07 at 9.44.53 PM.jpeg" alt="Momento especial 3" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
-                  <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
-                  <div class="absolute bottom-0 left-0 right-0 p-4 md:p-5 transition-all duration-300 group-hover:translate-y-0 translate-y-1">
-                    <div class="flex items-center gap-2 mb-1 transition-transform duration-300 group-hover:translate-x-1">
-                      <i data-lucide="heart" class="text-gold w-3 h-3" style="fill: currentColor;"></i>
-                      <span class="text-gold text-xs uppercase tracking-wider">Momento 3</span>
-                    </div>
-                    <p class="text-white font-medium text-sm md:text-base">Momento especial 3</p>
-                  </div>
-                  <div class="absolute top-3 left-3 w-6 h-6 border-l-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
-                  <div class="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
-                </div>
-              </div>
-            </div>
-            <div class="reveal reveal-delay-4 relative cursor-pointer group gallery-item" data-index="3">
-              <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
-                <div class="aspect-[4/3] relative overflow-hidden">
-                  <img src="./images/WhatsApp Image 2026-06-07 at 9.44.55 PM.jpeg" alt="Momento especial 4" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
-                  <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
-                  <div class="absolute bottom-0 left-0 right-0 p-4 md:p-5 transition-all duration-300 group-hover:translate-y-0 translate-y-1">
-                    <div class="flex items-center gap-2 mb-1 transition-transform duration-300 group-hover:translate-x-1">
-                      <i data-lucide="heart" class="text-gold w-3 h-3" style="fill: currentColor;"></i>
-                      <span class="text-gold text-xs uppercase tracking-wider">Momento 4</span>
-                    </div>
-                    <p class="text-white font-medium text-sm md:text-base">Momento especial 4</p>
-                  </div>
-                  <div class="absolute top-3 left-3 w-6 h-6 border-l-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
-                  <div class="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
-                </div>
-              </div>
-            </div>
-            <div class="reveal reveal-delay-5 relative cursor-pointer group gallery-item md:col-span-2" data-index="4">
-              <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
-                <div class="aspect-[4/3] relative overflow-hidden">
-                  <img src="./images/WhatsApp Image 2026-06-07 at 9.44.56 PM (1).jpeg" alt="Momento especial 5" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
-                  <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
-                  <div class="absolute bottom-0 left-0 right-0 p-4 md:p-5 transition-all duration-300 group-hover:translate-y-0 translate-y-1">
-                    <div class="flex items-center gap-2 mb-1 transition-transform duration-300 group-hover:translate-x-1">
-                      <i data-lucide="heart" class="text-gold w-3 h-3" style="fill: currentColor;"></i>
-                      <span class="text-gold text-xs uppercase tracking-wider">Momento 5</span>
-                    </div>
-                    <p class="text-white font-medium text-sm md:text-base">Momento especial 5</p>
-                  </div>
-                  <div class="absolute top-3 left-3 w-6 h-6 border-l-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
-                  <div class="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
-                </div>
-              </div>
-            </div>
-            <div class="reveal reveal-delay-6 relative cursor-pointer group gallery-item" data-index="5">
-              <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
-                <div class="aspect-[4/3] relative overflow-hidden">
-                  <img src="./images/WhatsApp Image 2026-06-07 at 9.44.56 PM (2).jpeg" alt="Momento especial 6" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
-                  <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
-                  <div class="absolute bottom-0 left-0 right-0 p-4 md:p-5 transition-all duration-300 group-hover:translate-y-0 translate-y-1">
-                    <div class="flex items-center gap-2 mb-1 transition-transform duration-300 group-hover:translate-x-1">
-                      <i data-lucide="heart" class="text-gold w-3 h-3" style="fill: currentColor;"></i>
-                      <span class="text-gold text-xs uppercase tracking-wider">Momento 6</span>
-                    </div>
-                    <p class="text-white font-medium text-sm md:text-base">Momento especial 6</p>
-                  </div>
-                  <div class="absolute top-3 left-3 w-6 h-6 border-l-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
-                  <div class="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
-                </div>
-              </div>
-            </div>
-            <div class="reveal reveal-delay-1 relative cursor-pointer group gallery-item" data-index="6">
-              <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
-                <div class="aspect-[4/3] relative overflow-hidden">
-                  <img src="./images/WhatsApp Image 2026-06-07 at 9.44.56 PM.jpeg" alt="Momento especial 7" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
-                  <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
-                  <div class="absolute bottom-0 left-0 right-0 p-4 md:p-5 transition-all duration-300 group-hover:translate-y-0 translate-y-1">
-                    <div class="flex items-center gap-2 mb-1 transition-transform duration-300 group-hover:translate-x-1">
-                      <i data-lucide="heart" class="text-gold w-3 h-3" style="fill: currentColor;"></i>
-                      <span class="text-gold text-xs uppercase tracking-wider">Momento 7</span>
-                    </div>
-                    <p class="text-white font-medium text-sm md:text-base">Momento especial 7</p>
-                  </div>
-                  <div class="absolute top-3 left-3 w-6 h-6 border-l-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
-                  <div class="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
-                </div>
-              </div>
-            </div>
-            <div class="reveal reveal-delay-2 relative cursor-pointer group gallery-item" data-index="7">
-              <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
-                <div class="aspect-[4/3] relative overflow-hidden">
-                  <img src="./images/WhatsApp Image 2026-06-07 at 9.44.57 PM (1).jpeg" alt="Momento especial 8" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
-                  <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
-                  <div class="absolute bottom-0 left-0 right-0 p-4 md:p-5 transition-all duration-300 group-hover:translate-y-0 translate-y-1">
-                    <div class="flex items-center gap-2 mb-1 transition-transform duration-300 group-hover:translate-x-1">
-                      <i data-lucide="heart" class="text-gold w-3 h-3" style="fill: currentColor;"></i>
-                      <span class="text-gold text-xs uppercase tracking-wider">Momento 8</span>
-                    </div>
-                    <p class="text-white font-medium text-sm md:text-base">Momento especial 8</p>
-                  </div>
-                  <div class="absolute top-3 left-3 w-6 h-6 border-l-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
-                  <div class="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
-                </div>
-              </div>
-            </div>
-            <div class="reveal reveal-delay-3 relative cursor-pointer group gallery-item" data-index="8">
-              <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
-                <div class="aspect-[4/3] relative overflow-hidden">
-                  <img src="./images/WhatsApp Image 2026-06-07 at 9.44.57 PM (2).jpeg" alt="Momento especial 9" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
-                  <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
-                  <div class="absolute bottom-0 left-0 right-0 p-4 md:p-5 transition-all duration-300 group-hover:translate-y-0 translate-y-1">
-                    <div class="flex items-center gap-2 mb-1 transition-transform duration-300 group-hover:translate-x-1">
-                      <i data-lucide="heart" class="text-gold w-3 h-3" style="fill: currentColor;"></i>
-                      <span class="text-gold text-xs uppercase tracking-wider">Momento 9</span>
-                    </div>
-                    <p class="text-white font-medium text-sm md:text-base">Momento especial 9</p>
-                  </div>
-                  <div class="absolute top-3 left-3 w-6 h-6 border-l-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
-                  <div class="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
-                </div>
-              </div>
-            </div>
-            <div class="reveal reveal-delay-4 relative cursor-pointer group gallery-item" data-index="9">
-              <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
-                <div class="aspect-[4/3] relative overflow-hidden">
-                  <img src="./images/WhatsApp Image 2026-06-07 at 9.44.57 PM.jpeg" alt="Momento especial 10" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
-                  <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
-                  <div class="absolute bottom-0 left-0 right-0 p-4 md:p-5 transition-all duration-300 group-hover:translate-y-0 translate-y-1">
-                    <div class="flex items-center gap-2 mb-1 transition-transform duration-300 group-hover:translate-x-1">
-                      <i data-lucide="heart" class="text-gold w-3 h-3" style="fill: currentColor;"></i>
-                      <span class="text-gold text-xs uppercase tracking-wider">Momento 10</span>
-                    </div>
-                    <p class="text-white font-medium text-sm md:text-base">Momento especial 10</p>
-                  </div>
-                  <div class="absolute top-3 left-3 w-6 h-6 border-l-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
-                  <div class="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
-                </div>
-              </div>
-            </div>
-            <div class="reveal reveal-delay-5 relative cursor-pointer group gallery-item" data-index="10">
-              <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
-                <div class="aspect-[4/3] relative overflow-hidden">
-                  <img src="./images/WhatsApp Image 2026-06-07 at 9.44.58 PM (1).jpeg" alt="Momento especial 11" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
-                  <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
-                  <div class="absolute bottom-0 left-0 right-0 p-4 md:p-5 transition-all duration-300 group-hover:translate-y-0 translate-y-1">
-                    <div class="flex items-center gap-2 mb-1 transition-transform duration-300 group-hover:translate-x-1">
-                      <i data-lucide="heart" class="text-gold w-3 h-3" style="fill: currentColor;"></i>
-                      <span class="text-gold text-xs uppercase tracking-wider">Momento 11</span>
-                    </div>
-                    <p class="text-white font-medium text-sm md:text-base">Momento especial 11</p>
-                  </div>
-                  <div class="absolute top-3 left-3 w-6 h-6 border-l-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
-                  <div class="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
-                </div>
-              </div>
-            </div>
-            <div class="reveal reveal-delay-6 relative cursor-pointer group gallery-item md:col-span-2" data-index="11">
-              <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
-                <div class="aspect-[4/3] relative overflow-hidden">
-                  <img src="./images/WhatsApp Image 2026-06-07 at 9.44.58 PM.jpeg" alt="Momento especial 12" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
-                  <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
-                  <div class="absolute bottom-0 left-0 right-0 p-4 md:p-5 transition-all duration-300 group-hover:translate-y-0 translate-y-1">
-                    <div class="flex items-center gap-2 mb-1 transition-transform duration-300 group-hover:translate-x-1">
-                      <i data-lucide="heart" class="text-gold w-3 h-3" style="fill: currentColor;"></i>
-                      <span class="text-gold text-xs uppercase tracking-wider">Momento 12</span>
-                    </div>
-                    <p class="text-white font-medium text-sm md:text-base">Momento especial 12</p>
-                  </div>
-                  <div class="absolute top-3 left-3 w-6 h-6 border-l-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
-                  <div class="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
-                </div>
-              </div>
-            </div>
-            <div class="reveal reveal-delay-1 relative cursor-pointer group gallery-item" data-index="12">
-              <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
-                <div class="aspect-[4/3] relative overflow-hidden">
-                  <img src="./images/WhatsApp Image 2026-06-07 at 9.44.59 PM.jpeg" alt="Momento especial 13" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
-                  <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
-                  <div class="absolute bottom-0 left-0 right-0 p-4 md:p-5 transition-all duration-300 group-hover:translate-y-0 translate-y-1">
-                    <div class="flex items-center gap-2 mb-1 transition-transform duration-300 group-hover:translate-x-1">
-                      <i data-lucide="heart" class="text-gold w-3 h-3" style="fill: currentColor;"></i>
-                      <span class="text-gold text-xs uppercase tracking-wider">Momento 13</span>
-                    </div>
-                    <p class="text-white font-medium text-sm md:text-base">Momento especial 13</p>
-                  </div>
-                  <div class="absolute top-3 left-3 w-6 h-6 border-l-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
-                  <div class="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
-                </div>
-              </div>
-            </div>
-            <div class="reveal reveal-delay-2 relative cursor-pointer group gallery-item" data-index="13">
-              <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
-                <div class="aspect-[4/3] relative overflow-hidden">
+              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect card-glow" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
+                <div class="aspect-square relative overflow-hidden">
                   <img src="./images/momento1.jpeg" alt="Momento 1" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
                   <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
                   <div class="absolute bottom-0 left-0 right-0 p-4 md:p-5 transition-all duration-300 group-hover:translate-y-0 translate-y-1">
@@ -1024,10 +839,136 @@
                 </div>
               </div>
             </div>
-            <div class="reveal reveal-delay-3 relative cursor-pointer group gallery-item" data-index="14">
+            <div class="reveal reveal-delay-3 relative cursor-pointer group gallery-item" data-index="2">
               <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
+              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect card-glow" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
+                <div class="aspect-[3/4] relative overflow-hidden">
+                  <img src="./images/momento10.jpeg" alt="Momento especial 10" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
+                  <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
+                  <div class="absolute bottom-0 left-0 right-0 p-4 md:p-5 transition-all duration-300 group-hover:translate-y-0 translate-y-1">
+                    <div class="flex items-center gap-2 mb-1 transition-transform duration-300 group-hover:translate-x-1">
+                      <i data-lucide="heart" class="text-gold w-3 h-3" style="fill: currentColor;"></i>
+                      <span class="text-gold text-xs uppercase tracking-wider">Momento 10</span>
+                    </div>
+                    <p class="text-white font-medium text-sm md:text-base">Momento especial 10</p>
+                  </div>
+                  <div class="absolute top-3 left-3 w-6 h-6 border-l-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
+                  <div class="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
+                </div>
+              </div>
+            </div>
+            <div class="reveal reveal-delay-4 relative cursor-pointer group gallery-item" data-index="3">
+              <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
+              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect card-glow" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
                 <div class="aspect-[4/3] relative overflow-hidden">
+                  <img src="./images/momento11.jpeg" alt="Momento especial 11" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
+                  <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
+                  <div class="absolute bottom-0 left-0 right-0 p-4 md:p-5 transition-all duration-300 group-hover:translate-y-0 translate-y-1">
+                    <div class="flex items-center gap-2 mb-1 transition-transform duration-300 group-hover:translate-x-1">
+                      <i data-lucide="heart" class="text-gold w-3 h-3" style="fill: currentColor;"></i>
+                      <span class="text-gold text-xs uppercase tracking-wider">Momento 11</span>
+                    </div>
+                    <p class="text-white font-medium text-sm md:text-base">Momento especial 11</p>
+                  </div>
+                  <div class="absolute top-3 left-3 w-6 h-6 border-l-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
+                  <div class="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
+                </div>
+              </div>
+            </div>
+            <div class="reveal reveal-delay-5 relative cursor-pointer group gallery-item" data-index="4">
+              <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
+              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect card-glow" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
+                <div class="aspect-[16/9] md:col-span-2 relative overflow-hidden">
+                  <img src="./images/momento12.jpeg" alt="Momento especial 12" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
+                  <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
+                  <div class="absolute bottom-0 left-0 right-0 p-4 md:p-5 transition-all duration-300 group-hover:translate-y-0 translate-y-1">
+                    <div class="flex items-center gap-2 mb-1 transition-transform duration-300 group-hover:translate-x-1">
+                      <i data-lucide="heart" class="text-gold w-3 h-3" style="fill: currentColor;"></i>
+                      <span class="text-gold text-xs uppercase tracking-wider">Momento 12</span>
+                    </div>
+                    <p class="text-white font-medium text-sm md:text-base">Momento especial 12</p>
+                  </div>
+                  <div class="absolute top-3 left-3 w-6 h-6 border-l-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
+                  <div class="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
+                </div>
+              </div>
+            </div>
+            <div class="reveal reveal-delay-6 relative cursor-pointer group gallery-item" data-index="5">
+              <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
+              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect card-glow" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
+                <div class="aspect-[3/4] relative overflow-hidden">
+                  <img src="./images/momento13.jpeg" alt="Momento especial 13" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
+                  <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
+                  <div class="absolute bottom-0 left-0 right-0 p-4 md:p-5 transition-all duration-300 group-hover:translate-y-0 translate-y-1">
+                    <div class="flex items-center gap-2 mb-1 transition-transform duration-300 group-hover:translate-x-1">
+                      <i data-lucide="heart" class="text-gold w-3 h-3" style="fill: currentColor;"></i>
+                      <span class="text-gold text-xs uppercase tracking-wider">Momento 13</span>
+                    </div>
+                    <p class="text-white font-medium text-sm md:text-base">Momento especial 13</p>
+                  </div>
+                  <div class="absolute top-3 left-3 w-6 h-6 border-l-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
+                  <div class="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
+                </div>
+              </div>
+            </div>
+            <div class="reveal reveal-delay-1 relative cursor-pointer group gallery-item" data-index="6">
+              <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
+              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect card-glow" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
+                <div class="aspect-square relative overflow-hidden">
+                  <img src="./images/momento14.jpeg" alt="Momento especial 14" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
+                  <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
+                  <div class="absolute bottom-0 left-0 right-0 p-4 md:p-5 transition-all duration-300 group-hover:translate-y-0 translate-y-1">
+                    <div class="flex items-center gap-2 mb-1 transition-transform duration-300 group-hover:translate-x-1">
+                      <i data-lucide="heart" class="text-gold w-3 h-3" style="fill: currentColor;"></i>
+                      <span class="text-gold text-xs uppercase tracking-wider">Momento 14</span>
+                    </div>
+                    <p class="text-white font-medium text-sm md:text-base">Momento especial 14</p>
+                  </div>
+                  <div class="absolute top-3 left-3 w-6 h-6 border-l-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
+                  <div class="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
+                </div>
+              </div>
+            </div>
+            <div class="reveal reveal-delay-2 relative cursor-pointer group gallery-item" data-index="7">
+              <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
+              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect card-glow" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
+                <div class="aspect-[4/3] relative overflow-hidden">
+                  <img src="./images/momento15.jpeg" alt="Momento especial 15" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
+                  <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
+                  <div class="absolute bottom-0 left-0 right-0 p-4 md:p-5 transition-all duration-300 group-hover:translate-y-0 translate-y-1">
+                    <div class="flex items-center gap-2 mb-1 transition-transform duration-300 group-hover:translate-x-1">
+                      <i data-lucide="heart" class="text-gold w-3 h-3" style="fill: currentColor;"></i>
+                      <span class="text-gold text-xs uppercase tracking-wider">Momento 15</span>
+                    </div>
+                    <p class="text-white font-medium text-sm md:text-base">Momento especial 15</p>
+                  </div>
+                  <div class="absolute top-3 left-3 w-6 h-6 border-l-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
+                  <div class="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
+                </div>
+              </div>
+            </div>
+            <div class="reveal reveal-delay-3 relative cursor-pointer group gallery-item" data-index="8">
+              <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
+              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect card-glow" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
+                <div class="aspect-[3/4] relative overflow-hidden">
+                  <img src="./images/momento16.jpeg" alt="Momento especial 16" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
+                  <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
+                  <div class="absolute bottom-0 left-0 right-0 p-4 md:p-5 transition-all duration-300 group-hover:translate-y-0 translate-y-1">
+                    <div class="flex items-center gap-2 mb-1 transition-transform duration-300 group-hover:translate-x-1">
+                      <i data-lucide="heart" class="text-gold w-3 h-3" style="fill: currentColor;"></i>
+                      <span class="text-gold text-xs uppercase tracking-wider">Momento 16</span>
+                    </div>
+                    <p class="text-white font-medium text-sm md:text-base">Momento especial 16</p>
+                  </div>
+                  <div class="absolute top-3 left-3 w-6 h-6 border-l-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
+                  <div class="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
+                </div>
+              </div>
+            </div>
+            <div class="reveal reveal-delay-4 relative cursor-pointer group gallery-item" data-index="9">
+              <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
+              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect card-glow" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
+                <div class="aspect-square relative overflow-hidden">
                   <img src="./images/momento2.jpeg" alt="Momento 2" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
                   <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
                   <div class="absolute bottom-0 left-0 right-0 p-4 md:p-5 transition-all duration-300 group-hover:translate-y-0 translate-y-1">
@@ -1042,9 +983,9 @@
                 </div>
               </div>
             </div>
-            <div class="reveal reveal-delay-4 relative cursor-pointer group gallery-item" data-index="15">
+            <div class="reveal reveal-delay-5 relative cursor-pointer group gallery-item" data-index="10">
               <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
+              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect card-glow" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
                 <div class="aspect-[4/3] relative overflow-hidden">
                   <img src="./images/momento3.jpeg" alt="Momento 3" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
                   <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
@@ -1060,10 +1001,10 @@
                 </div>
               </div>
             </div>
-            <div class="reveal reveal-delay-5 relative cursor-pointer group gallery-item" data-index="16">
+            <div class="reveal reveal-delay-6 relative cursor-pointer group gallery-item" data-index="11">
               <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
-                <div class="aspect-[4/3] relative overflow-hidden">
+              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect card-glow" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
+                <div class="aspect-[3/4] relative overflow-hidden">
                   <img src="./images/momento4.jpeg" alt="Momento 4" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
                   <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
                   <div class="absolute bottom-0 left-0 right-0 p-4 md:p-5 transition-all duration-300 group-hover:translate-y-0 translate-y-1">
@@ -1078,18 +1019,108 @@
                 </div>
               </div>
             </div>
+            <div class="reveal reveal-delay-1 relative cursor-pointer group gallery-item" data-index="12">
+              <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
+              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect card-glow" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
+                <div class="aspect-square relative overflow-hidden">
+                  <img src="./images/momento5.jpeg" alt="Momento especial 5" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
+                  <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
+                  <div class="absolute bottom-0 left-0 right-0 p-4 md:p-5 transition-all duration-300 group-hover:translate-y-0 translate-y-1">
+                    <div class="flex items-center gap-2 mb-1 transition-transform duration-300 group-hover:translate-x-1">
+                      <i data-lucide="heart" class="text-gold w-3 h-3" style="fill: currentColor;"></i>
+                      <span class="text-gold text-xs uppercase tracking-wider">Momento 5</span>
+                    </div>
+                    <p class="text-white font-medium text-sm md:text-base">Momento especial 5</p>
+                  </div>
+                  <div class="absolute top-3 left-3 w-6 h-6 border-l-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
+                  <div class="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
+                </div>
+              </div>
+            </div>
+            <div class="reveal reveal-delay-2 relative cursor-pointer group gallery-item" data-index="13">
+              <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
+              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect card-glow" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
+                <div class="aspect-[4/3] relative overflow-hidden">
+                  <img src="./images/momento6.jpeg" alt="Momento especial 6" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
+                  <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
+                  <div class="absolute bottom-0 left-0 right-0 p-4 md:p-5 transition-all duration-300 group-hover:translate-y-0 translate-y-1">
+                    <div class="flex items-center gap-2 mb-1 transition-transform duration-300 group-hover:translate-x-1">
+                      <i data-lucide="heart" class="text-gold w-3 h-3" style="fill: currentColor;"></i>
+                      <span class="text-gold text-xs uppercase tracking-wider">Momento 6</span>
+                    </div>
+                    <p class="text-white font-medium text-sm md:text-base">Momento especial 6</p>
+                  </div>
+                  <div class="absolute top-3 left-3 w-6 h-6 border-l-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
+                  <div class="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
+                </div>
+              </div>
+            </div>
+            <div class="reveal reveal-delay-3 relative cursor-pointer group gallery-item" data-index="14">
+              <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
+              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect card-glow" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
+                <div class="aspect-[16/9] md:col-span-2 relative overflow-hidden">
+                  <img src="./images/momento7.jpeg" alt="Momento especial 7" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
+                  <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
+                  <div class="absolute bottom-0 left-0 right-0 p-4 md:p-5 transition-all duration-300 group-hover:translate-y-0 translate-y-1">
+                    <div class="flex items-center gap-2 mb-1 transition-transform duration-300 group-hover:translate-x-1">
+                      <i data-lucide="heart" class="text-gold w-3 h-3" style="fill: currentColor;"></i>
+                      <span class="text-gold text-xs uppercase tracking-wider">Momento 7</span>
+                    </div>
+                    <p class="text-white font-medium text-sm md:text-base">Momento especial 7</p>
+                  </div>
+                  <div class="absolute top-3 left-3 w-6 h-6 border-l-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
+                  <div class="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
+                </div>
+              </div>
+            </div>
+            <div class="reveal reveal-delay-4 relative cursor-pointer group gallery-item" data-index="15">
+              <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
+              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect card-glow" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
+                <div class="aspect-[3/4] relative overflow-hidden">
+                  <img src="./images/momento8.jpeg" alt="Momento especial 8" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
+                  <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
+                  <div class="absolute bottom-0 left-0 right-0 p-4 md:p-5 transition-all duration-300 group-hover:translate-y-0 translate-y-1">
+                    <div class="flex items-center gap-2 mb-1 transition-transform duration-300 group-hover:translate-x-1">
+                      <i data-lucide="heart" class="text-gold w-3 h-3" style="fill: currentColor;"></i>
+                      <span class="text-gold text-xs uppercase tracking-wider">Momento 8</span>
+                    </div>
+                    <p class="text-white font-medium text-sm md:text-base">Momento especial 8</p>
+                  </div>
+                  <div class="absolute top-3 left-3 w-6 h-6 border-l-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
+                  <div class="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
+                </div>
+              </div>
+            </div>
+            <div class="reveal reveal-delay-5 relative cursor-pointer group gallery-item" data-index="16">
+              <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
+              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect card-glow" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
+                <div class="aspect-square relative overflow-hidden">
+                  <img src="./images/momento9.jpeg" alt="Momento especial 9" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
+                  <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
+                  <div class="absolute bottom-0 left-0 right-0 p-4 md:p-5 transition-all duration-300 group-hover:translate-y-0 translate-y-1">
+                    <div class="flex items-center gap-2 mb-1 transition-transform duration-300 group-hover:translate-x-1">
+                      <i data-lucide="heart" class="text-gold w-3 h-3" style="fill: currentColor;"></i>
+                      <span class="text-gold text-xs uppercase tracking-wider">Momento 9</span>
+                    </div>
+                    <p class="text-white font-medium text-sm md:text-base">Momento especial 9</p>
+                  </div>
+                  <div class="absolute top-3 left-3 w-6 h-6 border-l-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
+                  <div class="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
+                </div>
+              </div>
+            </div>
             <div class="reveal reveal-delay-6 relative cursor-pointer group gallery-item" data-index="17">
               <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
+              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect card-glow" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
                 <div class="aspect-[4/3] relative overflow-hidden">
-                  <img src="./images/portada.jpeg" alt="Nosotros" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
+                  <img src="./images/portada.jpeg" alt="Nuestra historia" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
                   <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
                   <div class="absolute bottom-0 left-0 right-0 p-4 md:p-5 transition-all duration-300 group-hover:translate-y-0 translate-y-1">
                     <div class="flex items-center gap-2 mb-1 transition-transform duration-300 group-hover:translate-x-1">
                       <i data-lucide="heart" class="text-gold w-3 h-3" style="fill: currentColor;"></i>
                       <span class="text-gold text-xs uppercase tracking-wider">Nosotros</span>
                     </div>
-                    <p class="text-white font-medium text-sm md:text-base">Nosotros</p>
+                    <p class="text-white font-medium text-sm md:text-base">Nuestra historia</p>
                   </div>
                   <div class="absolute top-3 left-3 w-6 h-6 border-l-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
                   <div class="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
@@ -1557,11 +1588,18 @@
       const main = document.getElementById('main-content');
       const player = document.getElementById('music-player');
       
+      // Elegant exit animation
+      hero.style.transform = 'scale(0.92) translateY(-20px)';
       hero.style.opacity = '0';
+      hero.style.filter = 'blur(8px)';
+      
       setTimeout(() => {
         hero.style.display = 'none';
+        
+        // Main content enters with upward motion
         main.classList.remove('opacity-0');
-        main.classList.add('opacity-100');
+        main.style.opacity = '1';
+        main.style.transform = 'translateY(0)';
         
         // Show music player
         player.classList.remove('hidden');
@@ -1684,24 +1722,24 @@
     // Gallery Lightbox
     // ==========================
     const photos = [
-      { src: './images/Carlos y Jimena.jpeg', alt: 'Carlos y Jimena', caption: 'Carlos y Jimena' },
-      { src: './images/WhatsApp Image 2026-06-07 at 9.44.47 PM.jpeg', alt: 'Momento especial 2', caption: 'Momento 2' },
-      { src: './images/WhatsApp Image 2026-06-07 at 9.44.53 PM.jpeg', alt: 'Momento especial 3', caption: 'Momento 3' },
-      { src: './images/WhatsApp Image 2026-06-07 at 9.44.55 PM.jpeg', alt: 'Momento especial 4', caption: 'Momento 4' },
-      { src: './images/WhatsApp Image 2026-06-07 at 9.44.56 PM (1).jpeg', alt: 'Momento especial 5', caption: 'Momento 5' },
-      { src: './images/WhatsApp Image 2026-06-07 at 9.44.56 PM (2).jpeg', alt: 'Momento especial 6', caption: 'Momento 6' },
-      { src: './images/WhatsApp Image 2026-06-07 at 9.44.56 PM.jpeg', alt: 'Momento especial 7', caption: 'Momento 7' },
-      { src: './images/WhatsApp Image 2026-06-07 at 9.44.57 PM (1).jpeg', alt: 'Momento especial 8', caption: 'Momento 8' },
-      { src: './images/WhatsApp Image 2026-06-07 at 9.44.57 PM (2).jpeg', alt: 'Momento especial 9', caption: 'Momento 9' },
-      { src: './images/WhatsApp Image 2026-06-07 at 9.44.57 PM.jpeg', alt: 'Momento especial 10', caption: 'Momento 10' },
-      { src: './images/WhatsApp Image 2026-06-07 at 9.44.58 PM (1).jpeg', alt: 'Momento especial 11', caption: 'Momento 11' },
-      { src: './images/WhatsApp Image 2026-06-07 at 9.44.58 PM.jpeg', alt: 'Momento especial 12', caption: 'Momento 12' },
-      { src: './images/WhatsApp Image 2026-06-07 at 9.44.59 PM.jpeg', alt: 'Momento especial 13', caption: 'Momento 13' },
+      { src: './images/Carlos y Jimena.jpeg', alt: 'Carlos y Jimena', caption: 'Nuestro amor' },
       { src: './images/momento1.jpeg', alt: 'Momento 1', caption: 'Momento 1' },
+      { src: './images/momento10.jpeg', alt: 'Momento especial 10', caption: 'Momento 10' },
+      { src: './images/momento11.jpeg', alt: 'Momento especial 11', caption: 'Momento 11' },
+      { src: './images/momento12.jpeg', alt: 'Momento especial 12', caption: 'Momento 12' },
+      { src: './images/momento13.jpeg', alt: 'Momento especial 13', caption: 'Momento 13' },
+      { src: './images/momento14.jpeg', alt: 'Momento especial 14', caption: 'Momento 14' },
+      { src: './images/momento15.jpeg', alt: 'Momento especial 15', caption: 'Momento 15' },
+      { src: './images/momento16.jpeg', alt: 'Momento especial 16', caption: 'Momento 16' },
       { src: './images/momento2.jpeg', alt: 'Momento 2', caption: 'Momento 2' },
       { src: './images/momento3.jpeg', alt: 'Momento 3', caption: 'Momento 3' },
       { src: './images/momento4.jpeg', alt: 'Momento 4', caption: 'Momento 4' },
-      { src: './images/portada.jpeg', alt: 'Nosotros', caption: 'Nosotros' },
+      { src: './images/momento5.jpeg', alt: 'Momento especial 5', caption: 'Momento 5' },
+      { src: './images/momento6.jpeg', alt: 'Momento especial 6', caption: 'Momento 6' },
+      { src: './images/momento7.jpeg', alt: 'Momento especial 7', caption: 'Momento 7' },
+      { src: './images/momento8.jpeg', alt: 'Momento especial 8', caption: 'Momento 8' },
+      { src: './images/momento9.jpeg', alt: 'Momento especial 9', caption: 'Momento 9' },
+      { src: './images/portada.jpeg', alt: 'Nuestra historia', caption: 'Nosotros' },
     ];
     
     let selectedIndex = null;
