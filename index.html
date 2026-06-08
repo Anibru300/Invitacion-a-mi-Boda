@@ -254,20 +254,57 @@
     /* Scroll Progress */
     #scroll-progress { will-change: width; }
     
-    /* Floating Hearts */
-    .floating-heart {
-      position: fixed;
-      pointer-events: none;
-      z-index: 60;
-      font-size: 1.5rem;
-      animation: float-heart-up 2.5s ease-out forwards;
-      opacity: 0.9;
+    /* Shimmer text effect */
+    .text-shimmer {
+      background: linear-gradient(90deg, #f6e7c0 0%, #ffffff 50%, #f6e7c0 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmer 3s linear infinite;
     }
-    @keyframes float-heart-up {
-      0% { transform: translateY(0) scale(0.5) rotate(0deg); opacity: 0; }
-      15% { opacity: 1; transform: translateY(-30px) scale(1) rotate(10deg); }
-      50% { opacity: 0.9; }
-      100% { transform: translateY(-100vh) scale(0.8) rotate(-20deg); opacity: 0; }
+    @keyframes shimmer {
+      to { background-position: 200% center; }
+    }
+    
+    /* Rotating border glow */
+    .rotating-border {
+      position: relative;
+    }
+    .rotating-border::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 9999px;
+      background: linear-gradient(90deg, #caa24a, #e1c37a, #ffffff, #caa24a);
+      background-size: 300% 100%;
+      z-index: -1;
+      animation: rotate-border 3s linear infinite;
+      opacity: 0.6;
+    }
+    .rotating-border::after {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 9999px;
+      background: linear-gradient(90deg, #caa24a, #e1c37a, #ffffff, #caa24a);
+      background-size: 300% 100%;
+      z-index: -1;
+      animation: rotate-border 3s linear infinite;
+      opacity: 0.6;
+      filter: blur(8px);
+    }
+    @keyframes rotate-border {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 300% 50%; }
+    }
+    
+    /* Icon pulse on scroll */
+    .icon-pulse {
+      animation: icon-glow 2s ease-in-out infinite;
+    }
+    @keyframes icon-glow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(202, 162, 74, 0.4); }
+      50% { box-shadow: 0 0 20px 5px rgba(202, 162, 74, 0.1); }
     }
     
     /* Ripple Effect */
@@ -482,9 +519,9 @@
           
           <!-- Names -->
           <div class="mb-5">
-            <h1 class="font-script text-5xl md:text-8xl mb-1 text-gradient leading-tight" style="text-shadow: 0 4px 20px rgba(0,0,0,0.5);">Carlos</h1>
+            <h1 class="font-script text-5xl md:text-8xl mb-1 text-shimmer leading-tight" style="text-shadow: 0 4px 20px rgba(0,0,0,0.5);">Carlos</h1>
             <span class="font-script text-3xl md:text-5xl text-gold/90 block my-1">&</span>
-            <h1 class="font-script text-5xl md:text-8xl mt-1 text-gradient leading-tight" style="text-shadow: 0 4px 20px rgba(0,0,0,0.5);">Jimena</h1>
+            <h1 class="font-script text-5xl md:text-8xl mt-1 text-shimmer leading-tight" style="text-shadow: 0 4px 20px rgba(0,0,0,0.5);">Jimena</h1>
           </div>
           
           <!-- Date -->
@@ -497,7 +534,7 @@
           </p>
           
           <!-- Button -->
-          <button id="open-invitation" class="hero-btn relative px-10 py-4 rounded-full text-white font-semibold tracking-wide overflow-hidden group" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.35), rgba(202, 162, 74, 0.15)); border: 1px solid rgba(202, 162, 74, 0.7); transition: all 0.3s ease;">
+          <button id="open-invitation" class="hero-btn rotating-border relative px-10 py-4 rounded-full text-white font-semibold tracking-wide overflow-hidden group" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.35), rgba(202, 162, 74, 0.15)); border: 1px solid rgba(202, 162, 74, 0.7); transition: all 0.3s ease;">
             <span class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.5), rgba(202, 162, 74, 0.25));"></span>
             <span class="relative z-10 flex items-center justify-center gap-3">
               <i data-lucide="heart" class="text-gold w-4 h-4" style="fill: currentColor;"></i>
@@ -550,7 +587,7 @@
         <div class="relative z-10 p-6 md:p-10">
           <!-- Header -->
           <div class="text-center mb-6 md:mb-8 reveal reveal-delay-1">
-            <div class="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-xl mb-3 animate-rotate-sparkle" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.2), rgba(202, 162, 74, 0.05)); border: 1px solid rgba(202, 162, 74, 0.3);">
+            <div class="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-xl mb-3 animate-rotate-sparkle icon-pulse" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.2), rgba(202, 162, 74, 0.05)); border: 1px solid rgba(202, 162, 74, 0.3);">
               <i data-lucide="sparkles" class="text-gold w-[18px] h-[18px] md:w-5 md:h-5"></i>
             </div>
             <h2 class="font-heading text-2xl md:text-4xl text-gradient">Faltan</h2>
@@ -636,7 +673,7 @@
           
           <div class="relative z-10 p-5 md:p-8">
             <div class="text-center mb-5 md:mb-6 reveal reveal-delay-1">
-              <div class="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-xl mb-3 animate-rotate-sparkle" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.2), rgba(202, 162, 74, 0.05)); border: 1px solid rgba(202, 162, 74, 0.3);">
+              <div class="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-xl mb-3 animate-rotate-sparkle icon-pulse" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.2), rgba(202, 162, 74, 0.05)); border: 1px solid rgba(202, 162, 74, 0.3);">
                 <i data-lucide="crown" class="text-gold w-[18px] h-[18px]"></i>
               </div>
               <h2 class="font-heading text-2xl md:text-4xl text-gradient">Nuestros Padrinos</h2>
@@ -742,7 +779,7 @@
         <div class="relative z-10 p-6 md:p-12">
           <!-- Header -->
           <div class="text-center mb-8 md:mb-12 reveal reveal-delay-1">
-            <div class="inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-xl md:rounded-2xl mb-4 animate-rotate-sparkle" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.2), rgba(202, 162, 74, 0.05)); border: 1px solid rgba(202, 162, 74, 0.3);">
+            <div class="inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-xl md:rounded-2xl mb-4 animate-rotate-sparkle icon-pulse" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.2), rgba(202, 162, 74, 0.05)); border: 1px solid rgba(202, 162, 74, 0.3);">
               <i data-lucide="sparkles" class="text-gold w-[22px] h-[22px] md:w-5 md:h-5"></i>
             </div>
             <h2 class="font-heading text-3xl md:text-5xl lg:text-6xl text-gradient mb-2 md:mb-3">Itinerario</h2>
@@ -913,7 +950,7 @@
         <div class="relative z-10 p-6 md:p-12">
           <!-- Header -->
           <div class="text-center mb-8 md:mb-10 reveal reveal-delay-1">
-            <div class="inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-xl md:rounded-2xl mb-4 animate-rotate-sparkle" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.2), rgba(202, 162, 74, 0.05)); border: 1px solid rgba(202, 162, 74, 0.3);">
+            <div class="inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-xl md:rounded-2xl mb-4 animate-rotate-sparkle icon-pulse" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.2), rgba(202, 162, 74, 0.05)); border: 1px solid rgba(202, 162, 74, 0.3);">
               <i data-lucide="camera" class="text-gold w-[22px] h-[22px] md:w-5 md:h-5"></i>
             </div>
             <h2 class="font-heading text-3xl md:text-5xl lg:text-6xl text-gradient mb-2 md:mb-3">Nuestros Momentos</h2>
@@ -1287,7 +1324,7 @@
         <div class="relative z-10 p-5 md:p-8">
           <!-- Header -->
           <div class="text-center mb-5 md:mb-6 reveal reveal-delay-1">
-            <div class="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-xl mb-3 animate-rotate-sparkle" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.2), rgba(202, 162, 74, 0.05)); border: 1px solid rgba(202, 162, 74, 0.3);">
+            <div class="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-xl mb-3 animate-rotate-sparkle icon-pulse" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.2), rgba(202, 162, 74, 0.05)); border: 1px solid rgba(202, 162, 74, 0.3);">
               <i data-lucide="send" class="text-gold w-[18px] h-[18px]"></i>
             </div>
             <h2 class="font-heading text-2xl md:text-4xl text-gradient mb-1">Confirma tu Asistencia</h2>
@@ -2084,34 +2121,37 @@
     });
     
     // ==========================
-    // Floating Hearts on Open Invitation
+    // Confetti on Open Invitation
     // ==========================
-    function launchHearts() {
-      const heartEmojis = ['❤️', '🧡', '💛', '🤍', '💫'];
-      const colors = ['#caa24a', '#e1c37a', '#f6e7c0', '#ff6b6b', '#ffffff'];
-      
-      function createHeart(delay) {
-        setTimeout(() => {
-          const heart = document.createElement('div');
-          heart.classList.add('floating-heart');
-          heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
-          heart.style.left = (Math.random() * 80 + 10) + '%';
-          heart.style.bottom = (Math.random() * 20 + 10) + '%';
-          heart.style.fontSize = (Math.random() * 1.5 + 1) + 'rem';
-          heart.style.color = colors[Math.floor(Math.random() * colors.length)];
-          heart.style.animationDuration = (Math.random() * 1.5 + 2) + 's';
-          document.body.appendChild(heart);
-          setTimeout(() => heart.remove(), 4000);
-        }, delay);
-      }
-      
-      for (let i = 0; i < 30; i++) {
-        createHeart(i * 60);
-      }
-    }
-    
     document.getElementById('open-invitation').addEventListener('click', function() {
-      launchHearts();
+      const colors = ['#caa24a', '#e1c37a', '#f6e7c0', '#ffffff'];
+      confetti({
+        particleCount: 100,
+        spread: 80,
+        origin: { y: 0.6 },
+        colors: colors,
+        ticks: 150,
+        gravity: 0.8,
+        scalar: 1.1
+      });
+      setTimeout(() => {
+        confetti({
+          particleCount: 60,
+          spread: 100,
+          origin: { y: 0.7, x: 0.3 },
+          colors: colors,
+          angle: 60
+        });
+      }, 200);
+      setTimeout(() => {
+        confetti({
+          particleCount: 60,
+          spread: 100,
+          origin: { y: 0.7, x: 0.7 },
+          colors: colors,
+          angle: 120
+        });
+      }, 400);
     });
     
     // ==========================
