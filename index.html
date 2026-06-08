@@ -254,6 +254,22 @@
     /* Scroll Progress */
     #scroll-progress { will-change: width; }
     
+    /* Floating Hearts */
+    .floating-heart {
+      position: fixed;
+      pointer-events: none;
+      z-index: 60;
+      font-size: 1.5rem;
+      animation: float-heart-up 2.5s ease-out forwards;
+      opacity: 0.9;
+    }
+    @keyframes float-heart-up {
+      0% { transform: translateY(0) scale(0.5) rotate(0deg); opacity: 0; }
+      15% { opacity: 1; transform: translateY(-30px) scale(1) rotate(10deg); }
+      50% { opacity: 0.9; }
+      100% { transform: translateY(-100vh) scale(0.8) rotate(-20deg); opacity: 0; }
+    }
+    
     /* Ripple Effect */
     .ripple {
       position: absolute;
@@ -466,9 +482,9 @@
           
           <!-- Names -->
           <div class="mb-5">
-            <h1 class="font-script text-6xl md:text-8xl mb-1 text-gradient leading-none" style="text-shadow: 0 4px 20px rgba(0,0,0,0.5);">Carlos</h1>
-            <span class="font-script text-4xl md:text-5xl text-gold/90 block my-2">&</span>
-            <h1 class="font-script text-6xl md:text-8xl mt-1 text-gradient leading-none" style="text-shadow: 0 4px 20px rgba(0,0,0,0.5);">Jimena</h1>
+            <h1 class="font-script text-5xl md:text-8xl mb-1 text-gradient leading-tight" style="text-shadow: 0 4px 20px rgba(0,0,0,0.5);">Carlos</h1>
+            <span class="font-script text-3xl md:text-5xl text-gold/90 block my-1">&</span>
+            <h1 class="font-script text-5xl md:text-8xl mt-1 text-gradient leading-tight" style="text-shadow: 0 4px 20px rgba(0,0,0,0.5);">Jimena</h1>
           </div>
           
           <!-- Date -->
@@ -510,7 +526,7 @@
       <section id="inicio" class="reveal">
         <div class="relative rounded-2xl md:rounded-3xl border border-gold/30 overflow-hidden bg-card">
           <div class="relative z-10 p-6 md:p-10">
-            <p class="reveal font-heading text-base md:text-xl text-white/85 leading-[1.8] text-center mb-8 reveal-delay-1" style="letter-spacing: 0.02em;">
+            <p class="reveal font-script text-lg md:text-2xl text-white/90 leading-[1.7] text-center mb-8 reveal-delay-1">
               Con alegría en el corazón, te invitamos a celebrar nuestra boda. 
               Si te llegó esta invitación, es porque te apreciamos y queremos 
               que nos acompañes en nuestro día más especial.
@@ -2068,37 +2084,34 @@
     });
     
     // ==========================
-    // Confetti on Open Invitation
+    // Floating Hearts on Open Invitation
     // ==========================
+    function launchHearts() {
+      const heartEmojis = ['❤️', '🧡', '💛', '🤍', '💫'];
+      const colors = ['#caa24a', '#e1c37a', '#f6e7c0', '#ff6b6b', '#ffffff'];
+      
+      function createHeart(delay) {
+        setTimeout(() => {
+          const heart = document.createElement('div');
+          heart.classList.add('floating-heart');
+          heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+          heart.style.left = (Math.random() * 80 + 10) + '%';
+          heart.style.bottom = (Math.random() * 20 + 10) + '%';
+          heart.style.fontSize = (Math.random() * 1.5 + 1) + 'rem';
+          heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+          heart.style.animationDuration = (Math.random() * 1.5 + 2) + 's';
+          document.body.appendChild(heart);
+          setTimeout(() => heart.remove(), 4000);
+        }, delay);
+      }
+      
+      for (let i = 0; i < 30; i++) {
+        createHeart(i * 60);
+      }
+    }
+    
     document.getElementById('open-invitation').addEventListener('click', function() {
-      const colors = ['#caa24a', '#e1c37a', '#f6e7c0', '#ffffff'];
-      confetti({
-        particleCount: 100,
-        spread: 80,
-        origin: { y: 0.6 },
-        colors: colors,
-        ticks: 150,
-        gravity: 0.8,
-        scalar: 1.1
-      });
-      setTimeout(() => {
-        confetti({
-          particleCount: 60,
-          spread: 100,
-          origin: { y: 0.7, x: 0.3 },
-          colors: colors,
-          angle: 60
-        });
-      }, 200);
-      setTimeout(() => {
-        confetti({
-          particleCount: 60,
-          spread: 100,
-          origin: { y: 0.7, x: 0.7 },
-          colors: colors,
-          angle: 120
-        });
-      }, 400);
+      launchHearts();
     });
     
     // ==========================
