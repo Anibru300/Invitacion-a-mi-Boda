@@ -1,687 +1,1904 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>Invitación | Carlos & Jimena</title>
-  <meta name="description" content="Con alegría en el corazón, te invitamos a celebrar nuestra boda. Acompáñanos en este día inolvidable." />
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carlos y Jimena - Nuestra Boda</title>
+  <meta name="description" content="Te invitamos a celebrar nuestra boda el 29 de Agosto de 2026">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Carlos y Jimena - Nuestra Boda">
+  <meta property="og:description" content="Te invitamos a celebrar nuestra boda el 29 de Agosto de 2026">
+  <meta property="og:image" content="./images/portada.jpeg">
+  <meta property="og:type" content="website">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💛</text></svg>">
+  
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: '#caa24a',
+            gold2: '#e1c37a',
+            gold3: '#f6e7c0',
+            bg1: '#060913',
+            bg2: '#0a1023',
+          },
+          fontFamily: {
+            script: ['"Cormorant Garamond"', 'serif'],
+            body: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'Arial', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+  
   <style>
-    :root{
-      --bg1:#060913;
-      --bg2:#0a1023;
-      --text:#f5f5f7;
-      --muted:rgba(245,245,247,.75);
-      --gold:#caa24a;
-      --gold2:#e1c37a;
-      --line:rgba(202,162,74,.30);
-      --shadow: 0 22px 80px rgba(0,0,0,.55);
-      --safeB: env(safe-area-inset-bottom, 0px);
+    :root {
+      --bg1: #060913;
+      --bg2: #0a1023;
+      --gold: #caa24a;
+      --gold2: #e1c37a;
+      --gold3: #f6e7c0;
     }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0}
-    body{
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;
-      color:var(--text);
-      background:
-        radial-gradient(900px 600px at 20% -10%, rgba(202,162,74,.16), transparent 55%),
-        radial-gradient(1000px 700px at 90% 20%, rgba(255,255,255,.05), transparent 60%),
-        linear-gradient(180deg, var(--bg2), var(--bg1));
+    
+    * {
+      border-color: rgba(202, 162, 74, 0.2);
     }
-    a{color:inherit}
-    .hidden{display:none !important;}
-    .wrap{max-width:900px;margin:0 auto;padding:18px 14px 92px}
-
-    .panel{
-      position:relative;
-      border-radius:22px;
-      border:1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.01));
-      overflow:hidden;
-      box-shadow: var(--shadow);
-    }
-
-    .panel::before, .panel::after{
-      content:"";
-      position:absolute;
-      width:240px;height:240px;
-      opacity:.80;
-      pointer-events:none;
-      background-repeat:no-repeat;
-      background-size:contain;
-      filter: drop-shadow(0 10px 18px rgba(0,0,0,.35));
-    }
-    .panel::before{
-      left:-70px; top:-70px;
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320' viewBox='0 0 320 320'%3E%3Cg fill='none' stroke='%23caa24a' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M55 290 C70 210, 95 150, 140 90'/%3E%3Cpath d='M78 270 C92 225, 115 175, 156 120'/%3E%3Cpath d='M110 240 C125 210, 145 170, 178 130'/%3E%3Cpath d='M92 170 C70 168, 55 154, 45 135'/%3E%3Cpath d='M130 140 C112 140, 96 130, 82 112'/%3E%3Cpath d='M170 115 C150 112, 136 102, 118 85'/%3E%3Ccircle cx='152' cy='112' r='7' fill='%23caa24a'/%3E%3Ccircle cx='118' cy='86' r='6' fill='%23caa24a'/%3E%3Ccircle cx='84' cy='112' r='6' fill='%23caa24a'/%3E%3C/g%3E%3C/svg%3E");
-      transform: rotate(-8deg);
-    }
-    .panel::after{
-      right:-70px; bottom:-70px;
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320' viewBox='0 0 320 320'%3E%3Cg fill='none' stroke='%23caa24a' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M265 30 C250 110, 225 170, 180 230'/%3E%3Cpath d='M242 52 C228 95, 208 140, 168 198'/%3E%3Cpath d='M210 80 C195 110, 175 150, 142 190'/%3E%3Cpath d='M228 150 C250 152, 265 166, 275 185'/%3E%3Cpath d='M190 180 C208 180, 224 190, 238 208'/%3E%3Cpath d='M150 205 C170 208, 184 218, 202 235'/%3E%3Ccircle cx='170' cy='210' r='7' fill='%23caa24a'/%3E%3Ccircle cx='202' cy='234' r='6' fill='%23caa24a'/%3E%3Ccircle cx='236' cy='208' r='6' fill='%23caa24a'/%3E%3C/g%3E%3C/svg%3E");
-      transform: rotate(-8deg);
-    }
-
-    .cover{min-height: calc(100vh - 20px);display:grid;place-items:center;padding: 18px 0;}
-    .coverBox{
-      width:min(860px, 100%);
-      min-height: min(560px, calc(100vh - 120px));
-      display:grid;
-      place-items:center;
-      text-align:center;
-      padding: 26px 16px 90px;
-    }
-    .kicker{font-size:22px;margin:0 0 10px;color: rgba(255,255,255,.92);}
-    .names{
-      font-family:"Cormorant Garamond", serif;
-      font-weight:600;
-      margin:0 0 10px;
-      font-size:58px;
-      line-height:1.05;
-      color: #f6e7c0;
-      text-shadow: 0 10px 30px rgba(0,0,0,.45);
-    }
-    .dateLine{font-size:22px;margin:0 0 18px;color: rgba(255,255,255,.92);}
-
-    .btnPrimary{
-      display:inline-flex;align-items:center;justify-content:center;
-      padding:14px 22px;border-radius:999px;
-      border:1px solid rgba(202,162,74,.70);
-      background: rgba(202,162,74,.22);
-      color: var(--text);
-      font-weight:800;
-      cursor:pointer;
-      min-width: 230px;
-      backdrop-filter: blur(6px);
-      text-decoration:none;
+    
+    html {
+      scroll-behavior: smooth;
       -webkit-tap-highlight-color: transparent;
     }
-    .btnPrimary:hover{background: rgba(202,162,74,.30)}
-    .arrow{margin-top:14px;opacity:.7;font-size:18px;letter-spacing:.12em;}
-
-    .openFloating{
-      position: fixed;
-      left: 14px;
-      right: 14px;
-      bottom: calc(14px + var(--safeB));
-      z-index: 9999;
-      display:none;
+    
+    body {
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: #060913;
+      color: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
-    .openFloating .btnPrimary{
-      width:100%;
-      min-width: 0;
-      padding:16px 18px;
-      font-size:16px;
-      box-shadow: 0 18px 60px rgba(0,0,0,.55);
+    
+    .font-script {
+      font-family: 'Cormorant Garamond', serif;
     }
-    @media(max-width: 560px){
-      .openFloating{display:block;}
-      .names{font-size:44px;}
-      .kicker{font-size:18px;}
-      .dateLine{font-size:18px;}
-      #openInviteInline{display:none;}
+    
+    .text-gradient {
+      background: linear-gradient(135deg, #f6e7c0, #e1c37a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
-
-    .section{margin-top:16px;padding: 22px 16px;}
-    .titleScript{
-      font-family:"Cormorant Garamond", serif;
-      font-size:44px;
-      color: var(--gold2);
-      margin: 0 0 8px;
-      text-align:center;
-      font-weight:600;
+    
+    .bg-card {
+      background: linear-gradient(180deg, rgba(13, 20, 41, 0.95), rgba(6, 9, 19, 0.98));
     }
-    .subtitle{text-align:center;color: var(--muted);line-height:1.6;max-width:760px;margin: 0 auto;}
-
-    .heroPhoto{
-      margin-top:16px;border-radius:18px;overflow:hidden;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.18);
-      padding: 10px;
+    
+    .bg-card-alt {
+      background: linear-gradient(135deg, rgba(202, 162, 74, 0.08), rgba(6, 9, 19, 0.8));
     }
-    .heroPhoto img{width:100%;height:auto;display:block;border-radius:14px;}
-
-    .grid2{display:grid;grid-template-columns:1fr;gap:12px;margin-top:14px;}
-    @media(min-width:760px){.grid2{grid-template-columns:1fr 1fr}}
-    .card{
-      border-radius:18px;border:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.16);
-      padding:16px;
+    
+    .border-gold {
+      border-color: rgba(202, 162, 74, 0.3);
     }
-    .card h3{margin:0 0 10px;color: var(--gold2);letter-spacing:.12em;text-transform:uppercase;font-size:13px;text-align:center;}
-    .list{margin:0;padding:0;list-style:none;text-align:center;line-height:1.85;}
-    .pill{display:inline-block;padding:6px 12px;border-radius:999px;border:1px solid rgba(202,162,74,.55);background: rgba(202,162,74,.10);font-weight:900;letter-spacing:.08em;text-transform:uppercase;font-size:12px;margin: 0 auto 8px;}
-
-    .placeBox{text-align:center;padding:18px 16px;}
-    .time{font-size:26px;font-weight:900;margin: 6px 0 6px;}
-    .place{font-size:18px;font-weight:900;margin: 0;}
-    .addr{margin: 6px 0 12px;color: var(--muted);line-height:1.55;}
-
-    .timeline{margin-top:12px;display:grid;gap:12px;max-width:620px;margin-left:auto;margin-right:auto;}
-    .step{
-      display:grid;grid-template-columns:64px 1fr;gap:12px;align-items:center;
-      padding:12px;border-radius:16px;border:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.14);
+    
+    .border-gold-light {
+      border-color: rgba(202, 162, 74, 0.2);
     }
-    .dot{
-      width:52px;height:52px;border-radius:50%;
-      display:grid;place-items:center;
-      border:2px solid rgba(202,162,74,.75);
-      background: rgba(202,162,74,.15);
-      font-weight:900;color: rgba(255,255,255,.95);
+    
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
     }
-    .stepTitle{font-weight:900}
-    .stepTime{color: var(--muted); margin-top:3px}
-
-    .gallery{margin-top:14px;display:grid;grid-template-columns:1fr;gap:10px;}
-    @media(min-width:760px){.gallery{grid-template-columns:1fr 1fr}}
-    .ph{
-      border-radius:18px;
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.18);
-      padding:10px;
+    ::-webkit-scrollbar-track {
+      background: var(--bg1);
     }
-    .ph img{
-      width:100%;
-      height:auto;
-      display:block;
-      border-radius:14px;
-      object-fit:contain;
-      background: rgba(0,0,0,.12);
+    ::-webkit-scrollbar-thumb {
+      background: var(--gold);
+      border-radius: 3px;
     }
-
-    .form{margin-top:12px;display:grid;gap:10px;max-width:680px;margin-left:auto;margin-right:auto;}
-    .two{display:grid;grid-template-columns:1fr;gap:10px;}
-    @media(min-width:760px){.two{grid-template-columns:1fr 1fr}}
-    .inp{
-      width:100%;
-      padding:12px 12px;
-      border-radius:14px;
-      border:1px solid rgba(202,162,74,.35);
-      background: rgba(0,0,0,.20);
-      color: var(--text);
-      outline:none;
-      font-size:14px;
+    
+    /* Selection */
+    ::selection {
+      background: rgba(202, 162, 74, 0.3);
+      color: #fff;
     }
-
-    .topBar{
-      position:sticky;top:0;z-index:10;
-      backdrop-filter: blur(10px);
-      background: rgba(6,9,19,.70);
-      border-bottom: 1px solid rgba(255,255,255,.08);
+    
+    /* Reveal animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
     }
-    .topBarInner{
-      max-width:900px;margin:0 auto;padding:10px 14px;
-      display:flex;align-items:center;justify-content:space-between;gap:10px;
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
-    .brand{font-weight:900; letter-spacing:.02em;}
-    .btnSmall{
-      padding:10px 12px;border-radius:999px;
-      border:1px solid rgba(202,162,74,.55);
-      background: rgba(202,162,74,.12);
-      font-weight:900;cursor:pointer;color: var(--text);
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+    .reveal-delay-6 { transition-delay: 0.6s; }
+    
+    /* Glow pulse */
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 0.4; }
     }
-    .btnSmall.secondary{
-      border-color: rgba(255,255,255,.14);
-      background: rgba(255,255,255,.06);
+    @keyframes pulse-glow-soft {
+      0%, 100% { opacity: 0.05; }
+      50% { opacity: 0.1; }
     }
-
-    .countRow{
-      display:grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap:10px;
-      max-width:640px;
-      margin: 14px auto 0;
+    @keyframes bounce-chevron {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(6px); }
     }
-    @media(max-width:520px){
-      .countRow{grid-template-columns: repeat(2, 1fr);}
+    @keyframes equalizer {
+      0%, 100% { height: 3px; }
+      50% { height: 10px; }
     }
-    .countBox{
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.16);
-      padding:14px 10px;
-      text-align:center;
+    @keyframes rotate-sparkle {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(15deg); }
+      75% { transform: rotate(-15deg); }
     }
-    .countN{
-      font-size:28px;
-      font-weight:900;
-      color:#fff;
-      margin:0;
+    @keyframes scale-heart {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
     }
-    .countL{
-      margin-top:6px;
-      font-size:12px;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      color: rgba(245,245,247,.75);
+    
+    .animate-pulse-glow {
+      animation: pulse-glow 3s ease-in-out infinite;
     }
-
-    .qrWrap{
-      display:grid;
-      gap:12px;
-      justify-items:center;
-      margin-top:14px;
+    .animate-pulse-glow-soft {
+      animation: pulse-glow-soft 4s ease-in-out infinite;
     }
-    .qrImg{
-      width:min(320px, 92%);
-      border-radius:18px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.18);
-      padding:10px;
+    .animate-bounce-chevron {
+      animation: bounce-chevron 1.5s ease-in-out infinite;
     }
-    .qrImg img{
-      width:100%;
-      height:auto;
-      display:block;
-      border-radius:14px;
-      background:#fff;
+    .animate-rotate-sparkle {
+      animation: rotate-sparkle 4s ease-in-out infinite;
     }
-
-    #ytWrap{position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;}
+    .animate-scale-heart {
+      animation: scale-heart 3s ease-in-out infinite;
+    }
+    
+    .equalizer-bar {
+      animation: equalizer 0.5s ease-in-out infinite;
+    }
+    .equalizer-bar:nth-child(2) { animation-delay: 0.15s; }
+    .equalizer-bar:nth-child(3) { animation-delay: 0.3s; }
+    
+    /* Card hover */
+    .card-hover {
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    .card-hover:hover {
+      transform: scale(1.02) translateY(-3px);
+      border-color: rgba(202, 162, 74, 0.5);
+    }
+    
+    /* Hero button glow */
+    .hero-btn {
+      box-shadow: 0 0 15px rgba(202, 162, 74, 0.2);
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+    .hero-btn:hover {
+      box-shadow: 0 0 30px rgba(202, 162, 74, 0.4);
+      transform: scale(1.05);
+    }
+    .hero-btn:active {
+      transform: scale(0.98);
+    }
+    
+    /* Shine effect for gallery */
+    .shine-effect {
+      position: relative;
+      overflow: hidden;
+    }
+    .shine-effect::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      transition: left 0.6s ease;
+    }
+    .shine-effect:hover::after {
+      left: 100%;
+    }
+    
+    /* Mobile optimizations */
+    @media (max-width: 768px) {
+      html { font-size: 14px; }
+    }
+    
+    button, a {
+      touch-action: manipulation;
+    }
+    button, a, [role="button"] {
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    
+    @supports (-webkit-touch-callout: none) {
+      body { -webkit-overflow-scrolling: touch; }
+    }
   </style>
 </head>
-
-<body>
-  <div class="topBar hidden" id="topBar">
-    <div class="topBarInner">
-      <div class="brand">Carlos & Jimena</div>
-      <div style="display:flex;gap:10px;flex-wrap:wrap">
-        <button class="btnSmall" id="btnMusic">Música</button>
-        <a class="btnSmall secondary" href="#rsvp" style="text-decoration:none">Confirmar</a>
+<body class="min-h-screen relative overflow-x-hidden">
+  
+  <!-- Loading Screen -->
+  <div id="loading-screen" class="fixed inset-0 z-[100] flex items-center justify-center" style="background: linear-gradient(180deg, #0a1023, #060913);">
+    <div class="text-center">
+      <div class="mb-4 animate-scale-heart">
+        <span class="text-4xl">💌</span>
+      </div>
+      <div class="font-script text-2xl md:text-3xl text-gradient">
+        Carlos & Jimena
       </div>
     </div>
   </div>
-
-  <section class="cover" id="cover">
-    <div class="wrap">
-      <div class="panel coverBox">
-        <div>
-          <p class="kicker">Nuestra Boda</p>
-          <h1 class="names">Carlos y Jimena</h1>
-          <p class="dateLine">29 · Agosto · 2026</p>
-          <button class="btnPrimary" id="openInviteInline">Abrir invitación</button>
-          <div class="arrow">⌄⌄</div>
+  
+  <!-- Starry Background Canvas -->
+  <canvas id="starry-bg" class="fixed inset-0 w-full h-full pointer-events-none" style="z-index: 0;"></canvas>
+  
+  <!-- Navigation -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-40 transition-all duration-300" style="transform: translateY(-100%); opacity: 0; background: rgba(6, 9, 19, 0.9); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border-bottom: 1px solid rgba(202, 162, 74, 0.1);">
+    <div class="max-w-4xl mx-auto px-4 py-3">
+      <div class="flex items-center justify-between">
+        <a href="#inicio" class="flex items-center gap-1.5 nav-link">
+          <i data-lucide="heart" class="text-gold w-3.5 h-3.5" style="fill: currentColor;"></i>
+          <span class="font-script text-base text-gradient">Carlos & Jimena</span>
+        </a>
+        <div class="hidden md:flex items-center gap-0.5">
+          <a href="#inicio" class="nav-link px-3 py-1.5 rounded-full text-xs text-white/60 hover:text-white transition-colors">Inicio</a>
+          <a href="#padres" class="nav-link px-3 py-1.5 rounded-full text-xs text-white/60 hover:text-white transition-colors">Padres</a>
+          <a href="#ubicacion" class="nav-link px-3 py-1.5 rounded-full text-xs text-white/60 hover:text-white transition-colors">Ubicación</a>
+          <a href="#itinerario" class="nav-link px-3 py-1.5 rounded-full text-xs text-white/60 hover:text-white transition-colors">Itinerario</a>
+          <a href="#galeria" class="nav-link px-3 py-1.5 rounded-full text-xs text-white/60 hover:text-white transition-colors">Galería</a>
+          <a href="#rsvp" class="nav-link px-3 py-1.5 rounded-full text-xs text-white/60 hover:text-white transition-colors">Confirmar</a>
+        </div>
+        <button id="mobile-menu-btn" class="md:hidden w-8 h-8 rounded-full border border-gold/30 flex items-center justify-center text-white">
+          <i data-lucide="menu" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="fixed inset-0 z-50 md:hidden hidden">
+    <div id="mobile-menu-backdrop" class="absolute inset-0 bg-bg1/95"></div>
+    <div id="mobile-menu-panel" class="absolute right-0 top-0 bottom-0 w-64 p-5 bg-card border-l border-gold/20 transition-transform duration-300" style="transform: translateX(100%);">
+      <div class="flex items-center justify-between mb-6">
+        <span class="font-script text-lg text-gold2">Menú</span>
+        <button id="mobile-menu-close" class="w-8 h-8 rounded-full border border-gold/30 flex items-center justify-center text-white">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+      <div class="space-y-1">
+        <a href="#inicio" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-white/70 hover:text-white text-sm" style="background: rgba(202, 162, 74, 0.05);">Inicio</a>
+        <a href="#padres" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-white/70 hover:text-white text-sm" style="background: rgba(202, 162, 74, 0.05);">Padres</a>
+        <a href="#ubicacion" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-white/70 hover:text-white text-sm" style="background: rgba(202, 162, 74, 0.05);">Ubicación</a>
+        <a href="#itinerario" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-white/70 hover:text-white text-sm" style="background: rgba(202, 162, 74, 0.05);">Itinerario</a>
+        <a href="#galeria" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-white/70 hover:text-white text-sm" style="background: rgba(202, 162, 74, 0.05);">Galería</a>
+        <a href="#rsvp" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-white/70 hover:text-white text-sm" style="background: rgba(202, 162, 74, 0.05);">Confirmar</a>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Hero / Cover -->
+  <section id="hero" class="fixed inset-0 z-50 flex items-center justify-center p-4 transition-opacity duration-500">
+    <div class="relative w-full max-w-md">
+      <!-- Glow -->
+      <div class="absolute inset-0 rounded-3xl bg-gradient-to-r from-gold/30 to-gold2/30 blur-2xl animate-pulse-glow"></div>
+      
+      <!-- Envelope body -->
+      <div class="relative rounded-3xl overflow-hidden" style="background: linear-gradient(180deg, #0d1429, #060913); box-shadow: 0 25px 80px rgba(0, 0, 0, 0.6);">
+        <!-- Corner decorations -->
+        <div class="absolute top-3 left-3 w-10 h-10 border-l border-t border-gold/40 rounded-tl-lg"></div>
+        <div class="absolute top-3 right-3 w-10 h-10 border-r border-t border-gold/40 rounded-tr-lg"></div>
+        <div class="absolute bottom-3 left-3 w-10 h-10 border-l border-b border-gold/40 rounded-bl-lg"></div>
+        <div class="absolute bottom-3 right-3 w-10 h-10 border-r border-b border-gold/40 rounded-br-lg"></div>
+        
+        <div class="relative z-10 p-8 md:p-12 text-center">
+          <!-- Seal -->
+          <div class="mb-6">
+            <div class="inline-flex items-center justify-center w-14 h-14 rounded-full" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.3), rgba(202, 162, 74, 0.1)); border: 2px solid rgba(202, 162, 74, 0.6);">
+              <i data-lucide="heart" class="text-gold w-6 h-6" style="fill: currentColor;"></i>
+            </div>
+          </div>
+          
+          <!-- Kicker -->
+          <p class="text-xs md:text-sm text-gold tracking-[0.3em] uppercase mb-4">Invitación Especial</p>
+          
+          <!-- Names -->
+          <div class="mb-4">
+            <h1 class="font-script text-4xl md:text-6xl mb-1 text-gradient">Carlos</h1>
+            <span class="font-script text-2xl md:text-3xl text-gold">&</span>
+            <h1 class="font-script text-4xl md:text-6xl mt-1 text-gradient">Jimena</h1>
+          </div>
+          
+          <!-- Date -->
+          <p class="text-base md:text-lg text-white/80 mb-8">
+            <span class="text-gold font-semibold">29</span>
+            <span class="mx-2 text-white/50">·</span>
+            <span class="text-gold font-semibold">Agosto</span>
+            <span class="mx-2 text-white/50">·</span>
+            <span class="text-gold font-semibold">2026</span>
+          </p>
+          
+          <!-- Button -->
+          <button id="open-invitation" class="hero-btn relative px-8 py-3.5 rounded-full text-white font-semibold tracking-wide overflow-hidden" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.3), rgba(202, 162, 74, 0.15)); border: 1px solid rgba(202, 162, 74, 0.6);">
+            <span class="relative z-10 flex items-center justify-center gap-2">
+              <i data-lucide="heart" class="text-gold w-4 h-4" style="fill: currentColor;"></i>
+              Abrir Invitación
+              <i data-lucide="heart" class="text-gold w-4 h-4" style="fill: currentColor;"></i>
+            </span>
+          </button>
+          
+          <!-- Scroll hint -->
+          <div class="mt-8 opacity-60">
+            <div class="flex flex-col items-center gap-1 animate-bounce-chevron">
+              <span class="text-xs text-white/40">Toca para abrir</span>
+              <i data-lucide="chevron-down" class="text-gold w-[18px] h-[18px]"></i>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
-
-  <div class="openFloating" id="openFloating">
-    <button class="btnPrimary" id="openInviteMobile">Abrir invitación</button>
+  
+  <!-- Main Content -->
+  <main id="main-content" class="relative z-10 opacity-0 transition-opacity duration-800" style="transition-duration: 800ms;">
+    <div class="max-w-4xl mx-auto px-4 py-6 md:py-8 space-y-6 md:space-y-8">
+      
+      <!-- Welcome Section -->
+      <section id="inicio" class="reveal">
+        <div class="relative rounded-2xl md:rounded-3xl border border-gold/30 overflow-hidden bg-card">
+          <div class="relative z-10 p-6 md:p-10">
+            <p class="reveal text-sm md:text-lg text-white/80 leading-relaxed text-center mb-6 reveal-delay-1">
+              Con alegría en el corazón, te invitamos a celebrar nuestra boda. 
+              Si te llegó esta invitación, es porque te apreciamos y queremos 
+              que nos acompañes en nuestro día más especial.
+            </p>
+            
+            <!-- Main photo -->
+            <div class="reveal relative max-w-lg mx-auto reveal-delay-2">
+              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/30" style="box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);">
+                <img src="./images/portada.jpeg" alt="Carlos y Jimena" class="w-full h-auto">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Countdown -->
+      <section id="countdown" class="reveal relative rounded-2xl md:rounded-3xl border border-gold/30 overflow-hidden bg-card">
+        <!-- Animated background glow -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[200px] bg-gold/20 rounded-full blur-[80px] animate-pulse-glow-soft"></div>
+        
+        <div class="relative z-10 p-6 md:p-10">
+          <!-- Header -->
+          <div class="text-center mb-6 md:mb-8 reveal reveal-delay-1">
+            <div class="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-xl mb-3 animate-rotate-sparkle" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.2), rgba(202, 162, 74, 0.05)); border: 1px solid rgba(202, 162, 74, 0.3);">
+              <i data-lucide="sparkles" class="text-gold w-[18px] h-[18px] md:w-5 md:h-5"></i>
+            </div>
+            <h2 class="font-script text-2xl md:text-4xl text-gradient">Faltan</h2>
+          </div>
+          
+          <!-- Time blocks -->
+          <div class="grid grid-cols-4 gap-2 md:gap-4">
+            <div class="reveal relative cursor-pointer reveal-delay-1">
+              <div class="absolute inset-0 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/30 to-gold2/30 blur-lg animate-pulse-glow"></div>
+              <div class="relative rounded-xl md:rounded-2xl border border-gold/20 p-3 md:p-5 text-center overflow-hidden" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
+                <span id="cd-days" class="block text-2xl md:text-4xl font-bold text-gradient">00</span>
+                <span class="text-[10px] md:text-xs uppercase tracking-wider text-gold/70">Días</span>
+              </div>
+            </div>
+            <div class="reveal relative cursor-pointer reveal-delay-2">
+              <div class="absolute inset-0 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/30 to-gold2/30 blur-lg animate-pulse-glow"></div>
+              <div class="relative rounded-xl md:rounded-2xl border border-gold/20 p-3 md:p-5 text-center overflow-hidden" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
+                <span id="cd-hours" class="block text-2xl md:text-4xl font-bold text-gradient">00</span>
+                <span class="text-[10px] md:text-xs uppercase tracking-wider text-gold/70">Horas</span>
+              </div>
+            </div>
+            <div class="reveal relative cursor-pointer reveal-delay-3">
+              <div class="absolute inset-0 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/30 to-gold2/30 blur-lg animate-pulse-glow"></div>
+              <div class="relative rounded-xl md:rounded-2xl border border-gold/20 p-3 md:p-5 text-center overflow-hidden" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
+                <span id="cd-minutes" class="block text-2xl md:text-4xl font-bold text-gradient">00</span>
+                <span class="text-[10px] md:text-xs uppercase tracking-wider text-gold/70">Min</span>
+              </div>
+            </div>
+            <div class="reveal relative cursor-pointer reveal-delay-4">
+              <div class="absolute inset-0 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/30 to-gold2/30 blur-lg animate-pulse-glow"></div>
+              <div class="relative rounded-xl md:rounded-2xl border border-gold/20 p-3 md:p-5 text-center overflow-hidden" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
+                <span id="cd-seconds" class="block text-2xl md:text-4xl font-bold text-gradient">00</span>
+                <span class="text-[10px] md:text-xs uppercase tracking-wider text-gold/70">Seg</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Date -->
+          <div class="mt-6 text-center reveal reveal-delay-5">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full card-hover cursor-pointer" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.15), rgba(202, 162, 74, 0.05)); border: 1px solid rgba(202, 162, 74, 0.3);">
+              <i data-lucide="calendar" class="text-gold w-3.5 h-3.5"></i>
+              <span class="text-white/80 text-sm">29 de Agosto de 2026</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Family Section -->
+      <div id="padres" class="space-y-4 md:space-y-6">
+        <!-- Parents -->
+        <section class="reveal relative rounded-2xl md:rounded-3xl border border-gold/30 overflow-hidden bg-card">
+          <div class="absolute top-0 right-0 w-[300px] h-[300px] bg-gold/10 rounded-full blur-[80px] animate-pulse-glow-soft"></div>
+          
+          <div class="relative z-10 p-5 md:p-8">
+            <div class="text-center mb-5 md:mb-6 reveal reveal-delay-1">
+              <div class="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-xl mb-3 animate-scale-heart" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.2), rgba(202, 162, 74, 0.05)); border: 1px solid rgba(202, 162, 74, 0.3);">
+                <i data-lucide="users" class="text-gold w-[18px] h-[18px]"></i>
+              </div>
+              <h2 class="font-script text-2xl md:text-4xl text-gradient">Nuestros Padres</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-3 md:gap-4">
+              <!-- Groom parents -->
+              <div class="reveal reveal-delay-2 rounded-xl border border-gold/20 p-4 card-hover cursor-default" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.08), rgba(6, 9, 19, 0.8));">
+                <p class="text-xs uppercase tracking-wider text-gold mb-2">Padres del Novio</p>
+                <p class="text-white/80 text-sm py-1 transition-colors hover:text-gold2">Carlos Alberto Urbina Tavarez</p>
+                <p class="text-white/80 text-sm py-1 transition-colors hover:text-gold2">Ma. Guadalupe Muñoz Campuzano</p>
+              </div>
+              
+              <!-- Bride parents -->
+              <div class="reveal reveal-delay-3 rounded-xl border border-gold/20 p-4 card-hover cursor-default" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.08), rgba(6, 9, 19, 0.8));">
+                <p class="text-xs uppercase tracking-wider text-gold mb-2">Padres de la Novia</p>
+                <p class="text-white/80 text-sm py-1 transition-colors hover:text-gold2">Jose Gerardo Mena Huerta</p>
+                <p class="text-white/80 text-sm py-1 transition-colors hover:text-gold2">Maria de Jesus Prado Lara</p>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        <!-- Godparents -->
+        <section class="reveal relative rounded-2xl md:rounded-3xl border border-gold/30 overflow-hidden bg-card">
+          <div class="absolute bottom-0 left-0 w-[300px] h-[300px] bg-gold2/10 rounded-full blur-[80px] animate-pulse-glow-soft"></div>
+          
+          <div class="relative z-10 p-5 md:p-8">
+            <div class="text-center mb-5 md:mb-6 reveal reveal-delay-1">
+              <div class="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-xl mb-3 animate-rotate-sparkle" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.2), rgba(202, 162, 74, 0.05)); border: 1px solid rgba(202, 162, 74, 0.3);">
+                <i data-lucide="crown" class="text-gold w-[18px] h-[18px]"></i>
+              </div>
+              <h2 class="font-script text-2xl md:text-4xl text-gradient">Nuestros Padrinos</h2>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3">
+              <!-- Velación -->
+              <div class="reveal reveal-delay-1 rounded-xl border border-gold/20 p-3 md:p-4 card-hover cursor-default" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.05), rgba(6, 9, 19, 0.8));">
+                <div class="flex items-center gap-1.5 mb-2">
+                  <i data-lucide="crown" class="text-gold w-3.5 h-3.5"></i>
+                  <p class="text-[10px] md:text-xs uppercase tracking-wider text-gold">Velación</p>
+                </div>
+                <p class="text-white/80 text-sm py-0.5">Karla Aranzazu Urbina Muñoz</p>
+                <p class="text-white/80 text-sm py-0.5">Claudio Enrique Ramos Reyes</p>
+              </div>
+              
+              <!-- Arras -->
+              <div class="reveal reveal-delay-2 rounded-xl border border-gold/20 p-3 md:p-4 card-hover cursor-default" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.05), rgba(6, 9, 19, 0.8));">
+                <div class="flex items-center gap-1.5 mb-2">
+                  <i data-lucide="sparkles" class="text-gold w-3.5 h-3.5"></i>
+                  <p class="text-[10px] md:text-xs uppercase tracking-wider text-gold">Arras</p>
+                </div>
+                <p class="text-white/80 text-sm py-0.5">Gerardo Mena Prado</p>
+                <p class="text-white/80 text-sm py-0.5">Miriam Elizabet Muñoz Sanchez</p>
+              </div>
+              
+              <!-- Anillos -->
+              <div class="reveal reveal-delay-3 rounded-xl border border-gold/20 p-3 md:p-4 card-hover cursor-default" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.05), rgba(6, 9, 19, 0.8));">
+                <div class="flex items-center gap-1.5 mb-2">
+                  <i data-lucide="heart" class="text-gold w-3.5 h-3.5"></i>
+                  <p class="text-[10px] md:text-xs uppercase tracking-wider text-gold">Anillos</p>
+                </div>
+                <p class="text-white/80 text-sm py-0.5">Mario Muñoz Campuzano</p>
+                <p class="text-white/80 text-sm py-0.5">Tere</p>
+              </div>
+              
+              <!-- Biblia -->
+              <div class="reveal reveal-delay-4 rounded-xl border border-gold/20 p-3 md:p-4 card-hover cursor-default" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.05), rgba(6, 9, 19, 0.8));">
+                <div class="flex items-center gap-1.5 mb-2">
+                  <i data-lucide="book-open" class="text-gold w-3.5 h-3.5"></i>
+                  <p class="text-[10px] md:text-xs uppercase tracking-wider text-gold">Biblia</p>
+                </div>
+                <p class="text-white/80 text-sm py-0.5">Gabriela Muñoz Campuzano</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      
+      <!-- Venue Section -->
+      <section id="ubicacion" class="reveal relative rounded-2xl md:rounded-3xl border border-gold/30 overflow-hidden bg-card">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[300px] bg-gold/10 rounded-full blur-[100px] animate-pulse-glow-soft"></div>
+        
+        <div class="relative z-10 p-5 md:p-8">
+          <div class="text-center mb-5 md:mb-6 reveal reveal-delay-1">
+            <div class="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-xl mb-3" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.2), rgba(202, 162, 74, 0.05)); border: 1px solid rgba(202, 162, 74, 0.3);">
+              <i data-lucide="map-pin" class="text-gold w-[18px] h-[18px]"></i>
+            </div>
+            <h2 class="font-script text-2xl md:text-4xl text-gradient">Ubicación</h2>
+          </div>
+          
+          <div class="grid md:grid-cols-2 gap-3 md:gap-4">
+            <!-- Ceremony -->
+            <div class="reveal reveal-delay-2 rounded-xl border border-gold/20 p-4 md:p-5 card-hover cursor-default" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.08), rgba(6, 9, 19, 0.8));">
+              <div class="flex items-center gap-2 mb-3">
+                <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background: rgba(202, 162, 74, 0.15);">
+                  <i data-lucide="church" class="text-gold w-4 h-4"></i>
+                </div>
+                <span class="text-xs uppercase tracking-wider text-gold">Ceremonia</span>
+              </div>
+              <span class="text-2xl md:text-3xl font-bold block text-gradient">5:00 PM</span>
+              <p class="text-white/50 text-xs mt-0.5">Llegar: 4:40 PM</p>
+              <h3 class="text-white font-medium text-sm md:text-base mb-1 mt-3">Parroquia San Rafael Arcángel</h3>
+              <p class="text-white/50 text-xs mb-4">Guadalupe Victoria 17, Centro</p>
+              <a href="https://maps.app.goo.gl/pN5AznDmCfymgZ2f8" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-medium text-white card-hover" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.25), rgba(202, 162, 74, 0.1)); border: 1px solid rgba(202, 162, 74, 0.4);">
+                <i data-lucide="navigation" class="w-3 h-3"></i>
+                Ver mapa
+              </a>
+            </div>
+            
+            <!-- Reception -->
+            <div class="reveal reveal-delay-3 rounded-xl border border-gold/20 p-4 md:p-5 card-hover cursor-default" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.08), rgba(6, 9, 19, 0.8));">
+              <div class="flex items-center gap-2 mb-3">
+                <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background: rgba(202, 162, 74, 0.15);">
+                  <i data-lucide="party-popper" class="text-gold w-4 h-4"></i>
+                </div>
+                <span class="text-xs uppercase tracking-wider text-gold">Recepción</span>
+              </div>
+              <span class="text-2xl md:text-3xl font-bold block text-gradient">7:00 PM</span>
+              <h3 class="text-white font-medium text-sm md:text-base mb-1 mt-3">Quinta Munay</h3>
+              <p class="text-white/50 text-xs mb-4">Te esperamos para celebrar</p>
+              <a href="https://www.google.com/maps?q=20.98356056213379,-101.5621566772461" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-medium text-white card-hover" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.25), rgba(202, 162, 74, 0.1)); border: 1px solid rgba(202, 162, 74, 0.4);">
+                <i data-lucide="navigation" class="w-3 h-3"></i>
+                Ver mapa
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Itinerary Section -->
+      <section id="itinerario" class="reveal relative rounded-3xl md:rounded-[2.5rem] border border-gold/30 overflow-hidden bg-card">
+        <div class="relative z-10 p-6 md:p-12">
+          <!-- Header -->
+          <div class="text-center mb-8 md:mb-12 reveal reveal-delay-1">
+            <div class="inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-xl md:rounded-2xl mb-4 animate-rotate-sparkle" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.2), rgba(202, 162, 74, 0.05)); border: 1px solid rgba(202, 162, 74, 0.3);">
+              <i data-lucide="sparkles" class="text-gold w-[22px] h-[22px] md:w-5 md:h-5"></i>
+            </div>
+            <h2 class="font-script text-3xl md:text-5xl lg:text-6xl text-gradient mb-2 md:mb-3">Itinerario</h2>
+            <p class="text-white/50 text-sm md:text-base">Un día lleno de momentos inolvidables</p>
+          </div>
+          
+          <!-- Timeline -->
+          <div class="relative max-w-2xl mx-auto">
+            <!-- Vertical line -->
+            <div class="absolute left-5 md:left-1/2 top-0 bottom-0 w-0.5 md:-translate-x-1/2 bg-gradient-to-b from-gold via-gold2 to-gold opacity-40"></div>
+            
+            <div class="space-y-6 md:space-y-8">
+              <!-- Llegada -->
+              <div class="reveal reveal-delay-1 relative flex items-start gap-4 md:gap-0">
+                <div class="relative z-10 flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.3), rgba(202, 162, 74, 0.1)); border: 2px solid rgba(202, 162, 74, 0.5);">
+                  <i data-lucide="camera" class="text-gold w-4 h-4 md:w-5 md:h-5"></i>
+                </div>
+                <div class="flex-1 ml-2 md:ml-0 md:px-8">
+                  <div class="rounded-xl md:rounded-2xl border border-gold/20 p-4 md:p-5 card-hover cursor-default" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.08), rgba(6, 9, 19, 0.9));">
+                    <span class="text-gold font-bold text-base md:text-lg">4:40 PM</span>
+                    <h3 class="text-white font-semibold text-base md:text-lg mt-0.5">Llegada Invitados</h3>
+                    <p class="text-white/50 text-xs md:text-sm mt-0.5">Bienvenida</p>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Ceremonia -->
+              <div class="reveal reveal-delay-2 relative flex items-start gap-4 md:gap-0">
+                <div class="relative z-10 flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.3), rgba(202, 162, 74, 0.1)); border: 2px solid rgba(202, 162, 74, 0.5);">
+                  <i data-lucide="church" class="text-gold w-4 h-4 md:w-5 md:h-5"></i>
+                </div>
+                <div class="flex-1 ml-2 md:ml-0 md:px-8">
+                  <div class="rounded-xl md:rounded-2xl border border-gold/20 p-4 md:p-5 card-hover cursor-default" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.08), rgba(6, 9, 19, 0.9));">
+                    <span class="text-gold font-bold text-base md:text-lg">5:00 PM</span>
+                    <h3 class="text-white font-semibold text-base md:text-lg mt-0.5">Ceremonia Religiosa</h3>
+                    <p class="text-white/50 text-xs md:text-sm mt-0.5">Parroquia San Rafael</p>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Traslado -->
+              <div class="reveal reveal-delay-3 relative flex items-start gap-4 md:gap-0">
+                <div class="relative z-10 flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.3), rgba(202, 162, 74, 0.1)); border: 2px solid rgba(202, 162, 74, 0.5);">
+                  <i data-lucide="sparkles" class="text-gold w-4 h-4 md:w-5 md:h-5"></i>
+                </div>
+                <div class="flex-1 ml-2 md:ml-0 md:px-8">
+                  <div class="rounded-xl md:rounded-2xl border border-gold/20 p-4 md:p-5 card-hover cursor-default" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.08), rgba(6, 9, 19, 0.9));">
+                    <span class="text-gold font-bold text-base md:text-lg">6:30 PM</span>
+                    <h3 class="text-white font-semibold text-base md:text-lg mt-0.5">Traslado</h3>
+                    <p class="text-white/50 text-xs md:text-sm mt-0.5">Cambio de sede</p>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Recepción -->
+              <div class="reveal reveal-delay-4 relative flex items-start gap-4 md:gap-0">
+                <div class="relative z-10 flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.3), rgba(202, 162, 74, 0.1)); border: 2px solid rgba(202, 162, 74, 0.5);">
+                  <i data-lucide="wine" class="text-gold w-4 h-4 md:w-5 md:h-5"></i>
+                </div>
+                <div class="flex-1 ml-2 md:ml-0 md:px-8">
+                  <div class="rounded-xl md:rounded-2xl border border-gold/20 p-4 md:p-5 card-hover cursor-default" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.08), rgba(6, 9, 19, 0.9));">
+                    <span class="text-gold font-bold text-base md:text-lg">7:00 PM</span>
+                    <h3 class="text-white font-semibold text-base md:text-lg mt-0.5">Recepción</h3>
+                    <p class="text-white/50 text-xs md:text-sm mt-0.5">Quinta Munay</p>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Cena -->
+              <div class="reveal reveal-delay-5 relative flex items-start gap-4 md:gap-0">
+                <div class="relative z-10 flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.3), rgba(202, 162, 74, 0.1)); border: 2px solid rgba(202, 162, 74, 0.5);">
+                  <i data-lucide="utensils-crossed" class="text-gold w-4 h-4 md:w-5 md:h-5"></i>
+                </div>
+                <div class="flex-1 ml-2 md:ml-0 md:px-8">
+                  <div class="rounded-xl md:rounded-2xl border border-gold/20 p-4 md:p-5 card-hover cursor-default" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.08), rgba(6, 9, 19, 0.9));">
+                    <span class="text-gold font-bold text-base md:text-lg">7:30 PM</span>
+                    <h3 class="text-white font-semibold text-base md:text-lg mt-0.5">Cena</h3>
+                    <p class="text-white/50 text-xs md:text-sm mt-0.5">Banquete</p>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Baile -->
+              <div class="reveal reveal-delay-5 relative flex items-start gap-4 md:gap-0">
+                <div class="relative z-10 flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.3), rgba(202, 162, 74, 0.1)); border: 2px solid rgba(202, 162, 74, 0.5);">
+                  <i data-lucide="music" class="text-gold w-4 h-4 md:w-5 md:h-5"></i>
+                </div>
+                <div class="flex-1 ml-2 md:ml-0 md:px-8">
+                  <div class="rounded-xl md:rounded-2xl border border-gold/20 p-4 md:p-5 card-hover cursor-default" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.08), rgba(6, 9, 19, 0.9));">
+                    <span class="text-gold font-bold text-base md:text-lg">9:00 PM</span>
+                    <h3 class="text-white font-semibold text-base md:text-lg mt-0.5">Baile</h3>
+                    <p class="text-white/50 text-xs md:text-sm mt-0.5">¡A celebrar!</p>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Pastel -->
+              <div class="reveal reveal-delay-6 relative flex items-start gap-4 md:gap-0">
+                <div class="relative z-10 flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.3), rgba(202, 162, 74, 0.1)); border: 2px solid rgba(202, 162, 74, 0.5);">
+                  <i data-lucide="cake" class="text-gold w-4 h-4 md:w-5 md:h-5"></i>
+                </div>
+                <div class="flex-1 ml-2 md:ml-0 md:px-8">
+                  <div class="rounded-xl md:rounded-2xl border border-gold/20 p-4 md:p-5 card-hover cursor-default" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.08), rgba(6, 9, 19, 0.9));">
+                    <span class="text-gold font-bold text-base md:text-lg">11:00 PM</span>
+                    <h3 class="text-white font-semibold text-base md:text-lg mt-0.5">Pastel</h3>
+                    <p class="text-white/50 text-xs md:text-sm mt-0.5">Momento dulce</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Dress Code + Lluvia de Sobres -->
+      <section class="grid md:grid-cols-2 gap-3 md:gap-4">
+        <!-- Dress Code -->
+        <div class="reveal relative rounded-2xl border border-gold/30 overflow-hidden bg-card">
+          <div class="absolute top-0 right-0 w-[200px] h-[200px] bg-gold/10 rounded-full blur-[60px] animate-pulse-glow-soft"></div>
+          
+          <div class="relative z-10 p-5">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-3" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.2), rgba(202, 162, 74, 0.05)); border: 1px solid rgba(202, 162, 74, 0.3);">
+              <i data-lucide="shirt" class="text-gold w-[18px] h-[18px]"></i>
+            </div>
+            
+            <h3 class="font-script text-xl md:text-2xl text-gradient mb-2">Código de Vestimenta</h3>
+            
+            <div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full mb-3 card-hover cursor-default" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.2), rgba(202, 162, 74, 0.05)); border: 1px solid rgba(202, 162, 74, 0.4);">
+              <i data-lucide="sparkles" class="text-gold w-3 h-3"></i>
+              <span class="text-gold text-xs font-semibold tracking-wide">FORMAL</span>
+            </div>
+            
+            <div class="space-y-2">
+              <div class="flex items-center gap-2 text-white/70 text-sm">
+                <div class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style="background: rgba(202, 162, 74, 0.2);">
+                  <i data-lucide="check" class="text-gold w-2.5 h-2.5"></i>
+                </div>
+                <span>Traje oscuro para caballeros</span>
+              </div>
+              <div class="flex items-center gap-2 text-white/70 text-sm">
+                <div class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style="background: rgba(202, 162, 74, 0.2);">
+                  <i data-lucide="check" class="text-gold w-2.5 h-2.5"></i>
+                </div>
+                <span>Vestido largo para damas</span>
+              </div>
+              <div class="flex items-center gap-2 text-white/70 text-sm">
+                <div class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style="background: rgba(202, 162, 74, 0.2);">
+                  <i data-lucide="check" class="text-gold w-2.5 h-2.5"></i>
+                </div>
+                <span>Evitar color blanco</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Lluvia de Sobres -->
+        <div class="reveal relative rounded-2xl border border-gold/30 overflow-hidden bg-card">
+          <div class="absolute bottom-0 left-0 w-[200px] h-[200px] bg-gold2/10 rounded-full blur-[60px] animate-pulse-glow-soft"></div>
+          
+          <div class="relative z-10 p-5">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-3" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.2), rgba(202, 162, 74, 0.05)); border: 1px solid rgba(202, 162, 74, 0.3);">
+              <i data-lucide="wallet" class="text-gold w-[18px] h-[18px]"></i>
+            </div>
+            
+            <h3 class="font-script text-xl md:text-2xl text-gradient mb-2">Lluvia de Sobres</h3>
+            
+            <p class="text-white/60 text-sm leading-relaxed mb-3">
+              Tu presencia es nuestro mejor regalo. Si deseas hacernos un obsequio, 
+              agradecemos que sea en efectivo.
+            </p>
+            
+            <div class="rounded-lg p-3 card-hover cursor-default" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(202, 162, 74, 0.02)); border: 1px solid rgba(202, 162, 74, 0.2);">
+              <p class="text-white/50 text-xs">Habrá una caja especial en la recepción.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Gallery Section -->
+      <section id="galeria" class="reveal relative rounded-2xl md:rounded-3xl border border-gold/30 overflow-hidden bg-card">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-gold/10 rounded-full blur-[100px] animate-pulse-glow-soft"></div>
+        
+        <div class="relative z-10 p-6 md:p-12">
+          <!-- Header -->
+          <div class="text-center mb-8 md:mb-10 reveal reveal-delay-1">
+            <div class="inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-xl md:rounded-2xl mb-4 animate-rotate-sparkle" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.2), rgba(202, 162, 74, 0.05)); border: 1px solid rgba(202, 162, 74, 0.3);">
+              <i data-lucide="camera" class="text-gold w-[22px] h-[22px] md:w-5 md:h-5"></i>
+            </div>
+            <h2 class="font-script text-3xl md:text-5xl lg:text-6xl text-gradient mb-2 md:mb-3">Nuestros Momentos</h2>
+            <p class="text-white/50 text-sm md:text-base">Los momentos más especiales de nuestra historia</p>
+          </div>
+          
+          <!-- Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+            <div class="reveal reveal-delay-1 relative cursor-pointer group gallery-item" data-index="0">
+              <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
+              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
+                <div class="aspect-[4/3] relative overflow-hidden">
+                  <img src="./images/Carlos y Jimena.jpeg" alt="Carlos y Jimena" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
+                  <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
+                  <div class="absolute bottom-0 left-0 right-0 p-4 md:p-5 transition-all duration-300 group-hover:translate-y-0 translate-y-1">
+                    <div class="flex items-center gap-2 mb-1 transition-transform duration-300 group-hover:translate-x-1">
+                      <i data-lucide="heart" class="text-gold w-3 h-3" style="fill: currentColor;"></i>
+                      <span class="text-gold text-xs uppercase tracking-wider">Nuestro amor</span>
+                    </div>
+                    <p class="text-white font-medium text-sm md:text-base">Carlos y Jimena</p>
+                  </div>
+                  <!-- Corner decorations -->
+                  <div class="absolute top-3 left-3 w-6 h-6 border-l-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
+                  <div class="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="reveal reveal-delay-2 relative cursor-pointer group gallery-item" data-index="1">
+              <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
+              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
+                <div class="aspect-[4/3] relative overflow-hidden">
+                  <img src="./images/momento1.jpeg" alt="Momento especial" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
+                  <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
+                  <div class="absolute bottom-0 left-0 right-0 p-4 md:p-5 transition-all duration-300 group-hover:translate-y-0 translate-y-1">
+                    <div class="flex items-center gap-2 mb-1 transition-transform duration-300 group-hover:translate-x-1">
+                      <i data-lucide="heart" class="text-gold w-3 h-3" style="fill: currentColor;"></i>
+                      <span class="text-gold text-xs uppercase tracking-wider">Juntos siempre</span>
+                    </div>
+                    <p class="text-white font-medium text-sm md:text-base">Momento especial</p>
+                  </div>
+                  <div class="absolute top-3 left-3 w-6 h-6 border-l-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
+                  <div class="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="reveal reveal-delay-3 relative cursor-pointer group gallery-item" data-index="2">
+              <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
+              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
+                <div class="aspect-[4/3] relative overflow-hidden">
+                  <img src="./images/momento2.jpeg" alt="Recuerdo" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
+                  <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
+                  <div class="absolute bottom-0 left-0 right-0 p-4 md:p-5 transition-all duration-300 group-hover:translate-y-0 translate-y-1">
+                    <div class="flex items-center gap-2 mb-1 transition-transform duration-300 group-hover:translate-x-1">
+                      <i data-lucide="heart" class="text-gold w-3 h-3" style="fill: currentColor;"></i>
+                      <span class="text-gold text-xs uppercase tracking-wider">Sonrisas de felicidad</span>
+                    </div>
+                    <p class="text-white font-medium text-sm md:text-base">Recuerdo</p>
+                  </div>
+                  <div class="absolute top-3 left-3 w-6 h-6 border-l-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
+                  <div class="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="reveal reveal-delay-4 relative cursor-pointer group gallery-item" data-index="3">
+              <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
+              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
+                <div class="aspect-[4/3] relative overflow-hidden">
+                  <img src="./images/momento3.jpeg" alt="Amor" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
+                  <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
+                  <div class="absolute bottom-0 left-0 right-0 p-4 md:p-5 transition-all duration-300 group-hover:translate-y-0 translate-y-1">
+                    <div class="flex items-center gap-2 mb-1 transition-transform duration-300 group-hover:translate-x-1">
+                      <i data-lucide="heart" class="text-gold w-3 h-3" style="fill: currentColor;"></i>
+                      <span class="text-gold text-xs uppercase tracking-wider">Bailando juntos</span>
+                    </div>
+                    <p class="text-white font-medium text-sm md:text-base">Amor</p>
+                  </div>
+                  <div class="absolute top-3 left-3 w-6 h-6 border-l-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
+                  <div class="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="reveal reveal-delay-5 relative cursor-pointer group gallery-item sm:col-span-2" data-index="4">
+              <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
+              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
+                <div class="aspect-[4/3] relative overflow-hidden">
+                  <img src="./images/momento4.jpeg" alt="Compromiso" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
+                  <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
+                  <div class="absolute bottom-0 left-0 right-0 p-4 md:p-5 transition-all duration-300 group-hover:translate-y-0 translate-y-1">
+                    <div class="flex items-center gap-2 mb-1 transition-transform duration-300 group-hover:translate-x-1">
+                      <i data-lucide="heart" class="text-gold w-3 h-3" style="fill: currentColor;"></i>
+                      <span class="text-gold text-xs uppercase tracking-wider">Nuestra historia</span>
+                    </div>
+                    <p class="text-white font-medium text-sm md:text-base">Compromiso</p>
+                  </div>
+                  <div class="absolute top-3 left-3 w-6 h-6 border-l-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
+                  <div class="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-gold/0 group-hover:border-gold/60 transition-colors duration-300"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Lightbox -->
+        <div id="lightbox" class="fixed inset-0 z-[100] hidden items-center justify-center" style="background: rgba(6, 9, 19, 0.98);" onclick="closeLightbox(event)">
+          <button onclick="closeLightbox(event)" class="absolute top-4 right-4 z-10 w-10 h-10 md:w-12 md:h-12 rounded-full border border-gold/30 flex items-center justify-center text-white hover:scale-110 transition-transform" style="background: rgba(10, 16, 35, 0.8);">
+            <i data-lucide="x" class="w-5 h-5 md:w-5 md:h-5"></i>
+          </button>
+          
+          <button onclick="prevImage(event)" class="absolute left-2 md:left-4 z-10 w-10 h-10 md:w-12 md:h-12 rounded-full border border-gold/30 flex items-center justify-center text-white hover:scale-110 transition-transform" style="background: rgba(10, 16, 35, 0.8);">
+            <i data-lucide="chevron-left" class="w-5 h-5 md:w-5 md:h-5"></i>
+          </button>
+          
+          <button onclick="nextImage(event)" class="absolute right-2 md:right-4 z-10 w-10 h-10 md:w-12 md:h-12 rounded-full border border-gold/30 flex items-center justify-center text-white hover:scale-110 transition-transform" style="background: rgba(10, 16, 35, 0.8);">
+            <i data-lucide="chevron-right" class="w-5 h-5 md:w-5 md:h-5"></i>
+          </button>
+          
+          <div class="relative max-w-[95vw] max-h-[85vh] px-8" onclick="event.stopPropagation()">
+            <img id="lightbox-img" src="" alt="" class="max-w-full max-h-[80vh] object-contain rounded-lg" style="box-shadow: 0 0 60px rgba(202, 162, 74, 0.3);">
+            <div class="text-center mt-4">
+              <p id="lightbox-caption" class="text-gold text-xs uppercase tracking-wider"></p>
+              <p id="lightbox-title" class="text-white text-lg font-medium"></p>
+            </div>
+          </div>
+          
+          <!-- Thumbnails -->
+          <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2" onclick="event.stopPropagation()">
+            <button onclick="goToImage(0, event)" class="lightbox-dot h-2 rounded-full transition-all duration-300 bg-white/30" style="width: 8px;"></button>
+            <button onclick="goToImage(1, event)" class="lightbox-dot h-2 rounded-full transition-all duration-300 bg-white/30" style="width: 8px;"></button>
+            <button onclick="goToImage(2, event)" class="lightbox-dot h-2 rounded-full transition-all duration-300 bg-white/30" style="width: 8px;"></button>
+            <button onclick="goToImage(3, event)" class="lightbox-dot h-2 rounded-full transition-all duration-300 bg-white/30" style="width: 8px;"></button>
+            <button onclick="goToImage(4, event)" class="lightbox-dot h-2 rounded-full transition-all duration-300 bg-white/30" style="width: 8px;"></button>
+          </div>
+        </div>
+      </section>
+      
+      <!-- RSVP Section -->
+      <section id="rsvp" class="reveal relative rounded-2xl md:rounded-3xl border border-gold/30 overflow-hidden bg-card">
+        <div class="relative z-10 p-5 md:p-8">
+          <!-- Header -->
+          <div class="text-center mb-5 md:mb-6 reveal reveal-delay-1">
+            <div class="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-xl mb-3 animate-rotate-sparkle" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.2), rgba(202, 162, 74, 0.05)); border: 1px solid rgba(202, 162, 74, 0.3);">
+              <i data-lucide="send" class="text-gold w-[18px] h-[18px]"></i>
+            </div>
+            <h2 class="font-script text-2xl md:text-4xl text-gradient mb-1">Confirma tu Asistencia</h2>
+            <p class="text-white/50 text-xs md:text-sm">Antes del 15 de Agosto de 2026</p>
+          </div>
+          
+          <!-- Form -->
+          <div id="rsvp-form-container" class="max-w-md mx-auto">
+            <form id="rsvp-form" class="space-y-4">
+              <!-- Name -->
+              <div>
+                <div class="relative group">
+                  <i data-lucide="user" class="absolute left-3 top-1/2 -translate-y-1/2 text-gold/60 group-focus-within:text-gold transition-colors w-4 h-4"></i>
+                  <input type="text" id="rsvp-name" placeholder="Tu nombre completo" class="w-full pl-10 pr-3 py-3.5 rounded-xl border text-sm text-white placeholder:text-white/40 outline-none transition-all bg-bg2/80 border-gold/30 focus:border-gold">
+                </div>
+                <p id="error-name" class="text-red-400 text-xs mt-1 hidden flex items-center gap-1"><i data-lucide="x" class="w-2.5 h-2.5"></i> <span>Ingresa tu nombre</span></p>
+              </div>
+              
+              <!-- Attendance -->
+              <div>
+                <p class="text-white/60 text-xs mb-2 ml-1">¿Podrás asistir?</p>
+                <div class="grid grid-cols-2 gap-3">
+                  <button type="button" id="btn-yes" onclick="setAttendance('Si')" class="relative py-3.5 px-4 rounded-xl border text-sm font-medium transition-all overflow-hidden bg-bg2/80 border-gold/30 text-white/70 hover:border-gold/50">
+                    <span class="relative z-10 flex items-center justify-center gap-2">
+                      <i data-lucide="heart" class="w-3.5 h-3.5"></i>
+                      Sí, asistiré
+                    </span>
+                  </button>
+                  <button type="button" id="btn-no" onclick="setAttendance('No')" class="relative py-3.5 px-4 rounded-xl border text-sm font-medium transition-all overflow-hidden bg-bg2/80 border-gold/30 text-white/70 hover:border-gold/50">
+                    <span class="relative z-10 flex items-center justify-center gap-2">
+                      <i data-lucide="frown" class="w-3.5 h-3.5"></i>
+                      No podré ir
+                    </span>
+                  </button>
+                </div>
+                <p id="error-attendance" class="text-red-400 text-xs mt-1 hidden">Selecciona una opción</p>
+              </div>
+              
+              <!-- Number of people -->
+              <div id="pax-section" class="hidden">
+                <p class="text-white/60 text-xs mb-2 ml-1">¿Cuántas personas?</p>
+                <div class="grid grid-cols-5 gap-2">
+                  <button type="button" onclick="setPax('1')" class="pax-btn py-3 rounded-xl border text-sm font-medium transition-all bg-bg2/80 border-gold/30 text-white/60 hover:border-gold/50">1</button>
+                  <button type="button" onclick="setPax('2')" class="pax-btn py-3 rounded-xl border text-sm font-medium transition-all bg-bg2/80 border-gold/30 text-white/60 hover:border-gold/50">2</button>
+                  <button type="button" onclick="setPax('3')" class="pax-btn py-3 rounded-xl border text-sm font-medium transition-all bg-bg2/80 border-gold/30 text-white/60 hover:border-gold/50">3</button>
+                  <button type="button" onclick="setPax('4')" class="pax-btn py-3 rounded-xl border text-sm font-medium transition-all bg-bg2/80 border-gold/30 text-white/60 hover:border-gold/50">4</button>
+                  <button type="button" onclick="setPax('5')" class="pax-btn py-3 rounded-xl border text-sm font-medium transition-all bg-bg2/80 border-gold/30 text-white/60 hover:border-gold/50">5</button>
+                </div>
+                <p id="error-pax" class="text-red-400 text-xs mt-1 hidden">Selecciona número</p>
+              </div>
+              
+              <!-- Notes -->
+              <div>
+                <textarea id="rsvp-notes" rows="3" placeholder="Mensaje para los novios... (opcional)" class="w-full px-3 py-3 rounded-xl border border-gold/30 text-sm text-white placeholder:text-white/40 outline-none transition-all focus:border-gold bg-bg2/80 resize-none"></textarea>
+              </div>
+              
+              <!-- Submit -->
+              <button type="submit" id="rsvp-submit" class="w-full py-3.5 rounded-xl text-white font-medium text-sm flex items-center justify-center gap-2 transition-all hover:scale-[1.02] active:scale-[0.98]" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.3), rgba(202, 162, 74, 0.15)); border: 1px solid rgba(202, 162, 74, 0.5);">
+                <span id="submit-text" class="flex items-center gap-2">
+                  <i data-lucide="heart" class="text-gold w-3.5 h-3.5" style="fill: currentColor;"></i>
+                  Confirmar asistencia
+                </span>
+                <span id="submit-loading" class="hidden flex items-center gap-2">
+                  <svg class="animate-spin w-4 h-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                  Enviando...
+                </span>
+              </button>
+            </form>
+          </div>
+          
+          <!-- Success -->
+          <div id="rsvp-success" class="hidden max-w-md mx-auto text-center">
+            <div id="success-yes" class="hidden rounded-xl border border-green-500/50 p-6" style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(34, 197, 94, 0.05));">
+              <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 animate-scale-heart" style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.3), rgba(34, 197, 94, 0.1)); border: 2px solid rgba(34, 197, 94, 0.5);">
+                <i data-lucide="check" class="text-green-400 w-7 h-7"></i>
+              </div>
+              <h3 class="text-xl font-bold text-white mb-2">¡Nos vemos pronto!</h3>
+              <p class="text-white/60 text-sm">Gracias por confirmar tu asistencia. ¡Estamos muy emocionados de verte!</p>
+              <div class="mt-4 flex items-center justify-center gap-2 text-green-400/60 text-xs">
+                <i data-lucide="calendar" class="w-3 h-3"></i>
+                <span>29 de Agosto de 2026</span>
+              </div>
+            </div>
+            
+            <div id="success-no" class="hidden rounded-xl border border-orange-500/50 p-6" style="background: linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(249, 115, 22, 0.05));">
+              <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style="background: linear-gradient(135deg, rgba(249, 115, 22, 0.2), rgba(249, 115, 22, 0.05)); border: 2px solid rgba(249, 115, 22, 0.4);">
+                <i data-lucide="frown" class="text-orange-400 w-7 h-7"></i>
+              </div>
+              <h3 class="text-xl font-bold text-white mb-2">Lo entendemos</h3>
+              <p class="text-white/60 text-sm">Lamentamos que no puedas acompañarnos. ¡Te extrañaremos mucho!</p>
+              <div class="mt-4 flex items-center justify-center gap-2 text-orange-400/60 text-xs">
+                <i data-lucide="heart" class="w-3 h-3"></i>
+                <span>Gracias por hacérnoslo saber</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- QR Code Section -->
+      <section class="reveal relative rounded-2xl md:rounded-3xl border border-gold/30 overflow-hidden bg-card">
+        <div class="relative z-10 p-5 md:p-8">
+          <!-- Header -->
+          <div class="text-center mb-5 md:mb-6 reveal reveal-delay-1">
+            <div class="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-xl mb-3" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.2), rgba(202, 162, 74, 0.05)); border: 1px solid rgba(202, 162, 74, 0.3);">
+              <i data-lucide="qr-code" class="text-gold w-[18px] h-[18px]"></i>
+            </div>
+            <h2 class="font-script text-2xl md:text-4xl text-gradient mb-1">Comparte</h2>
+            <p class="text-white/50 text-xs md:text-sm">Escanea o comparte el enlace</p>
+          </div>
+          
+          <div class="flex flex-col md:flex-row items-center justify-center gap-5 md:gap-8">
+            <!-- QR Code -->
+            <div class="reveal reveal-delay-2 relative">
+              <div class="w-40 h-40 md:w-48 md:h-48 rounded-xl p-2" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.2), rgba(255, 255, 255, 0.9)); border: 2px solid rgba(202, 162, 74, 0.4);">
+                <img id="qr-image" src="" alt="QR" class="w-full h-full object-contain">
+              </div>
+            </div>
+            
+            <!-- Actions -->
+            <div class="flex flex-row md:flex-col gap-2">
+              <button onclick="copyLink()" class="flex items-center gap-2 px-4 py-2.5 rounded-xl text-white text-sm transition-all hover:scale-105" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.2), rgba(202, 162, 74, 0.05)); border: 1px solid rgba(202, 162, 74, 0.4);">
+                <span id="copy-icon"><i data-lucide="copy" class="text-gold w-4 h-4"></i></span>
+                <span id="copy-text">Copiar</span>
+              </button>
+              
+              <button onclick="shareLink()" class="flex items-center gap-2 px-4 py-2.5 rounded-xl text-white text-sm transition-all hover:scale-105" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02)); border: 1px solid rgba(255, 255, 255, 0.2);">
+                <i data-lucide="share-2" class="text-gold w-4 h-4"></i>
+                Compartir
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+    </div>
+    
+    <!-- Footer -->
+    <footer class="relative mt-12 md:mt-16 py-12 md:py-16 overflow-hidden">
+      <div class="absolute inset-0" style="background: linear-gradient(to top, #060913, #0a1023, transparent);"></div>
+      
+      <div class="relative z-10 max-w-4xl mx-auto px-4 text-center">
+        <div class="mb-4 reveal reveal-delay-1">
+          <div class="flex items-center justify-center gap-4 mb-4">
+            <div class="w-12 md:w-16 h-px" style="background: linear-gradient(to right, transparent, rgba(202, 162, 74, 0.5));"></div>
+            <i data-lucide="heart" class="text-gold w-5 h-5" style="fill: currentColor;"></i>
+            <div class="w-12 md:w-16 h-px" style="background: linear-gradient(to left, transparent, rgba(202, 162, 74, 0.5));"></div>
+          </div>
+          
+          <h2 class="font-script text-3xl md:text-5xl text-gradient">Carlos & Jimena</h2>
+        </div>
+        
+        <div class="flex items-center justify-center gap-2 text-white/60 mb-4">
+          <i data-lucide="calendar" class="text-gold w-4 h-4"></i>
+          <span class="text-sm md:text-base">29 de Agosto de 2026</span>
+        </div>
+        
+        <p class="text-white/40 text-xs md:text-sm max-w-xs mx-auto mb-6">
+          Gracias por ser parte de nuestra historia.
+        </p>
+        
+        <div class="flex items-center justify-center gap-2 text-gold/30">
+          <i data-lucide="heart" class="w-2.5 h-2.5" style="fill: currentColor;"></i>
+          <span class="text-xs">Con amor</span>
+          <i data-lucide="heart" class="w-2.5 h-2.5" style="fill: currentColor;"></i>
+        </div>
+      </div>
+    </footer>
+  </main>
+  
+  <!-- Music Player -->
+  <div id="music-player" class="fixed top-20 right-4 z-50 md:top-24 hidden opacity-0 transition-opacity duration-500">
+    <button id="music-toggle" onclick="toggleMusicControls()" class="w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.4), rgba(202, 162, 74, 0.2)); border: 1px solid rgba(202, 162, 74, 0.5); box-shadow: 0 0 20px rgba(202, 162, 74, 0.4);">
+      <span id="music-icon-playing" class="hidden"><i data-lucide="music" class="w-5 h-5 text-white"></i></span>
+      <span id="music-icon-paused"><i data-lucide="play" class="w-5 h-5 text-gold"></i></span>
+    </button>
+    
+    <!-- Equalizer -->
+    <div id="equalizer" class="absolute -bottom-1 left-1/2 -translate-x-1/2 flex gap-0.5 hidden">
+      <div class="w-0.5 bg-gold rounded-full equalizer-bar" style="height: 3px;"></div>
+      <div class="w-0.5 bg-gold rounded-full equalizer-bar" style="height: 3px;"></div>
+      <div class="w-0.5 bg-gold rounded-full equalizer-bar" style="height: 3px;"></div>
+    </div>
+    
+    <!-- Controls popover -->
+    <div id="music-controls" class="absolute top-14 right-0 flex flex-col gap-2 p-3 rounded-xl hidden" style="background: rgba(6, 9, 19, 0.95); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(202, 162, 74, 0.3);">
+      <button onclick="togglePlay()" class="w-10 h-10 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.3), rgba(202, 162, 74, 0.1));">
+        <span id="control-play-icon" class="hidden"><i data-lucide="pause" class="w-[18px] h-[18px]"></i></span>
+        <span id="control-pause-icon"><i data-lucide="play" class="w-[18px] h-[18px] ml-0.5"></i></span>
+      </button>
+      
+      <button onclick="toggleMute()" id="mute-btn" class="w-10 h-10 rounded-full flex items-center justify-center text-gold hover:scale-110 transition-transform" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.3), rgba(202, 162, 74, 0.1));">
+        <span id="mute-icon"><i data-lucide="volume-2" class="w-[18px] h-[18px]"></i></span>
+        <span id="unmute-icon" class="hidden"><i data-lucide="volume-x" class="w-[18px] h-[18px]"></i></span>
+      </button>
+    </div>
   </div>
-
-  <div class="wrap hidden" id="content">
-
-    <section class="panel section">
-      <div class="titleScript">Nuestra Boda</div>
-      <p class="subtitle">
-        Si te llegó esta invitación, es porque te apreciamos y queremos que nos acompañes en nuestro día más especial.
-      </p>
-
-      <div class="countRow" aria-label="Contador">
-        <div class="countBox"><div class="countN" id="cdDays">0</div><div class="countL">Días</div></div>
-        <div class="countBox"><div class="countN" id="cdHours">0</div><div class="countL">Horas</div></div>
-        <div class="countBox"><div class="countN" id="cdMins">0</div><div class="countL">Minutos</div></div>
-        <div class="countBox"><div class="countN" id="cdSecs">0</div><div class="countL">Segundos</div></div>
-      </div>
-
-      <div class="heroPhoto" style="margin-top:14px">
-        <img src="momento2.jpeg" alt="Carlos y Jimena - Portada">
-      </div>
-    </section>
-
-    <section class="panel section">
-      <div class="titleScript">Nuestros Padres</div>
-      <div class="grid2">
-        <div class="card">
-          <div class="pill">Novio</div>
-          <ul class="list">
-            <li>Carlos Alberto Urbina Tavarez</li>
-            <li>Ma. Guadalupe Muñoz Campuzano</li>
-          </ul>
-        </div>
-        <div class="card">
-          <div class="pill">Novia</div>
-          <ul class="list">
-            <li>Jose Gerardo Mena Huerta</li>
-            <li>Maria de Jesus Prado Lara</li>
-          </ul>
-        </div>
-      </div>
-
-      <div style="height:18px"></div>
-
-      <div class="titleScript">Nuestros Padrinos</div>
-      <div class="card" style="max-width:720px;margin:12px auto 0">
-        <h3>Padrinos de Velación</h3>
-        <ul class="list">
-          <li>Karla Aranzazu Urbina Muñoz</li>
-          <li>Claudio Enrique Ramos Reyes</li>
-        </ul>
-
-        <div style="height:10px"></div>
-        <h3>Padrinos de Arras</h3>
-        <ul class="list">
-          <li>Gerardo Mena Prado</li>
-          <li>Miriam Elizabet Muñoz Sanchez</li>
-        </ul>
-
-        <div style="height:10px"></div>
-        <h3>Padrinos de Anillos</h3>
-        <ul class="list">
-          <li>Mario Muñoz Campuzano</li>
-          <li>Tere</li>
-        </ul>
-
-        <div style="height:10px"></div>
-        <h3>Biblia y Rosario</h3>
-        <ul class="list">
-          <li>Gabriela Muñoz Campuzno</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="panel section">
-      <div class="grid2">
-        <div class="card placeBox">
-          <h3>Ceremonia</h3>
-          <div class="time">Llegar 4:40 PM</div>
-          <p class="place">Parroquia de San Rafael Arcángel</p>
-          <p class="addr"><b>Inicio:</b> 5:00 PM</p>
-          <a class="btnPrimary" style="min-width:200px;text-decoration:none"
-             href="https://maps.app.goo.gl/pN5AznDmCfymgZ2f8?g_st=aw" target="_blank" rel="noopener">Ver ubicación</a>
-        </div>
-
-        <div class="card placeBox">
-          <h3>Recepción</h3>
-          <div class="time">7:00 PM</div>
-          <p class="place">Quinta Munay</p>
-          <p class="addr">Te esperamos para celebrar juntos.</p>
-          <a class="btnPrimary" style="min-width:200px;text-decoration:none"
-             href="https://www.google.com/maps?q=20.98356056213379,-101.5621566772461&z=17&hl=es" target="_blank" rel="noopener">Ver ubicación</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="panel section">
-      <div class="titleScript">Itinerario</div>
-
-      <div class="timeline">
-        <div class="step">
-          <div class="dot">⛪</div>
-          <div>
-            <div class="stepTitle">Ceremonia Religiosa</div>
-            <div class="stepTime">Llegar 4:40 PM · Inicio 5:00 PM</div>
-          </div>
-        </div>
-
-        <div class="step">
-          <div class="dot">✨</div>
-          <div>
-            <div class="stepTitle">Recepción</div>
-            <div class="stepTime">7:00 PM</div>
-          </div>
-        </div>
-
-        <div class="step">
-          <div class="dot">🍽️</div>
-          <div>
-            <div class="stepTitle">Cena</div>
-            <div class="stepTime">7:30 PM</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="panel section">
-      <div class="titleScript">Código de Vestimenta</div>
-      <p class="subtitle"><b>Formal</b></p>
-
-      <div style="height:16px"></div>
-
-      <div class="titleScript">Lluvia de Sobres</div>
-      <p class="subtitle">
-        La lluvia de sobres es la tradición de obsequiar un presente en efectivo a los novios dentro de un sobre el día de la boda.
-      </p>
-    </section>
-
-    <section class="panel section">
-      <div class="titleScript">Momentos</div>
-      <div class="gallery">
-        <div class="ph"><img src="portada.jpeg" alt="Portada"></div>
-        <div class="ph"><img src="Carlos y Jimena.jpeg" alt="Carlos y Jimena"></div>
-        <div class="ph"><img src="momento1.jpeg" alt="Momento 1"></div>
-        <div class="ph"><img src="momento3.jpeg" alt="Momento 3"></div>
-        <div class="ph"><img src="momento4.jpeg" alt="Momento 4"></div>
-      </div>
-    </section>
-
-    <section class="panel section" id="rsvp">
-      <div class="titleScript">Confirma tu Asistencia</div>
-      <p class="subtitle">Llena el siguiente formulario para confirmar tu asistencia.</p>
-
-      <form class="form" id="rsvpForm">
-        <div class="two">
-          <input class="inp" id="guestName" placeholder="Nombre" required />
-          <select class="inp" id="attendance" required>
-            <option value="" disabled selected>¿Asistiré?</option>
-            <!-- ✅ Ajuste: sin acento para que coincida con el Google Form -->
-            <option value="Si">Asistiré</option>
-            <option value="No">No asistiré</option>
-          </select>
-        </div>
-
-        <div class="two">
-          <select class="inp" id="pax" required>
-            <option value="" disabled selected>¿Cuántas personas asistirán?</option>
-            <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
-          </select>
-          <input class="inp" id="notes" placeholder="Escribe un lindo mensaje..." />
-        </div>
-
-        <button class="btnPrimary" type="submit" style="border-radius:999px">Enviar Confirmación</button>
-        <div id="rsvpMsg"></div>
-      </form>
-    </section>
-
-    <section class="panel section">
-      <div class="titleScript">QR de la Invitación</div>
-      <p class="subtitle">Escanéalo para abrir la invitación desde cualquier celular.</p>
-
-      <div class="qrWrap">
-        <div class="qrImg">
-          <img id="qrImg" alt="QR Invitación">
-        </div>
-
-        <button class="btnPrimary" id="copyLink" style="min-width:220px">Copiar link</button>
-        <p class="subtitle" id="copyMsg" style="margin-top:0"></p>
-      </div>
-    </section>
-
+  
+  <!-- Hidden YouTube Player -->
+  <div style="position: fixed; left: -9999px; top: 0;">
+    <div id="youtube-player"></div>
   </div>
-
-  <div id="ytWrap"><div id="player"></div></div>
-  <script src="https://www.youtube.com/iframe_api"></script>
-
+  
   <script>
-    const cover = document.getElementById("cover");
-    const content = document.getElementById("content");
-    const topBar = document.getElementById("topBar");
-    const openFloating = document.getElementById("openFloating");
-
-    // ===== Contador =====
-    const EVENT_DATE = new Date("2026-08-29T17:00:00-06:00");
-    const elD = document.getElementById("cdDays");
-    const elH = document.getElementById("cdHours");
-    const elM = document.getElementById("cdMins");
-    const elS = document.getElementById("cdSecs");
-    function pad2(n){ return String(n).padStart(2,"0"); }
-    function tick(){
-      const now = new Date();
-      let diff = Math.max(0, EVENT_DATE.getTime() - now.getTime());
-      const sec = Math.floor(diff/1000);
-      const days = Math.floor(sec / 86400);
-      const hrs  = Math.floor((sec % 86400) / 3600);
-      const mins = Math.floor((sec % 3600) / 60);
-      const secs = Math.floor(sec % 60);
-      elD.textContent = days;
-      elH.textContent = pad2(hrs);
-      elM.textContent = pad2(mins);
-      elS.textContent = pad2(secs);
-    }
-
-    // ===== QR =====
-    function setQR(){
-      const url = window.location.href;
-      const qr = "https://api.qrserver.com/v1/create-qr-code/?size=700x700&data=" + encodeURIComponent(url);
-      document.getElementById("qrImg").src = qr;
-    }
-    document.getElementById("copyLink").addEventListener("click", async () => {
-      const url = window.location.href;
-      const msg = document.getElementById("copyMsg");
-      try{
-        await navigator.clipboard.writeText(url);
-        msg.textContent = "Link copiado ✅ (pégalo en WhatsApp).";
-      }catch(e){
-        msg.textContent = "No se pudo copiar. Copia manual: " + url;
+    // ==========================
+    // Starry Background Canvas
+    // ==========================
+    (function initStarryBackground() {
+      const canvas = document.getElementById('starry-bg');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      
+      const isMobile = window.innerWidth < 768;
+      let animationId = 0;
+      let lastTime = 0;
+      const targetFPS = isMobile ? 30 : 60;
+      const frameInterval = 1000 / targetFPS;
+      
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
       }
-      setTimeout(()=> msg.textContent="", 4000);
+      resizeCanvas();
+      window.addEventListener('resize', resizeCanvas);
+      
+      const colors = ['255, 255, 255', '202, 162, 74', '225, 195, 122', '246, 231, 192'];
+      const starCount = isMobile ? 80 : 120;
+      
+      const stars = Array.from({ length: starCount }, () => ({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 2 + 0.3,
+        opacity: Math.random() * 0.6 + 0.2,
+        twinkleSpeed: Math.random() * 0.03 + 0.01,
+        twinklePhase: Math.random() * Math.PI * 2,
+        color: colors[Math.floor(Math.random() * colors.length)],
+      }));
+      
+      const shootingStars = Array.from({ length: isMobile ? 2 : 3 }, () => ({
+        x: 0, y: 0, length: 0, speed: 0, angle: 0, opacity: 0, active: false, width: Math.random() * 2 + 2,
+      }));
+      
+      const nebulas = [
+        { x: canvas.width * 0.2, y: canvas.height * 0.3, radius: 300, color: '202, 162, 74', opacity: 0.08, pulseSpeed: 0.015, pulsePhase: 0 },
+        { x: canvas.width * 0.8, y: canvas.height * 0.6, radius: 400, color: '225, 195, 122', opacity: 0.06, pulseSpeed: 0.012, pulsePhase: Math.PI },
+        { x: canvas.width * 0.5, y: canvas.height * 0.15, radius: 250, color: '202, 162, 74', opacity: 0.05, pulseSpeed: 0.018, pulsePhase: Math.PI / 2 },
+      ];
+      
+      function spawnShootingStar() {
+        const inactiveStar = shootingStars.find(s => !s.active);
+        if (inactiveStar && Math.random() < (isMobile ? 0.025 : 0.02)) {
+          inactiveStar.active = true;
+          inactiveStar.x = Math.random() * canvas.width * 0.8;
+          inactiveStar.y = Math.random() * canvas.height * 0.4;
+          inactiveStar.length = Math.random() * 120 + 80;
+          inactiveStar.speed = Math.random() * 8 + 12;
+          inactiveStar.angle = Math.PI / 4 + (Math.random() - 0.5) * 0.4;
+          inactiveStar.opacity = 1;
+          inactiveStar.width = Math.random() * 2 + 2;
+        }
+      }
+      
+      function animate(currentTime) {
+        const deltaTime = currentTime - lastTime;
+        if (deltaTime < frameInterval) {
+          animationId = requestAnimationFrame(animate);
+          return;
+        }
+        lastTime = currentTime - (deltaTime % frameInterval);
+        
+        // Background gradient
+        const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+        gradient.addColorStop(0, '#0a1023');
+        gradient.addColorStop(0.5, '#0d1429');
+        gradient.addColorStop(1, '#060913');
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        // Draw nebulas
+        nebulas.forEach((nebula) => {
+          nebula.pulsePhase += nebula.pulseSpeed;
+          const pulse = Math.sin(nebula.pulsePhase) * 0.3 + 0.7;
+          const currentOpacity = nebula.opacity * pulse;
+          
+          const radialGradient = ctx.createRadialGradient(nebula.x, nebula.y, 0, nebula.x, nebula.y, nebula.radius);
+          radialGradient.addColorStop(0, `rgba(${nebula.color}, ${currentOpacity})`);
+          radialGradient.addColorStop(0.5, `rgba(${nebula.color}, ${currentOpacity * 0.5})`);
+          radialGradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+          
+          ctx.fillStyle = radialGradient;
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+        });
+        
+        // Draw stars with glow
+        stars.forEach((star) => {
+          star.twinklePhase += star.twinkleSpeed;
+          const twinkle = Math.sin(star.twinklePhase) * 0.4 + 0.6;
+          const currentOpacity = star.opacity * twinkle;
+          
+          // Glow for larger stars
+          if (star.size > 1.2) {
+            const glowGradient = ctx.createRadialGradient(star.x, star.y, 0, star.x, star.y, star.size * 4);
+            glowGradient.addColorStop(0, `rgba(${star.color}, ${currentOpacity * 0.5})`);
+            glowGradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+            
+            ctx.beginPath();
+            ctx.arc(star.x, star.y, star.size * 4, 0, Math.PI * 2);
+            ctx.fillStyle = glowGradient;
+            ctx.fill();
+          }
+          
+          // Star core
+          ctx.beginPath();
+          ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${star.color}, ${currentOpacity})`;
+          ctx.fill();
+          
+          // Cross sparkle for bright stars
+          if (star.size > 1.5 && currentOpacity > 0.6) {
+            ctx.strokeStyle = `rgba(${star.color}, ${currentOpacity * 0.4})`;
+            ctx.lineWidth = 0.5;
+            const sparkleSize = star.size * 5;
+            
+            ctx.beginPath();
+            ctx.moveTo(star.x - sparkleSize, star.y);
+            ctx.lineTo(star.x + sparkleSize, star.y);
+            ctx.moveTo(star.x, star.y - sparkleSize);
+            ctx.lineTo(star.x, star.y + sparkleSize);
+            ctx.stroke();
+          }
+        });
+        
+        // Draw shooting stars with enhanced glow
+        spawnShootingStar();
+        shootingStars.forEach((star) => {
+          if (!star.active) return;
+          
+          star.x += Math.cos(star.angle) * star.speed;
+          star.y += Math.sin(star.angle) * star.speed;
+          star.opacity -= 0.015;
+          
+          if (star.opacity <= 0 || star.x > canvas.width + 200 || star.y > canvas.height + 200) {
+            star.active = false;
+            return;
+          }
+          
+          const tailX = star.x - Math.cos(star.angle) * star.length;
+          const tailY = star.y - Math.sin(star.angle) * star.length;
+          
+          // Outer glow
+          const outerGlow = ctx.createLinearGradient(star.x, star.y, tailX, tailY);
+          outerGlow.addColorStop(0, `rgba(255, 255, 255, ${star.opacity * 0.3})`);
+          outerGlow.addColorStop(0.3, `rgba(202, 162, 74, ${star.opacity * 0.2})`);
+          outerGlow.addColorStop(1, 'rgba(202, 162, 74, 0)');
+          
+          ctx.beginPath();
+          ctx.moveTo(star.x, star.y);
+          ctx.lineTo(tailX, tailY);
+          ctx.strokeStyle = outerGlow;
+          ctx.lineWidth = star.width * 2;
+          ctx.lineCap = 'round';
+          ctx.stroke();
+          
+          // Main trail
+          const trailGradient = ctx.createLinearGradient(star.x, star.y, tailX, tailY);
+          trailGradient.addColorStop(0, `rgba(255, 255, 255, ${star.opacity})`);
+          trailGradient.addColorStop(0.4, `rgba(202, 162, 74, ${star.opacity * 0.9})`);
+          trailGradient.addColorStop(1, 'rgba(202, 162, 74, 0)');
+          
+          ctx.beginPath();
+          ctx.moveTo(star.x, star.y);
+          ctx.lineTo(tailX, tailY);
+          ctx.strokeStyle = trailGradient;
+          ctx.lineWidth = star.width;
+          ctx.lineCap = 'round';
+          ctx.stroke();
+          
+          // Head glow
+          const headGlow = ctx.createRadialGradient(star.x, star.y, 0, star.x, star.y, 10);
+          headGlow.addColorStop(0, `rgba(255, 255, 255, ${star.opacity})`);
+          headGlow.addColorStop(0.5, `rgba(202, 162, 74, ${star.opacity * 0.5})`);
+          headGlow.addColorStop(1, 'rgba(0, 0, 0, 0)');
+          
+          ctx.beginPath();
+          ctx.arc(star.x, star.y, 10, 0, Math.PI * 2);
+          ctx.fillStyle = headGlow;
+          ctx.fill();
+        });
+        
+        animationId = requestAnimationFrame(animate);
+      }
+      
+      animationId = requestAnimationFrame(animate);
+    })();
+    
+    // ==========================
+    // Loading Screen
+    // ==========================
+    setTimeout(() => {
+      const loading = document.getElementById('loading-screen');
+      if (loading) {
+        loading.style.opacity = '0';
+        loading.style.transition = 'opacity 0.5s ease';
+        setTimeout(() => {
+          loading.style.display = 'none';
+        }, 500);
+      }
+    }, 800);
+    
+    // ==========================
+    // Hero Open
+    // ==========================
+    let isInvitationOpen = false;
+    document.getElementById('open-invitation').addEventListener('click', function() {
+      isInvitationOpen = true;
+      const hero = document.getElementById('hero');
+      const main = document.getElementById('main-content');
+      const player = document.getElementById('music-player');
+      
+      hero.style.opacity = '0';
+      setTimeout(() => {
+        hero.style.display = 'none';
+        main.classList.remove('opacity-0');
+        main.classList.add('opacity-100');
+        
+        // Show music player
+        player.classList.remove('hidden');
+        setTimeout(() => {
+          player.classList.remove('opacity-0');
+          player.classList.add('opacity-100');
+        }, 100);
+        
+        // Init music
+        initMusicPlayer();
+        
+        // Scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        
+        // Re-observe reveals
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+      }, 500);
     });
-
-    // ===== Música YouTube =====
-    const YT_VIDEO_ID = "yP_dhALIuFc";
-    let player;
-    let musicOn = false;
-
-    function onYouTubeIframeAPIReady(){
-      player = new YT.Player("player", {
-        videoId: YT_VIDEO_ID,
-        playerVars: { autoplay:0, controls:0, loop:1, playlist:YT_VIDEO_ID, modestbranding:1 },
-        events: { onReady: () => { try { player.setVolume(45); } catch(e){} } }
+    
+    // ==========================
+    // Navigation
+    // ==========================
+    const navbar = document.getElementById('navbar');
+    let isScrolled = false;
+    
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 80) {
+        if (!isScrolled) {
+          isScrolled = true;
+          navbar.style.transform = 'translateY(0)';
+          navbar.style.opacity = '1';
+        }
+      } else {
+        if (isScrolled) {
+          isScrolled = false;
+          navbar.style.transform = 'translateY(-100%)';
+          navbar.style.opacity = '0';
+        }
+      }
+    }, { passive: true });
+    
+    // Mobile menu
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuPanel = document.getElementById('mobile-menu-panel');
+    const mobileMenuClose = document.getElementById('mobile-menu-close');
+    const mobileMenuBackdrop = document.getElementById('mobile-menu-backdrop');
+    
+    function openMobileMenu() {
+      mobileMenu.classList.remove('hidden');
+      mobileMenu.classList.add('flex');
+      setTimeout(() => {
+        mobileMenuPanel.style.transform = 'translateX(0)';
+      }, 10);
+    }
+    
+    function closeMobileMenu() {
+      mobileMenuPanel.style.transform = 'translateX(100%)';
+      setTimeout(() => {
+        mobileMenu.classList.add('hidden');
+        mobileMenu.classList.remove('flex');
+      }, 300);
+    }
+    
+    mobileMenuBtn.addEventListener('click', openMobileMenu);
+    mobileMenuClose.addEventListener('click', closeMobileMenu);
+    mobileMenuBackdrop.addEventListener('click', closeMobileMenu);
+    
+    // Smooth scroll for nav links
+    document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const href = link.getAttribute('href');
+        const target = document.querySelector(href);
+        if (target) {
+          closeMobileMenu();
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+    
+    // ==========================
+    // Countdown
+    // ==========================
+    const EVENT_DATE = new Date('2026-08-29T17:00:00-06:00');
+    
+    function updateCountdown() {
+      const now = new Date();
+      const diff = Math.max(0, EVENT_DATE.getTime() - now.getTime());
+      
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      
+      document.getElementById('cd-days').textContent = String(days).padStart(2, '0');
+      document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
+      document.getElementById('cd-minutes').textContent = String(minutes).padStart(2, '0');
+      document.getElementById('cd-seconds').textContent = String(seconds).padStart(2, '0');
+    }
+    
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+    
+    // ==========================
+    // Reveal Animations (IntersectionObserver)
+    // ==========================
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '-50px' });
+    
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    
+    // ==========================
+    // Gallery Lightbox
+    // ==========================
+    const photos = [
+      { src: './images/Carlos y Jimena.jpeg', alt: 'Carlos y Jimena', caption: 'Nuestro amor' },
+      { src: './images/momento1.jpeg', alt: 'Momento especial', caption: 'Juntos siempre' },
+      { src: './images/momento2.jpeg', alt: 'Recuerdo', caption: 'Sonrisas de felicidad' },
+      { src: './images/momento3.jpeg', alt: 'Amor', caption: 'Bailando juntos' },
+      { src: './images/momento4.jpeg', alt: 'Compromiso', caption: 'Nuestra historia' },
+    ];
+    
+    let selectedIndex = null;
+    
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      item.addEventListener('click', () => {
+        selectedIndex = parseInt(item.dataset.index);
+        openLightbox();
+      });
+    });
+    
+    function openLightbox() {
+      const lightbox = document.getElementById('lightbox');
+      const img = document.getElementById('lightbox-img');
+      const caption = document.getElementById('lightbox-caption');
+      const title = document.getElementById('lightbox-title');
+      
+      img.src = photos[selectedIndex].src;
+      img.alt = photos[selectedIndex].alt;
+      caption.textContent = photos[selectedIndex].caption;
+      title.textContent = photos[selectedIndex].alt;
+      
+      lightbox.classList.remove('hidden');
+      lightbox.classList.add('flex');
+      updateLightboxDots();
+      lucide.createIcons();
+    }
+    
+    function closeLightbox(e) {
+      if (e && e.target !== e.currentTarget && !e.target.closest('button')) return;
+      const lightbox = document.getElementById('lightbox');
+      lightbox.classList.add('hidden');
+      lightbox.classList.remove('flex');
+      selectedIndex = null;
+    }
+    
+    function prevImage(e) {
+      e.stopPropagation();
+      if (selectedIndex === null) return;
+      selectedIndex = selectedIndex === 0 ? photos.length - 1 : selectedIndex - 1;
+      updateLightboxImage();
+    }
+    
+    function nextImage(e) {
+      e.stopPropagation();
+      if (selectedIndex === null) return;
+      selectedIndex = selectedIndex === photos.length - 1 ? 0 : selectedIndex + 1;
+      updateLightboxImage();
+    }
+    
+    function goToImage(index, e) {
+      e.stopPropagation();
+      selectedIndex = index;
+      updateLightboxImage();
+    }
+    
+    function updateLightboxImage() {
+      const img = document.getElementById('lightbox-img');
+      const caption = document.getElementById('lightbox-caption');
+      const title = document.getElementById('lightbox-title');
+      
+      img.style.opacity = '0';
+      setTimeout(() => {
+        img.src = photos[selectedIndex].src;
+        img.alt = photos[selectedIndex].alt;
+        caption.textContent = photos[selectedIndex].caption;
+        title.textContent = photos[selectedIndex].alt;
+        img.style.opacity = '1';
+        updateLightboxDots();
+      }, 150);
+    }
+    
+    function updateLightboxDots() {
+      document.querySelectorAll('.lightbox-dot').forEach((dot, i) => {
+        if (i === selectedIndex) {
+          dot.style.width = '24px';
+          dot.classList.remove('bg-white/30');
+          dot.classList.add('bg-gold');
+        } else {
+          dot.style.width = '8px';
+          dot.classList.remove('bg-gold');
+          dot.classList.add('bg-white/30');
+        }
       });
     }
-    window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
-
-    function startMusic(){
-      if(!player) return false;
-      try{
-        if (player.isMuted && player.isMuted()) player.unMute();
-        player.setVolume(45);
-        player.playVideo();
-        musicOn = true;
-        const b = document.getElementById("btnMusic");
-        if (b) b.textContent = "Música ✓";
-        return true;
-      }catch(e){ return false; }
-    }
-
-    document.getElementById("btnMusic").addEventListener("click", () => {
-      if(!player) return;
-      try{
-        if(musicOn){
-          player.pauseVideo();
-          musicOn = false;
-          document.getElementById("btnMusic").textContent = "Música";
-        }else{
-          startMusic();
-        }
-      }catch(e){}
+    
+    // Keyboard navigation for lightbox
+    document.addEventListener('keydown', (e) => {
+      const lightbox = document.getElementById('lightbox');
+      if (lightbox.classList.contains('hidden')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') prevImage({ stopPropagation: () => {} });
+      if (e.key === 'ArrowRight') nextImage({ stopPropagation: () => {} });
     });
-
-    // ===== Abrir invitación =====
-    function openInvitation(){
-      cover.classList.add("hidden");
-      content.classList.remove("hidden");
-      topBar.classList.remove("hidden");
-      openFloating.classList.add("hidden");
-
-      window.scrollTo({top:0, behavior:"smooth"});
-
-      tick();
-      setInterval(tick, 1000);
-      setQR();
-
-      setTimeout(startMusic, 150);
-      setTimeout(startMusic, 800);
-      setTimeout(startMusic, 1500);
+    
+    // ==========================
+    // RSVP Form
+    // ==========================
+    let formData = { name: '', attendance: '', pax: '', notes: '' };
+    
+    function setAttendance(value) {
+      formData.attendance = value;
+      if (value === 'No') formData.pax = '';
+      updateRSVPButtons();
+      hideError('attendance');
     }
-    const btnInline = document.getElementById("openInviteInline");
-    if(btnInline) btnInline.addEventListener("click", openInvitation);
-    document.getElementById("openInviteMobile").addEventListener("click", openInvitation);
-
-    // ===== RSVP -> Google Forms (más confiable) =====
-    const rsvpMsg = document.getElementById("rsvpMsg");
-
-    async function sendToGoogleForm(name, attend, pax, notes){
-      const BASE = "https://docs.google.com/forms/d/e/1FAIpQLSf1gQvRgM63JLVnElM8zpV4Qm2TBFll-OOeuWBIBJauKLa-Rw/formResponse";
-
-      const params = new URLSearchParams();
-      params.append("entry.837092975", name);
-      params.append("entry.764767312", attend);      // <- aquí manda "Si" o "No"
-      params.append("entry.706411984", pax);
-      params.append("entry.1995459750", notes || "");
-
-      const body = params.toString();
-
-      // 1) sendBeacon (excelente en móviles)
-      if (navigator.sendBeacon) {
-        const blob = new Blob([body], { type: "application/x-www-form-urlencoded;charset=UTF-8" });
-        const ok = navigator.sendBeacon(BASE, blob);
-        if (ok) return;
+    
+    function setPax(value) {
+      formData.pax = value;
+      updateRSVPButtons();
+      hideError('pax');
+    }
+    
+    function updateRSVPButtons() {
+      const btnYes = document.getElementById('btn-yes');
+      const btnNo = document.getElementById('btn-no');
+      const paxSection = document.getElementById('pax-section');
+      const submitBtn = document.getElementById('rsvp-submit');
+      const submitText = document.getElementById('submit-text');
+      
+      if (formData.attendance === 'Si') {
+        btnYes.style.background = 'linear-gradient(135deg, rgba(34, 197, 94, 0.15), rgba(34, 197, 94, 0.05))';
+        btnYes.style.borderColor = 'rgba(34, 197, 94, 0.6)';
+        btnYes.style.color = '#4ade80';
+        btnNo.style.background = 'rgba(10, 16, 35, 0.8)';
+        btnNo.style.borderColor = 'rgba(202, 162, 74, 0.3)';
+        btnNo.style.color = 'rgba(255, 255, 255, 0.7)';
+        paxSection.classList.remove('hidden');
+        submitBtn.style.background = 'linear-gradient(135deg, rgba(202, 162, 74, 0.3), rgba(202, 162, 74, 0.15))';
+        submitBtn.style.borderColor = 'rgba(202, 162, 74, 0.5)';
+        submitText.innerHTML = '<i data-lucide="heart" class="text-gold w-3.5 h-3.5" style="fill: currentColor;"></i> Confirmar asistencia';
+      } else if (formData.attendance === 'No') {
+        btnNo.style.background = 'linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(249, 115, 22, 0.05))';
+        btnNo.style.borderColor = 'rgba(249, 115, 22, 0.6)';
+        btnNo.style.color = '#fb923c';
+        btnYes.style.background = 'rgba(10, 16, 35, 0.8)';
+        btnYes.style.borderColor = 'rgba(202, 162, 74, 0.3)';
+        btnYes.style.color = 'rgba(255, 255, 255, 0.7)';
+        paxSection.classList.add('hidden');
+        submitBtn.style.background = 'linear-gradient(135deg, rgba(249, 115, 22, 0.3), rgba(249, 115, 22, 0.15))';
+        submitBtn.style.borderColor = 'rgba(249, 115, 22, 0.5)';
+        submitText.innerHTML = '<i data-lucide="heart" class="text-orange-400 w-3.5 h-3.5" style="fill: currentColor;"></i> Enviar respuesta';
       }
-
-      // 2) fetch fallback
-      try{
-        await fetch(BASE, {
-          method: "POST",
-          mode: "no-cors",
-          headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
-          body,
-          keepalive: true
-        });
-      }catch(e){}
+      
+      // Update pax buttons
+      document.querySelectorAll('.pax-btn').forEach(btn => {
+        if (formData.pax === btn.textContent) {
+          btn.style.background = 'linear-gradient(135deg, rgba(202, 162, 74, 0.2), rgba(202, 162, 74, 0.05))';
+          btn.style.borderColor = '#caa24a';
+          btn.style.color = '#caa24a';
+        } else {
+          btn.style.background = 'rgba(10, 16, 35, 0.8)';
+          btn.style.borderColor = 'rgba(202, 162, 74, 0.3)';
+          btn.style.color = 'rgba(255, 255, 255, 0.6)';
+        }
+      });
+      
+      lucide.createIcons();
     }
-
-    document.getElementById("rsvpForm").addEventListener("submit", async (e) => {
+    
+    function showError(field) {
+      const el = document.getElementById('error-' + field);
+      if (el) el.classList.remove('hidden');
+    }
+    
+    function hideError(field) {
+      const el = document.getElementById('error-' + field);
+      if (el) el.classList.add('hidden');
+    }
+    
+    document.getElementById('rsvp-name').addEventListener('input', (e) => {
+      formData.name = e.target.value;
+      hideError('name');
+    });
+    
+    document.getElementById('rsvp-notes').addEventListener('input', (e) => {
+      formData.notes = e.target.value;
+    });
+    
+    document.getElementById('rsvp-form').addEventListener('submit', async (e) => {
       e.preventDefault();
-
-      const name = document.getElementById("guestName").value.trim();
-      const attend = document.getElementById("attendance").value; // "Si" / "No"
-      const pax = document.getElementById("pax").value;
-      const notes = document.getElementById("notes").value.trim();
-
-      if(!name || !attend || !pax){
-        rsvpMsg.innerHTML = '<div style="color:#ffb6b6;text-align:center;margin-top:10px">Completa Nombre, Asistencia y Personas.</div>';
-        return;
+      
+      let hasError = false;
+      if (!formData.name.trim()) { showError('name'); hasError = true; }
+      if (!formData.attendance) { showError('attendance'); hasError = true; }
+      if (formData.attendance === 'Si' && !formData.pax) { showError('pax'); hasError = true; }
+      
+      if (hasError) return;
+      
+      const submitText = document.getElementById('submit-text');
+      const submitLoading = document.getElementById('submit-loading');
+      submitText.classList.add('hidden');
+      submitLoading.classList.remove('hidden');
+      
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      const BASE = 'https://docs.google.com/forms/d/e/1FAIpQLSf1gQvRgM63JLVnElM8zpV4Qm2TBFll-OOeuWBIBJauKLa-Rw/formResponse';
+      const params = new URLSearchParams();
+      params.append('entry.837092975', formData.name);
+      params.append('entry.764767312', formData.attendance);
+      params.append('entry.706411984', formData.pax || '0');
+      params.append('entry.1995459750', formData.notes);
+      
+      if (navigator.sendBeacon) {
+        const blob = new Blob([params.toString()], { type: 'application/x-www-form-urlencoded' });
+        navigator.sendBeacon(BASE, blob);
+      } else {
+        fetch(BASE, {
+          method: 'POST',
+          mode: 'no-cors',
+          body: params,
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+        }).catch(() => {});
       }
-
-      await sendToGoogleForm(name, attend, pax, notes);
-
-      rsvpMsg.innerHTML = `
-        <div style="
-          margin-top:20px;
-          padding:22px;
-          border-radius:20px;
-          border:1px solid rgba(202,162,74,.6);
-          background:rgba(202,162,74,.15);
-          font-size:22px;
-          font-weight:900;
-          text-align:center;
-          line-height:1.35;
-        ">
-          TU CONFIRMACIÓN FUE REGISTRADA EXITOSAMENTE<br>
-          GRACIAS.
-        </div>
-      `;
-
-      // ✅ No resetees tan rápido (evita cortar envío en móviles)
-      setTimeout(() => document.getElementById("rsvpForm").reset(), 1500);
+      
+      document.getElementById('rsvp-form-container').classList.add('hidden');
+      document.getElementById('rsvp-success').classList.remove('hidden');
+      
+      if (formData.attendance === 'Si') {
+        document.getElementById('success-yes').classList.remove('hidden');
+        triggerConfetti();
+      } else {
+        document.getElementById('success-no').classList.remove('hidden');
+        triggerSadConfetti();
+      }
+      
+      lucide.createIcons();
+    });
+    
+    function triggerConfetti() {
+      const colors = ['#caa24a', '#e1c37a', '#f6e7c0', '#ffffff'];
+      for (let i = 0; i < 3; i++) {
+        setTimeout(() => {
+          confetti({ particleCount: 60, spread: 100, origin: { y: 0.6 + i * 0.1 }, colors, ticks: 150 });
+        }, i * 200);
+      }
+    }
+    
+    function triggerSadConfetti() {
+      const colors = ['#caa24a', '#e1c37a'];
+      confetti({ particleCount: 20, spread: 60, origin: { y: 0.7 }, colors, ticks: 80, gravity: 0.5, scalar: 0.8 });
+    }
+    
+    // ==========================
+    // QR Code
+    // ==========================
+    const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(window.location.href)}`;
+    document.getElementById('qr-image').src = qrUrl;
+    
+    async function copyLink() {
+      try {
+        await navigator.clipboard.writeText(window.location.href);
+        const icon = document.getElementById('copy-icon');
+        const text = document.getElementById('copy-text');
+        icon.innerHTML = '<i data-lucide="check" class="text-green-400 w-4 h-4"></i>';
+        text.textContent = 'Copiado';
+        lucide.createIcons();
+        setTimeout(() => {
+          icon.innerHTML = '<i data-lucide="copy" class="text-gold w-4 h-4"></i>';
+          text.textContent = 'Copiar';
+          lucide.createIcons();
+        }, 3000);
+      } catch (err) {
+        console.error('Failed to copy:', err);
+      }
+    }
+    
+    async function shareLink() {
+      if (navigator.share) {
+        try {
+          await navigator.share({
+            title: 'Carlos y Jimena - Nuestra Boda',
+            text: 'Te invitamos a nuestra boda el 29 de Agosto de 2026',
+            url: window.location.href,
+          });
+        } catch (err) {
+          copyLink();
+        }
+      } else {
+        copyLink();
+      }
+    }
+    
+    // ==========================
+    // Music Player (YouTube)
+    // ==========================
+    let player = null;
+    let isPlaying = false;
+    let isMuted = false;
+    let showControls = false;
+    let musicInitialized = false;
+    
+    function initMusicPlayer() {
+      if (musicInitialized) return;
+      musicInitialized = true;
+      
+      function initPlayer() {
+        if (window.YT && window.YT.Player && !player) {
+          player = new window.YT.Player('youtube-player', {
+            videoId: 'yP_dhALIuFc',
+            playerVars: {
+              autoplay: 1,
+              controls: 0,
+              loop: 1,
+              playlist: 'yP_dhALIuFc',
+              modestbranding: 1,
+              rel: 0,
+              mute: 1,
+            },
+            events: {
+              onReady: (event) => {
+                event.target.setVolume(50);
+                event.target.playVideo();
+                isPlaying = true;
+                updateMusicUI();
+                
+                setTimeout(() => {
+                  try {
+                    event.target.unMute();
+                    isMuted = false;
+                    updateMusicUI();
+                  } catch (e) {
+                    console.log('Could not unmute');
+                  }
+                }, 1000);
+              },
+              onStateChange: (event) => {
+                isPlaying = event.data === window.YT.PlayerState.PLAYING;
+                updateMusicUI();
+              },
+            },
+          });
+        }
+      }
+      
+      if (!window.YT) {
+        const tag = document.createElement('script');
+        tag.src = 'https://www.youtube.com/iframe_api';
+        const firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        window.onYouTubeIframeAPIReady = initPlayer;
+      } else {
+        initPlayer();
+      }
+    }
+    
+    function toggleMusicControls() {
+      showControls = !showControls;
+      const controls = document.getElementById('music-controls');
+      if (showControls) {
+        controls.classList.remove('hidden');
+      } else {
+        controls.classList.add('hidden');
+      }
+    }
+    
+    function togglePlay() {
+      if (!player) return;
+      if (isPlaying) {
+        player.pauseVideo();
+      } else {
+        player.playVideo();
+      }
+    }
+    
+    function toggleMute() {
+      if (!player) return;
+      if (isMuted) {
+        player.unMute();
+        isMuted = false;
+      } else {
+        player.mute();
+        isMuted = true;
+      }
+      updateMusicUI();
+    }
+    
+    function updateMusicUI() {
+      const iconPlaying = document.getElementById('music-icon-playing');
+      const iconPaused = document.getElementById('music-icon-paused');
+      const controlPlay = document.getElementById('control-play-icon');
+      const controlPause = document.getElementById('control-pause-icon');
+      const equalizer = document.getElementById('equalizer');
+      const muteBtn = document.getElementById('mute-btn');
+      const muteIcon = document.getElementById('mute-icon');
+      const unmuteIcon = document.getElementById('unmute-icon');
+      
+      if (isPlaying) {
+        iconPlaying.classList.remove('hidden');
+        iconPaused.classList.add('hidden');
+        controlPlay.classList.remove('hidden');
+        controlPause.classList.add('hidden');
+        equalizer.classList.remove('hidden');
+      } else {
+        iconPlaying.classList.add('hidden');
+        iconPaused.classList.remove('hidden');
+        controlPlay.classList.add('hidden');
+        controlPause.classList.remove('hidden');
+        equalizer.classList.add('hidden');
+      }
+      
+      if (isMuted) {
+        muteBtn.style.background = 'rgba(239, 68, 68, 0.2)';
+        muteBtn.classList.remove('text-gold');
+        muteBtn.classList.add('text-red-400');
+        muteIcon.classList.add('hidden');
+        unmuteIcon.classList.remove('hidden');
+      } else {
+        muteBtn.style.background = 'linear-gradient(135deg, rgba(202, 162, 74, 0.3), rgba(202, 162, 74, 0.1))';
+        muteBtn.classList.add('text-gold');
+        muteBtn.classList.remove('text-red-400');
+        muteIcon.classList.remove('hidden');
+        unmuteIcon.classList.add('hidden');
+      }
+      
+      lucide.createIcons();
+    }
+    
+    // ==========================
+    // Initialize Lucide Icons
+    // ==========================
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
     });
   </script>
 </body>
