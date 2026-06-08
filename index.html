@@ -18,7 +18,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -34,7 +34,8 @@
             bg2: '#0a1023',
           },
           fontFamily: {
-            script: ['"Cormorant Garamond"', 'serif'],
+            script: ['"Great Vibes"', 'cursive'],
+            heading: ['"Playfair Display"', 'serif'],
             body: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'Arial', 'sans-serif'],
           },
         },
@@ -77,7 +78,10 @@
     }
     
     .font-script {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Great Vibes', cursive;
+    }
+    .font-heading {
+      font-family: 'Playfair Display', serif;
     }
     
     .text-gradient {
@@ -364,9 +368,9 @@
           
           <!-- Names -->
           <div class="mb-5">
-            <h1 class="font-script text-5xl md:text-7xl mb-2 text-gradient" style="text-shadow: 0 4px 20px rgba(0,0,0,0.5);">Carlos</h1>
-            <span class="font-script text-3xl md:text-4xl text-gold/90 block my-1">&</span>
-            <h1 class="font-script text-5xl md:text-7xl mt-2 text-gradient" style="text-shadow: 0 4px 20px rgba(0,0,0,0.5);">Jimena</h1>
+            <h1 class="font-script text-6xl md:text-8xl mb-1 text-gradient leading-none" style="text-shadow: 0 4px 20px rgba(0,0,0,0.5);">Carlos</h1>
+            <span class="font-script text-4xl md:text-5xl text-gold/90 block my-2">&</span>
+            <h1 class="font-script text-6xl md:text-8xl mt-1 text-gradient leading-none" style="text-shadow: 0 4px 20px rgba(0,0,0,0.5);">Jimena</h1>
           </div>
           
           <!-- Date -->
@@ -408,7 +412,7 @@
       <section id="inicio" class="reveal">
         <div class="relative rounded-2xl md:rounded-3xl border border-gold/30 overflow-hidden bg-card">
           <div class="relative z-10 p-6 md:p-10">
-            <p class="reveal text-sm md:text-lg text-white/80 leading-relaxed text-center mb-6 reveal-delay-1">
+            <p class="reveal font-heading text-base md:text-xl text-white/85 leading-[1.8] text-center mb-8 reveal-delay-1" style="letter-spacing: 0.02em;">
               Con alegría en el corazón, te invitamos a celebrar nuestra boda. 
               Si te llegó esta invitación, es porque te apreciamos y queremos 
               que nos acompañes en nuestro día más especial.
@@ -435,7 +439,7 @@
             <div class="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-xl mb-3 animate-rotate-sparkle" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.2), rgba(202, 162, 74, 0.05)); border: 1px solid rgba(202, 162, 74, 0.3);">
               <i data-lucide="sparkles" class="text-gold w-[18px] h-[18px] md:w-5 md:h-5"></i>
             </div>
-            <h2 class="font-script text-2xl md:text-4xl text-gradient">Faltan</h2>
+            <h2 class="font-heading text-2xl md:text-4xl text-gradient">Faltan</h2>
           </div>
           
           <!-- Time blocks -->
@@ -491,7 +495,7 @@
               <div class="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-xl mb-3 animate-scale-heart" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.2), rgba(202, 162, 74, 0.05)); border: 1px solid rgba(202, 162, 74, 0.3);">
                 <i data-lucide="users" class="text-gold w-[18px] h-[18px]"></i>
               </div>
-              <h2 class="font-script text-2xl md:text-4xl text-gradient">Nuestros Padres</h2>
+              <h2 class="font-heading text-2xl md:text-4xl text-gradient">Nuestros Padres</h2>
             </div>
             
             <div class="grid md:grid-cols-2 gap-3 md:gap-4">
@@ -521,7 +525,7 @@
               <div class="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-xl mb-3 animate-rotate-sparkle" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.2), rgba(202, 162, 74, 0.05)); border: 1px solid rgba(202, 162, 74, 0.3);">
                 <i data-lucide="crown" class="text-gold w-[18px] h-[18px]"></i>
               </div>
-              <h2 class="font-script text-2xl md:text-4xl text-gradient">Nuestros Padrinos</h2>
+              <h2 class="font-heading text-2xl md:text-4xl text-gradient">Nuestros Padrinos</h2>
             </div>
             
             <div class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3">
@@ -577,7 +581,7 @@
             <div class="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-xl mb-3" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.2), rgba(202, 162, 74, 0.05)); border: 1px solid rgba(202, 162, 74, 0.3);">
               <i data-lucide="map-pin" class="text-gold w-[18px] h-[18px]"></i>
             </div>
-            <h2 class="font-script text-2xl md:text-4xl text-gradient">Ubicación</h2>
+            <h2 class="font-heading text-2xl md:text-4xl text-gradient">Ubicación</h2>
           </div>
           
           <div class="grid md:grid-cols-2 gap-3 md:gap-4">
@@ -627,7 +631,7 @@
             <div class="inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-xl md:rounded-2xl mb-4 animate-rotate-sparkle" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.2), rgba(202, 162, 74, 0.05)); border: 1px solid rgba(202, 162, 74, 0.3);">
               <i data-lucide="sparkles" class="text-gold w-[22px] h-[22px] md:w-5 md:h-5"></i>
             </div>
-            <h2 class="font-script text-3xl md:text-5xl lg:text-6xl text-gradient mb-2 md:mb-3">Itinerario</h2>
+            <h2 class="font-heading text-3xl md:text-5xl lg:text-6xl text-gradient mb-2 md:mb-3">Itinerario</h2>
             <p class="text-white/50 text-sm md:text-base">Un día lleno de momentos inolvidables</p>
           </div>
           
@@ -672,7 +676,7 @@
                 </div>
                 <div class="flex-1 ml-2 md:ml-0 md:px-8">
                   <div class="rounded-xl md:rounded-2xl border border-gold/20 p-4 md:p-5 card-hover cursor-default" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.08), rgba(6, 9, 19, 0.9));">
-                    <span class="text-gold font-bold text-base md:text-lg">6:30 PM</span>
+                    <span class="text-gold font-bold text-base md:text-lg">6:00 PM</span>
                     <h3 class="text-white font-semibold text-base md:text-lg mt-0.5">Traslado</h3>
                     <p class="text-white/50 text-xs md:text-sm mt-0.5">Cambio de sede</p>
                   </div>
@@ -724,7 +728,7 @@
               <i data-lucide="shirt" class="text-gold w-[18px] h-[18px]"></i>
             </div>
             
-            <h3 class="font-script text-xl md:text-2xl text-gradient mb-2">Código de Vestimenta</h3>
+            <h3 class="font-heading text-xl md:text-2xl text-gradient mb-2">Código de Vestimenta</h3>
             
             <div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full mb-3 card-hover cursor-default" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.2), rgba(202, 162, 74, 0.05)); border: 1px solid rgba(202, 162, 74, 0.4);">
               <i data-lucide="sparkles" class="text-gold w-3 h-3"></i>
@@ -764,7 +768,7 @@
               <div class="w-12 h-12 rounded-xl flex items-center justify-center" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.25), rgba(202, 162, 74, 0.08)); border: 1px solid rgba(202, 162, 74, 0.4);">
                 <i data-lucide="wallet" class="text-gold w-6 h-6"></i>
               </div>
-              <h3 class="font-script text-2xl md:text-3xl text-gradient">Lluvia de Sobres</h3>
+              <h3 class="font-heading text-2xl md:text-3xl text-gradient">Lluvia de Sobres</h3>
             </div>
             
             <p class="text-white/70 text-base md:text-lg leading-relaxed mb-5">
@@ -797,7 +801,7 @@
             <div class="inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-xl md:rounded-2xl mb-4 animate-rotate-sparkle" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.2), rgba(202, 162, 74, 0.05)); border: 1px solid rgba(202, 162, 74, 0.3);">
               <i data-lucide="camera" class="text-gold w-[22px] h-[22px] md:w-5 md:h-5"></i>
             </div>
-            <h2 class="font-script text-3xl md:text-5xl lg:text-6xl text-gradient mb-2 md:mb-3">Nuestros Momentos</h2>
+            <h2 class="font-heading text-3xl md:text-5xl lg:text-6xl text-gradient mb-2 md:mb-3">Nuestros Momentos</h2>
             <p class="text-white/50 text-sm md:text-base">Los momentos más especiales de nuestra historia</p>
           </div>
           
@@ -1171,7 +1175,7 @@
             <div class="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-xl mb-3 animate-rotate-sparkle" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.2), rgba(202, 162, 74, 0.05)); border: 1px solid rgba(202, 162, 74, 0.3);">
               <i data-lucide="send" class="text-gold w-[18px] h-[18px]"></i>
             </div>
-            <h2 class="font-script text-2xl md:text-4xl text-gradient mb-1">Confirma tu Asistencia</h2>
+            <h2 class="font-heading text-2xl md:text-4xl text-gradient mb-1">Confirma tu Asistencia</h2>
             <p class="text-white/50 text-xs md:text-sm">Antes del 15 de Agosto de 2026</p>
           </div>
           
@@ -1276,7 +1280,7 @@
             <div class="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-xl mb-3" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.2), rgba(202, 162, 74, 0.05)); border: 1px solid rgba(202, 162, 74, 0.3);">
               <i data-lucide="qr-code" class="text-gold w-[18px] h-[18px]"></i>
             </div>
-            <h2 class="font-script text-2xl md:text-4xl text-gradient mb-1">Comparte</h2>
+            <h2 class="font-heading text-2xl md:text-4xl text-gradient mb-1">Comparte</h2>
             <p class="text-white/50 text-xs md:text-sm">Escanea o comparte el enlace</p>
           </div>
           
