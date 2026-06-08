@@ -250,6 +250,101 @@
       left: 100%;
     }
     
+
+    /* Scroll Progress */
+    #scroll-progress { will-change: width; }
+    
+    /* Ripple Effect */
+    .ripple {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(202, 162, 74, 0.4);
+      transform: scale(0);
+      animation: ripple-animation 0.6s linear;
+      pointer-events: none;
+    }
+    @keyframes ripple-animation {
+      to { transform: scale(4); opacity: 0; }
+    }
+    
+    /* Shake Error */
+    .shake-error {
+      animation: shake-error 0.5s ease-in-out;
+      border-color: rgba(239, 68, 68, 0.6) !important;
+    }
+    @keyframes shake-error {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-6px); }
+      40% { transform: translateX(6px); }
+      60% { transform: translateX(-4px); }
+      80% { transform: translateX(4px); }
+    }
+    
+    /* Timeline Draw */
+    .timeline-line {
+      position: absolute;
+      left: 20px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, #caa24a, #e1c37a, #caa24a);
+      opacity: 0.2;
+      z-index: 0;
+    }
+    .timeline-line-progress {
+      position: absolute;
+      left: 20px;
+      top: 0;
+      width: 2px;
+      height: 0%;
+      background: linear-gradient(180deg, #caa24a, #e1c37a, #caa24a);
+      z-index: 1;
+      transition: height 0.3s ease-out;
+    }
+    @media (min-width: 768px) {
+      .timeline-line { left: 50%; margin-left: -1px; }
+      .timeline-line-progress { left: 50%; margin-left: -1px; }
+    }
+    
+    /* 3D Tilt */
+    .tilt-card {
+      transform-style: preserve-3d;
+      transition: transform 0.1s ease-out;
+    }
+    
+    /* Staggered reveals */
+    .reveal-left { transform: translateX(-40px) translateY(0); }
+    .reveal-right { transform: translateX(40px) translateY(0); }
+    .reveal-scale { transform: translateY(30px) scale(0.95); }
+    .reveal-left.visible, .reveal-right.visible, .reveal-scale.visible {
+      opacity: 1;
+      transform: translateX(0) translateY(0) scale(1);
+    }
+    
+    /* Countdown flip */
+    .count-flip {
+      transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    }
+    .count-flip.changing {
+      transform: translateY(-10px) scale(1.1);
+      opacity: 0.7;
+    }
+    
+    /* Nav active state */
+    .nav-link.active {
+      background: rgba(202, 162, 74, 0.15);
+      color: #e1c37a;
+      border: 1px solid rgba(202, 162, 74, 0.3);
+    }
+    .mobile-nav-link.active {
+      background: rgba(202, 162, 74, 0.2) !important;
+      color: #e1c37a !important;
+    }
+    
+    /* Parallax image container */
+    .parallax-container { overflow: hidden; }
+    .parallax-img { will-change: transform; }
+
     /* Mobile optimizations */
     @media (max-width: 768px) {
       html { font-size: 14px; }
@@ -294,12 +389,12 @@
           <span class="font-script text-base text-gradient">Carlos & Jimena</span>
         </a>
         <div class="hidden md:flex items-center gap-0.5">
-          <a href="#inicio" class="nav-link px-3 py-1.5 rounded-full text-xs text-white/60 hover:text-white transition-colors">Inicio</a>
-          <a href="#padres" class="nav-link px-3 py-1.5 rounded-full text-xs text-white/60 hover:text-white transition-colors">Padres</a>
-          <a href="#ubicacion" class="nav-link px-3 py-1.5 rounded-full text-xs text-white/60 hover:text-white transition-colors">Ubicación</a>
-          <a href="#itinerario" class="nav-link px-3 py-1.5 rounded-full text-xs text-white/60 hover:text-white transition-colors">Itinerario</a>
-          <a href="#galeria" class="nav-link px-3 py-1.5 rounded-full text-xs text-white/60 hover:text-white transition-colors">Galería</a>
-          <a href="#rsvp" class="nav-link px-3 py-1.5 rounded-full text-xs text-white/60 hover:text-white transition-colors">Confirmar</a>
+          <a href="#inicio" data-section="inicio" class="nav-link px-3 py-1.5 rounded-full text-xs text-white/60 hover:text-white transition-colors">Inicio</a>
+          <a href="#padres" data-section="padres" class="nav-link px-3 py-1.5 rounded-full text-xs text-white/60 hover:text-white transition-colors">Padres</a>
+          <a href="#ubicacion" data-section="ubicacion" class="nav-link px-3 py-1.5 rounded-full text-xs text-white/60 hover:text-white transition-colors">Ubicación</a>
+          <a href="#itinerario" data-section="itinerario" class="nav-link px-3 py-1.5 rounded-full text-xs text-white/60 hover:text-white transition-colors">Itinerario</a>
+          <a href="#galeria" data-section="galeria" class="nav-link px-3 py-1.5 rounded-full text-xs text-white/60 hover:text-white transition-colors">Galería</a>
+          <a href="#rsvp" data-section="rsvp" class="nav-link px-3 py-1.5 rounded-full text-xs text-white/60 hover:text-white transition-colors">Confirmar</a>
         </div>
         <button id="mobile-menu-btn" class="md:hidden w-8 h-8 rounded-full border border-gold/30 flex items-center justify-center text-white">
           <i data-lucide="menu" class="w-4 h-4"></i>
@@ -307,6 +402,9 @@
       </div>
     </div>
   </nav>
+  
+  <!-- Scroll Progress Bar -->
+  <div id="scroll-progress" style="position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, #caa24a, #e1c37a, #f6e7c0); width: 0%; z-index: 50; transition: width 0.1s linear; box-shadow: 0 0 10px rgba(202,162,74,0.5);"></div>
   
   <!-- Mobile Menu -->
   <div id="mobile-menu" class="fixed inset-0 z-50 md:hidden hidden">
@@ -319,12 +417,12 @@
         </button>
       </div>
       <div class="space-y-1">
-        <a href="#inicio" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-white/70 hover:text-white text-sm" style="background: rgba(202, 162, 74, 0.05);">Inicio</a>
-        <a href="#padres" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-white/70 hover:text-white text-sm" style="background: rgba(202, 162, 74, 0.05);">Padres</a>
-        <a href="#ubicacion" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-white/70 hover:text-white text-sm" style="background: rgba(202, 162, 74, 0.05);">Ubicación</a>
-        <a href="#itinerario" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-white/70 hover:text-white text-sm" style="background: rgba(202, 162, 74, 0.05);">Itinerario</a>
-        <a href="#galeria" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-white/70 hover:text-white text-sm" style="background: rgba(202, 162, 74, 0.05);">Galería</a>
-        <a href="#rsvp" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-white/70 hover:text-white text-sm" style="background: rgba(202, 162, 74, 0.05);">Confirmar</a>
+        <a href="#inicio" data-section="inicio" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-white/70 hover:text-white text-sm" style="background: rgba(202, 162, 74, 0.05);">Inicio</a>
+        <a href="#padres" data-section="padres" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-white/70 hover:text-white text-sm" style="background: rgba(202, 162, 74, 0.05);">Padres</a>
+        <a href="#ubicacion" data-section="ubicacion" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-white/70 hover:text-white text-sm" style="background: rgba(202, 162, 74, 0.05);">Ubicación</a>
+        <a href="#itinerario" data-section="itinerario" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-white/70 hover:text-white text-sm" style="background: rgba(202, 162, 74, 0.05);">Itinerario</a>
+        <a href="#galeria" data-section="galeria" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-white/70 hover:text-white text-sm" style="background: rgba(202, 162, 74, 0.05);">Galería</a>
+        <a href="#rsvp" data-section="rsvp" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-white/70 hover:text-white text-sm" style="background: rgba(202, 162, 74, 0.05);">Confirmar</a>
       </div>
     </div>
   </div>
@@ -419,9 +517,9 @@
             </p>
             
             <!-- Main photo -->
-            <div class="reveal relative max-w-lg mx-auto reveal-delay-2">
-              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/30" style="box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);">
-                <img src="./images/principal.jpeg" alt="Carlos y Jimena" class="w-full h-auto">
+            <div class="reveal relative max-w-lg mx-auto reveal-delay-2 parallax-container" style="border-radius: 1rem; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);">
+              <div class="relative overflow-hidden border border-gold/30" style="border-radius: inherit;">
+                <img id="principal-photo" src="./images/principal.jpeg" alt="Carlos y Jimena" class="w-full h-auto parallax-img" style="transform: scale(1.1);">
               </div>
             </div>
           </div>
@@ -447,28 +545,28 @@
             <div class="reveal relative cursor-pointer reveal-delay-1">
               <div class="absolute inset-0 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/30 to-gold2/30 blur-lg animate-pulse-glow"></div>
               <div class="relative rounded-xl md:rounded-2xl border border-gold/20 p-3 md:p-5 text-center overflow-hidden" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
-                <span id="cd-days" class="block text-2xl md:text-4xl font-bold text-gradient">00</span>
+                <span id="cd-days" class="count-flip block text-2xl md:text-4xl font-bold text-gradient">00</span>
                 <span class="text-[10px] md:text-xs uppercase tracking-wider text-gold/70">Días</span>
               </div>
             </div>
             <div class="reveal relative cursor-pointer reveal-delay-2">
               <div class="absolute inset-0 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/30 to-gold2/30 blur-lg animate-pulse-glow"></div>
               <div class="relative rounded-xl md:rounded-2xl border border-gold/20 p-3 md:p-5 text-center overflow-hidden" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
-                <span id="cd-hours" class="block text-2xl md:text-4xl font-bold text-gradient">00</span>
+                <span id="cd-hours" class="count-flip block text-2xl md:text-4xl font-bold text-gradient">00</span>
                 <span class="text-[10px] md:text-xs uppercase tracking-wider text-gold/70">Horas</span>
               </div>
             </div>
             <div class="reveal relative cursor-pointer reveal-delay-3">
               <div class="absolute inset-0 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/30 to-gold2/30 blur-lg animate-pulse-glow"></div>
               <div class="relative rounded-xl md:rounded-2xl border border-gold/20 p-3 md:p-5 text-center overflow-hidden" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
-                <span id="cd-minutes" class="block text-2xl md:text-4xl font-bold text-gradient">00</span>
+                <span id="cd-minutes" class="count-flip block text-2xl md:text-4xl font-bold text-gradient">00</span>
                 <span class="text-[10px] md:text-xs uppercase tracking-wider text-gold/70">Min</span>
               </div>
             </div>
             <div class="reveal relative cursor-pointer reveal-delay-4">
               <div class="absolute inset-0 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/30 to-gold2/30 blur-lg animate-pulse-glow"></div>
               <div class="relative rounded-xl md:rounded-2xl border border-gold/20 p-3 md:p-5 text-center overflow-hidden" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
-                <span id="cd-seconds" class="block text-2xl md:text-4xl font-bold text-gradient">00</span>
+                <span id="cd-seconds" class="count-flip block text-2xl md:text-4xl font-bold text-gradient">00</span>
                 <span class="text-[10px] md:text-xs uppercase tracking-wider text-gold/70">Seg</span>
               </div>
             </div>
@@ -500,14 +598,14 @@
             
             <div class="grid md:grid-cols-2 gap-3 md:gap-4">
               <!-- Groom parents -->
-              <div class="reveal reveal-delay-2 rounded-xl border border-gold/20 p-4 card-hover cursor-default" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.08), rgba(6, 9, 19, 0.8));">
+              <div class="reveal reveal-delay-2 rounded-xl border border-gold/20 p-4 card-hover cursor-default tilt-card" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.08), rgba(6, 9, 19, 0.8));">
                 <p class="text-xs uppercase tracking-wider text-gold mb-2">Padres del Novio</p>
                 <p class="text-white/80 text-sm py-1 transition-colors hover:text-gold2">Carlos Alberto Urbina Tavarez</p>
                 <p class="text-white/80 text-sm py-1 transition-colors hover:text-gold2">Ma. Guadalupe Muñoz Campuzano</p>
               </div>
               
               <!-- Bride parents -->
-              <div class="reveal reveal-delay-3 rounded-xl border border-gold/20 p-4 card-hover cursor-default" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.08), rgba(6, 9, 19, 0.8));">
+              <div class="reveal reveal-delay-3 rounded-xl border border-gold/20 p-4 card-hover cursor-default tilt-card" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.08), rgba(6, 9, 19, 0.8));">
                 <p class="text-xs uppercase tracking-wider text-gold mb-2">Padres de la Novia</p>
                 <p class="text-white/80 text-sm py-1 transition-colors hover:text-gold2">Jose Gerardo Mena Huerta</p>
                 <p class="text-white/80 text-sm py-1 transition-colors hover:text-gold2">Maria de Jesus Prado Lara</p>
@@ -586,7 +684,7 @@
           
           <div class="grid md:grid-cols-2 gap-3 md:gap-4">
             <!-- Ceremony -->
-            <div class="reveal reveal-delay-2 rounded-xl border border-gold/20 p-4 md:p-5 card-hover cursor-default" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.08), rgba(6, 9, 19, 0.8));">
+            <div class="reveal reveal-delay-2 rounded-xl border border-gold/20 p-4 md:p-5 card-hover cursor-default tilt-card" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.08), rgba(6, 9, 19, 0.8));">
               <div class="flex items-center gap-2 mb-3">
                 <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background: rgba(202, 162, 74, 0.15);">
                   <i data-lucide="church" class="text-gold w-4 h-4"></i>
@@ -604,7 +702,7 @@
             </div>
             
             <!-- Reception -->
-            <div class="reveal reveal-delay-3 rounded-xl border border-gold/20 p-4 md:p-5 card-hover cursor-default" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.08), rgba(6, 9, 19, 0.8));">
+            <div class="reveal reveal-delay-3 rounded-xl border border-gold/20 p-4 md:p-5 card-hover cursor-default tilt-card" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.08), rgba(6, 9, 19, 0.8));">
               <div class="flex items-center gap-2 mb-3">
                 <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background: rgba(202, 162, 74, 0.15);">
                   <i data-lucide="party-popper" class="text-gold w-4 h-4"></i>
@@ -638,7 +736,8 @@
           <!-- Timeline -->
           <div class="relative max-w-2xl mx-auto">
             <!-- Vertical line -->
-            <div class="absolute left-5 md:left-1/2 top-0 bottom-0 w-0.5 md:-translate-x-1/2 bg-gradient-to-b from-gold via-gold2 to-gold opacity-40"></div>
+            <div class="timeline-line"></div>
+            <div class="timeline-line-progress" id="timeline-progress"></div>
             
             <div class="space-y-6 md:space-y-8">
               <!-- Llegada -->
@@ -720,7 +819,7 @@
       <!-- Dress Code + Lluvia de Sobres -->
       <section class="grid md:grid-cols-[1fr_2fr] gap-3 md:gap-4">
         <!-- Dress Code -->
-        <div class="reveal relative rounded-2xl border border-gold/30 overflow-hidden bg-card">
+        <div class="reveal relative rounded-2xl border border-gold/30 overflow-hidden bg-card tilt-card">
           <div class="absolute top-0 right-0 w-[200px] h-[200px] bg-gold/10 rounded-full blur-[60px] animate-pulse-glow-soft"></div>
           
           <div class="relative z-10 p-5">
@@ -759,7 +858,7 @@
         </div>
         
         <!-- Lluvia de Sobres -->
-        <div class="reveal relative rounded-2xl border border-gold/30 overflow-hidden bg-card flex flex-col justify-center">
+        <div class="reveal relative rounded-2xl border border-gold/30 overflow-hidden bg-card flex flex-col justify-center tilt-card">
           <div class="absolute bottom-0 left-0 w-[300px] h-[300px] bg-gold2/10 rounded-full blur-[80px] animate-pulse-glow-soft"></div>
           <div class="absolute top-0 right-0 w-[200px] h-[200px] bg-gold/10 rounded-full blur-[60px] animate-pulse-glow-soft"></div>
           
@@ -1699,10 +1798,10 @@
       const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((diff % (1000 * 60)) / 1000);
       
-      document.getElementById('cd-days').textContent = String(days).padStart(2, '0');
-      document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
-      document.getElementById('cd-minutes').textContent = String(minutes).padStart(2, '0');
-      document.getElementById('cd-seconds').textContent = String(seconds).padStart(2, '0');
+      animateCountChange(document.getElementById('cd-days'), String(days).padStart(2, '0'));
+      animateCountChange(document.getElementById('cd-hours'), String(hours).padStart(2, '0'));
+      animateCountChange(document.getElementById('cd-minutes'), String(minutes).padStart(2, '0'));
+      animateCountChange(document.getElementById('cd-seconds'), String(seconds).padStart(2, '0'));
     }
     
     updateCountdown();
@@ -1839,6 +1938,191 @@
       if (e.key === 'ArrowRight') nextImage({ stopPropagation: () => {} });
     });
     
+
+    // ==========================
+    // Scroll Progress Bar
+    // ==========================
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      document.getElementById('scroll-progress').style.width = progress + '%';
+    }, { passive: true });
+    
+    // ==========================
+    // Active Navigation on Scroll
+    // ==========================
+    const sections = ['inicio', 'padres', 'ubicacion', 'itinerario', 'galeria', 'rsvp'];
+    const navLinks = document.querySelectorAll('.nav-link[data-section], .mobile-nav-link[data-section]');
+    
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          navLinks.forEach(link => {
+            if (link.dataset.section === id) {
+              link.classList.add('active');
+            } else {
+              link.classList.remove('active');
+            }
+          });
+        }
+      });
+    }, { threshold: 0.3, rootMargin: '-80px 0px -40% 0px' });
+    
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) sectionObserver.observe(el);
+    });
+    
+    // ==========================
+    // Ripple Effect on Buttons/Links
+    // ==========================
+    document.addEventListener('click', function(e) {
+      const target = e.target.closest('button, a, .card-hover, .gallery-item');
+      if (!target) return;
+      
+      const rect = target.getBoundingClientRect();
+      const ripple = document.createElement('span');
+      const size = Math.max(rect.width, rect.height);
+      const x = e.clientX - rect.left - size / 2;
+      const y = e.clientY - rect.top - size / 2;
+      
+      ripple.style.width = ripple.style.height = size + 'px';
+      ripple.style.left = x + 'px';
+      ripple.style.top = y + 'px';
+      ripple.classList.add('ripple');
+      
+      target.style.position = 'relative';
+      target.style.overflow = 'hidden';
+      target.appendChild(ripple);
+      
+      setTimeout(() => ripple.remove(), 600);
+    });
+    
+    // ==========================
+    // Timeline Draw on Scroll
+    // ==========================
+    const timelineProgress = document.getElementById('timeline-progress');
+    if (timelineProgress) {
+      const timelineObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const rect = entry.target.getBoundingClientRect();
+            const parent = entry.target.parentElement.getBoundingClientRect();
+            const ratio = Math.min(1, Math.max(0, (window.innerHeight - rect.top) / (parent.height + window.innerHeight * 0.5)));
+            timelineProgress.style.height = (ratio * 100) + '%';
+          }
+        });
+      }, { threshold: Array.from({length: 101}, (_, i) => i / 100) });
+      timelineObserver.observe(document.getElementById('itinerario'));
+    }
+    
+    // ==========================
+    // Parallax on Principal Photo
+    // ==========================
+    const principalPhoto = document.getElementById('principal-photo');
+    if (principalPhoto) {
+      window.addEventListener('scroll', () => {
+        const container = principalPhoto.closest('.parallax-container');
+        if (!container) return;
+        const rect = container.getBoundingClientRect();
+        const progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+        if (progress > -0.5 && progress < 1.5) {
+          principalPhoto.style.transform = `scale(1.1) translateY(${(progress - 0.5) * -30}px)`;
+        }
+      }, { passive: true });
+    }
+    
+    // ==========================
+    // 3D Tilt on Cards
+    // ==========================
+    document.querySelectorAll('.tilt-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = (y - centerY) / centerY * -5;
+        const rotateY = (x - centerX) / centerX * 5;
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+      });
+      card.addEventListener('touchmove', (e) => {
+        if (e.touches.length !== 1) return;
+        const rect = card.getBoundingClientRect();
+        const x = e.touches[0].clientX - rect.left;
+        const y = e.touches[0].clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = (y - centerY) / centerY * -3;
+        const rotateY = (x - centerX) / centerX * 3;
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      }, { passive: true });
+      card.addEventListener('touchend', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+      });
+    });
+    
+    // ==========================
+    // Confetti on Open Invitation
+    // ==========================
+    document.getElementById('open-invitation').addEventListener('click', function() {
+      const colors = ['#caa24a', '#e1c37a', '#f6e7c0', '#ffffff'];
+      confetti({
+        particleCount: 100,
+        spread: 80,
+        origin: { y: 0.6 },
+        colors: colors,
+        ticks: 150,
+        gravity: 0.8,
+        scalar: 1.1
+      });
+      setTimeout(() => {
+        confetti({
+          particleCount: 60,
+          spread: 100,
+          origin: { y: 0.7, x: 0.3 },
+          colors: colors,
+          angle: 60
+        });
+      }, 200);
+      setTimeout(() => {
+        confetti({
+          particleCount: 60,
+          spread: 100,
+          origin: { y: 0.7, x: 0.7 },
+          colors: colors,
+          angle: 120
+        });
+      }, 400);
+    });
+    
+    // ==========================
+    // Countdown Flip Animation
+    // ==========================
+    function animateCountChange(el, newValue) {
+      if (el.textContent === newValue) return;
+      el.classList.add('changing');
+      setTimeout(() => {
+        el.textContent = newValue;
+        el.classList.remove('changing');
+      }, 150);
+    }
+    
+    // ==========================
+    // Shake Error on Form
+    // ==========================
+    function shakeElement(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.classList.add('shake-error');
+      setTimeout(() => el.classList.remove('shake-error'), 500);
+    }
+    
     // ==========================
     // RSVP Form
     // ==========================
@@ -1927,9 +2211,9 @@
       e.preventDefault();
       
       let hasError = false;
-      if (!formData.name.trim()) { showError('name'); hasError = true; }
-      if (!formData.attendance) { showError('attendance'); hasError = true; }
-      if (formData.attendance === 'Si' && !formData.pax) { showError('pax'); hasError = true; }
+      if (!formData.name.trim()) { showError('name'); shakeElement('rsvp-name'); shakeElement('error-name'); hasError = true; }
+      if (!formData.attendance) { showError('attendance'); shakeElement('error-attendance'); hasError = true; }
+      if (formData.attendance === 'Si' && !formData.pax) { showError('pax'); shakeElement('error-pax'); hasError = true; }
       
       if (hasError) return;
       
