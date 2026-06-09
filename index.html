@@ -1067,7 +1067,7 @@
     </div>
     
       <!-- Admin: Generador de Invitaciones -->
-      <section id="admin-panel" class="reveal hidden">
+      <section id="admin-panel" class="reveal hidden max-w-3xl mx-auto px-4">
         <div class="bg-card rounded-2xl md:rounded-3xl border border-gold/20 overflow-hidden p-6 md:p-8">
           <div class="text-center mb-6">
             <div class="inline-flex items-center justify-center w-10 h-10 rounded-xl mb-3 border border-gold/20" style="background: rgba(202,162,74,0.06);">
@@ -1414,7 +1414,7 @@
     // ==========================
     // Loading Screen
     // ==========================
-    const isAdminMode = urlParams.get('admin') === '1';
+    const isAdminMode = new URLSearchParams(window.location.search).get('admin') === '1';
     
     setTimeout(() => {
       const loading = document.getElementById('loading-screen');
