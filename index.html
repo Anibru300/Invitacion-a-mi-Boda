@@ -1414,6 +1414,8 @@
     // ==========================
     // Loading Screen
     // ==========================
+    const isAdminMode = urlParams.get('admin') === '1';
+    
     setTimeout(() => {
       const loading = document.getElementById('loading-screen');
       if (loading) {
@@ -1421,15 +1423,22 @@
         loading.style.transition = 'opacity 0.5s ease';
         setTimeout(() => {
           loading.style.display = 'none';
+          
+          // If admin mode, auto-open invitation
+          if (isAdminMode) {
+            openInvitation(true);
+          }
         }, 500);
       }
-    }, 800);
+    }, isAdminMode ? 300 : 800);
     
     // ==========================
     // Hero Open
     // ==========================
     let isInvitationOpen = false;
-    document.getElementById('open-invitation').addEventListener('click', function() {
+    
+    function openInvitation(skipMusic = false) {
+      if (isInvitationOpen) return;
       isInvitationOpen = true;
       const hero = document.getElementById('hero');
       const main = document.getElementById('main-content');
@@ -1445,17 +1454,35 @@
         main.style.opacity = '1';
         main.style.transform = 'translateY(0)';
         
-        player.classList.remove('hidden');
-        setTimeout(() => {
-          player.classList.remove('opacity-0');
-          player.classList.add('opacity-100');
-        }, 100);
+        if (!skipMusic) {
+          player.classList.remove('hidden');
+          setTimeout(() => {
+            player.classList.remove('opacity-0');
+            player.classList.add('opacity-100');
+          }, 100);
+          initMusicPlayer();
+        }
         
-        initMusicPlayer();
         window.scrollTo({ top: 0, behavior: 'smooth' });
         
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        
+        // If admin mode, scroll to admin panel after reveals init
+        if (isAdminMode) {
+          setTimeout(() => {
+            const adminPanel = document.getElementById('admin-panel');
+            if (adminPanel) {
+              adminPanel.classList.remove('hidden');
+              adminPanel.classList.add('visible');
+              adminPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }, 600);
+        }
       }, 400);
+    }
+    
+    document.getElementById('open-invitation').addEventListener('click', function() {
+      openInvitation(false);
     });
     
     // ==========================
@@ -1993,10 +2020,6 @@
     // Admin Panel
     // ==========================
     let adminPax = '';
-    
-    if (urlParams.get('admin') === '1') {
-      document.getElementById('admin-panel').classList.remove('hidden');
-    }
     
     function setAdminPax(value) {
       adminPax = value;
