@@ -920,6 +920,12 @@
             
             <!-- Number of people -->
             <div id="pax-section" class="hidden">
+              <div class="rounded-xl border border-gold/20 p-3 mb-3 bg-bg2/60">
+                <p class="text-gold/80 text-xs leading-relaxed">
+                  <i data-lucide="info" class="w-3.5 h-3.5 inline-block mr-1 -mt-0.5"></i>
+                  Por favor confirma exactamente <strong>cuántas personas asistirán</strong> de las asignadas. El pase de acceso se generará con ese número y solo podrá usarse una vez.
+                </p>
+              </div>
               <p class="text-white/70 text-xs mb-2 ml-1" id="pax-label">¿Cuántas personas?</p>
               <div id="pax-buttons" class="grid grid-cols-5 gap-2">
                 <button type="button" onclick="setPax('1')" class="pax-btn py-3 rounded-xl border text-sm font-medium transition-all bg-bg2/80 border-gold/20 text-white/50 hover:border-gold/40">1</button>
@@ -1713,6 +1719,46 @@
       container.innerHTML = html;
     }
     
+    // ==========================
+    // One-time confirmation via localStorage
+    // ==========================
+    function getStorageKey() {
+      const nameKey = preAssignedName ? decodeURIComponent(preAssignedName) : (formData.name || 'default');
+      return 'boda_cj_' + btoa(unescape(encodeURIComponent(nameKey))).replace(/[^a-zA-Z0-9]/g, '');
+    }
+    
+    function restoreSavedConfirmation() {
+      const saved = localStorage.getItem(getStorageKey());
+      if (!saved) return false;
+      try {
+        const data = JSON.parse(saved);
+        if (data.attendance === 'Si') {
+          openInvitation(true);
+          setTimeout(() => {
+            document.getElementById('rsvp-form-container').classList.add('hidden');
+            document.getElementById('rsvp-success').classList.remove('hidden');
+            document.getElementById('success-yes').classList.remove('hidden');
+            formData.pax = data.pax || '1';
+            showAccessPass();
+            lucide.createIcons();
+          }, 500);
+          return true;
+        } else if (data.attendance === 'No') {
+          openInvitation(true);
+          setTimeout(() => {
+            document.getElementById('rsvp-form-container').classList.add('hidden');
+            document.getElementById('rsvp-success').classList.remove('hidden');
+            document.getElementById('success-no').classList.remove('hidden');
+            lucide.createIcons();
+          }, 500);
+          return true;
+        }
+      } catch (e) { return false; }
+      return false;
+    }
+    
+    const alreadyConfirmed = restoreSavedConfirmation();
+    
     function setAttendance(value) {
       formData.attendance = value;
       if (value === 'No') formData.pax = '';
@@ -1846,12 +1892,21 @@
         fetch(BASE, { method: 'POST', mode: 'no-cors', body: params, headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).catch(() => {});
       }
       
+      // Save confirmation to localStorage (one-time only)
+      localStorage.setItem(getStorageKey(), JSON.stringify({
+        attendance: formData.attendance,
+        pax: formData.pax,
+        name: formData.name,
+        timestamp: Date.now()
+      }));
+      
       document.getElementById('rsvp-form-container').classList.add('hidden');
       document.getElementById('rsvp-success').classList.remove('hidden');
       
       if (formData.attendance === 'Si') {
         document.getElementById('success-yes').classList.remove('hidden');
         triggerConfetti();
+        setTimeout(() => showAccessPass(), 800);
       } else {
         document.getElementById('success-no').classList.remove('hidden');
       }
