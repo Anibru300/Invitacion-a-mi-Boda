@@ -27,16 +27,11 @@
       theme: {
         extend: {
           colors: {
-            cream: '#faf8f5',
-            cream2: '#f5f0e8',
-            cream3: '#ede6da',
-            gold: '#b8944f',
-            gold2: '#c9a96e',
-            gold3: '#d4b87a',
-            champagne: '#f0e6d0',
-            text: '#3d3d3d',
-            text2: '#6b6b6b',
-            text3: '#9a9a9a',
+            bg1: '#060913',
+            bg2: '#0a1023',
+            gold: '#caa24a',
+            gold2: '#e1c37a',
+            gold3: '#f6e7c0',
           },
           fontFamily: {
             script: ['"Great Vibes"', 'cursive'],
@@ -56,17 +51,15 @@
   
   <style>
     :root {
-      --cream: #faf8f5;
-      --cream2: #f5f0e8;
-      --gold: #b8944f;
-      --gold2: #c9a96e;
-      --gold3: #d4b87a;
-      --text: #3d3d3d;
-      --text2: #6b6b6b;
+      --bg1: #060913;
+      --bg2: #0a1023;
+      --gold: #caa24a;
+      --gold2: #e1c37a;
+      --gold3: #f6e7c0;
     }
     
     * {
-      border-color: rgba(184, 148, 79, 0.15);
+      border-color: rgba(202, 162, 74, 0.2);
     }
     
     html {
@@ -76,8 +69,8 @@
     
     body {
       font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: var(--cream);
-      color: var(--text);
+      background: #060913;
+      color: #fff;
       min-height: 100vh;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
@@ -92,19 +85,29 @@
     }
     
     .text-gradient {
-      background: linear-gradient(135deg, #b8944f, #c9a96e);
+      background: linear-gradient(135deg, #f6e7c0, #e1c37a);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
     
+    .text-shimmer {
+      background: linear-gradient(90deg, #f6e7c0 0%, #ffffff 25%, #fff8dc 50%, #ffffff 75%, #f6e7c0 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmer 1.5s linear infinite;
+    }
+    @keyframes shimmer {
+      to { background-position: 200% center; }
+    }
+    
     .bg-card {
-      background: #ffffff;
-      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0,0,0,0.02);
+      background: linear-gradient(180deg, rgba(13, 20, 41, 0.95), rgba(6, 9, 19, 0.98));
     }
     
     .border-gold {
-      border-color: rgba(184, 148, 79, 0.25);
+      border-color: rgba(202, 162, 74, 0.3);
     }
     
     /* Scrollbar */
@@ -112,7 +115,7 @@
       width: 5px;
     }
     ::-webkit-scrollbar-track {
-      background: var(--cream2);
+      background: var(--bg1);
     }
     ::-webkit-scrollbar-thumb {
       background: var(--gold);
@@ -121,8 +124,8 @@
     
     /* Selection */
     ::selection {
-      background: rgba(184, 148, 79, 0.2);
-      color: var(--text);
+      background: rgba(202, 162, 74, 0.3);
+      color: #fff;
     }
     
     /* Reveal animation */
@@ -147,24 +150,53 @@
       50% { opacity: 1; }
     }
     
+    @keyframes wave-move {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(50px, -30px) scale(1.1); }
+      66% { transform: translate(-30px, 40px) scale(0.95); }
+    }
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(202,162,74,0.3); }
+      10% { transform: scale(1.6); box-shadow: 0 0 50px rgba(202,162,74,0.8); }
+      20% { transform: scale(1); box-shadow: 0 0 20px rgba(202,162,74,0.3); }
+      30% { transform: scale(1.6); box-shadow: 0 0 50px rgba(202,162,74,0.8); }
+      50% { transform: scale(1); box-shadow: 0 0 20px rgba(202,162,74,0.3); }
+    }
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 0.4; }
+    }
+    @keyframes pulse-glow-soft {
+      0%, 100% { opacity: 0.05; }
+      50% { opacity: 0.1; }
+    }
+    
+    .animate-pulse-glow {
+      animation: pulse-glow 3s ease-in-out infinite;
+    }
+    .animate-pulse-glow-soft {
+      animation: pulse-glow-soft 4s ease-in-out infinite;
+    }
+    
     /* Card hover */
     .card-hover {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: transform 0.3s ease, border-color 0.3s ease;
     }
     .card-hover:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+      transform: scale(1.02) translateY(-3px);
+      border-color: rgba(202, 162, 74, 0.5);
     }
     
     /* Button base */
     .btn-gold {
-      background: linear-gradient(135deg, #b8944f, #c9a96e);
+      background: linear-gradient(135deg, rgba(202, 162, 74, 0.35), rgba(202, 162, 74, 0.15));
       color: white;
       transition: all 0.3s ease;
-      box-shadow: 0 4px 14px rgba(184, 148, 79, 0.3);
+      border: 1px solid rgba(202, 162, 74, 0.6);
+      box-shadow: 0 0 20px rgba(202, 162, 74, 0.2);
     }
     .btn-gold:hover {
-      box-shadow: 0 6px 20px rgba(184, 148, 79, 0.4);
+      box-shadow: 0 0 30px rgba(202, 162, 74, 0.3);
       transform: translateY(-1px);
     }
     .btn-gold:active {
@@ -172,14 +204,14 @@
     }
     
     .btn-outline {
-      border: 1.5px solid rgba(184, 148, 79, 0.4);
-      color: #b8944f;
+      border: 1.5px solid rgba(202, 162, 74, 0.4);
+      color: #e1c37a;
       background: transparent;
       transition: all 0.3s ease;
     }
     .btn-outline:hover {
-      background: rgba(184, 148, 79, 0.06);
-      border-color: rgba(184, 148, 79, 0.6);
+      background: rgba(202, 162, 74, 0.08);
+      border-color: rgba(202, 162, 74, 0.6);
     }
     
     /* Gallery clean */
@@ -190,10 +222,9 @@
       transform: scale(1.05);
     }
     
-    /* Nav active */
     .nav-link.active {
-      background: rgba(184, 148, 79, 0.1);
-      color: #b8944f;
+      background: rgba(202, 162, 74, 0.15);
+      color: #e1c37a;
     }
     
     /* Timeline */
@@ -202,11 +233,11 @@
       left: 24px;
       top: 0;
       bottom: 0;
-      width: 1px;
-      background: linear-gradient(180deg, rgba(184,148,79,0.4), rgba(184,148,79,0.1));
+      width: 2px;
+      background: linear-gradient(180deg, rgba(202,162,74,0.4), rgba(202,162,74,0.1));
     }
     @media (min-width: 768px) {
-      .timeline-line { left: 50%; margin-left: -0.5px; }
+      .timeline-line { left: 50%; margin-left: -1px; }
     }
     
     /* Shake Error */
@@ -224,9 +255,9 @@
     
     /* Countdown elegant */
     .count-box {
-      background: #ffffff;
-      border: 1px solid rgba(184, 148, 79, 0.15);
-      box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+      background: linear-gradient(180deg, rgba(13, 20, 41, 0.95), rgba(6, 9, 19, 0.98));
+      border: 1px solid rgba(202, 162, 74, 0.2);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.2);
     }
     
     /* Pase de acceso */
@@ -234,16 +265,17 @@
       width: 64px;
       height: 64px;
       border-radius: 50%;
-      border: 2px solid rgba(184, 148, 79, 0.4);
+      border: 2px solid rgba(202, 162, 74, 0.4);
       display: flex;
       align-items: center;
       justify-content: center;
       margin: 0 auto;
+      background: rgba(202, 162, 74, 0.05);
     }
     
     /* Mobile optimizations */
     @media (max-width: 768px) {
-      html { font-size: 15px; }
+      html { font-size: 14px; }
     }
     
     button, a {
@@ -269,19 +301,19 @@
       content: '';
       flex: 1;
       height: 1px;
-      background: linear-gradient(to right, transparent, rgba(184,148,79,0.3), transparent);
+      background: linear-gradient(to right, transparent, rgba(202,162,74,0.4), transparent);
     }
     
     /* Hero overlay gradient */
     .hero-overlay {
-      background: linear-gradient(180deg, rgba(250,248,245,0.1) 0%, rgba(250,248,245,0.6) 60%, rgba(250,248,245,0.95) 100%);
+      background: linear-gradient(180deg, rgba(6,9,19,0.3) 0%, rgba(6,9,19,0.7) 60%, rgba(6,9,19,0.95) 100%);
     }
   </style>
 </head>
-<body class="min-h-screen relative overflow-x-hidden bg-cream">
+<body class="min-h-screen relative overflow-x-hidden bg-bg1">
   
   <!-- Loading Screen -->
-  <div id="loading-screen" class="fixed inset-0 z-[100] flex items-center justify-center bg-cream">
+  <div id="loading-screen" class="fixed inset-0 z-[100] flex items-center justify-center" style="background: linear-gradient(180deg, #0a1023, #060913);">
     <div class="text-center">
       <div class="mb-4">
         <span class="text-4xl">💌</span>
@@ -292,8 +324,20 @@
     </div>
   </div>
   
+  <!-- Starry Background Canvas -->
+  <canvas id="starry-bg" class="fixed inset-0 w-full h-full pointer-events-none" style="z-index: 0;"></canvas>
+  <!-- Golden Particles Canvas -->
+  <canvas id="particles-bg" class="fixed inset-0 w-full h-full pointer-events-none" style="z-index: 1;"></canvas>
+  
+  <!-- Background Waves -->
+  <div class="fixed inset-0 pointer-events-none overflow-hidden" style="z-index: 0;">
+    <div class="wave-orb" style="position: absolute; top: 5%; left: -15%; width: 700px; height: 700px; background: radial-gradient(circle, rgba(202,162,74,0.45) 0%, transparent 65%); border-radius: 50%; filter: blur(35px); animation: wave-move 12s ease-in-out infinite;"></div>
+    <div class="wave-orb" style="position: absolute; top: 35%; right: -20%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(225,195,122,0.40) 0%, transparent 65%); border-radius: 50%; filter: blur(45px); animation: wave-move 15s ease-in-out infinite reverse;"></div>
+    <div class="wave-orb" style="position: absolute; bottom: 5%; left: 15%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(202,162,74,0.35) 0%, transparent 65%); border-radius: 50%; filter: blur(40px); animation: wave-move 18s ease-in-out infinite;"></div>
+  </div>
+  
   <!-- Navigation -->
-  <nav id="navbar" class="fixed top-0 left-0 right-0 z-40 transition-all duration-300" style="transform: translateY(-100%); opacity: 0; background: rgba(250, 248, 245, 0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(184, 148, 79, 0.1);">
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-40 transition-all duration-300" style="transform: translateY(-100%); opacity: 0; background: rgba(6, 9, 19, 0.9); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border-bottom: 1px solid rgba(202, 162, 74, 0.1);">
     <div class="max-w-4xl mx-auto px-4 py-3">
       <div class="flex items-center justify-between">
         <a href="#inicio" class="flex items-center gap-1.5 nav-link">
@@ -301,14 +345,14 @@
           <span class="font-script text-base text-gradient">Carlos & Jimena</span>
         </a>
         <div class="hidden md:flex items-center gap-0.5">
-          <a href="#inicio" data-section="inicio" class="nav-link px-3 py-1.5 rounded-full text-xs text-text2 hover:text-text transition-colors">Inicio</a>
-          <a href="#padres" data-section="padres" class="nav-link px-3 py-1.5 rounded-full text-xs text-text2 hover:text-text transition-colors">Padres</a>
-          <a href="#ubicacion" data-section="ubicacion" class="nav-link px-3 py-1.5 rounded-full text-xs text-text2 hover:text-text transition-colors">Ubicación</a>
-          <a href="#itinerario" data-section="itinerario" class="nav-link px-3 py-1.5 rounded-full text-xs text-text2 hover:text-text transition-colors">Itinerario</a>
-          <a href="#galeria" data-section="galeria" class="nav-link px-3 py-1.5 rounded-full text-xs text-text2 hover:text-text transition-colors">Galería</a>
-          <a href="#rsvp" data-section="rsvp" class="nav-link px-3 py-1.5 rounded-full text-xs text-text2 hover:text-text transition-colors">Confirmar</a>
+          <a href="#inicio" data-section="inicio" class="nav-link px-3 py-1.5 rounded-full text-xs text-white/70 hover:text-white transition-colors">Inicio</a>
+          <a href="#padres" data-section="padres" class="nav-link px-3 py-1.5 rounded-full text-xs text-white/70 hover:text-white transition-colors">Padres</a>
+          <a href="#ubicacion" data-section="ubicacion" class="nav-link px-3 py-1.5 rounded-full text-xs text-white/70 hover:text-white transition-colors">Ubicación</a>
+          <a href="#itinerario" data-section="itinerario" class="nav-link px-3 py-1.5 rounded-full text-xs text-white/70 hover:text-white transition-colors">Itinerario</a>
+          <a href="#galeria" data-section="galeria" class="nav-link px-3 py-1.5 rounded-full text-xs text-white/70 hover:text-white transition-colors">Galería</a>
+          <a href="#rsvp" data-section="rsvp" class="nav-link px-3 py-1.5 rounded-full text-xs text-white/70 hover:text-white transition-colors">Confirmar</a>
         </div>
-        <button id="mobile-menu-btn" class="md:hidden w-8 h-8 rounded-full border border-gold/30 flex items-center justify-center text-text">
+        <button id="mobile-menu-btn" class="md:hidden w-8 h-8 rounded-full border border-gold/30 flex items-center justify-center text-white">
           <i data-lucide="menu" class="w-4 h-4"></i>
         </button>
       </div>
@@ -317,21 +361,21 @@
   
   <!-- Mobile Menu -->
   <div id="mobile-menu" class="fixed inset-0 z-50 md:hidden hidden">
-    <div id="mobile-menu-backdrop" class="absolute inset-0 bg-cream/95"></div>
-    <div id="mobile-menu-panel" class="absolute right-0 top-0 bottom-0 w-64 p-5 bg-white border-l border-gold/20 transition-transform duration-300 shadow-xl" style="transform: translateX(100%);">
+    <div id="mobile-menu-backdrop" class="absolute inset-0 bg-bg1/95"></div>
+    <div id="mobile-menu-panel" class="absolute right-0 top-0 bottom-0 w-64 p-5 bg-card border-l border-gold/20 transition-transform duration-300" style="transform: translateX(100%);">
       <div class="flex items-center justify-between mb-6">
         <span class="font-script text-lg text-gold">Menú</span>
-        <button id="mobile-menu-close" class="w-8 h-8 rounded-full border border-gold/30 flex items-center justify-center text-text">
+        <button id="mobile-menu-close" class="w-8 h-8 rounded-full border border-gold/30 flex items-center justify-center text-white">
           <i data-lucide="x" class="w-4 h-4"></i>
         </button>
       </div>
       <div class="space-y-1">
-        <a href="#inicio" data-section="inicio" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-text2 hover:text-text text-sm transition-colors">Inicio</a>
-        <a href="#padres" data-section="padres" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-text2 hover:text-text text-sm transition-colors">Padres</a>
-        <a href="#ubicacion" data-section="ubicacion" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-text2 hover:text-text text-sm transition-colors">Ubicación</a>
-        <a href="#itinerario" data-section="itinerario" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-text2 hover:text-text text-sm transition-colors">Itinerario</a>
-        <a href="#galeria" data-section="galeria" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-text2 hover:text-text text-sm transition-colors">Galería</a>
-        <a href="#rsvp" data-section="rsvp" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-text2 hover:text-text text-sm transition-colors">Confirmar</a>
+        <a href="#inicio" data-section="inicio" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-white/70 hover:text-white text-sm transition-colors">Inicio</a>
+        <a href="#padres" data-section="padres" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-white/70 hover:text-white text-sm transition-colors">Padres</a>
+        <a href="#ubicacion" data-section="ubicacion" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-white/70 hover:text-white text-sm transition-colors">Ubicación</a>
+        <a href="#itinerario" data-section="itinerario" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-white/70 hover:text-white text-sm transition-colors">Itinerario</a>
+        <a href="#galeria" data-section="galeria" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-white/70 hover:text-white text-sm transition-colors">Galería</a>
+        <a href="#rsvp" data-section="rsvp" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-white/70 hover:text-white text-sm transition-colors">Confirmar</a>
       </div>
     </div>
   </div>
@@ -346,7 +390,7 @@
     
     <div class="relative z-10 w-full max-w-lg px-5">
       <!-- Envelope body -->
-      <div class="relative rounded-3xl overflow-hidden border border-white/30 bg-white/80 backdrop-blur-md shadow-2xl">
+      <div class="relative rounded-3xl overflow-hidden border border-white/20 backdrop-blur-md shadow-2xl" style="background: linear-gradient(180deg, rgba(13,20,41,0.85), rgba(6,9,19,0.95));">
         <!-- Corner decorations -->
         <div class="absolute top-5 left-5 w-10 h-10 border-l border-t border-gold/40 rounded-tl-lg"></div>
         <div class="absolute top-5 right-5 w-10 h-10 border-r border-t border-gold/40 rounded-tr-lg"></div>
@@ -356,7 +400,7 @@
         <div class="relative z-10 p-8 md:p-12 text-center">
           <!-- Seal -->
           <div class="mb-5">
-            <div class="inline-flex items-center justify-center w-14 h-14 rounded-full border-2 border-gold/40" style="background: linear-gradient(135deg, rgba(184,148,79,0.15), rgba(184,148,79,0.05));">
+            <div class="inline-flex items-center justify-center w-14 h-14 rounded-full border-2 border-gold/40" style="animation: heartbeat 1.2s ease-in-out infinite; background: linear-gradient(135deg, rgba(202,162,74,0.15), rgba(202,162,74,0.05));">
               <i data-lucide="heart" class="text-gold w-6 h-6" style="fill: currentColor;"></i>
             </div>
           </div>
@@ -372,11 +416,11 @@
           </div>
           
           <!-- Date -->
-          <p class="text-base md:text-lg text-text mb-8 font-light">
+          <p class="text-base md:text-lg text-white mb-8 font-light">
             <span class="text-gold font-semibold">29</span>
-            <span class="mx-2 text-text3">·</span>
+            <span class="mx-2 text-white3">·</span>
             <span class="text-gold font-semibold">Agosto</span>
-            <span class="mx-2 text-text3">·</span>
+            <span class="mx-2 text-white3">·</span>
             <span class="text-gold font-semibold">2026</span>
           </p>
           
@@ -391,7 +435,7 @@
           <!-- Scroll hint -->
           <div class="mt-8 opacity-40">
             <div class="flex flex-col items-center gap-1">
-              <span class="text-[11px] text-text3 tracking-wider uppercase">Toca para abrir</span>
+              <span class="text-[11px] text-white3 tracking-wider uppercase">Toca para abrir</span>
               <i data-lucide="chevron-down" class="text-gold w-4 h-4"></i>
             </div>
           </div>
@@ -411,7 +455,7 @@
             <i data-lucide="heart" class="text-gold w-4 h-4" style="fill: currentColor; opacity: 0.6;"></i>
           </div>
           <p class="font-script text-2xl md:text-3xl text-gold mb-4">Con alegría en el corazón</p>
-          <p class="text-text2 text-base md:text-lg leading-relaxed max-w-lg mx-auto mb-8">
+          <p class="text-white/70 text-base md:text-lg leading-relaxed max-w-lg mx-auto mb-8">
             Te invitamos a celebrar nuestra boda. Si recibiste esta invitación, es porque te apreciamos y queremos que nos acompañes en nuestro día más especial.
           </p>
           
@@ -436,24 +480,24 @@
         <div class="grid grid-cols-4 gap-3 md:gap-4 max-w-lg mx-auto">
           <div class="reveal count-box rounded-xl md:rounded-2xl p-3 md:p-5 text-center reveal-delay-1">
             <span id="cd-days" class="block text-2xl md:text-4xl font-bold text-gradient font-heading">00</span>
-            <span class="text-[10px] md:text-xs uppercase tracking-wider text-text3">Días</span>
+            <span class="text-[10px] md:text-xs uppercase tracking-wider text-white3">Días</span>
           </div>
           <div class="reveal count-box rounded-xl md:rounded-2xl p-3 md:p-5 text-center reveal-delay-2">
             <span id="cd-hours" class="block text-2xl md:text-4xl font-bold text-gradient font-heading">00</span>
-            <span class="text-[10px] md:text-xs uppercase tracking-wider text-text3">Horas</span>
+            <span class="text-[10px] md:text-xs uppercase tracking-wider text-white3">Horas</span>
           </div>
           <div class="reveal count-box rounded-xl md:rounded-2xl p-3 md:p-5 text-center reveal-delay-3">
             <span id="cd-minutes" class="block text-2xl md:text-4xl font-bold text-gradient font-heading">00</span>
-            <span class="text-[10px] md:text-xs uppercase tracking-wider text-text3">Min</span>
+            <span class="text-[10px] md:text-xs uppercase tracking-wider text-white3">Min</span>
           </div>
           <div class="reveal count-box rounded-xl md:rounded-2xl p-3 md:p-5 text-center reveal-delay-4">
             <span id="cd-seconds" class="block text-2xl md:text-4xl font-bold text-gradient font-heading">00</span>
-            <span class="text-[10px] md:text-xs uppercase tracking-wider text-text3">Seg</span>
+            <span class="text-[10px] md:text-xs uppercase tracking-wider text-white3">Seg</span>
           </div>
         </div>
         
         <div class="mt-6 text-center reveal reveal-delay-5">
-          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gold/20 text-text2 text-sm">
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gold/20 text-white/70 text-sm">
             <i data-lucide="calendar" class="text-gold w-3.5 h-3.5"></i>
             <span>29 de agosto de 2026</span>
           </div>
@@ -465,7 +509,7 @@
         <!-- Parents -->
         <section class="reveal bg-card rounded-2xl md:rounded-3xl border border-gold/20 overflow-hidden p-6 md:p-8">
           <div class="text-center mb-6">
-            <div class="inline-flex items-center justify-center w-10 h-10 rounded-xl mb-3 border border-gold/20" style="background: rgba(184,148,79,0.06);">
+            <div class="inline-flex items-center justify-center w-10 h-10 rounded-xl mb-3 border border-gold/20" style="background: rgba(202,162,74,0.06);">
               <i data-lucide="users" class="text-gold w-[18px] h-[18px]"></i>
             </div>
             <h2 class="font-heading text-2xl md:text-3xl text-gradient">Nuestros Padres</h2>
@@ -473,17 +517,17 @@
           
           <div class="grid md:grid-cols-2 gap-3 md:gap-4">
             <!-- Groom parents -->
-            <div class="reveal reveal-delay-2 rounded-xl border border-gold/15 p-4 text-center card-hover" style="background: rgba(184,148,79,0.03);">
+            <div class="reveal reveal-delay-2 rounded-xl border border-gold/20 p-4 text-center card-hover" style="background: rgba(202,162,74,0.03);">
               <p class="text-[10px] uppercase tracking-wider text-gold mb-3">Padres del Novio</p>
-              <p class="text-text text-sm py-1">Carlos Alberto Urbina Távarez</p>
-              <p class="text-text text-sm py-1">Ma. Guadalupe Muñoz Campuzano</p>
+              <p class="text-white text-sm py-1">Carlos Alberto Urbina Távarez</p>
+              <p class="text-white text-sm py-1">Ma. Guadalupe Muñoz Campuzano</p>
             </div>
             
             <!-- Bride parents -->
-            <div class="reveal reveal-delay-3 rounded-xl border border-gold/15 p-4 text-center card-hover" style="background: rgba(184,148,79,0.03);">
+            <div class="reveal reveal-delay-3 rounded-xl border border-gold/20 p-4 text-center card-hover" style="background: rgba(202,162,74,0.03);">
               <p class="text-[10px] uppercase tracking-wider text-gold mb-3">Padres de la Novia</p>
-              <p class="text-text text-sm py-1">José Gerardo Mena Huerta</p>
-              <p class="text-text text-sm py-1">María de Jesús Prado Lara</p>
+              <p class="text-white text-sm py-1">José Gerardo Mena Huerta</p>
+              <p class="text-white text-sm py-1">María de Jesús Prado Lara</p>
             </div>
           </div>
         </section>
@@ -491,7 +535,7 @@
         <!-- Godparents -->
         <section class="reveal bg-card rounded-2xl md:rounded-3xl border border-gold/20 overflow-hidden p-6 md:p-8">
           <div class="text-center mb-6">
-            <div class="inline-flex items-center justify-center w-10 h-10 rounded-xl mb-3 border border-gold/20" style="background: rgba(184,148,79,0.06);">
+            <div class="inline-flex items-center justify-center w-10 h-10 rounded-xl mb-3 border border-gold/20" style="background: rgba(202,162,74,0.06);">
               <i data-lucide="crown" class="text-gold w-[18px] h-[18px]"></i>
             </div>
             <h2 class="font-heading text-2xl md:text-3xl text-gradient">Nuestros Padrinos</h2>
@@ -499,42 +543,42 @@
           
           <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
             <!-- Velación -->
-            <div class="reveal reveal-delay-1 rounded-xl border border-gold/15 p-3 md:p-4 text-center card-hover" style="background: rgba(184,148,79,0.03);">
+            <div class="reveal reveal-delay-1 rounded-xl border border-gold/20 p-3 md:p-4 text-center card-hover" style="background: rgba(202,162,74,0.03);">
               <div class="flex items-center justify-center gap-1.5 mb-2">
                 <i data-lucide="crown" class="text-gold w-3 h-3"></i>
                 <p class="text-[10px] uppercase tracking-wider text-gold">Velación</p>
               </div>
-              <p class="text-text text-sm leading-snug">Karla Aranzazu Urbina Muñoz</p>
-              <p class="text-text text-sm leading-snug">Claudio Enrique Ramos Reyes</p>
+              <p class="text-white text-sm leading-snug">Karla Aranzazu Urbina Muñoz</p>
+              <p class="text-white text-sm leading-snug">Claudio Enrique Ramos Reyes</p>
             </div>
             
             <!-- Arras -->
-            <div class="reveal reveal-delay-2 rounded-xl border border-gold/15 p-3 md:p-4 text-center card-hover" style="background: rgba(184,148,79,0.03);">
+            <div class="reveal reveal-delay-2 rounded-xl border border-gold/20 p-3 md:p-4 text-center card-hover" style="background: rgba(202,162,74,0.03);">
               <div class="flex items-center justify-center gap-1.5 mb-2">
                 <i data-lucide="sparkles" class="text-gold w-3 h-3"></i>
                 <p class="text-[10px] uppercase tracking-wider text-gold">Arras</p>
               </div>
-              <p class="text-text text-sm leading-snug">Gerardo Mena Prado</p>
-              <p class="text-text text-sm leading-snug">Miriam Elizabet Muñoz Sánchez</p>
+              <p class="text-white text-sm leading-snug">Gerardo Mena Prado</p>
+              <p class="text-white text-sm leading-snug">Miriam Elizabet Muñoz Sánchez</p>
             </div>
             
             <!-- Anillos -->
-            <div class="reveal reveal-delay-3 rounded-xl border border-gold/15 p-3 md:p-4 text-center card-hover" style="background: rgba(184,148,79,0.03);">
+            <div class="reveal reveal-delay-3 rounded-xl border border-gold/20 p-3 md:p-4 text-center card-hover" style="background: rgba(202,162,74,0.03);">
               <div class="flex items-center justify-center gap-1.5 mb-2">
                 <i data-lucide="heart" class="text-gold w-3 h-3"></i>
                 <p class="text-[10px] uppercase tracking-wider text-gold">Anillos</p>
               </div>
-              <p class="text-text text-sm leading-snug">Mario Muñoz Campuzano</p>
-              <p class="text-text text-sm leading-snug">María Teresa Cortés Flores</p>
+              <p class="text-white text-sm leading-snug">Mario Muñoz Campuzano</p>
+              <p class="text-white text-sm leading-snug">María Teresa Cortés Flores</p>
             </div>
             
             <!-- Biblia -->
-            <div class="reveal reveal-delay-4 rounded-xl border border-gold/15 p-3 md:p-4 text-center card-hover" style="background: rgba(184,148,79,0.03);">
+            <div class="reveal reveal-delay-4 rounded-xl border border-gold/20 p-3 md:p-4 text-center card-hover" style="background: rgba(202,162,74,0.03);">
               <div class="flex items-center justify-center gap-1.5 mb-2">
                 <i data-lucide="book-open" class="text-gold w-3 h-3"></i>
                 <p class="text-[10px] uppercase tracking-wider text-gold">Biblia</p>
               </div>
-              <p class="text-text text-sm leading-snug">Gabriela Muñoz Campuzano</p>
+              <p class="text-white text-sm leading-snug">Gabriela Muñoz Campuzano</p>
             </div>
           </div>
         </section>
@@ -543,11 +587,11 @@
       <!-- Venue Section -->
       <section id="ubicacion" class="reveal">
         <div class="text-center mb-6">
-          <div class="inline-flex items-center justify-center w-10 h-10 rounded-xl mb-3 border border-gold/20" style="background: rgba(184,148,79,0.06);">
+          <div class="inline-flex items-center justify-center w-10 h-10 rounded-xl mb-3 border border-gold/20" style="background: rgba(202,162,74,0.06);">
             <i data-lucide="map-pin" class="text-gold w-[18px] h-[18px]"></i>
           </div>
           <h2 class="font-heading text-2xl md:text-3xl text-gradient">Ubicación</h2>
-          <p class="text-text3 text-sm mt-1">Te esperamos en estos hermosos lugares</p>
+          <p class="text-white3 text-sm mt-1">Te esperamos en estos hermosos lugares</p>
         </div>
         
         <div class="grid md:grid-cols-2 gap-4">
@@ -555,15 +599,15 @@
           <div class="reveal reveal-delay-2 bg-card rounded-2xl border border-gold/20 overflow-hidden card-hover">
             <div class="p-5 md:p-6">
               <div class="flex items-center gap-2 mb-3">
-                <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background: rgba(184,148,79,0.1);">
+                <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background: rgba(202,162,74,0.1);">
                   <i data-lucide="church" class="text-gold w-4 h-4"></i>
                 </div>
                 <span class="text-xs uppercase tracking-wider text-gold">Ceremonia</span>
               </div>
               <span class="text-2xl md:text-3xl font-bold block text-gradient font-heading">5:00 PM</span>
-              <p class="text-text3 text-xs mt-0.5">Llegar: 4:40 PM</p>
-              <h3 class="text-text font-medium text-sm md:text-base mb-1 mt-3">Parroquia San Rafael Arcángel</h3>
-              <p class="text-text3 text-xs mb-4">Guadalupe Victoria 17, Centro</p>
+              <p class="text-white3 text-xs mt-0.5">Llegar: 4:40 PM</p>
+              <h3 class="text-white font-medium text-sm md:text-base mb-1 mt-3">Parroquia San Rafael Arcángel</h3>
+              <p class="text-white3 text-xs mb-4">Guadalupe Victoria 17, Centro</p>
               <a href="https://maps.app.goo.gl/pN5AznDmCfymgZ2f8" target="_blank" rel="noopener noreferrer" class="btn-outline inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-medium">
                 <i data-lucide="navigation" class="w-3 h-3"></i>
                 Ver mapa
@@ -575,14 +619,14 @@
           <div class="reveal reveal-delay-3 bg-card rounded-2xl border border-gold/20 overflow-hidden card-hover">
             <div class="p-5 md:p-6">
               <div class="flex items-center gap-2 mb-3">
-                <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background: rgba(184,148,79,0.1);">
+                <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background: rgba(202,162,74,0.1);">
                   <i data-lucide="party-popper" class="text-gold w-4 h-4"></i>
                 </div>
                 <span class="text-xs uppercase tracking-wider text-gold">Recepción</span>
               </div>
               <span class="text-2xl md:text-3xl font-bold block text-gradient font-heading">6:30 PM</span>
-              <h3 class="text-text font-medium text-sm md:text-base mb-1 mt-3">Quinta Munay</h3>
-              <p class="text-text3 text-xs mb-4">Te esperamos para celebrar</p>
+              <h3 class="text-white font-medium text-sm md:text-base mb-1 mt-3">Quinta Munay</h3>
+              <p class="text-white3 text-xs mb-4">Te esperamos para celebrar</p>
               <a href="https://www.google.com/maps?q=20.98356056213379,-101.5621566772461" target="_blank" rel="noopener noreferrer" class="btn-outline inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-medium">
                 <i data-lucide="navigation" class="w-3 h-3"></i>
                 Ver mapa
@@ -595,11 +639,11 @@
       <!-- Itinerary Section -->
       <section id="itinerario" class="reveal bg-card rounded-2xl md:rounded-3xl border border-gold/20 overflow-hidden p-6 md:p-10">
         <div class="text-center mb-8 md:mb-10">
-          <div class="inline-flex items-center justify-center w-10 h-10 rounded-xl mb-3 border border-gold/20" style="background: rgba(184,148,79,0.06);">
+          <div class="inline-flex items-center justify-center w-10 h-10 rounded-xl mb-3 border border-gold/20" style="background: rgba(202,162,74,0.06);">
             <i data-lucide="sparkles" class="text-gold w-[18px] h-[18px]"></i>
           </div>
           <h2 class="font-heading text-2xl md:text-3xl text-gradient">Itinerario</h2>
-          <p class="text-text3 text-sm mt-1">Un día lleno de momentos inolvidables</p>
+          <p class="text-white3 text-sm mt-1">Un día lleno de momentos inolvidables</p>
         </div>
         
         <div class="relative max-w-xl mx-auto">
@@ -613,8 +657,8 @@
               </div>
               <div class="flex-1 ml-3 md:ml-0 md:px-8 pt-1">
                 <span class="text-gold font-semibold text-sm md:text-base">4:40 PM</span>
-                <h3 class="text-text font-semibold text-sm md:text-base">Llegada de Invitados</h3>
-                <p class="text-text3 text-xs md:text-sm">Bienvenida en la Parroquia</p>
+                <h3 class="text-white font-semibold text-sm md:text-base">Llegada de Invitados</h3>
+                <p class="text-white3 text-xs md:text-sm">Bienvenida en la Parroquia</p>
               </div>
             </div>
             
@@ -625,8 +669,8 @@
               </div>
               <div class="flex-1 ml-3 md:ml-0 md:px-8 pt-1">
                 <span class="text-gold font-semibold text-sm md:text-base">5:00 PM</span>
-                <h3 class="text-text font-semibold text-sm md:text-base">Ceremonia Religiosa</h3>
-                <p class="text-text3 text-xs md:text-sm">Parroquia San Rafael Arcángel</p>
+                <h3 class="text-white font-semibold text-sm md:text-base">Ceremonia Religiosa</h3>
+                <p class="text-white3 text-xs md:text-sm">Parroquia San Rafael Arcángel</p>
               </div>
             </div>
             
@@ -637,8 +681,8 @@
               </div>
               <div class="flex-1 ml-3 md:ml-0 md:px-8 pt-1">
                 <span class="text-gold font-semibold text-sm md:text-base">5:45 PM</span>
-                <h3 class="text-text font-semibold text-sm md:text-base">Traslado</h3>
-                <p class="text-text3 text-xs md:text-sm">Rumbo a Quinta Munay</p>
+                <h3 class="text-white font-semibold text-sm md:text-base">Traslado</h3>
+                <p class="text-white3 text-xs md:text-sm">Rumbo a Quinta Munay</p>
               </div>
             </div>
             
@@ -649,8 +693,8 @@
               </div>
               <div class="flex-1 ml-3 md:ml-0 md:px-8 pt-1">
                 <span class="text-gold font-semibold text-sm md:text-base">6:30 PM</span>
-                <h3 class="text-text font-semibold text-sm md:text-base">Recepción</h3>
-                <p class="text-text3 text-xs md:text-sm">Quinta Munay</p>
+                <h3 class="text-white font-semibold text-sm md:text-base">Recepción</h3>
+                <p class="text-white3 text-xs md:text-sm">Quinta Munay</p>
               </div>
             </div>
             
@@ -661,8 +705,8 @@
               </div>
               <div class="flex-1 ml-3 md:ml-0 md:px-8 pt-1">
                 <span class="text-gold font-semibold text-sm md:text-base">7:30 PM</span>
-                <h3 class="text-text font-semibold text-sm md:text-base">Cena</h3>
-                <p class="text-text3 text-xs md:text-sm">Banquete nupcial</p>
+                <h3 class="text-white font-semibold text-sm md:text-base">Cena</h3>
+                <p class="text-white3 text-xs md:text-sm">Banquete nupcial</p>
               </div>
             </div>
             
@@ -673,8 +717,8 @@
               </div>
               <div class="flex-1 ml-3 md:ml-0 md:px-8 pt-1">
                 <span class="text-gold font-semibold text-sm md:text-base">9:00 PM</span>
-                <h3 class="text-text font-semibold text-sm md:text-base">Baile y Celebración</h3>
-                <p class="text-text3 text-xs md:text-sm">A disfrutar en grande</p>
+                <h3 class="text-white font-semibold text-sm md:text-base">Baile y Celebración</h3>
+                <p class="text-white3 text-xs md:text-sm">A disfrutar en grande</p>
               </div>
             </div>
           </div>
@@ -684,7 +728,7 @@
       <!-- Dress Code -->
       <section class="reveal bg-card rounded-2xl md:rounded-3xl border border-gold/20 overflow-hidden p-6 md:p-8">
         <div class="text-center mb-6">
-          <div class="inline-flex items-center justify-center w-10 h-10 rounded-xl mb-3 border border-gold/20" style="background: rgba(184,148,79,0.06);">
+          <div class="inline-flex items-center justify-center w-10 h-10 rounded-xl mb-3 border border-gold/20" style="background: rgba(202,162,74,0.06);">
             <i data-lucide="shirt" class="text-gold w-[18px] h-[18px]"></i>
           </div>
           <h2 class="font-heading text-2xl md:text-3xl text-gradient">Código de Vestimenta</h2>
@@ -699,19 +743,19 @@
           </div>
           
           <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-            <div class="rounded-xl border border-gold/15 p-4 text-center" style="background: rgba(184,148,79,0.03);">
+            <div class="rounded-xl border border-gold/20 p-4 text-center" style="background: rgba(202,162,74,0.03);">
               <i data-lucide="user" class="text-gold w-5 h-5 mx-auto mb-2"></i>
-              <p class="text-text text-sm font-medium mb-1">Caballeros</p>
-              <p class="text-text3 text-xs">Traje oscuro</p>
+              <p class="text-white text-sm font-medium mb-1">Caballeros</p>
+              <p class="text-white3 text-xs">Traje oscuro</p>
             </div>
-            <div class="rounded-xl border border-gold/15 p-4 text-center" style="background: rgba(184,148,79,0.03);">
+            <div class="rounded-xl border border-gold/20 p-4 text-center" style="background: rgba(202,162,74,0.03);">
               <i data-lucide="user" class="text-gold w-5 h-5 mx-auto mb-2"></i>
-              <p class="text-text text-sm font-medium mb-1">Damas</p>
-              <p class="text-text3 text-xs">Vestido largo</p>
+              <p class="text-white text-sm font-medium mb-1">Damas</p>
+              <p class="text-white3 text-xs">Vestido largo</p>
             </div>
           </div>
           
-          <p class="text-text3 text-xs text-center mt-4">
+          <p class="text-white3 text-xs text-center mt-4">
             <i data-lucide="info" class="w-3 h-3 inline-block mr-1"></i>
             Favor de evitar el color blanco
           </p>
@@ -721,18 +765,18 @@
       <!-- Lluvia de Sobres -->
       <section class="reveal bg-card rounded-2xl md:rounded-3xl border border-gold/20 overflow-hidden p-6 md:p-8">
         <div class="max-w-lg mx-auto text-center">
-          <div class="inline-flex items-center justify-center w-10 h-10 rounded-xl mb-3 border border-gold/20" style="background: rgba(184,148,79,0.06);">
+          <div class="inline-flex items-center justify-center w-10 h-10 rounded-xl mb-3 border border-gold/20" style="background: rgba(202,162,74,0.06);">
             <i data-lucide="wallet" class="text-gold w-[18px] h-[18px]"></i>
           </div>
           <h2 class="font-heading text-2xl md:text-3xl text-gradient mb-3">Lluvia de Sobres</h2>
-          <p class="text-text2 text-sm md:text-base leading-relaxed mb-4">
+          <p class="text-white/70 text-sm md:text-base leading-relaxed mb-4">
             Tu presencia es nuestro mejor regalo. Si deseas hacernos un obsequio, agradecemos que sea en efectivo.
           </p>
-          <div class="rounded-xl border border-gold/15 p-4 md:p-5" style="background: rgba(184,148,79,0.04);">
-            <p class="text-text text-sm md:text-base">
+          <div class="rounded-xl border border-gold/20 p-4 md:p-5" style="background: rgba(202,162,74,0.04);">
+            <p class="text-white text-sm md:text-base">
               Habrá una caja especial en la recepción para depositar tu sobre.
             </p>
-            <p class="text-text3 text-xs mt-2">¡Gracias por tu cariño y apoyo!</p>
+            <p class="text-white3 text-xs mt-2">¡Gracias por tu cariño y apoyo!</p>
           </div>
         </div>
       </section>
@@ -740,11 +784,11 @@
       <!-- Gallery Section -->
       <section id="galeria" class="reveal">
         <div class="text-center mb-6">
-          <div class="inline-flex items-center justify-center w-10 h-10 rounded-xl mb-3 border border-gold/20" style="background: rgba(184,148,79,0.06);">
+          <div class="inline-flex items-center justify-center w-10 h-10 rounded-xl mb-3 border border-gold/20" style="background: rgba(202,162,74,0.06);">
             <i data-lucide="camera" class="text-gold w-[18px] h-[18px]"></i>
           </div>
           <h2 class="font-heading text-2xl md:text-3xl text-gradient">Nuestros Momentos</h2>
-          <p class="text-text3 text-sm mt-1">Fragmentos de nuestra historia de amor</p>
+          <p class="text-white3 text-sm mt-1">Fragmentos de nuestra historia de amor</p>
         </div>
         
         <div class="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-3">
@@ -833,11 +877,11 @@
       <!-- RSVP Section -->
       <section id="rsvp" class="reveal bg-card rounded-2xl md:rounded-3xl border border-gold/20 overflow-hidden p-6 md:p-8">
         <div class="text-center mb-6">
-          <div class="inline-flex items-center justify-center w-10 h-10 rounded-xl mb-3 border border-gold/20" style="background: rgba(184,148,79,0.06);">
+          <div class="inline-flex items-center justify-center w-10 h-10 rounded-xl mb-3 border border-gold/20" style="background: rgba(202,162,74,0.06);">
             <i data-lucide="send" class="text-gold w-[18px] h-[18px]"></i>
           </div>
           <h2 class="font-heading text-2xl md:text-3xl text-gradient mb-1">Confirma tu Asistencia</h2>
-          <p class="text-text3 text-xs md:text-sm">Por favor, confirma antes del 15 de agosto de 2026</p>
+          <p class="text-white3 text-xs md:text-sm">Por favor, confirma antes del 15 de agosto de 2026</p>
         </div>
         
         <div id="rsvp-form-container" class="max-w-md mx-auto">
@@ -845,23 +889,23 @@
             <!-- Name -->
             <div>
               <div class="relative group">
-                <i data-lucide="user" class="absolute left-3 top-1/2 -translate-y-1/2 text-text3 group-focus-within:text-gold transition-colors w-4 h-4"></i>
-                <input type="text" id="rsvp-name" placeholder="Tu nombre completo" class="w-full pl-10 pr-3 py-3 rounded-xl border text-sm text-text placeholder:text-text3 outline-none transition-all bg-cream/50 border-gold/20 focus:border-gold">
+                <i data-lucide="user" class="absolute left-3 top-1/2 -translate-y-1/2 text-white3 group-focus-within:text-gold transition-colors w-4 h-4"></i>
+                <input type="text" id="rsvp-name" placeholder="Tu nombre completo" class="w-full pl-10 pr-3 py-3 rounded-xl border text-sm text-white placeholder:text-white3 outline-none transition-all bg-bg2/80 border-gold/20 focus:border-gold">
               </div>
               <p id="error-name" class="text-red-500 text-xs mt-1 hidden flex items-center gap-1"><i data-lucide="x" class="w-2.5 h-2.5"></i> <span>Ingresa tu nombre</span></p>
             </div>
             
             <!-- Attendance -->
             <div>
-              <p class="text-text2 text-xs mb-2 ml-1">¿Podrás asistir?</p>
+              <p class="text-white/70 text-xs mb-2 ml-1">¿Podrás asistir?</p>
               <div class="grid grid-cols-2 gap-3">
-                <button type="button" id="btn-yes" onclick="setAttendance('Si')" class="relative py-3 px-4 rounded-xl border text-sm font-medium transition-all overflow-hidden bg-cream/50 border-gold/20 text-text2 hover:border-gold/40">
+                <button type="button" id="btn-yes" onclick="setAttendance('Si')" class="relative py-3 px-4 rounded-xl border text-sm font-medium transition-all overflow-hidden bg-bg2/80 border-gold/20 text-white/70 hover:border-gold/40">
                   <span class="relative z-10 flex items-center justify-center gap-2">
                     <i data-lucide="heart" class="w-3.5 h-3.5"></i>
                     Sí, asistiré
                   </span>
                 </button>
-                <button type="button" id="btn-no" onclick="setAttendance('No')" class="relative py-3 px-4 rounded-xl border text-sm font-medium transition-all overflow-hidden bg-cream/50 border-gold/20 text-text2 hover:border-gold/40">
+                <button type="button" id="btn-no" onclick="setAttendance('No')" class="relative py-3 px-4 rounded-xl border text-sm font-medium transition-all overflow-hidden bg-bg2/80 border-gold/20 text-white/70 hover:border-gold/40">
                   <span class="relative z-10 flex items-center justify-center gap-2">
                     <i data-lucide="frown" class="w-3.5 h-3.5"></i>
                     No podré ir
@@ -873,20 +917,20 @@
             
             <!-- Number of people -->
             <div id="pax-section" class="hidden">
-              <p class="text-text2 text-xs mb-2 ml-1">¿Cuántas personas?</p>
+              <p class="text-white/70 text-xs mb-2 ml-1">¿Cuántas personas?</p>
               <div class="grid grid-cols-5 gap-2">
-                <button type="button" onclick="setPax('1')" class="pax-btn py-3 rounded-xl border text-sm font-medium transition-all bg-cream/50 border-gold/20 text-text3 hover:border-gold/40">1</button>
-                <button type="button" onclick="setPax('2')" class="pax-btn py-3 rounded-xl border text-sm font-medium transition-all bg-cream/50 border-gold/20 text-text3 hover:border-gold/40">2</button>
-                <button type="button" onclick="setPax('3')" class="pax-btn py-3 rounded-xl border text-sm font-medium transition-all bg-cream/50 border-gold/20 text-text3 hover:border-gold/40">3</button>
-                <button type="button" onclick="setPax('4')" class="pax-btn py-3 rounded-xl border text-sm font-medium transition-all bg-cream/50 border-gold/20 text-text3 hover:border-gold/40">4</button>
-                <button type="button" onclick="setPax('5')" class="pax-btn py-3 rounded-xl border text-sm font-medium transition-all bg-cream/50 border-gold/20 text-text3 hover:border-gold/40">5</button>
+                <button type="button" onclick="setPax('1')" class="pax-btn py-3 rounded-xl border text-sm font-medium transition-all bg-bg2/80 border-gold/20 text-white3 hover:border-gold/40">1</button>
+                <button type="button" onclick="setPax('2')" class="pax-btn py-3 rounded-xl border text-sm font-medium transition-all bg-bg2/80 border-gold/20 text-white3 hover:border-gold/40">2</button>
+                <button type="button" onclick="setPax('3')" class="pax-btn py-3 rounded-xl border text-sm font-medium transition-all bg-bg2/80 border-gold/20 text-white3 hover:border-gold/40">3</button>
+                <button type="button" onclick="setPax('4')" class="pax-btn py-3 rounded-xl border text-sm font-medium transition-all bg-bg2/80 border-gold/20 text-white3 hover:border-gold/40">4</button>
+                <button type="button" onclick="setPax('5')" class="pax-btn py-3 rounded-xl border text-sm font-medium transition-all bg-bg2/80 border-gold/20 text-white3 hover:border-gold/40">5</button>
               </div>
               <p id="error-pax" class="text-red-500 text-xs mt-1 hidden">Selecciona un número</p>
             </div>
             
             <!-- Notes -->
             <div>
-              <textarea id="rsvp-notes" rows="3" placeholder="Mensaje para los novios... (opcional)" class="w-full px-3 py-3 rounded-xl border border-gold/20 text-sm text-text placeholder:text-text3 outline-none transition-all focus:border-gold bg-cream/50 resize-none"></textarea>
+              <textarea id="rsvp-notes" rows="3" placeholder="Mensaje para los novios... (opcional)" class="w-full px-3 py-3 rounded-xl border border-gold/20 text-sm text-white placeholder:text-white3 outline-none transition-all focus:border-gold bg-bg2/80 resize-none"></textarea>
             </div>
             
             <!-- Submit -->
@@ -909,8 +953,8 @@
             <div class="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4" style="background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.3);">
               <i data-lucide="check" class="text-green-600 w-6 h-6"></i>
             </div>
-            <h3 class="text-xl font-bold text-text mb-2">¡Nos vemos pronto!</h3>
-            <p class="text-text2 text-sm">Gracias por confirmar tu asistencia. Estamos muy emocionados de verte.</p>
+            <h3 class="text-xl font-bold text-white mb-2">¡Nos vemos pronto!</h3>
+            <p class="text-white/70 text-sm">Gracias por confirmar tu asistencia. Estamos muy emocionados de verte.</p>
             <div class="mt-4 text-green-600/60 text-xs flex items-center justify-center gap-1">
               <i data-lucide="calendar" class="w-3 h-3"></i>
               <span>29 de agosto de 2026</span>
@@ -924,8 +968,8 @@
             <div class="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4" style="background: rgba(249, 115, 22, 0.08); border: 1px solid rgba(249, 115, 22, 0.3);">
               <i data-lucide="frown" class="text-orange-500 w-6 h-6"></i>
             </div>
-            <h3 class="text-xl font-bold text-text mb-2">Lo entendemos</h3>
-            <p class="text-text2 text-sm">Lamentamos que no puedas acompañarnos. Te extrañaremos mucho.</p>
+            <h3 class="text-xl font-bold text-white mb-2">Lo entendemos</h3>
+            <p class="text-white/70 text-sm">Lamentamos que no puedas acompañarnos. Te extrañaremos mucho.</p>
             <div class="mt-4 text-orange-500/60 text-xs flex items-center justify-center gap-1">
               <i data-lucide="heart" class="w-3 h-3"></i>
               <span>Gracias por hacérnoslo saber</span>
@@ -949,26 +993,26 @@
             </div>
             
             <p class="font-script text-3xl md:text-4xl text-gradient mb-1">Carlos & Jimena</p>
-            <p class="text-text3 text-xs uppercase tracking-wider mb-4">29 de agosto de 2026</p>
+            <p class="text-white3 text-xs uppercase tracking-wider mb-4">29 de agosto de 2026</p>
             
             <div class="ornament-divider mb-5">
               <i data-lucide="heart" class="text-gold w-3 h-3" style="fill: currentColor; opacity: 0.5;"></i>
             </div>
             
-            <p class="text-text2 text-sm mb-3">Esta invitación es válida para:</p>
+            <p class="text-white/70 text-sm mb-3">Esta invitación es válida para:</p>
             
             <div id="ticket-pax-display" class="my-4">
               <span class="text-4xl md:text-5xl font-bold text-gradient font-heading">2</span>
-              <p class="text-text2 text-sm uppercase tracking-wider mt-1">PERSONAS</p>
+              <p class="text-white/70 text-sm uppercase tracking-wider mt-1">PERSONAS</p>
             </div>
             
-            <div class="rounded-xl border border-gold/15 p-4 mt-5" style="background: rgba(184,148,79,0.04);">
-              <p class="text-text2 text-xs md:text-sm leading-relaxed">
+            <div class="rounded-xl border border-gold/20 p-4 mt-5" style="background: rgba(202,162,74,0.04);">
+              <p class="text-white/70 text-xs md:text-sm leading-relaxed">
                 Favor de presentar este pase al ingresar al evento.
               </p>
             </div>
             
-            <p class="text-text3 text-[10px] mt-4 uppercase tracking-widest">Pase de acceso exclusivo</p>
+            <p class="text-white3 text-[10px] mt-4 uppercase tracking-widest">Pase de acceso exclusivo</p>
           </div>
         </div>
         
@@ -983,16 +1027,16 @@
       <!-- QR Code Section -->
       <section class="reveal bg-card rounded-2xl md:rounded-3xl border border-gold/20 overflow-hidden p-6 md:p-8">
         <div class="text-center mb-5">
-          <div class="inline-flex items-center justify-center w-10 h-10 rounded-xl mb-3 border border-gold/20" style="background: rgba(184,148,79,0.06);">
+          <div class="inline-flex items-center justify-center w-10 h-10 rounded-xl mb-3 border border-gold/20" style="background: rgba(202,162,74,0.06);">
             <i data-lucide="qr-code" class="text-gold w-[18px] h-[18px]"></i>
           </div>
           <h2 class="font-heading text-2xl md:text-3xl text-gradient mb-1">Comparte</h2>
-          <p class="text-text3 text-xs md:text-sm">Escanea o comparte el enlace</p>
+          <p class="text-white3 text-xs md:text-sm">Escanea o comparte el enlace</p>
         </div>
         
         <div class="flex flex-col md:flex-row items-center justify-center gap-5 md:gap-8">
           <div class="reveal reveal-delay-2 relative">
-            <div class="w-36 h-36 md:w-44 md:h-44 rounded-xl p-2 bg-white border border-gold/20 shadow-sm">
+            <div class="w-36 h-36 md:w-44 md:h-44 rounded-xl p-2 bg-bg2 border border-gold/20 shadow-sm">
               <img id="qr-image" src="" alt="QR" class="w-full h-full object-contain">
             </div>
           </div>
@@ -1015,7 +1059,7 @@
     
     <!-- Footer -->
     <footer class="relative mt-12 md:mt-16 py-12 md:py-16">
-      <div class="absolute inset-0" style="background: linear-gradient(to top, #f5f0e8, transparent);"></div>
+      <div class="absolute inset-0" style="background: linear-gradient(to top, #060913, transparent);"></div>
       
       <div class="relative z-10 max-w-3xl mx-auto px-4 text-center">
         <div class="mb-4">
@@ -1026,12 +1070,12 @@
           <h2 class="font-script text-3xl md:text-5xl text-gradient">Carlos & Jimena</h2>
         </div>
         
-        <div class="flex items-center justify-center gap-2 text-text2 mb-4">
+        <div class="flex items-center justify-center gap-2 text-white/70 mb-4">
           <i data-lucide="calendar" class="text-gold w-4 h-4"></i>
           <span class="text-sm md:text-base">29 de agosto de 2026</span>
         </div>
         
-        <p class="text-text3 text-xs md:text-sm max-w-xs mx-auto mb-6">
+        <p class="text-white3 text-xs md:text-sm max-w-xs mx-auto mb-6">
           Gracias por ser parte de nuestra historia.
         </p>
         
@@ -1052,7 +1096,7 @@
     </button>
     
     <!-- Controls popover -->
-    <div id="music-controls" class="absolute bottom-14 right-0 flex flex-col gap-2 p-3 rounded-xl hidden bg-white border border-gold/20 shadow-lg">
+    <div id="music-controls" class="absolute bottom-14 right-0 flex flex-col gap-2 p-3 rounded-xl hidden bg-bg2 border border-gold/20 shadow-lg">
       <button onclick="togglePlay()" class="w-10 h-10 rounded-full flex items-center justify-center text-white btn-gold">
         <span id="control-play-icon" class="hidden"><i data-lucide="pause" class="w-[18px] h-[18px]"></i></span>
         <span id="control-pause-icon"><i data-lucide="play" class="w-[18px] h-[18px] ml-0.5"></i></span>
@@ -1071,6 +1115,249 @@
   </div>
   
   <script>
+    // ==========================
+    // ==========================
+    // Starry Background Canvas
+    // ==========================
+    (function initStarryBackground() {
+      const canvas = document.getElementById('starry-bg');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      
+      const isMobile = window.innerWidth < 768;
+      let animationId = 0;
+      let lastTime = 0;
+      const targetFPS = isMobile ? 30 : 60;
+      const frameInterval = 1000 / targetFPS;
+      
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      resizeCanvas();
+      window.addEventListener('resize', resizeCanvas);
+      
+      const colors = ['255, 255, 255', '202, 162, 74', '225, 195, 122', '246, 231, 192'];
+      const starCount = isMobile ? 80 : 120;
+      
+      const stars = Array.from({ length: starCount }, () => ({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 2 + 0.3,
+        opacity: Math.random() * 0.6 + 0.2,
+        twinkleSpeed: Math.random() * 0.03 + 0.01,
+        twinklePhase: Math.random() * Math.PI * 2,
+        color: colors[Math.floor(Math.random() * colors.length)],
+      }));
+      
+      const shootingStars = Array.from({ length: isMobile ? 2 : 3 }, () => ({
+        x: 0, y: 0, length: 0, speed: 0, angle: 0, opacity: 0, active: false, width: Math.random() * 2 + 2,
+      }));
+      
+      const nebulas = [
+        { x: canvas.width * 0.2, y: canvas.height * 0.3, radius: 300, color: '202, 162, 74', opacity: 0.08, pulseSpeed: 0.015, pulsePhase: 0 },
+        { x: canvas.width * 0.8, y: canvas.height * 0.6, radius: 400, color: '225, 195, 122', opacity: 0.06, pulseSpeed: 0.012, pulsePhase: Math.PI },
+        { x: canvas.width * 0.5, y: canvas.height * 0.15, radius: 250, color: '202, 162, 74', opacity: 0.05, pulseSpeed: 0.018, pulsePhase: Math.PI / 2 },
+      ];
+      
+      function spawnShootingStar() {
+        const inactiveStar = shootingStars.find(s => !s.active);
+        if (inactiveStar && Math.random() < (isMobile ? 0.025 : 0.02)) {
+          inactiveStar.active = true;
+          inactiveStar.x = Math.random() * canvas.width * 0.8;
+          inactiveStar.y = Math.random() * canvas.height * 0.4;
+          inactiveStar.length = Math.random() * 120 + 80;
+          inactiveStar.speed = Math.random() * 8 + 12;
+          inactiveStar.angle = Math.PI / 4 + (Math.random() - 0.5) * 0.4;
+          inactiveStar.opacity = 1;
+          inactiveStar.width = Math.random() * 2 + 2;
+        }
+      }
+      
+      function animate(currentTime) {
+        const deltaTime = currentTime - lastTime;
+        if (deltaTime < frameInterval) {
+          animationId = requestAnimationFrame(animate);
+          return;
+        }
+        lastTime = currentTime - (deltaTime % frameInterval);
+        
+        const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+        gradient.addColorStop(0, '#0a1023');
+        gradient.addColorStop(0.5, '#0d1429');
+        gradient.addColorStop(1, '#060913');
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        nebulas.forEach((nebula) => {
+          nebula.pulsePhase += nebula.pulseSpeed;
+          const pulse = Math.sin(nebula.pulsePhase) * 0.3 + 0.7;
+          const currentOpacity = nebula.opacity * pulse;
+          
+          const radialGradient = ctx.createRadialGradient(nebula.x, nebula.y, 0, nebula.x, nebula.y, nebula.radius);
+          radialGradient.addColorStop(0, `rgba(${nebula.color}, ${currentOpacity})`);
+          radialGradient.addColorStop(0.5, `rgba(${nebula.color}, ${currentOpacity * 0.5})`);
+          radialGradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+          
+          ctx.fillStyle = radialGradient;
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+        });
+        
+        stars.forEach((star) => {
+          star.twinklePhase += star.twinkleSpeed;
+          const twinkle = Math.sin(star.twinklePhase) * 0.4 + 0.6;
+          const currentOpacity = star.opacity * twinkle;
+          
+          if (star.size > 1.2) {
+            const glowGradient = ctx.createRadialGradient(star.x, star.y, 0, star.x, star.y, star.size * 4);
+            glowGradient.addColorStop(0, `rgba(${star.color}, ${currentOpacity * 0.5})`);
+            glowGradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+            
+            ctx.beginPath();
+            ctx.arc(star.x, star.y, star.size * 4, 0, Math.PI * 2);
+            ctx.fillStyle = glowGradient;
+            ctx.fill();
+          }
+          
+          ctx.beginPath();
+          ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${star.color}, ${currentOpacity})`;
+          ctx.fill();
+          
+          if (star.size > 1.5 && currentOpacity > 0.6) {
+            ctx.strokeStyle = `rgba(${star.color}, ${currentOpacity * 0.4})`;
+            ctx.lineWidth = 0.5;
+            const sparkleSize = star.size * 5;
+            
+            ctx.beginPath();
+            ctx.moveTo(star.x - sparkleSize, star.y);
+            ctx.lineTo(star.x + sparkleSize, star.y);
+            ctx.moveTo(star.x, star.y - sparkleSize);
+            ctx.lineTo(star.x, star.y + sparkleSize);
+            ctx.stroke();
+          }
+        });
+        
+        spawnShootingStar();
+        shootingStars.forEach((star) => {
+          if (!star.active) return;
+          
+          star.x += Math.cos(star.angle) * star.speed;
+          star.y += Math.sin(star.angle) * star.speed;
+          star.opacity -= 0.015;
+          
+          if (star.opacity <= 0 || star.x > canvas.width + 200 || star.y > canvas.height + 200) {
+            star.active = false;
+            return;
+          }
+          
+          const tailX = star.x - Math.cos(star.angle) * star.length;
+          const tailY = star.y - Math.sin(star.angle) * star.length;
+          
+          const outerGlow = ctx.createLinearGradient(star.x, star.y, tailX, tailY);
+          outerGlow.addColorStop(0, `rgba(255, 255, 255, ${star.opacity * 0.3})`);
+          outerGlow.addColorStop(0.3, `rgba(202, 162, 74, ${star.opacity * 0.2})`);
+          outerGlow.addColorStop(1, 'rgba(202, 162, 74, 0)');
+          
+          ctx.beginPath();
+          ctx.moveTo(star.x, star.y);
+          ctx.lineTo(tailX, tailY);
+          ctx.strokeStyle = outerGlow;
+          ctx.lineWidth = star.width * 2;
+          ctx.lineCap = 'round';
+          ctx.stroke();
+          
+          const trailGradient = ctx.createLinearGradient(star.x, star.y, tailX, tailY);
+          trailGradient.addColorStop(0, `rgba(255, 255, 255, ${star.opacity})`);
+          trailGradient.addColorStop(0.4, `rgba(202, 162, 74, ${star.opacity * 0.9})`);
+          trailGradient.addColorStop(1, 'rgba(202, 162, 74, 0)');
+          
+          ctx.beginPath();
+          ctx.moveTo(star.x, star.y);
+          ctx.lineTo(tailX, tailY);
+          ctx.strokeStyle = trailGradient;
+          ctx.lineWidth = star.width;
+          ctx.lineCap = 'round';
+          ctx.stroke();
+          
+          const headGlow = ctx.createRadialGradient(star.x, star.y, 0, star.x, star.y, 10);
+          headGlow.addColorStop(0, `rgba(255, 255, 255, ${star.opacity})`);
+          headGlow.addColorStop(0.5, `rgba(202, 162, 74, ${star.opacity * 0.5})`);
+          headGlow.addColorStop(1, 'rgba(0, 0, 0, 0)');
+          
+          ctx.beginPath();
+          ctx.arc(star.x, star.y, 10, 0, Math.PI * 2);
+          ctx.fillStyle = headGlow;
+          ctx.fill();
+        });
+        
+        animationId = requestAnimationFrame(animate);
+      }
+      
+      animationId = requestAnimationFrame(animate);
+    })();
+    
+    // ==========================
+    // Golden Falling Particles
+    // ==========================
+    (function initParticles() {
+      const particlesCanvas = document.getElementById('particles-bg');
+      if (!particlesCanvas) return;
+      const pCtx = particlesCanvas.getContext('2d');
+      let particles = [];
+      const isMobile = window.innerWidth < 768;
+      const particleCount = isMobile ? 60 : 120;
+      
+      function resizeParticles() {
+        particlesCanvas.width = window.innerWidth;
+        particlesCanvas.height = window.innerHeight;
+      }
+      resizeParticles();
+      window.addEventListener('resize', resizeParticles);
+      
+      for (let i = 0; i < particleCount; i++) {
+        particles.push({
+          x: Math.random() * particlesCanvas.width,
+          y: Math.random() * particlesCanvas.height,
+          size: Math.random() * 5 + 2,
+          speedY: Math.random() * 2.5 + 1.2,
+          speedX: Math.random() * 0.6 - 0.3,
+          opacity: Math.random() * 0.4 + 0.8,
+          color: ['202, 162, 74', '225, 195, 122', '246, 231, 192', '255, 255, 255'][Math.floor(Math.random() * 4)],
+          twinkle: Math.random() * Math.PI * 2
+        });
+      }
+      
+      function animateParticles() {
+        pCtx.clearRect(0, 0, particlesCanvas.width, particlesCanvas.height);
+        particles.forEach(p => {
+          p.y += p.speedY;
+          p.x += p.speedX + Math.sin(p.y * 0.01) * 0.3;
+          p.twinkle += 0.05;
+          
+          if (p.y > particlesCanvas.height + 10) { p.y = -10; p.x = Math.random() * particlesCanvas.width; }
+          if (p.x < -10) p.x = particlesCanvas.width + 10;
+          if (p.x > particlesCanvas.width + 10) p.x = -10;
+          
+          const twinkleAlpha = p.opacity * (0.5 + 0.5 * Math.sin(p.twinkle * 2));
+          
+          const glow = pCtx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size * 3);
+          glow.addColorStop(0, `rgba(${p.color}, ${twinkleAlpha})`);
+          glow.addColorStop(0.4, `rgba(${p.color}, ${twinkleAlpha * 0.3})`);
+          glow.addColorStop(1, 'rgba(0,0,0,0)');
+          pCtx.fillStyle = glow;
+          pCtx.fillRect(p.x - p.size * 3, p.y - p.size * 3, p.size * 6, p.size * 6);
+          
+          pCtx.beginPath();
+          pCtx.arc(p.x, p.y, p.size * 1.5, 0, Math.PI * 2);
+          pCtx.fillStyle = `rgba(${p.color}, ${twinkleAlpha})`;
+          pCtx.fill();
+        });
+        requestAnimationFrame(animateParticles);
+      }
+      animateParticles();
+    })();
+    
     // ==========================
     // Loading Screen
     // ==========================
@@ -1464,7 +1751,7 @@
       const paxDisplay = document.getElementById('ticket-pax-display');
       const num = formData.pax || '1';
       const label = num === '1' ? 'PERSONA' : 'PERSONAS';
-      paxDisplay.innerHTML = '<span class="text-4xl md:text-5xl font-bold text-gradient font-heading">' + num + '</span><p class="text-text2 text-sm uppercase tracking-wider mt-1">' + label + '</p>';
+      paxDisplay.innerHTML = '<span class="text-4xl md:text-5xl font-bold text-gradient font-heading">' + num + '</span><p class="text-white/70 text-sm uppercase tracking-wider mt-1">' + label + '</p>';
       pase.classList.remove('hidden');
       pase.scrollIntoView({ behavior: 'smooth' });
     }
