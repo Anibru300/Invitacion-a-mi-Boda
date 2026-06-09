@@ -1702,6 +1702,17 @@
       document.getElementById('rsvp-name').classList.add('opacity-70');
     }
     
+    // Build dynamic pax buttons if pre-assigned (1 to max)
+    if (preAssignedPax) {
+      const maxPax = parseInt(preAssignedPax, 10);
+      const container = document.getElementById('pax-buttons');
+      let html = '';
+      for (let i = 1; i <= maxPax; i++) {
+        html += `<button type="button" onclick="setPax('${i}')" class="pax-btn py-3 rounded-xl border text-sm font-medium transition-all bg-bg2/80 border-gold/20 text-white/50 hover:border-gold/40">${i}</button>`;
+      }
+      container.innerHTML = html;
+    }
+    
     function setAttendance(value) {
       formData.attendance = value;
       if (value === 'No') formData.pax = '';
@@ -1741,12 +1752,11 @@
         submitBtn.classList.remove('hidden');
         submitText.innerHTML = '<i data-lucide="heart" class="w-3.5 h-3.5" style="fill: currentColor;"></i> Confirmar asistencia';
         
-        // If pre-assigned pax, hide buttons and show fixed number
+        // If pre-assigned pax, show dynamic buttons (1 to max)
         if (preAssignedPax) {
-          paxButtons.classList.add('hidden');
-          paxFixed.classList.remove('hidden');
-          paxFixedNumber.textContent = preAssignedPax;
-          document.getElementById('pax-label').textContent = 'Pases asignados para tu invitación:';
+          paxButtons.classList.remove('hidden');
+          paxFixed.classList.add('hidden');
+          document.getElementById('pax-label').textContent = 'Pases asignados: ' + preAssignedPax + '. ¿Cuántos asistirán?';
         } else {
           paxButtons.classList.remove('hidden');
           paxFixed.classList.add('hidden');
