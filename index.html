@@ -49,6 +49,9 @@
   <!-- Canvas Confetti -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
   
+  <!-- html2canvas for ticket download -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  
   <style>
     :root {
       --bg1: #060913;
@@ -418,9 +421,9 @@
           <!-- Date -->
           <p class="text-base md:text-lg text-white mb-8 font-light">
             <span class="text-gold font-semibold">29</span>
-            <span class="mx-2 text-white3">·</span>
+            <span class="mx-2 text-white/50">·</span>
             <span class="text-gold font-semibold">Agosto</span>
-            <span class="mx-2 text-white3">·</span>
+            <span class="mx-2 text-white/50">·</span>
             <span class="text-gold font-semibold">2026</span>
           </p>
           
@@ -435,7 +438,7 @@
           <!-- Scroll hint -->
           <div class="mt-8 opacity-40">
             <div class="flex flex-col items-center gap-1">
-              <span class="text-[11px] text-white3 tracking-wider uppercase">Toca para abrir</span>
+              <span class="text-[11px] text-white/50 tracking-wider uppercase">Toca para abrir</span>
               <i data-lucide="chevron-down" class="text-gold w-4 h-4"></i>
             </div>
           </div>
@@ -480,19 +483,19 @@
         <div class="grid grid-cols-4 gap-3 md:gap-4 max-w-lg mx-auto">
           <div class="reveal count-box rounded-xl md:rounded-2xl p-3 md:p-5 text-center reveal-delay-1">
             <span id="cd-days" class="block text-2xl md:text-4xl font-bold text-gradient font-heading">00</span>
-            <span class="text-[10px] md:text-xs uppercase tracking-wider text-white3">Días</span>
+            <span class="text-[10px] md:text-xs uppercase tracking-wider text-white/50">Días</span>
           </div>
           <div class="reveal count-box rounded-xl md:rounded-2xl p-3 md:p-5 text-center reveal-delay-2">
             <span id="cd-hours" class="block text-2xl md:text-4xl font-bold text-gradient font-heading">00</span>
-            <span class="text-[10px] md:text-xs uppercase tracking-wider text-white3">Horas</span>
+            <span class="text-[10px] md:text-xs uppercase tracking-wider text-white/50">Horas</span>
           </div>
           <div class="reveal count-box rounded-xl md:rounded-2xl p-3 md:p-5 text-center reveal-delay-3">
             <span id="cd-minutes" class="block text-2xl md:text-4xl font-bold text-gradient font-heading">00</span>
-            <span class="text-[10px] md:text-xs uppercase tracking-wider text-white3">Min</span>
+            <span class="text-[10px] md:text-xs uppercase tracking-wider text-white/50">Min</span>
           </div>
           <div class="reveal count-box rounded-xl md:rounded-2xl p-3 md:p-5 text-center reveal-delay-4">
             <span id="cd-seconds" class="block text-2xl md:text-4xl font-bold text-gradient font-heading">00</span>
-            <span class="text-[10px] md:text-xs uppercase tracking-wider text-white3">Seg</span>
+            <span class="text-[10px] md:text-xs uppercase tracking-wider text-white/50">Seg</span>
           </div>
         </div>
         
@@ -591,7 +594,7 @@
             <i data-lucide="map-pin" class="text-gold w-[18px] h-[18px]"></i>
           </div>
           <h2 class="font-heading text-2xl md:text-3xl text-gradient">Ubicación</h2>
-          <p class="text-white3 text-sm mt-1">Te esperamos en estos hermosos lugares</p>
+          <p class="text-white/50 text-sm mt-1">Te esperamos en estos hermosos lugares</p>
         </div>
         
         <div class="grid md:grid-cols-2 gap-4">
@@ -605,9 +608,9 @@
                 <span class="text-xs uppercase tracking-wider text-gold">Ceremonia</span>
               </div>
               <span class="text-2xl md:text-3xl font-bold block text-gradient font-heading">5:00 PM</span>
-              <p class="text-white3 text-xs mt-0.5">Llegar: 4:40 PM</p>
+              <p class="text-white/50 text-xs mt-0.5">Llegar: 4:40 PM</p>
               <h3 class="text-white font-medium text-sm md:text-base mb-1 mt-3">Parroquia San Rafael Arcángel</h3>
-              <p class="text-white3 text-xs mb-4">Guadalupe Victoria 17, Centro</p>
+              <p class="text-white/50 text-xs mb-4">Guadalupe Victoria 17, Centro</p>
               <a href="https://maps.app.goo.gl/pN5AznDmCfymgZ2f8" target="_blank" rel="noopener noreferrer" class="btn-outline inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-medium">
                 <i data-lucide="navigation" class="w-3 h-3"></i>
                 Ver mapa
@@ -626,7 +629,7 @@
               </div>
               <span class="text-2xl md:text-3xl font-bold block text-gradient font-heading">6:30 PM</span>
               <h3 class="text-white font-medium text-sm md:text-base mb-1 mt-3">Quinta Munay</h3>
-              <p class="text-white3 text-xs mb-4">Te esperamos para celebrar</p>
+              <p class="text-white/50 text-xs mb-4">Te esperamos para celebrar</p>
               <a href="https://www.google.com/maps?q=20.98356056213379,-101.5621566772461" target="_blank" rel="noopener noreferrer" class="btn-outline inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-medium">
                 <i data-lucide="navigation" class="w-3 h-3"></i>
                 Ver mapa
@@ -643,7 +646,7 @@
             <i data-lucide="sparkles" class="text-gold w-[18px] h-[18px]"></i>
           </div>
           <h2 class="font-heading text-2xl md:text-3xl text-gradient">Itinerario</h2>
-          <p class="text-white3 text-sm mt-1">Un día lleno de momentos inolvidables</p>
+          <p class="text-white/50 text-sm mt-1">Un día lleno de momentos inolvidables</p>
         </div>
         
         <div class="relative max-w-xl mx-auto">
@@ -658,7 +661,7 @@
               <div class="flex-1 ml-3 md:ml-0 md:px-8 pt-1">
                 <span class="text-gold font-semibold text-sm md:text-base">4:40 PM</span>
                 <h3 class="text-white font-semibold text-sm md:text-base">Llegada de Invitados</h3>
-                <p class="text-white3 text-xs md:text-sm">Bienvenida en la Parroquia</p>
+                <p class="text-white/50 text-xs md:text-sm">Bienvenida en la Parroquia</p>
               </div>
             </div>
             
@@ -670,7 +673,7 @@
               <div class="flex-1 ml-3 md:ml-0 md:px-8 pt-1">
                 <span class="text-gold font-semibold text-sm md:text-base">5:00 PM</span>
                 <h3 class="text-white font-semibold text-sm md:text-base">Ceremonia Religiosa</h3>
-                <p class="text-white3 text-xs md:text-sm">Parroquia San Rafael Arcángel</p>
+                <p class="text-white/50 text-xs md:text-sm">Parroquia San Rafael Arcángel</p>
               </div>
             </div>
             
@@ -682,7 +685,7 @@
               <div class="flex-1 ml-3 md:ml-0 md:px-8 pt-1">
                 <span class="text-gold font-semibold text-sm md:text-base">5:45 PM</span>
                 <h3 class="text-white font-semibold text-sm md:text-base">Traslado</h3>
-                <p class="text-white3 text-xs md:text-sm">Rumbo a Quinta Munay</p>
+                <p class="text-white/50 text-xs md:text-sm">Rumbo a Quinta Munay</p>
               </div>
             </div>
             
@@ -694,7 +697,7 @@
               <div class="flex-1 ml-3 md:ml-0 md:px-8 pt-1">
                 <span class="text-gold font-semibold text-sm md:text-base">6:30 PM</span>
                 <h3 class="text-white font-semibold text-sm md:text-base">Recepción</h3>
-                <p class="text-white3 text-xs md:text-sm">Quinta Munay</p>
+                <p class="text-white/50 text-xs md:text-sm">Quinta Munay</p>
               </div>
             </div>
             
@@ -706,7 +709,7 @@
               <div class="flex-1 ml-3 md:ml-0 md:px-8 pt-1">
                 <span class="text-gold font-semibold text-sm md:text-base">7:30 PM</span>
                 <h3 class="text-white font-semibold text-sm md:text-base">Cena</h3>
-                <p class="text-white3 text-xs md:text-sm">Banquete nupcial</p>
+                <p class="text-white/50 text-xs md:text-sm">Banquete nupcial</p>
               </div>
             </div>
             
@@ -718,7 +721,7 @@
               <div class="flex-1 ml-3 md:ml-0 md:px-8 pt-1">
                 <span class="text-gold font-semibold text-sm md:text-base">9:00 PM</span>
                 <h3 class="text-white font-semibold text-sm md:text-base">Baile y Celebración</h3>
-                <p class="text-white3 text-xs md:text-sm">A disfrutar en grande</p>
+                <p class="text-white/50 text-xs md:text-sm">A disfrutar en grande</p>
               </div>
             </div>
           </div>
@@ -746,16 +749,16 @@
             <div class="rounded-xl border border-gold/20 p-4 text-center" style="background: rgba(202,162,74,0.03);">
               <i data-lucide="user" class="text-gold w-5 h-5 mx-auto mb-2"></i>
               <p class="text-white text-sm font-medium mb-1">Caballeros</p>
-              <p class="text-white3 text-xs">Traje oscuro</p>
+              <p class="text-white/50 text-xs">Traje oscuro</p>
             </div>
             <div class="rounded-xl border border-gold/20 p-4 text-center" style="background: rgba(202,162,74,0.03);">
               <i data-lucide="user" class="text-gold w-5 h-5 mx-auto mb-2"></i>
               <p class="text-white text-sm font-medium mb-1">Damas</p>
-              <p class="text-white3 text-xs">Vestido largo</p>
+              <p class="text-white/50 text-xs">Vestido largo</p>
             </div>
           </div>
           
-          <p class="text-white3 text-xs text-center mt-4">
+          <p class="text-white/50 text-xs text-center mt-4">
             <i data-lucide="info" class="w-3 h-3 inline-block mr-1"></i>
             Favor de evitar el color blanco
           </p>
@@ -776,7 +779,7 @@
             <p class="text-white text-sm md:text-base">
               Habrá una caja especial en la recepción para depositar tu sobre.
             </p>
-            <p class="text-white3 text-xs mt-2">¡Gracias por tu cariño y apoyo!</p>
+            <p class="text-white/50 text-xs mt-2">¡Gracias por tu cariño y apoyo!</p>
           </div>
         </div>
       </section>
@@ -788,7 +791,7 @@
             <i data-lucide="camera" class="text-gold w-[18px] h-[18px]"></i>
           </div>
           <h2 class="font-heading text-2xl md:text-3xl text-gradient">Nuestros Momentos</h2>
-          <p class="text-white3 text-sm mt-1">Fragmentos de nuestra historia de amor</p>
+          <p class="text-white/50 text-sm mt-1">Fragmentos de nuestra historia de amor</p>
         </div>
         
         <div class="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-3">
@@ -881,7 +884,7 @@
             <i data-lucide="send" class="text-gold w-[18px] h-[18px]"></i>
           </div>
           <h2 class="font-heading text-2xl md:text-3xl text-gradient mb-1">Confirma tu Asistencia</h2>
-          <p class="text-white3 text-xs md:text-sm">Por favor, confirma antes del 15 de agosto de 2026</p>
+          <p class="text-white/50 text-xs md:text-sm">Por favor, confirma antes del 15 de agosto de 2026</p>
         </div>
         
         <div id="rsvp-form-container" class="max-w-md mx-auto">
@@ -889,8 +892,8 @@
             <!-- Name -->
             <div>
               <div class="relative group">
-                <i data-lucide="user" class="absolute left-3 top-1/2 -translate-y-1/2 text-white3 group-focus-within:text-gold transition-colors w-4 h-4"></i>
-                <input type="text" id="rsvp-name" placeholder="Tu nombre completo" class="w-full pl-10 pr-3 py-3 rounded-xl border text-sm text-white placeholder:text-white3 outline-none transition-all bg-bg2/80 border-gold/20 focus:border-gold">
+                <i data-lucide="user" class="absolute left-3 top-1/2 -translate-y-1/2 text-white/50 group-focus-within:text-gold transition-colors w-4 h-4"></i>
+                <input type="text" id="rsvp-name" placeholder="Tu nombre completo" class="w-full pl-10 pr-3 py-3 rounded-xl border text-sm text-white placeholder:text-white/50 outline-none transition-all bg-bg2/80 border-gold/20 focus:border-gold">
               </div>
               <p id="error-name" class="text-red-500 text-xs mt-1 hidden flex items-center gap-1"><i data-lucide="x" class="w-2.5 h-2.5"></i> <span>Ingresa tu nombre</span></p>
             </div>
@@ -917,20 +920,26 @@
             
             <!-- Number of people -->
             <div id="pax-section" class="hidden">
-              <p class="text-white/70 text-xs mb-2 ml-1">¿Cuántas personas?</p>
-              <div class="grid grid-cols-5 gap-2">
-                <button type="button" onclick="setPax('1')" class="pax-btn py-3 rounded-xl border text-sm font-medium transition-all bg-bg2/80 border-gold/20 text-white3 hover:border-gold/40">1</button>
-                <button type="button" onclick="setPax('2')" class="pax-btn py-3 rounded-xl border text-sm font-medium transition-all bg-bg2/80 border-gold/20 text-white3 hover:border-gold/40">2</button>
-                <button type="button" onclick="setPax('3')" class="pax-btn py-3 rounded-xl border text-sm font-medium transition-all bg-bg2/80 border-gold/20 text-white3 hover:border-gold/40">3</button>
-                <button type="button" onclick="setPax('4')" class="pax-btn py-3 rounded-xl border text-sm font-medium transition-all bg-bg2/80 border-gold/20 text-white3 hover:border-gold/40">4</button>
-                <button type="button" onclick="setPax('5')" class="pax-btn py-3 rounded-xl border text-sm font-medium transition-all bg-bg2/80 border-gold/20 text-white3 hover:border-gold/40">5</button>
+              <p class="text-white/70 text-xs mb-2 ml-1" id="pax-label">¿Cuántas personas?</p>
+              <div id="pax-buttons" class="grid grid-cols-5 gap-2">
+                <button type="button" onclick="setPax('1')" class="pax-btn py-3 rounded-xl border text-sm font-medium transition-all bg-bg2/80 border-gold/20 text-white/50 hover:border-gold/40">1</button>
+                <button type="button" onclick="setPax('2')" class="pax-btn py-3 rounded-xl border text-sm font-medium transition-all bg-bg2/80 border-gold/20 text-white/50 hover:border-gold/40">2</button>
+                <button type="button" onclick="setPax('3')" class="pax-btn py-3 rounded-xl border text-sm font-medium transition-all bg-bg2/80 border-gold/20 text-white/50 hover:border-gold/40">3</button>
+                <button type="button" onclick="setPax('4')" class="pax-btn py-3 rounded-xl border text-sm font-medium transition-all bg-bg2/80 border-gold/20 text-white/50 hover:border-gold/40">4</button>
+                <button type="button" onclick="setPax('5')" class="pax-btn py-3 rounded-xl border text-sm font-medium transition-all bg-bg2/80 border-gold/20 text-white/50 hover:border-gold/40">5</button>
+              </div>
+              <div id="pax-fixed" class="hidden">
+                <div class="rounded-xl border border-gold/30 p-3 text-center bg-bg2/80">
+                  <span id="pax-fixed-number" class="text-lg font-bold text-gold">2</span>
+                  <span class="text-white/70 text-sm ml-1">personas asignadas</span>
+                </div>
               </div>
               <p id="error-pax" class="text-red-500 text-xs mt-1 hidden">Selecciona un número</p>
             </div>
             
             <!-- Notes -->
             <div>
-              <textarea id="rsvp-notes" rows="3" placeholder="Mensaje para los novios... (opcional)" class="w-full px-3 py-3 rounded-xl border border-gold/20 text-sm text-white placeholder:text-white3 outline-none transition-all focus:border-gold bg-bg2/80 resize-none"></textarea>
+              <textarea id="rsvp-notes" rows="3" placeholder="Mensaje para los novios... (opcional)" class="w-full px-3 py-3 rounded-xl border border-gold/20 text-sm text-white placeholder:text-white/50 outline-none transition-all focus:border-gold bg-bg2/80 resize-none"></textarea>
             </div>
             
             <!-- Submit -->
@@ -993,7 +1002,7 @@
             </div>
             
             <p class="font-script text-3xl md:text-4xl text-gradient mb-1">Carlos & Jimena</p>
-            <p class="text-white3 text-xs uppercase tracking-wider mb-4">29 de agosto de 2026</p>
+            <p class="text-white/50 text-xs uppercase tracking-wider mb-4">29 de agosto de 2026</p>
             
             <div class="ornament-divider mb-5">
               <i data-lucide="heart" class="text-gold w-3 h-3" style="fill: currentColor; opacity: 0.5;"></i>
@@ -1012,7 +1021,7 @@
               </p>
             </div>
             
-            <p class="text-white3 text-[10px] mt-4 uppercase tracking-widest">Pase de acceso exclusivo</p>
+            <p class="text-white/50 text-[10px] mt-4 uppercase tracking-widest">Pase de acceso exclusivo</p>
           </div>
         </div>
         
@@ -1031,7 +1040,7 @@
             <i data-lucide="qr-code" class="text-gold w-[18px] h-[18px]"></i>
           </div>
           <h2 class="font-heading text-2xl md:text-3xl text-gradient mb-1">Comparte</h2>
-          <p class="text-white3 text-xs md:text-sm">Escanea o comparte el enlace</p>
+          <p class="text-white/50 text-xs md:text-sm">Escanea o comparte el enlace</p>
         </div>
         
         <div class="flex flex-col md:flex-row items-center justify-center gap-5 md:gap-8">
@@ -1057,6 +1066,50 @@
       
     </div>
     
+      <!-- Admin: Generador de Invitaciones -->
+      <section id="admin-panel" class="reveal hidden">
+        <div class="bg-card rounded-2xl md:rounded-3xl border border-gold/20 overflow-hidden p-6 md:p-8">
+          <div class="text-center mb-6">
+            <div class="inline-flex items-center justify-center w-10 h-10 rounded-xl mb-3 border border-gold/20" style="background: rgba(202,162,74,0.06);">
+              <i data-lucide="settings" class="text-gold w-[18px] h-[18px]"></i>
+            </div>
+            <h2 class="font-heading text-2xl md:text-3xl text-gradient">Generador de Invitaciones</h2>
+            <p class="text-white/50 text-xs md:text-sm mt-1">Crea links personalizados para cada invitado</p>
+          </div>
+          
+          <div class="max-w-md mx-auto space-y-4">
+            <div>
+              <label class="text-white/70 text-xs mb-1 block">Nombre del invitado</label>
+              <input type="text" id="admin-name" placeholder="Ej: Abuelita María" class="w-full px-3 py-3 rounded-xl border text-sm text-white placeholder:text-white/50 outline-none transition-all bg-bg2/80 border-gold/20 focus:border-gold">
+            </div>
+            <div>
+              <label class="text-white/70 text-xs mb-1 block">Número de pases</label>
+              <div class="grid grid-cols-5 gap-2">
+                <button type="button" onclick="setAdminPax('1')" class="admin-pax-btn py-3 rounded-xl border text-sm font-medium transition-all bg-bg2/80 border-gold/20 text-white/50 hover:border-gold/40">1</button>
+                <button type="button" onclick="setAdminPax('2')" class="admin-pax-btn py-3 rounded-xl border text-sm font-medium transition-all bg-bg2/80 border-gold/20 text-white/50 hover:border-gold/40">2</button>
+                <button type="button" onclick="setAdminPax('3')" class="admin-pax-btn py-3 rounded-xl border text-sm font-medium transition-all bg-bg2/80 border-gold/20 text-white/50 hover:border-gold/40">3</button>
+                <button type="button" onclick="setAdminPax('4')" class="admin-pax-btn py-3 rounded-xl border text-sm font-medium transition-all bg-bg2/80 border-gold/20 text-white/50 hover:border-gold/40">4</button>
+                <button type="button" onclick="setAdminPax('5')" class="admin-pax-btn py-3 rounded-xl border text-sm font-medium transition-all bg-bg2/80 border-gold/20 text-white/50 hover:border-gold/40">5</button>
+              </div>
+            </div>
+            <button onclick="generateInviteLink()" class="w-full py-3 rounded-xl text-white font-medium text-sm btn-gold">
+              Generar link personalizado
+            </button>
+            
+            <div id="admin-result" class="hidden rounded-xl border border-gold/20 p-4 bg-bg2/50">
+              <p class="text-white/70 text-xs mb-2">Link generado:</p>
+              <div class="flex gap-2">
+                <input type="text" id="admin-link" readonly class="flex-1 px-3 py-2 rounded-lg border text-xs text-white bg-bg1 border-gold/20 outline-none">
+                <button onclick="copyAdminLink()" class="px-3 py-2 rounded-lg border border-gold/30 text-gold text-xs hover:bg-gold/10 transition-colors">
+                  Copiar
+                </button>
+              </div>
+              <p class="text-white/50 text-[10px] mt-2">Comparte este link directamente con el invitado. El pase se generará automáticamente con los pases asignados.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      
     <!-- Footer -->
     <footer class="relative mt-12 md:mt-16 py-12 md:py-16">
       <div class="absolute inset-0" style="background: linear-gradient(to top, #060913, transparent);"></div>
@@ -1075,7 +1128,7 @@
           <span class="text-sm md:text-base">29 de agosto de 2026</span>
         </div>
         
-        <p class="text-white3 text-xs md:text-sm max-w-xs mx-auto mb-6">
+        <p class="text-white/50 text-xs md:text-sm max-w-xs mx-auto mb-6">
           Gracias por ser parte de nuestra historia.
         </p>
         
@@ -1607,11 +1660,31 @@
     // ==========================
     let formData = { name: '', attendance: '', pax: '', notes: '' };
     
+    // ==========================
+    // URL Params (pre-assigned passes)
+    // ==========================
+    const urlParams = new URLSearchParams(window.location.search);
+    const preAssignedName = urlParams.get('invitado') || '';
+    const preAssignedPax = urlParams.get('pases') || '';
+    
+    if (preAssignedName) {
+      const decodedName = decodeURIComponent(preAssignedName);
+      document.getElementById('rsvp-name').value = decodedName;
+      formData.name = decodedName;
+      document.getElementById('rsvp-name').readOnly = true;
+      document.getElementById('rsvp-name').classList.add('opacity-70');
+    }
+    
     function setAttendance(value) {
       formData.attendance = value;
       if (value === 'No') formData.pax = '';
       updateRSVPButtons();
       hideError('attendance');
+      
+      // If pre-assigned pax exists and user says Yes, auto-set it
+      if (value === 'Si' && preAssignedPax) {
+        setPax(preAssignedPax);
+      }
     }
     
     function setPax(value) {
@@ -1624,6 +1697,9 @@
       const btnYes = document.getElementById('btn-yes');
       const btnNo = document.getElementById('btn-no');
       const paxSection = document.getElementById('pax-section');
+      const paxButtons = document.getElementById('pax-buttons');
+      const paxFixed = document.getElementById('pax-fixed');
+      const paxFixedNumber = document.getElementById('pax-fixed-number');
       const submitBtn = document.getElementById('rsvp-submit');
       const submitText = document.getElementById('submit-text');
       
@@ -1637,6 +1713,18 @@
         paxSection.classList.remove('hidden');
         submitBtn.classList.remove('hidden');
         submitText.innerHTML = '<i data-lucide="heart" class="w-3.5 h-3.5" style="fill: currentColor;"></i> Confirmar asistencia';
+        
+        // If pre-assigned pax, hide buttons and show fixed number
+        if (preAssignedPax) {
+          paxButtons.classList.add('hidden');
+          paxFixed.classList.remove('hidden');
+          paxFixedNumber.textContent = preAssignedPax;
+          document.getElementById('pax-label').textContent = 'Pases asignados para tu invitación:';
+        } else {
+          paxButtons.classList.remove('hidden');
+          paxFixed.classList.add('hidden');
+          document.getElementById('pax-label').textContent = '¿Cuántas personas?';
+        }
       } else if (formData.attendance === 'No') {
         btnNo.style.background = 'rgba(249, 115, 22, 0.1)';
         btnNo.style.borderColor = 'rgba(249, 115, 22, 0.5)';
@@ -1651,9 +1739,9 @@
       
       document.querySelectorAll('.pax-btn').forEach(btn => {
         if (formData.pax === btn.textContent) {
-          btn.style.background = 'rgba(184, 148, 79, 0.1)';
-          btn.style.borderColor = '#b8944f';
-          btn.style.color = '#b8944f';
+          btn.style.background = 'rgba(202, 162, 74, 0.15)';
+          btn.style.borderColor = '#caa24a';
+          btn.style.color = '#caa24a';
         } else {
           btn.style.background = '';
           btn.style.borderColor = '';
@@ -1756,8 +1844,26 @@
       pase.scrollIntoView({ behavior: 'smooth' });
     }
     
-    function downloadTicket() {
-      alert('Captura de pantalla guardada. Este pase es válido para el ingreso al evento.');
+    async function downloadTicket() {
+      const ticketElement = document.querySelector('#pase-acceso > .bg-card');
+      if (!ticketElement) return;
+      
+      try {
+        const canvas = await html2canvas(ticketElement, {
+          backgroundColor: '#060913',
+          scale: 3,
+          useCORS: true,
+          logging: false,
+        });
+        
+        const link = document.createElement('a');
+        link.download = 'Pase-de-Acceso-Carlos-y-Jimena.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+      } catch (err) {
+        console.error('Error generating ticket:', err);
+        alert('No se pudo generar la imagen. Por favor toma una captura de pantalla del pase.');
+      }
     }
     
     // ==========================
@@ -1881,6 +1987,50 @@
       document.getElementById('mute-icon').classList.toggle('hidden', isMuted);
       document.getElementById('unmute-icon').classList.toggle('hidden', !isMuted);
       lucide.createIcons();
+    }
+    
+    // ==========================
+    // Admin Panel
+    // ==========================
+    let adminPax = '';
+    
+    if (urlParams.get('admin') === '1') {
+      document.getElementById('admin-panel').classList.remove('hidden');
+    }
+    
+    function setAdminPax(value) {
+      adminPax = value;
+      document.querySelectorAll('.admin-pax-btn').forEach(btn => {
+        if (btn.textContent === value) {
+          btn.style.background = 'rgba(202, 162, 74, 0.15)';
+          btn.style.borderColor = '#caa24a';
+          btn.style.color = '#caa24a';
+        } else {
+          btn.style.background = '';
+          btn.style.borderColor = '';
+          btn.style.color = '';
+        }
+      });
+    }
+    
+    function generateInviteLink() {
+      const name = document.getElementById('admin-name').value.trim();
+      if (!name) { alert('Escribe el nombre del invitado'); return; }
+      if (!adminPax) { alert('Selecciona el número de pases'); return; }
+      
+      const base = window.location.origin + window.location.pathname;
+      const link = base + '?invitado=' + encodeURIComponent(name) + '&pases=' + adminPax;
+      
+      document.getElementById('admin-link').value = link;
+      document.getElementById('admin-result').classList.remove('hidden');
+    }
+    
+    function copyAdminLink() {
+      const input = document.getElementById('admin-link');
+      input.select();
+      navigator.clipboard.writeText(input.value).then(() => {
+        alert('Link copiado al portapapeles');
+      });
     }
     
     // ==========================
