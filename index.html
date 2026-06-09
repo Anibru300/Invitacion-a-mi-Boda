@@ -214,9 +214,7 @@
     .animate-float {
       animation: float 4s ease-in-out infinite;
     }
-    .card-glow {
-      animation: card-glow 3s ease-in-out infinite;
-    }
+    /* card-glow removed for performance */
     
     .equalizer-bar {
       animation: equalizer 0.5s ease-in-out infinite;
@@ -257,93 +255,31 @@
       transform: scale(0.98);
     }
     
-    /* Shine effect for gallery */
+    /* shine-effect removed for performance */
     .shine-effect {
-      position: relative;
-      overflow: hidden;
-    }
-    .shine-effect::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-      transition: left 0.6s ease;
-    }
-    .shine-effect:hover::after {
-      left: 100%;
+      /* hover shine removed */
     }
     
 
     /* Scroll Progress */
     #scroll-progress { will-change: width; }
     
-    /* Shimmer text effect */
+    /* text-shimmer replaced by static text-gradient */
     .text-shimmer {
-      background: linear-gradient(90deg, #f6e7c0 0%, #ffffff 25%, #fff8dc 50%, #ffffff 75%, #f6e7c0 100%);
-      background-size: 200% auto;
+      background: linear-gradient(135deg, #f6e7c0, #e1c37a);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      animation: shimmer 1.5s linear infinite;
-    }
-    @keyframes shimmer {
-      to { background-position: 200% center; }
+      background-clip: text;
     }
     
-    /* Rotating border glow */
+    /* rotating-border simplified */
     .rotating-border {
       position: relative;
     }
-    .rotating-border::before {
-      content: '';
-      position: absolute;
-      inset: -3px;
-      border-radius: 9999px;
-      background: linear-gradient(90deg, #caa24a, #e1c37a, #ffffff, #f6e7c0, #caa24a);
-      background-size: 400% 100%;
-      z-index: -1;
-      animation: rotate-border 1.5s linear infinite;
-      opacity: 0.9;
-    }
-    .rotating-border::after {
-      content: '';
-      position: absolute;
-      inset: -3px;
-      border-radius: 9999px;
-      background: linear-gradient(90deg, #caa24a, #e1c37a, #ffffff, #f6e7c0, #caa24a);
-      background-size: 400% 100%;
-      z-index: -1;
-      animation: rotate-border 1.5s linear infinite;
-      opacity: 0.9;
-      filter: blur(15px);
-    }
-    @keyframes rotate-border {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 400% 50%; }
-    }
     
-    /* Icon pulse on scroll */
+    /* icon-pulse removed for performance */
     .icon-pulse {
-      animation: icon-glow 2s ease-in-out infinite;
-    }
-    @keyframes icon-glow {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(202, 162, 74, 0.4); }
-      50% { box-shadow: 0 0 20px 5px rgba(202, 162, 74, 0.1); }
-    }
-    
-    /* Ripple Effect */
-    .ripple {
-      position: absolute;
-      border-radius: 50%;
-      background: rgba(202, 162, 74, 0.4);
-      transform: scale(0);
-      animation: ripple-animation 0.6s linear;
-      pointer-events: none;
-    }
-    @keyframes ripple-animation {
-      to { transform: scale(4); opacity: 0; }
+      /* animation removed */
     }
     
     /* Shake Error */
@@ -386,7 +322,7 @@
     }
     
     /* 3D Tilt */
-    .tilt-card {
+    . {
       transform-style: preserve-3d;
       transition: transform 0.1s ease-out;
     }
@@ -458,14 +394,11 @@
   
   <!-- Starry Background Canvas -->
   <canvas id="starry-bg" class="fixed inset-0 w-full h-full pointer-events-none" style="z-index: 0;"></canvas>
-  <!-- Golden Particles Canvas -->
-  <canvas id="particles-bg" class="fixed inset-0 w-full h-full pointer-events-none" style="z-index: 1;"></canvas>
-  
-  <!-- Background Waves -->
+  <!-- Background glow (static, no animation) -->
   <div class="fixed inset-0 pointer-events-none overflow-hidden" style="z-index: 0;">
-    <div class="wave-orb" style="position: absolute; top: 5%; left: -15%; width: 700px; height: 700px; background: radial-gradient(circle, rgba(202,162,74,0.45) 0%, transparent 65%); border-radius: 50%; filter: blur(35px); animation: wave-move 12s ease-in-out infinite;"></div>
-    <div class="wave-orb" style="position: absolute; top: 35%; right: -20%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(225,195,122,0.40) 0%, transparent 65%); border-radius: 50%; filter: blur(45px); animation: wave-move 15s ease-in-out infinite reverse;"></div>
-    <div class="wave-orb" style="position: absolute; bottom: 5%; left: 15%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(202,162,74,0.35) 0%, transparent 65%); border-radius: 50%; filter: blur(40px); animation: wave-move 18s ease-in-out infinite;"></div>
+    <div style="position: absolute; top: 5%; left: -15%; width: 700px; height: 700px; background: radial-gradient(circle, rgba(202,162,74,0.15) 0%, transparent 65%); border-radius: 50%; filter: blur(40px);"></div>
+    <div style="position: absolute; top: 35%; right: -20%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(225,195,122,0.12) 0%, transparent 65%); border-radius: 50%; filter: blur(50px);"></div>
+    <div style="position: absolute; bottom: 5%; left: 15%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(202,162,74,0.10) 0%, transparent 65%); border-radius: 50%; filter: blur(45px);"></div>
   </div>
   
 
@@ -534,8 +467,7 @@
       
       <!-- Envelope body -->
       <div class="relative rounded-3xl overflow-hidden backdrop-blur-sm border border-gold/20" style="background: linear-gradient(180deg, rgba(13,20,41,0.85), rgba(6,9,19,0.95)); box-shadow: 0 25px 80px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255,255,255,0.05);">
-        <!-- Animated border glow -->
-        <div class="absolute inset-0 rounded-3xl opacity-0 hover:opacity-100 transition-opacity duration-500" style="background: linear-gradient(90deg, transparent, rgba(202,162,74,0.35), transparent); animation: border-shine 4s ease-in-out infinite;"></div>
+        <!-- Animated border glow removed for performance -->
         
         <!-- Corner decorations -->
         <div class="absolute top-4 left-4 w-12 h-12 border-l-2 border-t-2 border-gold/50 rounded-tl-xl"></div>
@@ -555,10 +487,10 @@
           <p class="text-xs md:text-sm text-gold tracking-[0.35em] uppercase mb-5 font-medium">Nuestra Boda</p>
           
           <!-- Names -->
-          <div class="mb-5">
-            <h1 class="font-script text-5xl md:text-8xl mb-1 text-shimmer leading-tight" style="text-shadow: 0 4px 20px rgba(0,0,0,0.5);">Carlos</h1>
-            <span class="font-script text-3xl md:text-5xl text-gold/90 block my-1">&</span>
-            <h1 class="font-script text-5xl md:text-8xl mt-1 text-shimmer leading-tight" style="text-shadow: 0 4px 20px rgba(0,0,0,0.5);">Jimena</h1>
+          <div class="mb-5 overflow-visible">
+            <h1 class="font-script text-5xl md:text-8xl mb-2 text-shimmer leading-normal py-1" style="text-shadow: 0 4px 20px rgba(0,0,0,0.5);">Carlos</h1>
+            <span class="font-script text-3xl md:text-5xl text-gold/90 block my-2">&</span>
+            <h1 class="font-script text-5xl md:text-8xl mt-2 text-shimmer leading-normal py-1" style="text-shadow: 0 4px 20px rgba(0,0,0,0.5);">Jimena</h1>
           </div>
           
           <!-- Date -->
@@ -571,7 +503,7 @@
           </p>
           
           <!-- Button -->
-          <button id="open-invitation" class="hero-btn rotating-border relative px-10 py-4 rounded-full text-white font-semibold tracking-wide overflow-hidden group" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.35), rgba(202, 162, 74, 0.15)); border: 1px solid rgba(202, 162, 74, 0.7); transition: all 0.3s ease;">
+          <button id="open-invitation" class="relative px-10 py-4 rounded-full text-white font-semibold tracking-wide overflow-hidden group" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.35), rgba(202, 162, 74, 0.15)); border: 1px solid rgba(202, 162, 74, 0.7); box-shadow: 0 0 20px rgba(202, 162, 74, 0.2); transition: opacity 0.3s ease;">
             <span class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.5), rgba(202, 162, 74, 0.25));"></span>
             <span class="relative z-10 flex items-center justify-center gap-3">
               <i data-lucide="heart" class="text-gold w-4 h-4" style="fill: currentColor;"></i>
@@ -582,7 +514,7 @@
           
           <!-- Scroll hint -->
           <div class="mt-10 opacity-50">
-            <div class="flex flex-col items-center gap-2 animate-bounce-chevron">
+            <div class="flex flex-col items-center gap-2">
               <span class="text-xs text-white/40 tracking-wider">Toca para abrir</span>
               <i data-lucide="chevron-down" class="text-gold w-5 h-5"></i>
             </div>
@@ -624,7 +556,7 @@
         <div class="relative z-10 p-6 md:p-10">
           <!-- Header -->
           <div class="text-center mb-6 md:mb-8 reveal reveal-delay-1">
-            <div class="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-xl mb-3 animate-rotate-sparkle icon-pulse" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.2), rgba(202, 162, 74, 0.05)); border: 1px solid rgba(202, 162, 74, 0.3);">
+            <div class="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-xl mb-3" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.2), rgba(202, 162, 74, 0.05)); border: 1px solid rgba(202, 162, 74, 0.3);">
               <i data-lucide="sparkles" class="text-gold w-[18px] h-[18px] md:w-5 md:h-5"></i>
             </div>
             <h2 class="font-heading text-2xl md:text-4xl text-gradient">Faltan</h2>
@@ -680,7 +612,7 @@
           
           <div class="relative z-10 p-5 md:p-8">
             <div class="text-center mb-5 md:mb-6 reveal reveal-delay-1">
-              <div class="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-xl mb-3 animate-scale-heart" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.2), rgba(202, 162, 74, 0.05)); border: 1px solid rgba(202, 162, 74, 0.3);">
+              <div class="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-xl mb-3" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.2), rgba(202, 162, 74, 0.05)); border: 1px solid rgba(202, 162, 74, 0.3);">
                 <i data-lucide="users" class="text-gold w-[18px] h-[18px]"></i>
               </div>
               <h2 class="font-heading text-2xl md:text-4xl text-gradient">Nuestros Padres</h2>
@@ -688,14 +620,14 @@
             
             <div class="grid md:grid-cols-2 gap-3 md:gap-4">
               <!-- Groom parents -->
-              <div class="reveal reveal-delay-2 rounded-xl border border-gold/20 p-4 card-hover cursor-default tilt-card" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.08), rgba(6, 9, 19, 0.8));">
+              <div class="reveal reveal-delay-2 rounded-xl border border-gold/20 p-4 card-hover cursor-default " style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.08), rgba(6, 9, 19, 0.8));">
                 <p class="text-xs uppercase tracking-wider text-gold mb-2">Padres del Novio</p>
                 <p class="text-white/80 text-sm py-1 transition-colors hover:text-gold2">Carlos Alberto Urbina Tavarez</p>
                 <p class="text-white/80 text-sm py-1 transition-colors hover:text-gold2">Ma. Guadalupe Muñoz Campuzano</p>
               </div>
               
               <!-- Bride parents -->
-              <div class="reveal reveal-delay-3 rounded-xl border border-gold/20 p-4 card-hover cursor-default tilt-card" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.08), rgba(6, 9, 19, 0.8));">
+              <div class="reveal reveal-delay-3 rounded-xl border border-gold/20 p-4 card-hover cursor-default " style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.08), rgba(6, 9, 19, 0.8));">
                 <p class="text-xs uppercase tracking-wider text-gold mb-2">Padres de la Novia</p>
                 <p class="text-white/80 text-sm py-1 transition-colors hover:text-gold2">Jose Gerardo Mena Huerta</p>
                 <p class="text-white/80 text-sm py-1 transition-colors hover:text-gold2">Maria de Jesus Prado Lara</p>
@@ -710,7 +642,7 @@
           
           <div class="relative z-10 p-5 md:p-8">
             <div class="text-center mb-5 md:mb-6 reveal reveal-delay-1">
-              <div class="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-xl mb-3 animate-rotate-sparkle icon-pulse" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.2), rgba(202, 162, 74, 0.05)); border: 1px solid rgba(202, 162, 74, 0.3);">
+              <div class="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-xl mb-3" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.2), rgba(202, 162, 74, 0.05)); border: 1px solid rgba(202, 162, 74, 0.3);">
                 <i data-lucide="crown" class="text-gold w-[18px] h-[18px]"></i>
               </div>
               <h2 class="font-heading text-2xl md:text-4xl text-gradient">Nuestros Padrinos</h2>
@@ -774,7 +706,7 @@
           
           <div class="grid md:grid-cols-2 gap-3 md:gap-4">
             <!-- Ceremony -->
-            <div class="reveal reveal-delay-2 rounded-xl border border-gold/20 p-4 md:p-5 card-hover cursor-default tilt-card" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.08), rgba(6, 9, 19, 0.8));">
+            <div class="reveal reveal-delay-2 rounded-xl border border-gold/20 p-4 md:p-5 card-hover cursor-default " style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.08), rgba(6, 9, 19, 0.8));">
               <div class="flex items-center gap-2 mb-3">
                 <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background: rgba(202, 162, 74, 0.15);">
                   <i data-lucide="church" class="text-gold w-4 h-4"></i>
@@ -792,7 +724,7 @@
             </div>
             
             <!-- Reception -->
-            <div class="reveal reveal-delay-3 rounded-xl border border-gold/20 p-4 md:p-5 card-hover cursor-default tilt-card" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.08), rgba(6, 9, 19, 0.8));">
+            <div class="reveal reveal-delay-3 rounded-xl border border-gold/20 p-4 md:p-5 card-hover cursor-default " style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.08), rgba(6, 9, 19, 0.8));">
               <div class="flex items-center gap-2 mb-3">
                 <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background: rgba(202, 162, 74, 0.15);">
                   <i data-lucide="party-popper" class="text-gold w-4 h-4"></i>
@@ -816,7 +748,7 @@
         <div class="relative z-10 p-6 md:p-12">
           <!-- Header -->
           <div class="text-center mb-8 md:mb-12 reveal reveal-delay-1">
-            <div class="inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-xl md:rounded-2xl mb-4 animate-rotate-sparkle icon-pulse" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.2), rgba(202, 162, 74, 0.05)); border: 1px solid rgba(202, 162, 74, 0.3);">
+            <div class="inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-xl md:rounded-2xl mb-4" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.2), rgba(202, 162, 74, 0.05)); border: 1px solid rgba(202, 162, 74, 0.3);">
               <i data-lucide="sparkles" class="text-gold w-[22px] h-[22px] md:w-5 md:h-5"></i>
             </div>
             <h2 class="font-heading text-3xl md:text-5xl lg:text-6xl text-gradient mb-2 md:mb-3">Itinerario</h2>
@@ -909,7 +841,7 @@
       <!-- Dress Code + Lluvia de Sobres -->
       <section class="grid md:grid-cols-[1fr_2fr] gap-3 md:gap-4">
         <!-- Dress Code -->
-        <div class="reveal relative rounded-2xl border border-gold/30 overflow-hidden bg-card tilt-card">
+        <div class="reveal relative rounded-2xl border border-gold/30 overflow-hidden bg-card ">
           <div class="absolute top-0 right-0 w-[200px] h-[200px] bg-gold/10 rounded-full blur-[60px] animate-pulse-glow-soft"></div>
           
           <div class="relative z-10 p-5">
@@ -948,7 +880,7 @@
         </div>
         
         <!-- Lluvia de Sobres -->
-        <div class="reveal relative rounded-2xl border border-gold/30 overflow-hidden bg-card flex flex-col justify-center tilt-card">
+        <div class="reveal relative rounded-2xl border border-gold/30 overflow-hidden bg-card flex flex-col justify-center ">
           <div class="absolute bottom-0 left-0 w-[300px] h-[300px] bg-gold2/10 rounded-full blur-[80px] animate-pulse-glow-soft"></div>
           <div class="absolute top-0 right-0 w-[200px] h-[200px] bg-gold/10 rounded-full blur-[60px] animate-pulse-glow-soft"></div>
           
@@ -987,7 +919,7 @@
         <div class="relative z-10 p-6 md:p-12">
           <!-- Header -->
           <div class="text-center mb-8 md:mb-10 reveal reveal-delay-1">
-            <div class="inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-xl md:rounded-2xl mb-4 animate-rotate-sparkle icon-pulse" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.2), rgba(202, 162, 74, 0.05)); border: 1px solid rgba(202, 162, 74, 0.3);">
+            <div class="inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-xl md:rounded-2xl mb-4" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.2), rgba(202, 162, 74, 0.05)); border: 1px solid rgba(202, 162, 74, 0.3);">
               <i data-lucide="camera" class="text-gold w-[22px] h-[22px] md:w-5 md:h-5"></i>
             </div>
             <h2 class="font-heading text-3xl md:text-5xl lg:text-6xl text-gradient mb-2 md:mb-3">Nuestros Momentos</h2>
@@ -998,7 +930,7 @@
           <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 auto-rows-auto">
             <div class="reveal reveal-delay-1 relative cursor-pointer group gallery-item gallery-zoom" data-index="0">
               <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect card-glow" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
+              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 " style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
                 <div class="aspect-[4/3] relative overflow-hidden">
                   <img src="./images/Carlos y Jimena.jpeg" alt="Carlos y Jimena" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
                   <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
@@ -1016,7 +948,7 @@
             </div>
             <div class="reveal reveal-delay-2 relative cursor-pointer group gallery-item" data-index="1">
               <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect card-glow" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
+              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 " style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
                 <div class="aspect-square relative overflow-hidden">
                   <img src="./images/momento1.jpeg" alt="Momento 1" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
                   <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
@@ -1034,7 +966,7 @@
             </div>
             <div class="reveal reveal-delay-3 relative cursor-pointer group gallery-item" data-index="2">
               <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect card-glow" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
+              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 " style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
                 <div class="aspect-[3/4] relative overflow-hidden">
                   <img src="./images/momento10.jpeg" alt="Momento especial 10" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
                   <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
@@ -1052,7 +984,7 @@
             </div>
             <div class="reveal reveal-delay-4 relative cursor-pointer group gallery-item" data-index="3">
               <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect card-glow" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
+              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 " style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
                 <div class="aspect-[4/3] relative overflow-hidden">
                   <img src="./images/momento11.jpeg" alt="Momento especial 11" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
                   <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
@@ -1070,7 +1002,7 @@
             </div>
             <div class="reveal reveal-delay-5 relative cursor-pointer group gallery-item gallery-zoom" data-index="4">
               <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect card-glow" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
+              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 " style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
                 <div class="aspect-[16/9] md:col-span-2 relative overflow-hidden">
                   <img src="./images/momento12.jpeg" alt="Momento especial 12" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
                   <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
@@ -1088,7 +1020,7 @@
             </div>
             <div class="reveal reveal-delay-6 relative cursor-pointer group gallery-item gallery-zoom" data-index="5">
               <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect card-glow" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
+              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 " style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
                 <div class="aspect-[3/4] relative overflow-hidden">
                   <img src="./images/momento13.jpeg" alt="Momento especial 13" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
                   <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
@@ -1106,7 +1038,7 @@
             </div>
             <div class="reveal reveal-delay-1 relative cursor-pointer group gallery-item gallery-zoom" data-index="6">
               <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect card-glow" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
+              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 " style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
                 <div class="aspect-square relative overflow-hidden">
                   <img src="./images/momento14.jpeg" alt="Momento especial 14" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
                   <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
@@ -1124,7 +1056,7 @@
             </div>
             <div class="reveal reveal-delay-2 relative cursor-pointer group gallery-item" data-index="7">
               <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect card-glow" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
+              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 " style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
                 <div class="aspect-[4/3] relative overflow-hidden">
                   <img src="./images/momento15.jpeg" alt="Momento especial 15" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
                   <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
@@ -1142,7 +1074,7 @@
             </div>
             <div class="reveal reveal-delay-3 relative cursor-pointer group gallery-item" data-index="8">
               <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect card-glow" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
+              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 " style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
                 <div class="aspect-[3/4] relative overflow-hidden">
                   <img src="./images/momento16.jpeg" alt="Momento especial 16" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
                   <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
@@ -1160,7 +1092,7 @@
             </div>
             <div class="reveal reveal-delay-4 relative cursor-pointer group gallery-item" data-index="9">
               <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect card-glow" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
+              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 " style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
                 <div class="aspect-square relative overflow-hidden">
                   <img src="./images/momento2.jpeg" alt="Momento 2" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
                   <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
@@ -1178,7 +1110,7 @@
             </div>
             <div class="reveal reveal-delay-5 relative cursor-pointer group gallery-item gallery-zoom" data-index="10">
               <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect card-glow" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
+              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 " style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
                 <div class="aspect-[4/3] relative overflow-hidden">
                   <img src="./images/momento3.jpeg" alt="Momento 3" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
                   <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
@@ -1196,7 +1128,7 @@
             </div>
             <div class="reveal reveal-delay-6 relative cursor-pointer group gallery-item gallery-zoom" data-index="11">
               <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect card-glow" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
+              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 " style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
                 <div class="aspect-[3/4] relative overflow-hidden">
                   <img src="./images/momento4.jpeg" alt="Momento 4" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
                   <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
@@ -1214,7 +1146,7 @@
             </div>
             <div class="reveal reveal-delay-1 relative cursor-pointer group gallery-item gallery-zoom" data-index="12">
               <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect card-glow" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
+              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 " style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
                 <div class="aspect-square relative overflow-hidden">
                   <img src="./images/momento5.jpeg" alt="Momento especial 5" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
                   <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
@@ -1232,7 +1164,7 @@
             </div>
             <div class="reveal reveal-delay-2 relative cursor-pointer group gallery-item" data-index="13">
               <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect card-glow" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
+              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 " style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
                 <div class="aspect-[4/3] relative overflow-hidden">
                   <img src="./images/momento6.jpeg" alt="Momento especial 6" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
                   <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
@@ -1250,7 +1182,7 @@
             </div>
             <div class="reveal reveal-delay-3 relative cursor-pointer group gallery-item" data-index="14">
               <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect card-glow" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
+              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 " style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
                 <div class="aspect-[16/9] md:col-span-2 relative overflow-hidden">
                   <img src="./images/momento7.jpeg" alt="Momento especial 7" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
                   <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
@@ -1268,7 +1200,7 @@
             </div>
             <div class="reveal reveal-delay-4 relative cursor-pointer group gallery-item" data-index="15">
               <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect card-glow" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
+              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 " style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
                 <div class="aspect-[3/4] relative overflow-hidden">
                   <img src="./images/momento8.jpeg" alt="Momento especial 8" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
                   <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
@@ -1286,7 +1218,7 @@
             </div>
             <div class="reveal reveal-delay-5 relative cursor-pointer group gallery-item gallery-zoom" data-index="16">
               <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect card-glow" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
+              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 " style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
                 <div class="aspect-square relative overflow-hidden">
                   <img src="./images/momento9.jpeg" alt="Momento especial 9" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
                   <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
@@ -1304,7 +1236,7 @@
             </div>
             <div class="reveal reveal-delay-6 relative cursor-pointer group gallery-item gallery-zoom" data-index="17">
               <div class="absolute -inset-1 rounded-xl md:rounded-2xl bg-gradient-to-r from-gold/40 to-gold2/40 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 shine-effect card-glow" style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
+              <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-gold/20 group-hover:border-gold/50 transition-all duration-300 " style="background: linear-gradient(135deg, rgba(202, 162, 74, 0.1), rgba(6, 9, 19, 0.8));">
                 <div class="aspect-[4/3] relative overflow-hidden">
                   <img src="./images/portada.jpeg" alt="Nuestra historia" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform" style="transition-duration: 400ms;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
                   <div class="absolute inset-0 bg-gradient-to-t from-bg1/90 via-bg1/30 to-transparent transition-opacity duration-300 opacity-60 group-hover:opacity-100"></div>
@@ -2030,67 +1962,7 @@
     
 
 
-    // ==========================
-    // Golden Falling Particles
-    // ==========================
-    const particlesCanvas = document.getElementById('particles-bg');
-    if (particlesCanvas) {
-      const pCtx = particlesCanvas.getContext('2d');
-      let particles = [];
-      const isMobile = window.innerWidth < 768;
-      const particleCount = isMobile ? 60 : 120;
-      
-      function resizeParticles() {
-        particlesCanvas.width = window.innerWidth;
-        particlesCanvas.height = window.innerHeight;
-      }
-      resizeParticles();
-      window.addEventListener('resize', resizeParticles);
-      
-      for (let i = 0; i < particleCount; i++) {
-        particles.push({
-          x: Math.random() * particlesCanvas.width,
-          y: Math.random() * particlesCanvas.height,
-          size: Math.random() * 5 + 2,
-          speedY: Math.random() * 2.5 + 1.2,
-          speedX: Math.random() * 0.6 - 0.3,
-          opacity: Math.random() * 0.4 + 0.8,
-          color: ['202, 162, 74', '225, 195, 122', '246, 231, 192', '255, 255, 255'][Math.floor(Math.random() * 4)],
-          twinkle: Math.random() * Math.PI * 2
-        });
-      }
-      
-      function animateParticles() {
-        pCtx.clearRect(0, 0, particlesCanvas.width, particlesCanvas.height);
-        particles.forEach(p => {
-          p.y += p.speedY;
-          p.x += p.speedX + Math.sin(p.y * 0.01) * 0.3;
-          p.twinkle += 0.05;
-          
-          if (p.y > particlesCanvas.height + 10) { p.y = -10; p.x = Math.random() * particlesCanvas.width; }
-          if (p.x < -10) p.x = particlesCanvas.width + 10;
-          if (p.x > particlesCanvas.width + 10) p.x = -10;
-          
-          const twinkleAlpha = p.opacity * (0.5 + 0.5 * Math.sin(p.twinkle * 2));
-          
-          // Glow
-          const glow = pCtx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size * 3);
-          glow.addColorStop(0, `rgba(${p.color}, ${twinkleAlpha})`);
-          glow.addColorStop(0.4, `rgba(${p.color}, ${twinkleAlpha * 0.3})`);
-          glow.addColorStop(1, 'rgba(0,0,0,0)');
-          pCtx.fillStyle = glow;
-          pCtx.fillRect(p.x - p.size * 3, p.y - p.size * 3, p.size * 6, p.size * 6);
-          
-          // Core
-          pCtx.beginPath();
-          pCtx.arc(p.x, p.y, p.size * 1.5, 0, Math.PI * 2);
-          pCtx.fillStyle = `rgba(${p.color}, ${twinkleAlpha})`;
-          pCtx.fill();
-        });
-        requestAnimationFrame(animateParticles);
-      }
-      animateParticles();
-    }
+    // Golden Falling Particles removed for performance
     
     // ==========================
     // Gallery Scroll Zoom
@@ -2141,98 +2013,13 @@
       if (el) sectionObserver.observe(el);
     });
     
-    // ==========================
-    // Ripple Effect on Buttons/Links
-    // ==========================
-    document.addEventListener('click', function(e) {
-      const target = e.target.closest('button, a, .card-hover, .gallery-item');
-      if (!target) return;
-      
-      const rect = target.getBoundingClientRect();
-      const ripple = document.createElement('span');
-      const size = Math.max(rect.width, rect.height);
-      const x = e.clientX - rect.left - size / 2;
-      const y = e.clientY - rect.top - size / 2;
-      
-      ripple.style.width = ripple.style.height = (size * 1.5) + 'px';
-      ripple.style.left = x + 'px';
-      ripple.style.top = y + 'px';
-      ripple.classList.add('ripple');
-      ripple.style.background = 'rgba(202, 162, 74, 0.6)';
-      
-      target.style.position = 'relative';
-      target.style.overflow = 'hidden';
-      target.appendChild(ripple);
-      
-      setTimeout(() => ripple.remove(), 600);
-    });
+    // Ripple Effect removed for performance
     
-    // ==========================
-    // Timeline Draw on Scroll
-    // ==========================
-    const timelineProgress = document.getElementById('timeline-progress');
-    if (timelineProgress) {
-      const timelineObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const rect = entry.target.getBoundingClientRect();
-            const parent = entry.target.parentElement.getBoundingClientRect();
-            const ratio = Math.min(1, Math.max(0, (window.innerHeight - rect.top) / (parent.height + window.innerHeight * 0.5)));
-            timelineProgress.style.height = (ratio * 100) + '%';
-          }
-        });
-      }, { threshold: Array.from({length: 101}, (_, i) => i / 100) });
-      timelineObserver.observe(document.getElementById('itinerario'));
-    }
+    // Timeline Draw on Scroll removed for performance
     
-    // ==========================
-    // Parallax on Principal Photo
-    // ==========================
-    const principalPhoto = document.getElementById('principal-photo');
-    if (principalPhoto) {
-      window.addEventListener('scroll', () => {
-        const container = principalPhoto.closest('.parallax-container');
-        if (!container) return;
-        const rect = container.getBoundingClientRect();
-        const progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
-        if (progress > -0.5 && progress < 1.5) {
-          principalPhoto.style.transform = `scale(1.1) translateY(${(progress - 0.5) * -30}px)`;
-        }
-      }, { passive: true });
-    }
+    // Parallax on Principal Photo removed for performance
     
-    // ==========================
-    // 3D Tilt on Cards
-    // ==========================
-    document.querySelectorAll('.tilt-card').forEach(card => {
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        const rotateX = (y - centerY) / centerY * -5;
-        const rotateY = (x - centerX) / centerX * 5;
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
-      });
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
-      });
-      card.addEventListener('touchmove', (e) => {
-        if (e.touches.length !== 1) return;
-        const rect = card.getBoundingClientRect();
-        const x = e.touches[0].clientX - rect.left;
-        const y = e.touches[0].clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        const rotateX = (y - centerY) / centerY * -3;
-        const rotateY = (x - centerX) / centerX * 3;
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-      }, { passive: true });
-      card.addEventListener('touchend', () => {
-        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
-      });
-    });
+    // 3D Tilt on Cards removed for performance
     
     // ==========================
     // Confetti on Open Invitation
