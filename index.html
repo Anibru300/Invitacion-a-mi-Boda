@@ -995,39 +995,46 @@
       
       <!-- Pase de Acceso -->
       <section id="pase-acceso" class="reveal hidden">
-        <div class="bg-card rounded-2xl md:rounded-3xl border border-gold/20 overflow-hidden p-6 md:p-8 relative">
-          <!-- Decorative corners -->
-          <div class="absolute top-4 left-4 w-8 h-8 border-l border-t border-gold/30 rounded-tl-lg"></div>
-          <div class="absolute top-4 right-4 w-8 h-8 border-r border-t border-gold/30 rounded-tr-lg"></div>
-          <div class="absolute bottom-4 left-4 w-8 h-8 border-l border-b border-gold/30 rounded-bl-lg"></div>
-          <div class="absolute bottom-4 right-4 w-8 h-8 border-r border-b border-gold/30 rounded-br-lg"></div>
+        <!-- Tarjeta capturable por html2canvas -->
+        <div id="ticket-card" style="background: #060913; border: 2px solid #caa24a; border-radius: 1.5rem; padding: 2rem; max-width: 380px; margin: 0 auto; position: relative; overflow: hidden; font-family: 'Inter', system-ui, sans-serif;">
+          <!-- Fondo sutil -->
+          <div style="position: absolute; inset: 0; background: radial-gradient(circle at 50% 0%, rgba(202,162,74,0.12), transparent 60%); pointer-events: none;"></div>
           
-          <div class="text-center max-w-sm mx-auto">
-            <div class="ticket-seal mb-4">
-              <i data-lucide="heart" class="text-gold w-7 h-7" style="fill: currentColor;"></i>
+          <!-- Decoración superior e inferior -->
+          <div style="position: absolute; top: 0; left: 0; right: 0; height: 6px; background: linear-gradient(90deg, transparent, #caa24a, transparent); opacity: 0.6;"></div>
+          <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 6px; background: linear-gradient(90deg, transparent, #caa24a, transparent); opacity: 0.6;"></div>
+          
+          <div style="position: relative; z-index: 1; text-align: center;">
+            <!-- Sello corazón -->
+            <div style="width: 64px; height: 64px; border-radius: 50%; border: 2px solid rgba(202,162,74,0.5); display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; background: rgba(202,162,74,0.08);">
+              <i data-lucide="heart" style="width: 28px; height: 28px; color: #caa24a; fill: currentColor;"></i>
             </div>
             
-            <p class="font-script text-3xl md:text-4xl text-gradient mb-1">Carlos & Jimena</p>
-            <p class="text-white/50 text-xs uppercase tracking-wider mb-4">29 de agosto de 2026</p>
+            <p style="font-family: 'Great Vibes', cursive; font-size: 2.25rem; line-height: 1.1; background: linear-gradient(135deg, #f6e7c0, #e1c37a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.25rem;">Carlos & Jimena</p>
+            <p style="color: rgba(255,255,255,0.5); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 1.5rem;">29 de agosto de 2026</p>
             
-            <div class="ornament-divider mb-5">
-              <i data-lucide="heart" class="text-gold w-3 h-3" style="fill: currentColor; opacity: 0.5;"></i>
+            <!-- Línea divisoria simple -->
+            <div style="width: 60px; height: 1px; background: rgba(202,162,74,0.5); margin: 0 auto 1.5rem;"></div>
+            
+            <!-- Nombre del invitado -->
+            <p style="color: rgba(255,255,255,0.6); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.35rem;">Pase para:</p>
+            <p id="ticket-name" style="color: #fff; font-size: 1.35rem; font-weight: 600; margin-bottom: 1.25rem; word-break: break-word; line-height: 1.2;">Invitado</p>
+            
+            <!-- Número de personas -->
+            <p style="color: rgba(255,255,255,0.6); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem;">Este pase es válido para:</p>
+            <div id="ticket-pax-display" style="margin: 0.5rem 0 1.25rem;">
+              <span style="font-size: 3.5rem; font-weight: 700; color: #caa24a; font-family: 'Playfair Display', serif; line-height: 1;">2</span>
+              <p style="color: rgba(255,255,255,0.7); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.35rem;">PERSONAS</p>
             </div>
             
-            <p class="text-white/70 text-sm mb-3">Esta invitación es válida para:</p>
-            
-            <div id="ticket-pax-display" class="my-4">
-              <span class="text-4xl md:text-5xl font-bold text-gradient font-heading">2</span>
-              <p class="text-white/70 text-sm uppercase tracking-wider mt-1">PERSONAS</p>
-            </div>
-            
-            <div class="rounded-xl border border-gold/20 p-4 mt-5" style="background: rgba(202,162,74,0.04);">
-              <p class="text-white/70 text-xs md:text-sm leading-relaxed">
+            <!-- Disclaimer -->
+            <div style="border: 1px solid rgba(202,162,74,0.25); border-radius: 0.75rem; padding: 0.85rem; background: rgba(202,162,74,0.04); margin-top: 0.5rem;">
+              <p style="color: rgba(255,255,255,0.65); font-size: 0.75rem; line-height: 1.5; margin: 0;">
                 Favor de presentar este pase al ingresar al evento.
               </p>
             </div>
             
-            <p class="text-white/50 text-[10px] mt-4 uppercase tracking-widest">Pase de acceso exclusivo</p>
+            <p style="color: rgba(255,255,255,0.4); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.15em; margin-top: 1rem;">Pase de acceso exclusivo</p>
           </div>
         </div>
         
@@ -1928,28 +1935,43 @@
     // ==========================
     function showAccessPass() {
       const pase = document.getElementById('pase-acceso');
+      const nameDisplay = document.getElementById('ticket-name');
       const paxDisplay = document.getElementById('ticket-pax-display');
       const num = formData.pax || '1';
       const label = num === '1' ? 'PERSONA' : 'PERSONAS';
-      paxDisplay.innerHTML = '<span class="text-4xl md:text-5xl font-bold text-gradient font-heading">' + num + '</span><p class="text-white/70 text-sm uppercase tracking-wider mt-1">' + label + '</p>';
+      const displayName = formData.name || 'Invitado';
+      
+      if (nameDisplay) nameDisplay.textContent = displayName;
+      paxDisplay.innerHTML = '<span style="font-size: 3.5rem; font-weight: 700; color: #caa24a; font-family: \'Playfair Display\', serif; line-height: 1;">' + num + '</span><p style="color: rgba(255,255,255,0.7); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.35rem;">' + label + '</p>';
+      
       pase.classList.remove('hidden');
       pase.scrollIntoView({ behavior: 'smooth' });
+      lucide.createIcons();
     }
     
     async function downloadTicket() {
-      const ticketElement = document.querySelector('#pase-acceso > .bg-card');
+      const ticketElement = document.getElementById('ticket-card');
       if (!ticketElement) return;
       
       try {
+        // Forzar renderizado de iconos antes de capturar
+        lucide.createIcons();
+        await new Promise(resolve => setTimeout(resolve, 300));
+        
         const canvas = await html2canvas(ticketElement, {
           backgroundColor: '#060913',
           scale: 3,
           useCORS: true,
           logging: false,
+          width: ticketElement.offsetWidth,
+          height: ticketElement.offsetHeight,
+          windowWidth: ticketElement.offsetWidth,
+          windowHeight: ticketElement.offsetHeight,
         });
         
         const link = document.createElement('a');
-        link.download = 'Pase-de-Acceso-Carlos-y-Jimena.png';
+        const safeName = (formData.name || 'Invitado').replace(/[^a-zA-Z0-9\u00C0-\u017F ]/g, '').trim().replace(/\s+/g, '-');
+        link.download = 'Pase-' + safeName + '-Carlos-y-Jimena.png';
         link.href = canvas.toDataURL('image/png');
         link.click();
       } catch (err) {
