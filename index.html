@@ -998,24 +998,26 @@
         <!-- Contenedor capturable por html2canvas -->
         <div id="ticket-wrapper" style="padding: 12px; background: transparent; display: inline-block; width: 100%; text-align: center;">
           <div id="ticket-card" style="background: #060913; border: 2px solid #caa24a; border-radius: 1.5rem; padding: 2rem 1.75rem; width: 340px; max-width: 100%; margin: 0 auto; position: relative; overflow: hidden; font-family: 'Inter', system-ui, sans-serif; box-sizing: border-box;">
-            <!-- Fondos y destellos dorados compatibles con html2canvas -->
-            <div style="position: absolute; top: 0; left: 0; right: 0; height: 200px; background: radial-gradient(circle at 50% 0%, rgba(202,162,74,0.22), transparent 70%); pointer-events: none;"></div>
-            <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 160px; background: radial-gradient(circle at 50% 100%, rgba(202,162,74,0.12), transparent 70%); pointer-events: none;"></div>
-            <div style="position: absolute; top: 50%; left: 50%; width: 260px; height: 260px; transform: translate(-50%, -50%); background: radial-gradient(circle, rgba(202,162,74,0.06) 0%, transparent 70%); pointer-events: none;"></div>
+            <!-- Fondos dorados compatibles con html2canvas -->
+            <div style="position: absolute; top: 0; left: 0; right: 0; height: 220px; background: radial-gradient(circle at 50% 0%, rgba(202,162,74,0.25), transparent 70%); pointer-events: none;"></div>
+            <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 180px; background: radial-gradient(circle at 50% 100%, rgba(202,162,74,0.14), transparent 70%); pointer-events: none;"></div>
+            <div style="position: absolute; top: 50%; left: 50%; width: 280px; height: 280px; transform: translate(-50%, -50%); background: radial-gradient(circle, rgba(202,162,74,0.07) 0%, transparent 70%); pointer-events: none;"></div>
             
-            <!-- Destellos decorativos -->
-            <svg style="position: absolute; top: 14px; right: 24px; width: 22px; height: 22px; opacity: 0.95; pointer-events: none;" viewBox="0 0 24 24" fill="none"><path d="M12 2L13.5 9.5L21 12L13.5 14.5L12 22L10.5 14.5L3 12L10.5 9.5L12 2Z" fill="#e1c37a"/></svg>
-            <svg style="position: absolute; top: 44px; left: 26px; width: 16px; height: 16px; opacity: 0.85; pointer-events: none;" viewBox="0 0 24 24" fill="none"><path d="M12 2L13.5 9.5L21 12L13.5 14.5L12 22L10.5 14.5L3 12L10.5 9.5L12 2Z" fill="#ffffff"/></svg>
-            <svg style="position: absolute; top: 86px; right: 48px; width: 12px; height: 12px; opacity: 0.7; pointer-events: none;" viewBox="0 0 24 24" fill="none"><path d="M12 2L13.5 9.5L21 12L13.5 14.5L12 22L10.5 14.5L3 12L10.5 9.5L12 2Z" fill="#ffffff"/></svg>
-            <svg style="position: absolute; top: 118px; left: 44px; width: 10px; height: 10px; opacity: 0.65; pointer-events: none;" viewBox="0 0 24 24" fill="none"><path d="M12 2L13.5 9.5L21 12L13.5 14.5L12 22L10.5 14.5L3 12L10.5 9.5L12 2Z" fill="#caa24a"/></svg>
-            <svg style="position: absolute; top: 152px; right: 22px; width: 8px; height: 8px; opacity: 0.55; pointer-events: none;" viewBox="0 0 24 24" fill="none"><path d="M12 2L13.5 9.5L21 12L13.5 14.5L12 22L10.5 14.5L3 12L10.5 9.5L12 2Z" fill="#e1c37a"/></svg>
-            <svg style="position: absolute; top: 176px; left: 20px; width: 7px; height: 7px; opacity: 0.5; pointer-events: none;" viewBox="0 0 24 24" fill="none"><path d="M12 2L13.5 9.5L21 12L13.5 14.5L12 22L10.5 14.5L3 12L10.5 9.5L12 2Z" fill="#ffffff"/></svg>
-            <svg style="position: absolute; bottom: 90px; right: 20px; width: 18px; height: 18px; opacity: 0.8; pointer-events: none;" viewBox="0 0 24 24" fill="none"><path d="M12 2L13.5 9.5L21 12L13.5 14.5L12 22L10.5 14.5L3 12L10.5 9.5L12 2Z" fill="#caa24a"/></svg>
-            <svg style="position: absolute; bottom: 124px; left: 20px; width: 14px; height: 14px; opacity: 0.75; pointer-events: none;" viewBox="0 0 24 24" fill="none"><path d="M12 2L13.5 9.5L21 12L13.5 14.5L12 22L10.5 14.5L3 12L10.5 9.5L12 2Z" fill="#e1c37a"/></svg>
-            <svg style="position: absolute; bottom: 58px; left: 58px; width: 11px; height: 11px; opacity: 0.6; pointer-events: none;" viewBox="0 0 24 24" fill="none"><path d="M12 2L13.5 9.5L21 12L13.5 14.5L12 22L10.5 14.5L3 12L10.5 9.5L12 2Z" fill="#ffffff"/></svg>
-            <svg style="position: absolute; bottom: 150px; right: 56px; width: 9px; height: 9px; opacity: 0.55; pointer-events: none;" viewBox="0 0 24 24" fill="none"><path d="M12 2L13.5 9.5L21 12L13.5 14.5L12 22L10.5 14.5L3 12L10.5 9.5L12 2Z" fill="#ffffff"/></svg>
-            <svg style="position: absolute; bottom: 38px; right: 64px; width: 7px; height: 7px; opacity: 0.5; pointer-events: none;" viewBox="0 0 24 24" fill="none"><path d="M12 2L13.5 9.5L21 12L13.5 14.5L12 22L10.5 14.5L3 12L10.5 9.5L12 2Z" fill="#e1c37a"/></svg>
-            <svg style="position: absolute; bottom: 176px; right: 34px; width: 6px; height: 6px; opacity: 0.45; pointer-events: none;" viewBox="0 0 24 24" fill="none"><path d="M12 2L13.5 9.5L21 12L13.5 14.5L12 22L10.5 14.5L3 12L10.5 9.5L12 2Z" fill="#ffffff"/></svg>
+            <!-- Destellos decorativos con caracteres (más compatibles con html2canvas) -->
+            <span style="position: absolute; top: 16px; right: 26px; color: #e1c37a; font-size: 20px; opacity: 0.95; pointer-events: none; line-height: 1;">✦</span>
+            <span style="position: absolute; top: 46px; left: 28px; color: #ffffff; font-size: 14px; opacity: 0.85; pointer-events: none; line-height: 1;">✧</span>
+            <span style="position: absolute; top: 90px; right: 50px; color: #ffffff; font-size: 11px; opacity: 0.75; pointer-events: none; line-height: 1;">✦</span>
+            <span style="position: absolute; top: 122px; left: 46px; color: #caa24a; font-size: 9px; opacity: 0.7; pointer-events: none; line-height: 1;">✧</span>
+            <span style="position: absolute; top: 158px; right: 24px; color: #e1c37a; font-size: 8px; opacity: 0.6; pointer-events: none; line-height: 1;">✦</span>
+            <span style="position: absolute; top: 184px; left: 22px; color: #ffffff; font-size: 7px; opacity: 0.55; pointer-events: none; line-height: 1;">✧</span>
+            <span style="position: absolute; bottom: 92px; right: 22px; color: #caa24a; font-size: 17px; opacity: 0.85; pointer-events: none; line-height: 1;">✦</span>
+            <span style="position: absolute; bottom: 128px; left: 22px; color: #e1c37a; font-size: 13px; opacity: 0.8; pointer-events: none; line-height: 1;">✧</span>
+            <span style="position: absolute; bottom: 60px; left: 60px; color: #ffffff; font-size: 10px; opacity: 0.65; pointer-events: none; line-height: 1;">✦</span>
+            <span style="position: absolute; bottom: 154px; right: 58px; color: #ffffff; font-size: 8px; opacity: 0.6; pointer-events: none; line-height: 1;">✧</span>
+            <span style="position: absolute; bottom: 40px; right: 66px; color: #e1c37a; font-size: 7px; opacity: 0.55; pointer-events: none; line-height: 1;">✦</span>
+            <span style="position: absolute; bottom: 180px; right: 36px; color: #ffffff; font-size: 6px; opacity: 0.5; pointer-events: none; line-height: 1;">✧</span>
+            <span style="position: absolute; top: 64px; right: 82px; color: #caa24a; font-size: 6px; opacity: 0.5; pointer-events: none; line-height: 1;">✦</span>
+            <span style="position: absolute; bottom: 104px; right: 92px; color: #e1c37a; font-size: 5px; opacity: 0.45; pointer-events: none; line-height: 1;">✧</span>
             
             <div style="position: relative; z-index: 1; text-align: center;">
               <!-- Sello corazón -->
@@ -1025,11 +1027,11 @@
               
               <p style="font-family: 'Great Vibes', cursive; font-size: 2.25rem; color: #e1c37a; margin: 0 0 0.5rem; line-height: 1.25;">Carlos & Jimena</p>
               
-              <!-- Número de personas (posición superior, estructura estable para html2canvas) -->
+              <!-- Número de personas (estructura fija para html2canvas, sin encimar) -->
               <div id="ticket-pax-display" style="margin: 0.25rem auto 0.75rem; text-align: center;">
-                <div style="color: #9ca3af; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; margin: 0 0 0.25rem;">Este pase es válido para</div>
-                <div id="ticket-pax-number" style="font-size: 3.5rem; font-weight: 700; color: #caa24a; font-family: 'Playfair Display', serif; line-height: 1; margin: 0;">2</div>
-                <div id="ticket-pax-label" style="color: rgba(255,255,255,0.7); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; margin: 0.25rem 0 0;">PERSONAS</div>
+                <div style="color: #9ca3af; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; margin: 0 0 0.2rem;">Este pase es válido para</div>
+                <div id="ticket-pax-number" style="font-size: 3.25rem; font-weight: 700; color: #caa24a; font-family: 'Playfair Display', serif; line-height: 1.15; margin: 0 0 0.15rem;">2</div>
+                <div id="ticket-pax-label" style="color: rgba(255,255,255,0.7); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; margin: 0;">PERSONAS</div>
               </div>
               
               <p style="color: #9ca3af; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.15em; margin: 0 0 1rem;">29 de agosto de 2026</p>
