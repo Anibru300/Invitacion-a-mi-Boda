@@ -998,8 +998,24 @@
         <!-- Contenedor capturable por html2canvas -->
         <div id="ticket-wrapper" style="padding: 12px; background: transparent; display: inline-block; width: 100%; text-align: center;">
           <div id="ticket-card" style="background: #060913; border: 2px solid #caa24a; border-radius: 1.5rem; padding: 2rem 1.75rem; width: 340px; max-width: 100%; margin: 0 auto; position: relative; overflow: hidden; font-family: 'Inter', system-ui, sans-serif; box-sizing: border-box;">
-            <!-- Fondo sutil compatible -->
-            <div style="position: absolute; top: 0; left: 0; right: 0; height: 140px; background: radial-gradient(circle at 50% 0%, rgba(202,162,74,0.15), transparent 70%); pointer-events: none;"></div>
+            <!-- Fondos y destellos dorados compatibles con html2canvas -->
+            <div style="position: absolute; top: 0; left: 0; right: 0; height: 200px; background: radial-gradient(circle at 50% 0%, rgba(202,162,74,0.22), transparent 70%); pointer-events: none;"></div>
+            <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 160px; background: radial-gradient(circle at 50% 100%, rgba(202,162,74,0.12), transparent 70%); pointer-events: none;"></div>
+            <div style="position: absolute; top: 50%; left: 50%; width: 260px; height: 260px; transform: translate(-50%, -50%); background: radial-gradient(circle, rgba(202,162,74,0.06) 0%, transparent 70%); pointer-events: none;"></div>
+            
+            <!-- Destellos decorativos -->
+            <svg style="position: absolute; top: 14px; right: 24px; width: 22px; height: 22px; opacity: 0.95; pointer-events: none;" viewBox="0 0 24 24" fill="none"><path d="M12 2L13.5 9.5L21 12L13.5 14.5L12 22L10.5 14.5L3 12L10.5 9.5L12 2Z" fill="#e1c37a"/></svg>
+            <svg style="position: absolute; top: 44px; left: 26px; width: 16px; height: 16px; opacity: 0.85; pointer-events: none;" viewBox="0 0 24 24" fill="none"><path d="M12 2L13.5 9.5L21 12L13.5 14.5L12 22L10.5 14.5L3 12L10.5 9.5L12 2Z" fill="#ffffff"/></svg>
+            <svg style="position: absolute; top: 86px; right: 48px; width: 12px; height: 12px; opacity: 0.7; pointer-events: none;" viewBox="0 0 24 24" fill="none"><path d="M12 2L13.5 9.5L21 12L13.5 14.5L12 22L10.5 14.5L3 12L10.5 9.5L12 2Z" fill="#ffffff"/></svg>
+            <svg style="position: absolute; top: 118px; left: 44px; width: 10px; height: 10px; opacity: 0.65; pointer-events: none;" viewBox="0 0 24 24" fill="none"><path d="M12 2L13.5 9.5L21 12L13.5 14.5L12 22L10.5 14.5L3 12L10.5 9.5L12 2Z" fill="#caa24a"/></svg>
+            <svg style="position: absolute; top: 152px; right: 22px; width: 8px; height: 8px; opacity: 0.55; pointer-events: none;" viewBox="0 0 24 24" fill="none"><path d="M12 2L13.5 9.5L21 12L13.5 14.5L12 22L10.5 14.5L3 12L10.5 9.5L12 2Z" fill="#e1c37a"/></svg>
+            <svg style="position: absolute; top: 176px; left: 20px; width: 7px; height: 7px; opacity: 0.5; pointer-events: none;" viewBox="0 0 24 24" fill="none"><path d="M12 2L13.5 9.5L21 12L13.5 14.5L12 22L10.5 14.5L3 12L10.5 9.5L12 2Z" fill="#ffffff"/></svg>
+            <svg style="position: absolute; bottom: 90px; right: 20px; width: 18px; height: 18px; opacity: 0.8; pointer-events: none;" viewBox="0 0 24 24" fill="none"><path d="M12 2L13.5 9.5L21 12L13.5 14.5L12 22L10.5 14.5L3 12L10.5 9.5L12 2Z" fill="#caa24a"/></svg>
+            <svg style="position: absolute; bottom: 124px; left: 20px; width: 14px; height: 14px; opacity: 0.75; pointer-events: none;" viewBox="0 0 24 24" fill="none"><path d="M12 2L13.5 9.5L21 12L13.5 14.5L12 22L10.5 14.5L3 12L10.5 9.5L12 2Z" fill="#e1c37a"/></svg>
+            <svg style="position: absolute; bottom: 58px; left: 58px; width: 11px; height: 11px; opacity: 0.6; pointer-events: none;" viewBox="0 0 24 24" fill="none"><path d="M12 2L13.5 9.5L21 12L13.5 14.5L12 22L10.5 14.5L3 12L10.5 9.5L12 2Z" fill="#ffffff"/></svg>
+            <svg style="position: absolute; bottom: 150px; right: 56px; width: 9px; height: 9px; opacity: 0.55; pointer-events: none;" viewBox="0 0 24 24" fill="none"><path d="M12 2L13.5 9.5L21 12L13.5 14.5L12 22L10.5 14.5L3 12L10.5 9.5L12 2Z" fill="#ffffff"/></svg>
+            <svg style="position: absolute; bottom: 38px; right: 64px; width: 7px; height: 7px; opacity: 0.5; pointer-events: none;" viewBox="0 0 24 24" fill="none"><path d="M12 2L13.5 9.5L21 12L13.5 14.5L12 22L10.5 14.5L3 12L10.5 9.5L12 2Z" fill="#e1c37a"/></svg>
+            <svg style="position: absolute; bottom: 176px; right: 34px; width: 6px; height: 6px; opacity: 0.45; pointer-events: none;" viewBox="0 0 24 24" fill="none"><path d="M12 2L13.5 9.5L21 12L13.5 14.5L12 22L10.5 14.5L3 12L10.5 9.5L12 2Z" fill="#ffffff"/></svg>
             
             <div style="position: relative; z-index: 1; text-align: center;">
               <!-- Sello corazón -->
@@ -1007,8 +1023,16 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="#caa24a" stroke="#caa24a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
               </div>
               
-              <p style="font-family: 'Great Vibes', cursive; font-size: 2.25rem; color: #e1c37a; margin: 0 0 0.85rem; line-height: 1.25;">Carlos & Jimena</p>
-              <p style="color: #9ca3af; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.15em; margin: 0 0 1.75rem;">29 de agosto de 2026</p>
+              <p style="font-family: 'Great Vibes', cursive; font-size: 2.25rem; color: #e1c37a; margin: 0 0 0.5rem; line-height: 1.25;">Carlos & Jimena</p>
+              
+              <!-- Número de personas (posición superior, estructura estable para html2canvas) -->
+              <div id="ticket-pax-display" style="margin: 0.25rem auto 0.75rem; text-align: center;">
+                <div style="color: #9ca3af; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; margin: 0 0 0.25rem;">Este pase es válido para</div>
+                <div id="ticket-pax-number" style="font-size: 3.5rem; font-weight: 700; color: #caa24a; font-family: 'Playfair Display', serif; line-height: 1; margin: 0;">2</div>
+                <div id="ticket-pax-label" style="color: rgba(255,255,255,0.7); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; margin: 0.25rem 0 0;">PERSONAS</div>
+              </div>
+              
+              <p style="color: #9ca3af; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.15em; margin: 0 0 1rem;">29 de agosto de 2026</p>
               
               <!-- Línea divisoria simple -->
               <div style="width: 60px; height: 1px; background: #caa24a; margin: 0 auto 1.25rem; opacity: 0.6;"></div>
@@ -1016,13 +1040,6 @@
               <!-- Nombre del invitado -->
               <p style="color: #9ca3af; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; margin: 0 0 0.4rem;">Pase para:</p>
               <p id="ticket-name" style="color: #ffffff; font-size: 1.4rem; font-weight: 600; margin: 0 0 1.25rem; word-break: break-word; line-height: 1.2;">Invitado</p>
-              
-              <!-- Número de personas -->
-              <p style="color: #9ca3af; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; margin: 0 0 0.6rem;">Este pase es válido para:</p>
-              <div id="ticket-pax-display" style="margin: 0.75rem 0 1.25rem; display: flex; flex-direction: column; align-items: center; gap: 0.35rem;">
-                <span style="display: block; font-size: 3.5rem; font-weight: 700; color: #caa24a; font-family: 'Playfair Display', serif; line-height: 1.05; margin: 0;">2</span>
-                <span style="display: block; color: #d1d5db; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em;">PERSONAS</span>
-              </div>
               
               <!-- Disclaimer -->
               <div style="border: 1px solid rgba(202,162,74,0.35); border-radius: 0.75rem; padding: 0.85rem; background: rgba(202,162,74,0.05); margin-top: 0.25rem;">
@@ -1934,13 +1951,15 @@
     function showAccessPass() {
       const pase = document.getElementById('pase-acceso');
       const nameDisplay = document.getElementById('ticket-name');
-      const paxDisplay = document.getElementById('ticket-pax-display');
+      const paxNumber = document.getElementById('ticket-pax-number');
+      const paxLabel = document.getElementById('ticket-pax-label');
       const num = formData.pax || '1';
       const label = num === '1' ? 'PERSONA' : 'PERSONAS';
       const displayName = formData.name || 'Invitado';
       
       if (nameDisplay) nameDisplay.textContent = displayName;
-      paxDisplay.innerHTML = '<span style="font-size: 3.5rem; font-weight: 700; color: #caa24a; font-family: \'Playfair Display\', serif; line-height: 1;">' + num + '</span><p style="color: rgba(255,255,255,0.7); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.35rem;">' + label + '</p>';
+      if (paxNumber) paxNumber.textContent = num;
+      if (paxLabel) paxLabel.textContent = label;
       
       pase.classList.remove('hidden');
       pase.scrollIntoView({ behavior: 'smooth' });
@@ -1952,11 +1971,12 @@
       if (!ticketElement) return;
       
       try {
-        // Asegurar que el ticket tenga dimensiones estables
+        // Asegurar que el ticket tenga dimensiones estables y las fuentes carguen
         ticketElement.style.display = 'block';
         ticketElement.style.boxSizing = 'border-box';
         
         await new Promise(resolve => setTimeout(resolve, 200));
+        if (document.fonts && document.fonts.ready) await document.fonts.ready;
         
         const rect = ticketElement.getBoundingClientRect();
         const canvas = await html2canvas(ticketElement, {
