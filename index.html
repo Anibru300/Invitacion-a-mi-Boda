@@ -995,46 +995,44 @@
       
       <!-- Pase de Acceso -->
       <section id="pase-acceso" class="reveal hidden">
-        <!-- Tarjeta capturable por html2canvas -->
-        <div id="ticket-card" style="background: #060913; border: 2px solid #caa24a; border-radius: 1.5rem; padding: 2rem; max-width: 380px; margin: 0 auto; position: relative; overflow: hidden; font-family: 'Inter', system-ui, sans-serif;">
-          <!-- Fondo sutil -->
-          <div style="position: absolute; inset: 0; background: radial-gradient(circle at 50% 0%, rgba(202,162,74,0.12), transparent 60%); pointer-events: none;"></div>
-          
-          <!-- Decoración superior e inferior -->
-          <div style="position: absolute; top: 0; left: 0; right: 0; height: 6px; background: linear-gradient(90deg, transparent, #caa24a, transparent); opacity: 0.6;"></div>
-          <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 6px; background: linear-gradient(90deg, transparent, #caa24a, transparent); opacity: 0.6;"></div>
-          
-          <div style="position: relative; z-index: 1; text-align: center;">
-            <!-- Sello corazón -->
-            <div style="width: 64px; height: 64px; border-radius: 50%; border: 2px solid rgba(202,162,74,0.5); display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; background: rgba(202,162,74,0.08);">
-              <i data-lucide="heart" style="width: 28px; height: 28px; color: #caa24a; fill: currentColor;"></i>
+        <!-- Contenedor capturable por html2canvas -->
+        <div id="ticket-wrapper" style="padding: 12px; background: transparent; display: inline-block; width: 100%; text-align: center;">
+          <div id="ticket-card" style="background: #060913; border: 2px solid #caa24a; border-radius: 1.5rem; padding: 2rem 1.75rem; width: 340px; max-width: 100%; margin: 0 auto; position: relative; overflow: hidden; font-family: 'Inter', system-ui, sans-serif; box-sizing: border-box;">
+            <!-- Fondo sutil compatible -->
+            <div style="position: absolute; top: 0; left: 0; right: 0; height: 140px; background: radial-gradient(circle at 50% 0%, rgba(202,162,74,0.15), transparent 70%); pointer-events: none;"></div>
+            
+            <div style="position: relative; z-index: 1; text-align: center;">
+              <!-- Sello corazón -->
+              <div style="width: 68px; height: 68px; border-radius: 50%; border: 2px solid #caa24a; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; background: rgba(202,162,74,0.08);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="#caa24a" stroke="#caa24a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+              </div>
+              
+              <p style="font-family: 'Great Vibes', cursive; font-size: 2.5rem; color: #e1c37a; margin: 0 0 0.25rem; line-height: 1;">Carlos & Jimena</p>
+              <p style="color: #9ca3af; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.15em; margin: 0 0 1.25rem;">29 de agosto de 2026</p>
+              
+              <!-- Línea divisoria simple -->
+              <div style="width: 60px; height: 1px; background: #caa24a; margin: 0 auto 1.25rem; opacity: 0.6;"></div>
+              
+              <!-- Nombre del invitado -->
+              <p style="color: #9ca3af; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; margin: 0 0 0.4rem;">Pase para:</p>
+              <p id="ticket-name" style="color: #ffffff; font-size: 1.4rem; font-weight: 600; margin: 0 0 1.25rem; word-break: break-word; line-height: 1.2;">Invitado</p>
+              
+              <!-- Número de personas -->
+              <p style="color: #9ca3af; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; margin: 0 0 0.4rem;">Este pase es válido para:</p>
+              <div id="ticket-pax-display" style="margin: 0.25rem 0 1.25rem;">
+                <span style="display: block; font-size: 3.5rem; font-weight: 700; color: #caa24a; font-family: 'Playfair Display', serif; line-height: 1; margin-bottom: 0.3rem;">2</span>
+                <span style="display: block; color: #d1d5db; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em;">PERSONAS</span>
+              </div>
+              
+              <!-- Disclaimer -->
+              <div style="border: 1px solid rgba(202,162,74,0.35); border-radius: 0.75rem; padding: 0.85rem; background: rgba(202,162,74,0.05); margin-top: 0.25rem;">
+                <p style="color: #d1d5db; font-size: 0.75rem; line-height: 1.5; margin: 0;">
+                  Favor de presentar este pase al ingresar al evento.
+                </p>
+              </div>
+              
+              <p style="color: #6b7280; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.15em; margin: 1rem 0 0;">Pase de acceso exclusivo</p>
             </div>
-            
-            <p style="font-family: 'Great Vibes', cursive; font-size: 2.25rem; line-height: 1.1; background: linear-gradient(135deg, #f6e7c0, #e1c37a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.25rem;">Carlos & Jimena</p>
-            <p style="color: rgba(255,255,255,0.5); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 1.5rem;">29 de agosto de 2026</p>
-            
-            <!-- Línea divisoria simple -->
-            <div style="width: 60px; height: 1px; background: rgba(202,162,74,0.5); margin: 0 auto 1.5rem;"></div>
-            
-            <!-- Nombre del invitado -->
-            <p style="color: rgba(255,255,255,0.6); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.35rem;">Pase para:</p>
-            <p id="ticket-name" style="color: #fff; font-size: 1.35rem; font-weight: 600; margin-bottom: 1.25rem; word-break: break-word; line-height: 1.2;">Invitado</p>
-            
-            <!-- Número de personas -->
-            <p style="color: rgba(255,255,255,0.6); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem;">Este pase es válido para:</p>
-            <div id="ticket-pax-display" style="margin: 0.5rem 0 1.25rem;">
-              <span style="font-size: 3.5rem; font-weight: 700; color: #caa24a; font-family: 'Playfair Display', serif; line-height: 1;">2</span>
-              <p style="color: rgba(255,255,255,0.7); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.35rem;">PERSONAS</p>
-            </div>
-            
-            <!-- Disclaimer -->
-            <div style="border: 1px solid rgba(202,162,74,0.25); border-radius: 0.75rem; padding: 0.85rem; background: rgba(202,162,74,0.04); margin-top: 0.5rem;">
-              <p style="color: rgba(255,255,255,0.65); font-size: 0.75rem; line-height: 1.5; margin: 0;">
-                Favor de presentar este pase al ingresar al evento.
-              </p>
-            </div>
-            
-            <p style="color: rgba(255,255,255,0.4); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.15em; margin-top: 1rem;">Pase de acceso exclusivo</p>
           </div>
         </div>
         
@@ -1954,19 +1952,24 @@
       if (!ticketElement) return;
       
       try {
-        // Forzar renderizado de iconos antes de capturar
-        lucide.createIcons();
-        await new Promise(resolve => setTimeout(resolve, 300));
+        // Asegurar que el ticket tenga dimensiones estables
+        ticketElement.style.display = 'block';
+        ticketElement.style.boxSizing = 'border-box';
         
+        await new Promise(resolve => setTimeout(resolve, 200));
+        
+        const rect = ticketElement.getBoundingClientRect();
         const canvas = await html2canvas(ticketElement, {
           backgroundColor: '#060913',
           scale: 3,
           useCORS: true,
           logging: false,
-          width: ticketElement.offsetWidth,
-          height: ticketElement.offsetHeight,
-          windowWidth: ticketElement.offsetWidth,
-          windowHeight: ticketElement.offsetHeight,
+          width: rect.width,
+          height: rect.height,
+          x: 0,
+          y: 0,
+          scrollX: 0,
+          scrollY: 0,
         });
         
         const link = document.createElement('a');
