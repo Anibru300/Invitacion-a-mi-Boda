@@ -55,7 +55,7 @@ https://anibru300.github.io/Invitacion-a-mi-Boda/?admin=1
 Aparece al final de la página un apartado **"Generador de Invitaciones"**.
 
 1. Escribe el nombre del invitado.
-2. Selecciona el número de pases (1–5, o más si se modifica el HTML).
+2. Selecciona el número de pases (1–10).
 3. Click en **"Generar link personalizado"**.
 4. Copia el link y envíalo por WhatsApp.
 
@@ -193,11 +193,7 @@ copyAdminLink()           // Copia al portapapeles
 
 ### Para agregar más botones de pases en el admin
 
-Buscar en el HTML (~línea 1088):
-```html
-<button type="button" onclick="setAdminPax('6')" class="admin-pax-btn ...">6</button>
-```
-Agregar botones similares dentro del `grid`.
+El panel ya incluye botones del 1 al 10. Si en el futuro se requiere más de 10 pases, agregar botones similares dentro del `grid` del panel de admin.
 
 ---
 
@@ -259,7 +255,7 @@ file:///C:/.../Invitacion-a-mi-Boda/index.html?admin=1
 - **Google Forms:** Si se necesita cambiar el formulario, hay que actualizar la URL `BASE` y las `entry.XXXXXX` IDs. Se obtienen inspeccionando el HTML del formulario de Google.
 - **Imágenes:** Si se cambian fotos, reemplazar los archivos en `/images/` manteniendo los mismos nombres, o actualizar las rutas en `index.html`.
 - **localStorage:** Si un invitado cambia de navegador/dispositivo o borra datos, podría confirmar de nuevo. El "bloqueo" es a nivel de dispositivo, no de servidor.
-- **Máximo de pases:** El admin genera links con `pases=N`. El RSVP genera botones 1 a N. Si N > 5, los botones se acomodan en múltiples filas por el grid de 5 columnas.
+- **Máximo de pases:** El admin genera links con `pases=N` (actualmente hasta 10). El RSVP genera botones 1 a N. Si N > 5, los botones se acomodan en múltiples filas por el grid de 5 columnas.
 - **Música:** El reproductor usa la API de YouTube IFrame. Si el video deja de existir, hay que actualizar el `videoId` en la función `initMusicPlayer()`.
 
 ---
